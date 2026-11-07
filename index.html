@@ -82,7 +82,6 @@
             color: #0b132b;
         }
 
-        /* القائمة الجانبية المنزلقة */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -276,15 +275,16 @@
         .topic-box {
             background: rgba(255,255,255,0.02);
             border-right: 3px solid var(--accent-blue);
-            padding: 12px 15px;
-            margin-bottom: 12px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .topic-box h4 {
             color: var(--accent-blue);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
         }
 
         .quiz-grid {
@@ -400,7 +400,7 @@
         }
 
         .chat-box {
-            height: 320px;
+            height: 350px;
             overflow-y: auto;
             background: rgba(0, 0, 0, 0.25);
             border: 1px solid var(--border-glow);
@@ -409,15 +409,15 @@
             margin-bottom: 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .chat-msg {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            max-width: 82%;
+            padding: 11px 15px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            line-height: 1.55;
         }
 
         .chat-msg.user {
@@ -448,7 +448,6 @@
         </div>
     </header>
 
-    <!-- القائمة الجانبية المنزلقة -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="menu-header">
             <div class="logo">
@@ -464,7 +463,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
-                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح المفصل (كتاب الفائز كامل)</span>
+                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح الشامل (كتاب الفائز)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
@@ -484,7 +483,7 @@
 
     <div class="container">
         
-        <!-- تسجيل الدخول -->
+        <!-- صفحة تسجيل الدخول -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول طالب البكالوريا</h2>
@@ -542,13 +541,12 @@
             </div>
         </div>
 
-        <!-- الشرح المفصل (كتاب الفائز كامل بأسماء الوحدات وبدون أي أكواد مزعجة) -->
+        <!-- الشرح المفصل لجميع وحدات الكتاب -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح المفصل - كتاب الفائز الشامل</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الوحدة أدناه لعرض الشرح المفصل والمبسط طبقاً للمنهج:</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل لجميع وحدات كتاب الفائز</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الوحدة لعرض الشرح الشامل لجميع مفاهيم المنهج من الكتاب بالكامل:</p>
                 
-                <!-- أزرار اختيار الوحدات -->
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
                         <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
@@ -560,7 +558,7 @@
                     </div>
                     <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
                         <i class="fa-solid fa-code" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 3: تقنيات الواجهة الأمامية</h4>
+                        <h4>الوحدة 4: تقنيات الواجهة الأمامية</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
                         <i class="fa-solid fa-photo-film" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
@@ -576,89 +574,104 @@
                     </div>
                 </div>
 
-                <!-- محتوى الوحدات النظيف والمصحح بالكامل -->
+                <!-- الوحدة 1 -->
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-cube"></i> الوحدة 1: بنية تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-cube"></i> الوحدة 1: بنية تطبيقات الويب الشاملة</h3>
                     <div class="topic-box">
-                        <h4>1. ما هو تطبيق الويب؟</h4>
-                        <p>برنامج يعمل عبر الإنترنت وعادة يُستخدم من خلال متصفح الويب (مثل Chrome)، أو قد يُثبت أحياناً على الجهاز (مثل خدمات التسوق، الفيديو، والبريد الإلكتروني).</p>
+                        <h4>1. مفهوم تطبيق الويب ومكوناته الأساسية</h4>
+                        <p>تطبيق الويب هو برنامج حاسوبي يُنفذ عبر خوادم الويب وتتم معالجته والتفاعل معه بواسطة متصفحات الويب المستندة لنظام العميل. يتميز بتوفير إمكانية الوصول الشامل المباشر من أي جهاز بدون الحاجة لتثبيت برمجيات محلية معقدة.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. هيكلية تطبيق الويب ثلاثية الطبقات (3-Tier Architecture)</h4>
-                        <p>• <strong>الواجهة الأمامية (Frontend):</strong> الجزء الذي يراه المستخدم ويتفاعل معه مباشرة في المتصفح (عرض المحتوى واستقبال المدخلات).<br>• <strong>الواجهة الخلفية (Backend):</strong> الجزء الذي يعمل على الخادم لمعالجة الطلبات وتطبيق قواعد التطبيق.<br>• <strong>قاعدة البيانات (Database):</strong> مسؤولة عن تخزين وحفظ وتوفير البيانات عند الحاجة (معلومات المنتجات، المستخدمين، سجل الطلبات).</p>
+                        <h4>2. الهندسة ثلاثية الطبقات (3-Tier Architecture)</h4>
+                        <p>• <strong>طبقة العرض والواجهة الأمامية (Frontend Tier):</strong> تُعنى بكل ما يظهر للمستخدم المباشر، وتستقبل المدخلات وتتحقق من صحتها في المتصفح قبل إرسالها.<br>
+                        • <strong>طبقة المعالجة والتطبيق (Backend / Application Tier):</strong> تشكل العقل المدبر ومحرك التطبيق، حيث تستقبل الأوامر من الواجهة وتربطها بالقواعد والتخزين.<br>
+                        • <strong>طبقة البيانات (Database Tier):</strong> مركز الحفظ الدائم والمؤمن لكافة معلومات ونشاطات التطبيق كالبيانات الشخصية وسجلات العمليات.</p>
                     </div>
                 </div>
 
+                <!-- الوحدة 2 -->
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-right-left"></i> الوحدة 2: طرق اتصال تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-right-left"></i> الوحدة 2: طرق بروتوكولات واتصال الويب</h3>
                     <div class="topic-box">
-                        <h4>1. نموذج العميل والخادم (Client-Server)</h4>
-                        <p>• <strong>العميل (Client):</strong> جهازك ومتصفحك الذي يرسل الطلبات (Request).<br>• <strong>الخادم (Server):</strong> النظام على الإنترنت الذي يستقبل الطلب ويعالج ويرسل الاستجابة (Response).</p>
+                        <h4>1. دورة الطلب والاستجابة (Request / Response Cycle)</h4>
+                        <p>يعتمد الاتصال بين العميل (Client) والخادم (Server) على تبادل البيانات عبر طلبات واستجابات منظمة؛ حيث يرسل المتصفح الطلب موضحاً الرأس (Header) والحمولة (Payload)، وتأتي استجابة الخادم متضمنة المحتوى أو الأخطاء كـ HTTP Status Codes.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. بروتوكولات الأمان وتركيبات الطلب</h4>
-                        <p>• <strong>HTTP / HTTPS:</strong> البروتوكول الأساسي، وHTTPS يضيف تشفير ومصادقة عبر بروتوكول TLS (السرية، السلامة، مصادقة الخادم).<br>• <strong>طرق الطلب:</strong> <code>GET</code> لاسترجاع البيانات، <code>POST</code> لإرسال البيانات لمعالجتها.<br>• <strong>رموز الحالة:</strong> 200 (نجاح)، 404 (المورد غير موجود)، 500 (خطأ داخلي بالخادم).</p>
+                        <h4>2. طرق الطلب وأمان التشفير</h4>
+                        <p>• <strong>طرق الطلب الأساسية:</strong> `GET` لجلب وقراءة البيانات دون تغيير الخادم، و`POST` لإرسال وإنشاء بيانات جديدة على الخادم.<br>
+                        • <strong>التشفير والأمان:</strong> يضمن بروتوكول HTTPS المشفر بواسطة TLS التوثيق التام وحماية البيانات ضد التجسس والتلاعب أثناء نقلها شبكياً.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>3. واجهة برمجة التطبيقات (API) وصيغة JSON</h4>
-                        <p>• <strong>API:</strong> وسيط أو باب منظم يسمح لبرنامج بطلب بيانات أو وظائف من برنامج آخر.<br>• <strong>JSON:</strong> صيغة نصية شائعة لتبادل البيانات المهيكلة.</p>
+                        <h4>3. واجهات برمجة التطبيقات (APIs) وصيغة JSON</h4>
+                        <p>تتيح واجهات API الربط المرن بين الأنظمة البرمجية المختلفة، حيث تُستخدم صيغة JSON الخفيفة والبسيطة لنقل البيانات وتنسيقها بشكل كائنات ومصفوفات منظمة.</p>
                     </div>
                 </div>
 
+                <!-- الوحدة 3 -->
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-code"></i> الوحدة 3: تقنيات الواجهة الأمامية</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-code"></i> الوحدة 3: تقنيات الواجهة الأمامية الشاملة</h3>
                     <div class="topic-box">
-                        <h4>1. تقنيات الويب الثلاث الأساسية</h4>
-                        <p>• <strong>HTML:</strong> لتحديد البنية والهيكل.<br>• <strong>CSS:</strong> لتنسيق المظهر والديكور.<br>• <strong>JavaScript:</strong> لإضافة السلوك والتفاعل.</p>
+                        <h4>1. الثلاثي البرمجي الذهبي لبناء صفحات الويب</h4>
+                        <p>• <strong>HTML:</strong> لغة البناء الدلالي والهيكلي للواجهة.<br>
+                        • <strong>CSS:</strong> لغة التنسيق البصري والتصميم والتخطيط.<br>
+                        • <strong>JavaScript:</strong> لغة البرمجة التي تمنح الصفحات التفاعلية والحيوية لمعالجة أحداث المستخدم.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. الواجهة الأمامية الحديثة</h4>
-                        <p>• <strong>HTML الدلالية (Semantic HTML):</strong> استخدام عناصر مثل عناصر الهيكل لمساعدة قارئ الشاشة ومحركات البحث (SEO).<br>• <strong>التصميم المتجاوب (Responsive Design):</strong> تكيف التخطيط تلقائياً مع أحجام الشاشات المختلفة.<br>• <strong>أطر العمل (Frameworks):</strong> مكتبات جاهزة مثل React و Vue و Next.js.</p>
+                        <h4>2. التجاوب وتسهيل الوصول (Accessibility & Responsive Design)</h4>
+                        <p>تستخدم الواجهات الحديثة HTML الدلالية لتسهيل وصول محركات البحث (SEO) وقارئات الشاشة، مع تطبيق التصميم المتجاوب لضبط الواجهة تلقائياً لجميع الهواتف والشاشات.</p>
                     </div>
                 </div>
 
+                <!-- الوحدة 4 -->
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الوحدة 4: أنواع الوسائط وخصائصها</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الوحدة 4: الوسائط الإعلامية المتعددة وتأثيرها</h3>
                     <div class="topic-box">
-                        <h4>1. مقارنة الوسائط الإعلامية</h4>
-                        <p>• <strong>التلفزيون والراديو:</strong> انتشار واسع واتجاه واحد.<br>• <strong>الصحف:</strong> مطبوعة ومتاحة دون انترنت.<br>• <strong>الموقع الإلكتروني:</strong> يجمع النصوص والصور والفيديو والصوت، قابل للتحديث، ويدعم التفاعل ثنائي الاتجاه.<br>• <strong>وسائل التواصل الاجتماعي:</strong> نشر سريع وتشجيع المشاركة.</p>
+                        <h4>1. التصنيف والمقارنة بين وسائط الإعلام</h4>
+                        <p>تتميز الوسائط الرقمية كالشبكات الاجتماعية والمواقع الإلكترونية بإمكانية التحديث المباشر الفوري والتفاعل ثنائي الاتجاه مقارنة بالوسائط التقليدية كالراديو والتلفزيون ذات الاتجاه الأوحد.</p>
                     </div>
                 </div>
 
+                <!-- الوحدة 5 -->
                 <div id="unit-content-5" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-user-gear"></i> الوحدة 5: تصميم تجربة المستخدم</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-user-gear"></i> الوحدة 5: تصميم تجربة المستخدم (UX Design)</h3>
                     <div class="topic-box">
-                        <h4>1. أدوات تصميم تجربة المستخدم (UCD)</h4>
-                        <p>• <strong>شخصية المستخدم (Persona):</strong> تمثيل لنمط المستخدم يستند للبيانات.<br>• <strong>المخطط الهيكلي (Wireframe):</strong> رسم أولي لتحديد أماكن العناصر وأولوياتها.<br>• <strong>مبادئ CRAP البصرية:</strong> التباين، التكرار، المحاذاة، التقارب.<br>• <strong>قابلية الاستخدام وإمكانية الوصول (Accessibility).</strong></p>
+                        <h4>1. شخصيات المستخدمين والمخططات الهيكلية</h4>
+                        <p>تعتمد عملية التصميم المتمحور حول المستخدم (UCD) على إنشاء "شخصية المستخدم" (Persona) لتمثيل متطلبات الفئة المستهدفة، ثم رسم "المخطط الهيكلي" (Wireframe) لتحديد أولويات العناصر الهيكلية وتجربة التصفح.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. مبادئ CRAP للتصميم البصري الاحترافي</h4>
+                        <p>تشتمل على التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity) لتنظيم العناصر البصرية وسهولة قراءتها.</p>
                     </div>
                 </div>
 
+                <!-- الوحدة 6 -->
                 <div id="unit-content-6" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-chart-pie"></i> الوحدة 6: التقييم والتحسين التكراري</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-chart-pie"></i> الوحدة 6: التقييم والتحسين التكراري المستمر</h3>
                     <div class="topic-box">
-                        <h4>1. طرق التقييم (نوعي وكمي)</h4>
-                        <p>• <strong>التقييم النوعي (لماذا):</strong> اختبارات القابلية والمقابلات والتقييم الإرشادي.<br>• <strong>التقييم الكمي (كم):</strong> تحليلات الويب مثل مشاهدات الصفحة PV، معدل الارتداد، ومعدل التحويل CVR.</p>
+                        <h4>1. وسائل التقييم الكمي والنوعي</h4>
+                        <p>• <strong>التقييم النوعي:</strong> المقابلات واختبارات القابلية للوقوف على أسباب مشاكل الاستخدام.<br>
+                        • <strong>التقييم الكمي:</strong> تحليل مؤشرات الأداء الرقمية مثل معدل الارتداد (Bounce Rate)، ومشاهدات الصفحة (PV)، ومعدل التحويل (CVR).</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. التحسين التكراري</h4>
-                        <p>• <strong>دورة PDCA:</strong> خطط ⬅️ نفذ ⬅️ تحقق ⬅️ تصرف.<br>• <strong>التفكير التصميمي واختبار A/B:</strong> مقارنة نسختين ببيانات حقيقية.</p>
+                        <h4>2. منهجية التحسين المستمر (PDCA & A/B Testing)</h4>
+                        <p>يعتمد التطوير الاحترافي للمواقع على تطبيق دورة PDCA (خطط، نفذ، تحقق، تصرف) وتطبيق اختبارات A/B لمقارنة أداء نسختين ومفاضلتهما بالأرقام الفعلية.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- المساعد الذكي التفاعلي المطور (يتفاعل مع أي رسالة بحرية وهزار) -->
+        <!-- المساعد الذكي التفاعلي المستمر -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي - اسأل الفائز</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي، اهزر، اسألني في أي حاجة، أو اسألني في المنهج وسأرد عليك فوراً من كتاب الفائز!</p>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اتكلم معايا بحرية، اهزر، اسأل عن أي حاجة أو استفسر عن دروس وشرح كتاب الفائز بالكامل!</p>
                 
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">يا هلا بيك يا بطل! أنا معاك أهو، قول لي عامل إيه وناوي تقفل المنهج ولا إيه الحوار؟ هزر أو اسأل في البرمجة وأنا جاهز! 😎</div>
+                    <div class="chat-msg ai">يا هلا بيك يا بطل! أنا معاك ومستعد في أي وقت، عاوز ندردش ونهزر ولا تسألني في شرح أي وحدة من كتاب الفائز؟ جاهز ليك! 😎</div>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا (مثلاً: عامل ايه؟ أو اشرح لي البنية)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
+                    <input type="text" id="chatInput" placeholder="اكتب رسالتك أو سؤالك هنا..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
                     <button class="btn-action" onclick="sendAiMessage()" style="width: 120px;">إرسال</button>
                 </div>
             </div>
@@ -753,7 +766,7 @@
             },
             {
                 type: 'mcq', group: 'u3456',
-                question: "ما هي اللغة أو التقنية المسؤولة عن تحديد البنية والهيكل في صفحة الويب (مثل العناوين والفقرات)؟",
+                question: "ما هي التقنية المسؤولة عن تحديد البنية والهيكل في صفحة الويب؟",
                 options: ["CSS", "JavaScript", "HTML", "JSON"],
                 answer: 2,
                 explanation: "لغة HTML تحدد بنية وهيكل صفحة الويب."
@@ -788,7 +801,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_bac_v11');
+            const saved = localStorage.getItem('faiz_student_session_bac_v12');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -858,7 +871,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_bac_v11', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_bac_v12', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -874,6 +887,7 @@
 
         function logout() {
             localStorage.removeItem('faiz_student_session_bac_v11');
+            localStorage.removeItem('faiz_student_session_bac_v12');
             location.reload();
         }
 
@@ -1028,53 +1042,74 @@
             banner.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // المساعد الذكي التفاعلي المتطور جداً (يتفاعل مع أي تحية أو مذكرة أو هزار)
+        // المحرك المطور للمساعد الذكي للرد الطبيعي التفاعلي والربط بالمنهج
+        function getSmartAiReply(inputStr) {
+            const str = inputStr.trim().toLowerCase();
+
+            // أسئلة عن الهوية أو كونه إنساناً (مثل: "هو انت انسان")
+            if (str.includes('انسان') || str.includes('إنسان') || str.includes('بشر') || str.includes('مين انت') || str.includes('انت مين')) {
+                return "أنا المساعد الذكي الخارق المصمم خصيصاً لكتاب 'الفائز'! مش إنسان حقيقي، بس فاهم المنهج أكتر من أي حد وجاهز أساعدك تقفل المادة بإذن الله! 🔥😎";
+            }
+
+            // جمل التشجيع والتأكيد (مثل: "ماشي بإذن الله هنقفل الماده")
+            if (str.includes('هنقفل') || str.includes('نقفل') || queryMatches(str, ['ان شاء الله', 'باذن الله', 'يا رب'])) {
+                return "بإذن الله يا بطل! همتك معانا ومراجعة أول بأول مع كتاب 'الفائز' وهتكون التوب دائماً! 💪🔥";
+            }
+
+            // التحيات والدردشة العادية
+            if (queryMatches(str, ['عامل ايه', 'ازيك', 'اخبارك', 'كيفك', 'عامل إيه', 'إزيك'])) {
+                return "الحمد لله يا غالي زي الفل ومتحمس معاك! طمني المذاكرة عاملة إيه معاك اليوم؟ 😃";
+            }
+            if (queryMatches(str, ['سلام', 'السلام عليكم', 'مرحبا', 'أهلا', 'هلا'])) {
+                return "وعليكم السلام ورحمة الله وبركاته يا هلا بيك! منور المنصة، تحب تسأل عن إيه في كتاب الفائز؟ 🚀";
+            }
+            if (queryMatches(str, ['شكرا', 'تسلم', 'حبيبي', 'يعطيك العافية', 'ربنا يخليك'])) {
+                return "حبيبي تحت أمرك في أي وقت! المادة في جيبك طول ما إحنا مع بعض 🌟";
+            }
+
+            // أسئلة المنهج والشرح الشامل
+            if (queryMatches(str, ['بنية', 'طبقات', 'طبقة', '3-tier', 'ثلاثية'])) {
+                return "من كتاب الفائز (الوحدة 1 - البنية الشاملة): تتكون من 3 طبقات: 1. الواجهة الأمامية (العرض والتفاعل)، 2. الواجهة الخلفية (المعالجة والتطبيق)، 3. قاعدة البيانات (التخزين والدعم).";
+            }
+            if (queryMatches(str, ['http', 'https', 'tls', 'get', 'post', 'api', 'json', 'اتصال'])) {
+                return "من كتاب الفائز (الوحدة 2 - طرق الاتصال): يتم تبادل البيانات بين العميل والخادم عبر الطلب والاستجابة باستخدام HTTP/HTTPS، وتدعم GET جلب البيانات وPOST لإرسالها، بينما يوفر TLS الأمان، وJSON ونماذج API التبادل السلس للبيانات.";
+            }
+            if (queryMatches(str, ['html', 'css', 'javascript', 'تجاوب', 'accessibility', 'واجهة امامية'])) {
+                faizReply = "من كتاب الفائز (الوحدة 3 - تقنيات الواجهة الأمامية): HTML لبناء الهيكل، CSS للتصميم، وJS للتفاعلية، مع الاعتماد على HTML الدلالية لتسهيل الوصول ومحركات البحث والتصميم المتجاوب لجميع الشاشات.";
+            }
+            if (queryMatches(str, ['وسائط', 'تلفزيون', 'راديو', 'صحف', 'موقع'])) {
+                return "من كتاب الفائز (الوحدة 4 - أنواع الوسائط): تتيح الوسائط الرقمية التحديث الفوري والتفاعل ثنائي الاتجاه بخلاف الوسائط التقليدية كالتلفزيون والراديو ذات الاتجاه الواضح الواحد.";
+            }
+            if (queryMatches(str, ['مستخدم', 'persona', 'شخصية', 'wireframe', 'مخطط', 'crap'])) {
+                return "من كتاب الفائز (الوحدة 5 - تجربة المستخدم): نعتمد على بناء شخصية المستخدم Persona لرصد الاحتياجات، والمخطط الهيكلي Wireframe لتحديد التوزيع، ومبادئ CRAP (التباين، التكرار، المحاذاة، التقارب) للتنسيق الجمالي البصري.";
+            }
+            if (queryMatches(str, ['تقييم', 'pdca', 'a/b', 'تحسين', 'cvr', 'bounce'])) {
+                return "من كتاب الفائز (الوحدة 6 - التقييم والتحسين): يُطبق التقييم النوعي بالمقابلة والقابلية، والكمي بمعدلات الارتداد CVR وPV، وتطبيق منهجية التحسين المستمر PDCA واختبارات المفاضلة A/B Testing.";
+            }
+
+            return "يا هلا بيك يا فنان! أنا معاك وسامعك، تقدر تسألني عن أي جزئية في كتاب الفائز، أو تطلب اختبار نفسك وسأجيبك فوراً! 😉";
+        }
+
+        function queryMatches(str, keywords) {
+            return keywords.some(kw => str.includes(kw));
+        }
+
         function sendAiMessage() {
             const input = document.getElementById('chatInput');
             const rawQuery = input.value.trim();
-            const query = rawQuery.toLowerCase();
-            if (!query) return;
+            if (!rawQuery) return;
 
             const chatContainer = document.getElementById('chatContainer');
             chatContainer.innerHTML += `<div class="chat-msg user">${rawQuery}</div>`;
             input.value = '';
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
-            let aiReply = "يا هلا بيك يا فنان! أنا معاك وسامعك، بس كلمني عن حاجة في المنهج أو اسألني في كتاب الفائز عشان أجاوبك صح ونقفل المادة! 😉";
-
-            // 1. التفاعل مع التحيات والدردشة والجمل العشوائية مثل "على مذكرة البرمجة" وغيرها
-            if (query.includes('عامل ايه') || query.includes('ازيك') || query.includes('كيفك') || query.includes('اخبارك') || query.includes('أخبار')) {
-                aiReply = "الحمد لله يا بطل عايشين وفي خدمة الدحيحة زيك! طمني ماشي إزاي في المذاكرة؟ مستعد للامتحان ولا خايف؟ 😂";
-            } else if (query.includes('السلام عليكم') || query.includes('مرحباً') || query.includes('أهلاً') || query.includes('هلا')) {
-                aiReply = "وعليكم السلام ورحمة الله وبركاته يا هلا بالغالين! منور المنصة، تحب نبدأ مراجعة في أنهي وحدة النهارده؟ 🚀";
-            } else if (query.includes('مذكرة') || query.includes('الحمد لله') || query.includes('تمام') || query.includes('كويس')) {
-                aiReply = "دايماً يا رب في الفوز والتفوق! دامك ب تراجع ومظبط الدنيا، قول لي بقى تحب أسألك في سؤال سريع من كتاب الفائز تختبر بيه نفسك؟ 🔥";
-            } else if (query.includes('هههه') || query.includes('حلوه') || query.includes('جامد') || query.includes('تسلم')) {
-                aiReply = "حبيبي يا غالي! إحنا هنا عشان نروق على المنهج ونخليه في جيبنا.. قول لي معاك سؤال واقف معاك ولا إيه؟ 😎";
-            } else if (query.includes('مين انت') || query.includes('إنت مين')) {
-                aiReply = "أنا مساعدك الذكي الخاص بكتاب 'الفائز'.. يعني السر وراء قفل مادة البرمجة والذكاء الاصطناعي للسنة دي! 🌟";
-            }
-            // 2. ردود منهج كتاب الفائز بدقة
-            else if (query.includes('بنية') || query.includes('طبقات') || query.includes('امامية') || query.includes('خلفية') || query.includes('قاعدة')) {
-                aiReply = "من كتاب الفائز (الوحدة الأولى - بنية تطبيقات الويب): التطبيق بيتكون من 3 طبقات أساسية: الواجهة الأمامية (الي المستخدم بيشوفها)، الواجهة الخلفية (شغل الخادم والمعالجة)، وقاعدة البيانات (عشان نخزن ونسترجع البيانات بكل أمان)!";
-            } else if (query.includes('http') || query.includes('api') || query.includes('json') || query.includes('get') || query.includes('post') || query.includes('اتصال')) {
-                aiReply = "من كتاب الفائز (الوحدة الثانية - طرق اتصال تطبيقات الويب): العميل بيبعت طلب (Request) والخادم بيرد بـ (Response) عبر بروتوكول HTTP أو HTTPS المحمي بـ TLS. وبنستخدم GET عشان نجيب بيانات وPOST عشان نبعت بيانات، والـ API هي الوسيط اللي بيجيب الطلبات بصيغة JSON!";
-            } else if (query.includes('html') || query.includes('css') || query.includes('javascript') || query.includes('متجاوب') || query.includes('إطار عمل')) {
-                aiReply = "من كتاب الفائز (الوحدة الثالثة - تقنيات الواجهة الأمامية): HTML بتبني الهيكل، CSS بتنسق الشكل الجمالي، وJavaScript بتخلي الصفحة تفاعلية. وطبعاً ما ننساش HTML الدلالية والتصميم المتجاوب وأطر العمل زي React!";
-            } else if (query.includes('وسائط') || query.includes('تلفزيون') || query.includes('راديو')) {
-                aiReply = "من كتاب الفائز (الوحدة الرابعة - أنواع الوسائط): التلفزيون والراديو للانتشار الواسع باتجاه واحد، الصحف بدون نت، والموقع الإلكتروني بيجمع كل الوسائط دي ويدعم التفاعل ثنائي الاتجاه!";
-            } else if (query.includes('مستخدم') || query.includes('persona') || query.includes('مخطط هيكلي') || query.includes('c-r-a-p') || query.includes('crap')) {
-                aiReply = "من كتاب الفائز (الوحدة الخامسة - تجربة المستخدم): بنبدأ بشخصية المستخدم (Persona)، ثم المخطط الهيكلي (Wireframe)، ومبادئ CRAP (تباين، تكرار، محاذاة، تقارب) عشان الشكل البصري يبقى رايق!";
-            } else if (query.includes('تقييم') || query.includes('pv') || query.includes('ارتداد') || query.includes('cvr') || query.includes('إرشادي')) {
-                aiReply = "من كتاب الفائز (الوحدة السادسة - التقييم): بنقيم الموقع نوعياً عشان نعرف 'ليه' عبر المقابلات واختبارات القابلية، وكمياً بالأرقام عبر تحليلات الويب زي مشاهدات الصفحة PV ومعدل الارتداد ومعدل التحويل CVR!";
-            } else if (query.includes('pdca') || query.includes('تحسين') || query.includes('تفكير تصميمي') || query.includes('a/b')) {
-                aiReply = "من كتاب الفائز (التحسين التكراري): بنحسن الشغل دورياً عبر دورة PDCA (خطط، نفذ، تحقق، تصرف)، والتفكير التصميمي، واختبار A/B عشان نقارن نسختين ونعرف مين الأفضل بالبيانات الحقيقية!";
-            }
+            const aiReply = getSmartAiReply(rawQuery);
 
             setTimeout(() => {
                 chatContainer.innerHTML += `<div class="chat-msg ai">${aiReply}</div>`;
                 chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 400);
+            }, 350);
         }
     </script>
 </body>
