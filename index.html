@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - الثانوية والبكالوريا</title>
+    <title>منصة الفائز الذكية - برمجة وذكاء اصطناعي (البكالوريا)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -82,7 +82,7 @@
             color: #0b132b;
         }
 
-        /* القائمة الجانبية المنزلقة القابلة للفتح والإغلاق */
+        /* القائمة الجانبية المنزلقة */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -242,6 +242,50 @@
             box-shadow: 0 5px 20px rgba(72, 202, 228, 0.4);
         }
 
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .unit-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .unit-card:hover, .unit-card.active {
+            border-color: var(--accent-blue);
+            background: rgba(72, 202, 228, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .unit-content-section {
+            display: none;
+        }
+
+        .unit-content-section.active {
+            display: block;
+        }
+
+        .topic-box {
+            background: rgba(255,255,255,0.02);
+            border-right: 3px solid var(--accent-blue);
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .topic-box h4 {
+            color: var(--accent-blue);
+            margin-bottom: 5px;
+        }
+
         .quiz-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -354,30 +398,6 @@
             color: var(--accent-blue);
         }
 
-        .topic-box {
-            background: rgba(255,255,255,0.02);
-            border-right: 3px solid var(--accent-blue);
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-        }
-
-        .topic-box h4 {
-            color: var(--accent-blue);
-            margin-bottom: 5px;
-        }
-
-        .essay-tag {
-            display: inline-block;
-            background: rgba(255, 183, 3, 0.2);
-            color: #ffb703;
-            border: 1px solid #ffb703;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-left: 8px;
-        }
-
         .chat-box {
             height: 320px;
             overflow-y: auto;
@@ -419,7 +439,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية
+                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية - البكالوريا
             </div>
             <button class="menu-toggle-btn" id="openMenuBtn" onclick="toggleMobileMenu(true)" style="display: none;">
                 <i class="fa-solid fa-bars"></i> القائمة
@@ -427,7 +447,7 @@
         </div>
     </header>
 
-    <!-- القائمة الجانبية المنسدلة بديل الزراير التقليدية -->
+    <!-- القائمة الجانبية المنسدلة -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="menu-header">
             <div class="logo">
@@ -443,7 +463,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
-                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح المفصل للمنهج</span>
+                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح المفصل (كتاب الفائز كامل)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
@@ -451,7 +471,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('aiChatPage')">
-                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي (اسأل الفائز)</span>
+                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي التفاعلي (اسأل الفائز)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="logout()" style="border-color: rgba(230, 57, 70, 0.4); color: #e63946; margin-top: 15px;">
@@ -466,8 +486,8 @@
         <!-- تسجيل الدخول -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">يرجى كتابة البيانات بدقة للدخول للمنصة</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول طالب البكالوريا</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - برمجة وذكاء اصطناعي</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -475,24 +495,21 @@
                         <div id="nameErr" class="error-msg">يرجى كتابة الاسم الثلاثي كاملاً (3 كلمات تفصلها مسافات).</div>
                     </div>
                     <div class="form-group">
-                        <label>المسار / الصف الدراسي *</label>
+                        <label>المسار الدراسي *</label>
                         <select id="studentClass" required>
                             <option value="">-- اختر المسار الدراسي --</option>
-                            <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
                             <option value="الصف الثاني بكالوريا - مسار حاسب وبرمجة">الصف الثاني بكالوريا (مسار حاسب وبرمجة)</option>
                             <option value="الصف الثاني بكالوريا - مسار هندسي">الصف الثاني بكالوريا (مسار هندسي)</option>
                             <option value="الصف الثاني بكالوريا - مسار طب وعلوم">الصف الثاني بكالوريا (مسار طب وعلوم)</option>
-                            <option value="الصف الثاني بكالوريا - مسار آداب وفنون">الصف الثاني بكالوريا (مسار آداب وفنون)</option>
-                            <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
                         </select>
                         <div id="classErr" class="error-msg">يرجى اختيار المسار الدراسي.</div>
                     </div>
                     <div class="form-group">
-                        <label>رقم هاتف ولي الأمر (رقم مصري - 11 رقم) *</label>
+                        <label>رقم هاتف ولي الأمر (11 رقماً) *</label>
                         <input type="tel" id="parentPhone" maxlength="11" required placeholder="010xxxxxxx / 011 / 012 / 015">
-                        <div id="phoneErr" class="error-msg">رقم غير صحيح! يجب أن يبدأ بـ (010, 011, 012, 015) ويتكون من 11 رقماً بالضبط.</div>
+                        <div id="phoneErr" class="error-msg">رقم غير صحيح! يجب أن يبدأ بـ (010, 011, 012, 015) ويتكون من 11 رقماً.</div>
                     </div>
-                    <button type="submit" class="btn-action">الدخول وإرسال البيانات</button>
+                    <button type="submit" class="btn-action">الدخول إلى المنصة</button>
                 </form>
             </div>
         </div>
@@ -507,7 +524,7 @@
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل اختبارات الطالب ونتائجه</h3>
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -524,61 +541,127 @@
             </div>
         </div>
 
-        <!-- الشرح -->
+        <!-- الشرح المفصل (كتاب الفائز كامل مقسم حسب الوحدات) -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-microchip"></i> الشرح الكامل للوحدة الأولى: تطور تكنولوجيا المعلومات والذكاء الاصطناعي</h2>
-                <div class="topic-box">
-                    <h4>1. المراحل التاريخية للتكنولوجيا</h4>
-                    <p>• الأربعينيات إلى الستينيات: ظهور حواسيب الصمامات المفرغة مثل إينياك.<br>• السبعينيات إلى الثمانينيات: الحواسب الشخصية.<br>• التسعينيات: الإنترنت التجاري والويب.<br>• الألفية: الهواتف الذكية والسحابة.</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح المفصل - كتاب الفائز الشامل</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الوحدة أو الدرس أدناه لعرض الشرح المفصل والمبسط طبقاً لمنهج البكالوريا:</p>
+                
+                <!-- أزرار اختيار الوحدات -->
+                <div class="units-grid">
+                    <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
+                        <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 1: بنية تطبيقات الويب</h4>
+                    </div>
+                    <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
+                        <i class="fa-solid fa-right-left" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 2: طرق اتصال الويب</h4>
+                    </div>
+                    <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
+                        <i class="fa-solid fa-code" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 3: تقنيات الواجهة الأمامية</h4>
+                    </div>
+                    <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
+                        <i class="fa-solid fa-photo-film" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 4: أنواع الوسائط وخصائصها</h4>
+                    </div>
+                    <div class="unit-card" onclick="switchUnit(5)" id="ucard-5">
+                        <i class="fa-solid fa-user-gear" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 5: تصميم تجربة المستخدم</h4>
+                    </div>
+                    <div class="unit-card" onclick="switchUnit(6)" id="ucard-6">
+                        <i class="fa-solid fa-chart-pie" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الوحدة 6: التقييم والتحسين التكراري</h4>
+                    </div>
                 </div>
-                <div class="topic-box">
-                    <h4>2. قانون مور وتحدياته الفيزيائية</h4>
-                    <p>تضاعف عدد الترانزستورات كل عامين. يواجه عقبات <strong>النفق الكمومي وتيار التسرب الحراري</strong>.</p>
-                </div>
-                <div class="topic-box">
-                    <h4>3. التقنيات الناشئة</h4>
-                    <p>• الحوسبة الطرفية Edge.<br>• البت الكمومي Qubit والتراكب الكمي.<br>• الواقع المعزز والافتراضي.</p>
-                </div>
-                <div class="topic-box">
-                    <h4>4. الذكاء الاصطناعي والأخلاقيات</h4>
-                    <p>• التعلم العميق والشبكات العصبية.<br>• الهلوسة وااختلاق المعلومات.<br>• XAI (الذكاء الاصطناعي القابل للتفسير).</p>
-                </div>
-            </div>
 
-            <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-shield-halved"></i> الشرح الكامل للوحدة الثانية: أمن الشبكات والأمن السيبراني</h2>
-                <div class="topic-box">
-                    <h4>1. بروتوكولات الأمان والتشفير</h4>
-                    <p>• HTTPS / TLS.<br>• التشفير غير المتماثل للمصافحة والمفتاح، والمتماثل لبيانات الجلسة السريعة.</p>
+                <!-- محتوى الوحدات -->
+                <div id="unit-content-1" class="unit-content-section active">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-cube"></i> الفصل الثالث - الدرس 1: البنية العامة لتطبيقات الويب</h3>
+                    <div class="topic-box">
+                        <h4>1. ما هو تطبيق الويب؟</h4>
+                        <p>برنامج يعمل عبر الإنترنت وعادة يُستخدم من خلال متصفح الويب (مثل Chrome)، أو قد يُثبت أحياناً على الجهاز (مثل خدمات التسوق، الفيديو، والبريد الإلكتروني).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. هيكلية تطبيق الويب ثلاثية الطبقات (3-Tier Architecture)</h4>
+                        <p>• <strong>الواجهة الأمامية (Frontend):</strong> الجزء الذي يراه المستخدم ويتفاعل معه مباشرة في المتصفح (عرض المحتوى واستقبال المدخلات).<br>• <strong>الواجهة الخلفية (Backend):</strong> الجزء الذي يعمل على الخادم لمعالجة الطلبات وتطبيق قواعد التطبيق.<br>• <strong>قاعدة البيانات (Database):</strong> مسؤولة عن تخزين وحفظ وتوفير البيانات عند الحاجة (معلومات المنتجات، المستخدمين، سجل الطلبات).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>3. تدفق الطلب في النموذج المبسط</h4>
+                        <p>المستخدم ⬅️ الواجهة الأمامية (تستقبل وتدير الإدخال) ⬅️ الواجهة الخلفية (تعالج وتطلب) ⬅️ طبقة البيانات (تبحث وتسترجع) ⬅️ تعود النتائج للشاشة.</p>
+                    </div>
                 </div>
-                <div class="topic-box">
-                    <h4>2. المصادقة وتأمين الهويات</h4>
-                    <p>• 3 فئات: المعرفة، الحيازة، السمات الحيوية. استخدام MFA/2FA.</p>
+
+                <div id="unit-content-2" class="unit-content-section">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-right-left"></i> الفصل الثالث - الدرس 2: طرق اتصال تطبيقات الويب</h3>
+                    <div class="topic-box">
+                        <h4>1. نموذج العميل والخادم (Client-Server)</h4>
+                        <p>• <strong>العميل (Client):</strong> جهازك ومتصفحك الذي يرسل الطلبات (Request).<br>• <strong>الخادم (Server):</strong> النظام على الإنترنت الذي يستقبل الطلب ويعالج ويرسل الاستجابة (Response).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. بروتوكولات الأمان وتركيبات الطلب</h4>
+                        <p>• <strong>HTTP / HTTPS:</strong> البروتوكول الأساسي، وHTTPS يضيف تشفير ومصادقة عبر بروتوكول TLS (السرية، السلامة، مصادقة الخادم).<br>• <strong>طرق الطلب:</strong> <code>GET</code> لاسترجاع البيانات، <code>POST</code> لإرسال البيانات لمعالجتها (مثل تسجيل الدخول).<br>• <strong>رموز الحالة:</strong> 200 (نجاح)، 404 (المورد غير موجود)، 500 (خطأ داخلي بالخادم).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>3. واجهة برمجة التطبيقات (API) وصيغة JSON</h4>
+                        <p>• <strong>API:</strong> وسيط أو باب منظم يسمح لبرنامج بطلب بيانات أو وظائف من برنامج آخر.<br>• <strong>JSON:</strong> صيغة نصية شائعة لتبادل البيانات المهيكلة باستخدام كائنات ومصفوفات وقيم.</p>
+                    </div>
                 </div>
-                <div class="topic-box">
-                    <h4>3. أمان الشبكات الدفاعي</h4>
-                    <p>• جدار الحماية Firewall.<br>• المنطقة المعزولة DMZ.<br>• VPN ونهج انعدام الثقة Zero Trust.</p>
+
+                <div id="unit-content-3" class="unit-content-section">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-code"></i> الفصل الثالث - الدرس 3: أساسيات تقنية الواجهة الأمامية</h3>
+                    <div class="topic-box">
+                        <h4>1. تقنيات الويب الثلاث الأساسية</h4>
+                        <p>• <strong>HTML:</strong> لتحديد البنية والهيكل (العناوين، الفقرات، الصور).<br>• <strong>CSS:</strong> لتنسيق المظهر والديكور (الألوان، الخطوط، التخطيط).<br>• <strong>JavaScript:</strong> لإضافة السلوك والتفاعل والأزرار المستجيبة.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. الواجهة الأمامية الحديثة</h4>
+                        <p>• <strong>HTML الدلالية (Semantic HTML):</strong> استخدام عناصر مثل <code>&lt;header&gt;</code> و <code>&lt;nav&gt;</code> و <code>&lt;main&gt;</code> لتوضيح الوظيفة، مما يساعد قارئ الشاشة لذوي الإعاقة ومحركات البحث (SEO).<br>• <strong>التصميم المتجاوب (Responsive Design):</strong> تكيف التخطيط تلقائياً مع أحجام الشاشات المختلفة (نهج الأولوية للجوال).<br>• <strong>أطر العمل (Frameworks):</strong> مكتبات جاهزة مثل React و Vue و Next.js لتسويق التطوير بكفاءة.</p>
+                    </div>
                 </div>
-                <div class="topic-box">
-                    <h4>4. الاستجابة للحوادث وإدارة المخاطر</h4>
-                    <p>• 6 مراحل: التحضير ⬅️ الاكتشاف ⬅️ الاحتواء ⬅️ الاستئصال ⬅️ الاستعادة ⬅️ الدروس المستفادة.<br>• معادلة المخاطر = التأثير × الاحتمالية.</p>
+
+                <div id="unit-content-4" class="unit-content-section">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الفصل الثالث - الدرس 4: أنواع الوسائط وخصائصها</h3>
+                    <div class="topic-box">
+                        <h4>1. مقارنة الوسائط الإعلامية</h4>
+                        <p>• <strong>التلفزيون:</strong> جمهور كبير، اتصال باتجاه واحد.<br>• <strong>الراديو:</strong> صوتي، يُستمع إليه أثناء التنقل.<br>• <strong>الصحف:</strong> مطبوعة ومتاحة دون اتصال.<br>• <strong>الموقع الإلكتروني:</strong> يجمع النصوص والصور والفيديو والصوت، قابل للتحديث، ويدعم التفاعل ثنائي الاتجاه.<br>• <strong>وسائل التواصل الاجتماعي:</strong> نشر سريع وتشجيع المشاركة والتناقل الشفهي.</p>
+                    </div>
+                </div>
+
+                <div id="unit-content-5" class="unit-content-section">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-user-gear"></i> الفصل الثالث - الدرس 5: تصميم المعلومات وتجربة المستخدم</h3>
+                    <div class="topic-box">
+                        <h4>1. أدوات تصميم تجربة المستخدم (UCD)</h4>
+                        <p>• <strong>شخصية المستخدم (Persona):</strong> تمثيل لنمط المستخدم يستند للبيانات (الأهداف، الاحتياجات، السياق).<br>• <strong>المخطط الهيكلي (Wireframe):</strong> رسم أولي لتحديد أماكن العناصر وأولوياتها قبل الألوان والزخارف.<br>• <strong>مبادئ CRAP البصرية:</strong> التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، التقارب (Proximity).<br>• <strong>قابلية الاستخدام وإمكانية الوصول (Accessibility):</strong> تمكين الجميع من استخدام الموقع.</p>
+                    </div>
+                </div>
+
+                <div id="unit-content-6" class="unit-content-section">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-chart-pie"></i> الفصل الثالث - الدرس 6: تقييم والتحسين التكراري للمواقع</h3>
+                    <div class="topic-box">
+                        <h4>1. طرق التقييم (نوعي وكمي)</h4>
+                        <p>• <strong>التقييم النوعي (لماذا):</strong> اختبارات قابلية الاستخدام، المقابلات، والتقييم الإرشادي للخبراء (الاتساق، منع الأخطاء، وضوح حالة النظام).<br>• <strong>التقييم الكمي (كم):</strong> تحليلات الويب ومؤشرات مثل PV (مشاهدات الصفحة)، معدل الارتداد (Bounce Rate)، ومعدل التحويل (CVR).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. دورة التحسين التكراري (PDCA والتفكير التصميمي)</h4>
+                        <p>• <strong>دورة PDCA:</strong> خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف (Act).<br>• <strong>التفكير التصميمي:</strong> التعاطف ⬅️ التعريف ⬅️ توليد الأفكار ⬅️ النموذج الأولي ⬅️ الاختبار.<br>• <strong>اختبار A/B:</strong> مقارنة نسختين بعرض فرق واحد واضح ومحدد لمعرفة أيهما أفضل.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة الذكاء الاصطناعي -->
+        <!-- المساعد الذكي التفاعلي -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي - كتاب الفائز</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اسأل عن أي مفهوم أو مصطلح في المنهج (مثل: قانون مور، التشفير، XAI، الهلوسة، DMZ...) وسيجيبك المساعد حصرياً من كتاب الفائز.</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي - كتاب الفائز</h2>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اسألني عن أي جزئية في المنهج (مثل: البنية ثلاثية الطبقات، بروتوكولات HTTP و API، الواجهة الأمامية، شخصية المستخدم، دورة PDCA...) وسأجيبك فوراً من كتاب الفائز!</p>
                 
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">أهلاً بك يا بطل! أنا مساعدك الذكي الخاص بكتاب "الفائز". اسألني أي سؤال وسأجيبك فوراً من محتوى المنهج.</div>
+                    <div class="chat-msg ai">أهلاً بك يا بطل! أنا مساعدك الذكي لكتاب "الفائز". عامل إيه وإيه الجزئية اللي حابب نراجعها سوا النهارده؟</div>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا (مثلاً: ما هي الهلوسة؟)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
+                    <input type="text" id="chatInput" placeholder="اكتب رسالتك أو سؤالك هنا (مثلاً: عامل ايه؟ أو اشرح لي البنية)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
                     <button class="btn-action" onclick="sendAiMessage()" style="width: 120px;">إرسال</button>
                 </div>
             </div>
@@ -587,28 +670,28 @@
         <!-- قائمة الاختبارات -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 10px;">اختر الاختبار للبدء</h3>
+                <h3 style="color: var(--accent-blue); margin-bottom: 10px;">بنك الاختبارات الشاملة - كتاب الفائز</h3>
                 <div class="quiz-grid">
                     <div class="quiz-select-card" onclick="openQuizSetup('full')">
                         <i class="fa-solid fa-file-signature" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>الاختبار الشامل (40 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">يشمل الوحدة الأولى والثانية (اختياري + مقالي)</p>
+                        <h4>الاختبار الشامل (لكل الوحدات)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">اختبار شامل يغطي البنية، الاتصال، والواجهة، والتقييم</p>
                     </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('u1')">
-                        <i class="fa-solid fa-cpu" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة الأولى (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تطور تكنولوجيا المعلومات والذكاء الاصطناعي</p>
-                    </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('u2')">
+                    <div class="quiz-select-card" onclick="openQuizSetup('u12')">
                         <i class="fa-solid fa-network-wired" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة الثانية (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">أمن الشبكات والتشفير والمخاطر</p>
+                        <h4>اختبار البنية وطرق الاتصال</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">أسئلة الطبقات الثلاث، العميل والخادم، HTTP، API</p>
+                    </div>
+                    <div class="quiz-select-card" onclick="openQuizSetup('u3456')">
+                        <i class="fa-solid fa-laptop-code" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                        <h4>اختبار الواجهة وتجربة المستخدم</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">أسئلة HTML/CSS، الوسائط، شخصية المستخدم، ودورة PDCA</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة الاختبار -->
+        <!-- صفحة الاختبار الفعلية -->
         <div id="activeQuizPage" class="page">
             <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <h3 id="quizTitle" style="color: var(--accent-blue);">عنوان الاختبار</h3>
@@ -644,266 +727,60 @@
     <script>
         const faizQuestions = [
             {
-                type: 'mcq', unit: 'u1',
-                question: "ما هي الظاهرة الفيزيائية التي تحد من تصغير الترانزستورات وفق قانون مور وتسبب تسرباً حرارياً؟",
-                options: ["الانكسار الضوئي", "النفق الكمومي وتيار التسرب", "التمدد الحراري", "المغناطيسية الفائقة"],
+                type: 'mcq', group: 'u12',
+                question: "ما هي الطبقة المسؤولة عن معالجة الطلبات وتطبيق قواعد التطبيق على الخادم في نموذج تطبيق الويب؟",
+                options: ["الواجهة الأمامية", "الواجهة الخلفية", "قاعدة البيانات", "المتصفح"],
                 answer: 1,
-                explanation: "عند تصغير مكونات الترانزستور لأبعاد ذرية، تتسرب الإلكترونات عبر النفق الكمومي مما يسبب استهلاك طاقة أكبر وزيادة الحرارة."
+                explanation: "الواجهة الخلفية (Backend) هي الجزء الذي يعمل على الخادم لمعالجة الطلبات وتطبيق قواعد التطبيق."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "لماذا تُفضل معالجة بيانات السيارة ذاتية القيادة بالحوسبة الطرفية (Edge) بدلاً من السحابة؟",
-                options: ["لأن السحابة مكلفة مالياً", "لتقليل زمن الاستجابة ومنع التأخير في قرارات السلامة", "لأن السيارة لا تملك اتصال إنترنت", "لزيادة سعة التخزين"],
+                type: 'mcq', group: 'u12',
+                question: "أي طريقة طلب HTTP تستخدم عادة لطلب مورد أو بيانات من الخادم؟",
+                options: ["POST", "GET", "PUT", "DELETE"],
                 answer: 1,
-                explanation: "الحوسبة الطرفية تعالج البيانات فوراً على المركبة لتفادي أي تأخير في الاتصال بالسحابة قد يؤثر على أمان القيادة."
+                explanation: "طريقة GET تُستخدم عادة لطلب و استرجاع مورد أو بيانات من الخادم."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "ما المقصود بـ 'الهلوسة' في الذكاء الاصطناعي التوليدي (GenAI)؟",
-                options: ["توقف النظام عن الاستجابة", "توليد معلومات غير صحيحة أو خيالية وتأكيدها بثقة عالية", "اختراق النموذج برمجياً", "مسح بيانات التدريب تلقائياً"],
+                type: 'mcq', group: 'u12',
+                question: "ماذا يشير رمز حالة HTTP رقم 404؟",
+                options: ["تمت معالجة الطلب بنجاح", "المورد المطلوب غير موجود بهذا العنوان", "خطأ داخلي في الخادم", "اتصال آمن بـ TLS"],
                 answer: 1,
-                explanation: "الهلوسة تصف اختلاق AI لنصوص أو معلومات لا أصل لها واقعياً وتقديمها بصياغة معقولة ومقنعة."
+                explanation: "رمز 404 يعني أن المورد أو الصفحة المطلوبة غير موجودة بهذا العنوان."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "يمتاز البت الكمومي (Qubit) عن البت التقليدي (Bit) بخاصية:",
-                options: ["تخزين البيانات بنسبة 0 فقط", "التراكب الكمي لحمل حالة مزيج من 0 و 1 معاً في نفس الوقت", "العمل بسلوك ميكانيكي فقط", "استبدال جميع الحواسيب الشخصية"],
+                type: 'mcq', group: 'u12',
+                question: "ما هو الدور الأساسي لبروتوكول TLS عند استخدامه مع HTTPS؟",
+                options: ["ضغط حجم الصور", "حماية سرية الاتصال وسلامته ومصادقة الخادم", "تصميم واجهة المستخدم", "تسريع إنترنت المتصفح"],
                 answer: 1,
-                explanation: "الكيوبت يستخدم التراكب الكمومي لتمثيل 0 و1 معاً في الوقت ذاته، مما يسمح بمعالجة متوازية ضخمة."
+                explanation: "بروتوكول TLS يوفر السرية والسلامة ومصادقة الخادم لحماية البيانات أثناء النقل."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "ما هو الحاسوب الأول الذي اعتمد على الصمامات المفرغة في الأربعينيات وكان يملأ غرفة كاملة؟",
-                options: ["ENIAC", "Macintosh", "IBM PC", "SuperComputer X"],
-                answer: 0,
-                explanation: "حاسوب ENIAC كان يعتمد على الصمامات المفرغة وتوليد حرارة عالية جداً."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "ما هو الغرض الأساسي من استخدام تقنية الذكاء الاصطناعي القابل للتفسير (XAI)؟",
-                options: ["زيادة سرعة المعالجة", "توضيح الأسباب والمنطق وراء قرارات الآلة وسد ثغرة الصندوق الأسود", "تقليل استهلاك الكهرباء", "إلغاء الحاجة لبرمجة البشر"],
-                answer: 1,
-                explanation: "XAI يفسر للمستخدم كيف اتخذ النموذج قراره لضمان الموثوقية والأمان في التطبيقات الحرجة."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "الفرق الأساسي بين الواقع المعزز (AR) والواقع الافتراضي (VR) هو:",
-                options: ["AR يضيف عناصر رقمية فوق العالم الحقيقي بينما VR يغمر المستخدم في بيئة رقمية كاملة", "لا يوجد فرق بينهما", "VR أرخص ثمناً", "AR يعمل بدون أجهزة ذكية"],
-                answer: 0,
-                explanation: "الواقع المعزز يعزز الواقع الحقيقي، بينما الافتراضي يعزل العالم الحقيقي وينشئ عالماً افتراضياً كاملاً."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "أي مما يلي يُعد من تحديات قانون مور التاريخية؟",
-                options: ["انخفاض عدد المستخدمين", "الوصول للحدود الفيزيائية للسيليكون والحرارة الناتجة", "نقص لغات البرمجة", "توقف تطوير الهواتف"],
-                answer: 1,
-                explanation: "الوصول لأبعاد ذرية جعل تصغير الترانزستورات يواجه عوائق حرارية وكْمية."
-            },
-            {
-                type: 'essay', unit: 'u1',
-                question: "[سؤال مقالي] علل: يواجه الاستمرار في تطبيق قانون مور عقبات فيزيائية دقيقة في الآونة الأخيرة.",
-                explanation: "السبب: لأن تصغير مكونات الترانزستور لأبعاد ذرية يؤدي لظاهرة النفق الكمومي وتيار التسرب الحراري، مما يرفع استهلاك الطاقة."
-            },
-            {
-                type: 'essay', unit: 'u1',
-                question: "[سؤال مقالي] وضح الفرق الجوهري بين التعلم الآلي (ML) والتعلم العميق (DL).",
-                explanation: "التعلم الآلي فرع من الذكاء الاصطناعي يعتمد على الخوارزميات لتلخيص البيانات، بينما التعلم العميق هو تقنية متقدمة داخل التعلم الآلي تعتمد على شبكات عصبية اصطناعية متعددة الطبقات."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "أي من الفترات التاريخية شهدت ظهور الإنترنت التجاري والشبكة العنكبوتية (الويب)؟",
-                options: ["الأربعينيات", "السبعينيات", "التسعينيات", "الألفية الثانية"],
+                type: 'mcq', group: 'u3456',
+                question: "ما هي اللغة أو التقنية المسؤولة عن تحديد البنية والهيكل في صفحة الويب (مثل العناوين والفقرات)؟",
+                options: ["CSS", "JavaScript", "HTML", "JSON"],
                 answer: 2,
-                explanation: "التسعينيات هي حقبة انتشار الويب والإنترنت التجاري للجمهور."
+                explanation: "لغة HTML تحدد بنية وهيكل صفحة الويب."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "ماذا يقصد بالتحيز الخوارزمي في أنظمة الذكاء الاصطناعي؟",
-                options: ["سرعة الحاسوب العالية", "إصدار قرارات تمييزية غير عادلة ناتجة عن بيانات تدريب منحازة أو غير متوازنة", "توقف النظام برمجياً", "تحديث السيرفر تلقائياً"],
+                type: 'mcq', group: 'u3456',
+                question: "ما هي فوائد استخدام HTML الدلالية (Semantic HTML)؟",
+                options: ["زيادة سرعة الإنترنت", "مساعدة برامج قارئ الشاشة ومحركات البحث (SEO) على فهم بنية الصفحة", "إلغاء الحاجة لـ CSS", "ضغط ملفات الفيديو"],
                 answer: 1,
-                explanation: "التحيز ينجم عن تدريب النماذج على بيانات تحتوي على تمييز مسبق."
+                explanation: "HTML الدلالية توضح وظيفة العناصر وتساعد قارئ الشاشة ومحركات البحث على فهم المحتوى."
             },
             {
-                type: 'mcq', unit: 'u1',
-                question: "ما هي التقنية التي تدمج العالم الافتراضي بالمستخدم تماماً عبر نظارات خاصة؟",
-                options: ["الواقع المعزز AR", "الواقع الافتراضي VR", "الحوسبة السحابية", "الحوسبة الطرفية"],
+                type: 'mcq', group: 'u3456',
+                question: "ما المقصود بشخصية المستخدم (Persona) في تصميم الويب؟",
+                options: ["شخص حقيقي بعينه يدير الموقع", "تمثيل لنمط من المستخدمين يستند للبيانات عن أهدافهم واحتياجاتهم", "مخطط هيكلي أولي", "كود برمجي للخادم"],
                 answer: 1,
-                explanation: "VR يعزل المستخدم ويغمره في بيئة افتراضية متكاملة."
+                explanation: "شخصية المستخدم هي تمثيل لنمط أو فئة من المستخدمين بناءً على بحث أو بيانات."
             },
             {
-                type: 'essay', unit: 'u1',
-                question: "[سؤال مقالي] ما هي خطورة ظاهرة 'الهلوسة' في نماذج الذكاء الاصطناعي التوليدي؟",
-                explanation: "تكمن الخطورة في أن النظام يولد معلومات خاطئة أو وهمية تماماً ويقدمها بثقة عالية جداً مما قد يضلل المستخدم."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "الحوسبة التي تعتمد على معالجة البيانات بجوار الجهاز المستشعر مباشرة تسمى:",
-                options: ["الحوسبة السحابية المركزية", "الحوسبة الطرفية (Edge)", "الحوسبة الكمومية", "الحوسبة الورقية"],
+                type: 'mcq', group: 'u3456',
+                question: "ما هي الخطوات الأربع لدورة التحسين المستمر (PDCA) بالترتيب الصحيح؟",
+                options: ["نفذ - خطط - تصرف - تحقق", "خطط - نفذ - تحقق - تصرف", "تحقق - تصرف - نفذ - خطط", "تصرف - تحقق - خطط - نفذ"],
                 answer: 1,
-                explanation: "Edge computing تعالج البيانات محلياً على الطرفيات."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "أي العبارات التالية صحيحة حول البت التقليدي مقابل الكيوبت؟",
-                options: ["البت يحمل 0 أو 1، بينما الكيوبت يحمل تراكباً من الحالتين معاً", "الكيوبت أبطأ بكثير من البت", "البت يعتمد على ميكانيكا الكم", "لا توجد فروق جوهرية"],
-                answer: 0,
-                explanation: "خاصية التراكب الكمي تمنح الكيوبت قدرة تمثيل 0 و1 معاً."
-            },
-            {
-                type: 'essay', unit: 'u1',
-                question: "[سؤال مقالي] اذكر ميزتين رئيسيتين لاستخدام الحوسبة الطرفية في المركبات الذكية.",
-                explanation: "1. تقليل زمن الاستجابة الفوري للقرارات الحرجة. 2. تقليل الاعتماد على استقرار الاتصال بالإنترنت السحابي."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "في أي عقد ظهرت الحواسيب الشخصية (PCs) وتم توظيفها للاستخدام الفردي؟",
-                options: ["الأربعينيات والستينيات", "السبعينيات والثمانينيات", "التسعينيات", "عام 2020"],
-                answer: 1,
-                explanation: "السبعينيات والثمانينيات شهدت انطلاق الحواسيب الشخصية للأفراد."
-            },
-            {
-                type: 'mcq', unit: 'u1',
-                question: "ما المقصود بمفهوم 'الصندوق الأسود' في أنظمة الذكاء الاصطناعي المعقدة؟",
-                options: ["صندوق حماية السيرفرات من الحريق", "صعوبة تتبع معرفة كيف وصل النموذج لقراره الداخلي بالتفصيل", "وحدة تخزين بيانات مشفرة", "صندوق أسود بالطائرات"],
-                answer: 1,
-                explanation: "يشير لصعوبة معرفة الآلية الداخلية الدقيقة لاتخاذ القرار في نماذج التعلم العميق."
-            },
-            {
-                type: 'essay', unit: 'u1',
-                question: "[سؤال مقالي] اشرح باختصار كيف ساهمت الحوسبة السحابية في تطور تطبيقات العصر الحديث.",
-                explanation: "عبر توفير قدرات تخزينية ومعالجة ضخمة ومرنة للمؤسسات والأفراد عبر الإنترنت دون الحاجة لبنية تحتية محلية مكلفة."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "لماذا يستخدم بروتوكول TLS التشفير المتماثل بعد انتهاء التشفير غير المتماثل في المصافحة؟",
-                options: ["لأن التشفير غير المتماثل غير آمن", "لحماية بيانات الجلسة بسرعة وكفاءة عالية", "لأن المتصفح لا يدعم التشفير العام", "لتقليل استهلاك الذاكرة فقط"],
-                answer: 1,
-                explanation: "التشفير بالمفتاح العام يُستخدم للمصادقة وتبادل السر، ثم يُعتمد التشفير المتماثل لنقل البيانات بسرعة وكفاءة أعلى."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما السبب الأساسي الذي يُوجب جعل مرحلة (الاحتواء) قبل (الاستئصال) في الاستجابة للحوادث؟",
-                options: ["لأن الاستئصال يأخذ وقتاً أطول", "لمنع انتشار الضرر إلى بقية أجزاء الشبكة أولاً", "لأن النسخ الاحتياطي يتطلب ذلك", "لتسهيل مهمة المحققين"],
-                answer: 1,
-                explanation: "مرحلة الاحتواء تهدف لعزل الجزء المتأثر أولاً لمنع توسع الضرر قبل البدء في حذف الثغرات."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "في نموذج إدارة المخاطر، يتم حساب درجة الخطر عبر المعادلة:",
-                options: ["التأثير + الاحتمالية", "التأثير ÷ الاحتمالية", "درجة التأثير × درجة الاحتمالية", "التأثير - التكلفة"],
-                answer: 2,
-                explanation: "درجة الخطر = التأثير × الاحتمالية، وتُعطى الأولوية للمخاطر المرتفعة."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما الفائدة الأهم لوضع خادم الويب العام في المنطقة المعزولة (DMZ)؟",
-                options: ["زيادة سرعة التصفح", "فصل الخادم العام لتقليل خطر وصول المهاجم للشبكة الداخلية في حال اختراقه", "إلغاء الحاجة بجدار الحماية", "تشفير كلمة المرور تلقائياً"],
-                answer: 1,
-                explanation: "عزل الخوادم المواجهة للجمهور يحمي الشبكة الداخلية للمؤسسة عند الاختراق."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "أي مما يلي يُعتبر من عوامل المصادقة القائمة على 'الحيازة' (Possession)؟",
-                options: ["كلمة المرور PIN", "بصمة الوجه", "تطبيق المصادقة على هاتفك أو بطاقة ذكية", "اسم المستخدم"],
-                answer: 2,
-                explanation: "الحيازة تعني شيئاً تملكه كالهاتف أو الـ Token."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما هو المبدأ الأمني الذي يرفض منح الثقة التلقائية لأي جهاز أو مستخدم داخل شبكة المؤسسة ويشترط التحقق المستمر؟",
-                options: ["نهج انعدام الثقة (Zero Trust)", "المصادقة الأحادية", "التشفير المتماثل المطلق", "منطقة DMZ المفتوحة"],
-                answer: 0,
-                explanation: "Zero Trust ينص على 'لا تثق أبداً، تحقق دائماً'."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "أي من البروتوكولات التالية يوفر تصفحاً آمناً ومشفر للويب عبر طبقة نقل مؤمنة؟",
-                options: ["HTTP", "HTTPS / TLS", "FTP التقليدي", "Telnet"],
-                answer: 1,
-                explanation: "HTTPS يعمل عبر TLS لتشفير الاتصال."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما هي الترتيب الصحيح لمراحل الاستجابة للحوادث السيبرانية الست؟",
-                options: ["الاستعادة ⬅️ الاحتواء ⬅️ التحضير", "التحضير ⬅️ الاكتشاف ⬅️ الاحتواء ⬅️ الاستئصال ⬅️ الاستعادة ⬅️ الدروس المستفادة", "الاستئصال أولاً ثم التحضير", "الاكتشاف فقط"],
-                answer: 1,
-                explanation: "الترتيب المعياري يبدأ بالتحضير وينتهي بالدروس المستفادة."
-            },
-            {
-                type: 'essay', unit: 'u2',
-                question: "[سؤال مقالي] وضح أهمية تطبيق نهج انعدام الثقة (Zero Trust) داخل شبكات المؤسسات الحديثة.",
-                explanation: "لأن نهج انعدام الثقة يفترض وجود تهديدات حتى داخل الحدود الأمنية للشبكة، ولا يقدم أي ثقة تلقائية للمستخدم بل يشترط التحقق المستمر."
-            },
-            {
-                type: 'essay', unit: 'u2',
-                question: "[سؤال مقالي] علل: لماذا يُعد استخدام المصادقة متعددة العوامل (MFA) أكثر أماناً بكثير من كلمات المرور التقليدية وحدها؟",
-                explanation: "لأن الاعتماد على كلمة المرور وحدها يعرض الحساب للاختراق في حال تسريبها، بينما MFA تتطلب طبقة تحقق أضافية (مثل رمز على الهاتف أو بصمة) يصعب على المهاجم الوصول إليها."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما هو النظام البرمجي أو العتادي الذي يراقب حركة مرور البيانات عبر الشبكة ويطبق قواعد السماح أو المنع؟",
-                options: ["جدار الحماية (Firewall)", "محرك البحث", "طابعة الشبكة", "برنامج معالجة النصوص"],
-                answer: 0,
-                explanation: "Firewall يراقب ويحكم حركة البيانات بناءً على قواعد الأمان."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "أي من الآتي يمثل مصادقة تعتمد على 'السمات الحيوية' (Biometrics)؟",
-                options: ["رمز المرور المكون من 4 أرقام", "بصمة الإصبع أو مسح شبكية العين", "بطاقة الهوية البلاستيكية", "البريد الإلكتروني"],
-                answer: 1,
-                explanation: "السمات الحيوية تتعلق بخصائص جسم الإنسان الفريدة."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "الشبكة التي تنشئ نفقاً مشفراً للاتصال الآمن عبر شبكة عامة مثل الإنترنت تعرف بـ:",
-                options: ["VPN (الشبكة الافتراضية الخاصة)", "LAN المحلية", "DMZ", "HTTP"],
-                answer: 0,
-                explanation: "VPN تؤمن الاتصال من بعد عبر تشفير حركة المرور."
-            },
-            {
-                type: 'essay', unit: 'u2',
-                question: "[سؤال مقالي] اشرح بإيجاز الغرض من مرحلة 'الدروس المستفادة' في نهاية الاستجابة للحوادث.",
-                explanation: "تقييم الحادث والتعرف على نقاط الضعف لتطوير الدفاعات ومنع تكرار نفس الثغرة مستقبلاً."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما هو نوع التشفير الذي يستخدم مفتاحين (عام للتشفير وخاص فك التشفير)؟",
-                options: ["التشفير المتماثل", "التشفير غير المتماثل (Asymmetric)", "تشفير القيصر البسيط", "التشفير الاحادي"],
-                answer: 1,
-                explanation: "التشفير غير المتماثل يعتمد على زوج من المفاتيح (عام وخاص)."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "في حال تعرض مؤسسة لهجوم برمجيات فدية (Ransomware)، ما هي الخطوة الفورية الواجب اتخاذها في مرحلة الاحتواء؟",
-                options: ["إلغاء تثبيت نظام التشغيل نهائياً", "عزل الأجهزة المصابة عن الشبكة فوراً لمنع انتشار العدوى", "الاطلاع على البريد", "تجاهل الهجوم"],
-                answer: 1,
-                explanation: "الاحتواء السريع يعزل الأجهزة المصابة لوقف انتشار الضرر."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "أي من الآتي يعد مثالاً على عامل مصادقة 'المعرفة' (Knowledge)؟",
-                options: ["كلمة المرور (Password)", "رمز التحقق المرسل للهاتف", "بصمة الإصبع", "مفتاح الأمان الفيزيائي USB"],
-                answer: 0,
-                explanation: "المعرفة تتعلق بشيء يعرفه المستخدم وحده مثل كلمة السر."
-            },
-            {
-                type: 'essay', unit: 'u2',
-                question: "[سؤال مقالي] ما المقصود بمعادلة تقييم المخاطر السيبرانية؟ وكيف تُحسب؟",
-                explanation: "تُحسب عبر ضرب درجة التأثير في درجة الاحتمالية (المخاطرة = التأثير × الاحتمالية) لتحديد أولويات المعالجة."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "ما هي الخطوة التي تلي مرحلة 'الاحتواء' مباشرة في التعامل مع الحوادث السيبرانية؟",
-                options: ["التحضير المسبق", "الاستئصال (إزالة التهديد والثغرة)", "الدروس المستفادة", "التفتيش المالي"],
-                answer: 1,
-                explanation: "بعد عزل الجهاز (الاحتواء)، يتم إزالة التهديد وحذف البرمجيات الخبيثة (الاستئصال)."
-            },
-            {
-                type: 'mcq', unit: 'u2',
-                question: "لماذا يتم فصل الخوادم المتاحة للجمهور (مثل سيرفر الويب) في منطقة DMZ؟",
-                options: ["لتوفير مساحة بالسيرفر", "لأنها الأكثر عرضة للهجمات ولحماية الشبكة الداخلية للمؤسسة في حال اختراقها", "لزيادة سرعة الألعاب", "لتجنب دفع فواتير الإنترنت"],
-                answer: 1,
-                explanation: "عزل سيرفر الويب في DMZ يحمي شبكة المؤسسة الداخلية من الوصول المباشر في حال تعرضه للاختراق."
+                explanation: "دورة PDCA تتكون من: Plan (خطط) ⬅️ Do (نفذ) ⬅️ Check (تحقق) ⬅️ Act (تصرف)."
             }
         ];
 
@@ -914,7 +791,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_v8');
+            const saved = localStorage.getItem('faiz_student_session_bac_v9');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -930,6 +807,14 @@
         function navigateTo(pageId) {
             toggleMobileMenu(false);
             switchPage(pageId);
+        }
+
+        function switchUnit(unitNum) {
+            document.querySelectorAll('.unit-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.unit-content-section').forEach(s => s.classList.remove('active'));
+
+            document.getElementById(`ucard-${unitNum}`).classList.add('active');
+            document.getElementById(`unit-content-${unitNum}`).classList.add('active');
         }
 
         function handleLogin(e) {
@@ -976,7 +861,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_v8', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_bac_v9', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -991,7 +876,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_v8');
+            localStorage.removeItem('faiz_student_session_bac_v9');
             location.reload();
         }
 
@@ -1026,7 +911,7 @@
         function openQuizSetup(type) {
             selectedQuizType = type;
             if (type === 'full') currentQuestions = [...faizQuestions];
-            else currentQuestions = faizQuestions.filter(q => q.unit === type);
+            else currentQuestions = faizQuestions.filter(q => q.group === type);
 
             document.getElementById('modalQCount').innerText = currentQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
@@ -1045,45 +930,29 @@
             document.getElementById('timerDisplay').style.display = isTimer ? 'block' : 'none';
             document.getElementById('finishQuizBtn').style.display = 'block';
 
-            let title = 'الاختبار الشامل (40 سؤالاً)';
-            if (selectedQuizType === 'u1') title = 'اختبار الوحدة الأولى (20 سؤالاً)';
-            if (selectedQuizType === 'u2') title = 'اختبار الوحدة الثانية (20 سؤالاً)';
+            let title = 'الاختبار الشامل لكتاب الفائز';
+            if (selectedQuizType === 'u12') title = 'اختبار البنية وطرق الاتصال';
+            if (selectedQuizType === 'u3456') title = 'اختبار الواجهة وتجربة المستخدم';
             document.getElementById('quizTitle').innerText = title;
 
             const container = document.getElementById('quizQuestionsContainer');
             let html = '';
             currentQuestions.forEach((q, qIdx) => {
-                if (q.type === 'mcq') {
-                    html += `
-                        <div class="q-card" id="qcard-${qIdx}">
-                            <div style="font-weight: bold; margin-bottom: 10px;">س${qIdx + 1}: ${q.question}</div>
-                            <div>
-                                ${q.options.map((opt, optIdx) => `
-                                    <button class="opt-btn" id="opt-${qIdx}-${optIdx}" onclick="selectAnswer(${qIdx}, ${optIdx})">
-                                        ${opt}
-                                    </button>
-                                `).join('')}
-                            </div>
-                            <div class="explain-box" id="explain-${qIdx}">
-                                <strong>💡 التعليل المفصل من كتاب الفائز:</strong> ${q.explanation}
-                            </div>
+                html += `
+                    <div class="q-card" id="qcard-${qIdx}">
+                        <div style="font-weight: bold; margin-bottom: 10px;">س${qIdx + 1}: ${q.question}</div>
+                        <div>
+                            ${q.options.map((opt, optIdx) => `
+                                <button class="opt-btn" id="opt-${qIdx}-${optIdx}" onclick="selectAnswer(${qIdx}, ${optIdx})">
+                                    ${opt}
+                                </button>
+                            `).join('')}
                         </div>
-                    `;
-                } else if (q.type === 'essay') {
-                    html += `
-                        <div class="q-card" id="qcard-${qIdx}">
-                            <div style="font-weight: bold; margin-bottom: 10px;">
-                                <span class="essay-tag">سؤال مقالي</span>س${qIdx + 1}: ${q.question}
-                            </div>
-                            <div class="form-group" style="margin-top: 10px;">
-                                <textarea id="essay-ans-${qIdx}" rows="3" placeholder="اكتب إجابتك هنا للمقارنة بالنموذج..."></textarea>
-                            </div>
-                            <div class="explain-box" id="explain-${qIdx}">
-                                <strong>💡 الإجابة النموذجية من كتاب الفائز:</strong> ${q.explanation}
-                            </div>
+                        <div class="explain-box" id="explain-${qIdx}">
+                            <strong>💡 التعليل المفصل من كتاب الفائز:</strong> ${q.explanation}
                         </div>
-                    `;
-                }
+                    </div>
+                `;
             });
             container.innerHTML = html;
             switchPage('activeQuizPage');
@@ -1115,39 +984,33 @@
         function finishQuiz() {
             clearInterval(timerInterval);
             let score = 0;
-            let totalMcq = 0;
+            let total = currentQuestions.length;
 
             currentQuestions.forEach((q, qIdx) => {
                 const explainBox = document.getElementById(`explain-${qIdx}`);
                 explainBox.style.display = 'block';
 
-                if (q.type === 'mcq') {
-                    totalMcq++;
-                    const selected = studentAnswers[qIdx];
-                    const btns = document.getElementById(`qcard-${qIdx}`).querySelectorAll('.opt-btn');
-                    btns.forEach((btn, optIdx) => {
-                        btn.disabled = true;
-                        if (optIdx === q.answer) btn.classList.add('correct');
-                        if (selected === optIdx && selected !== q.answer) btn.classList.add('wrong');
-                    });
-                    if (selected === q.answer) score++;
-                } else if (q.type === 'essay') {
-                    const txtArea = document.getElementById(`essay-ans-${qIdx}`);
-                    if (txtArea) txtArea.disabled = true;
-                }
+                const selected = studentAnswers[qIdx];
+                const btns = document.getElementById(`qcard-${qIdx}`).querySelectorAll('.opt-btn');
+                btns.forEach((btn, optIdx) => {
+                    btn.disabled = true;
+                    if (optIdx === q.answer) btn.classList.add('correct');
+                    if (selected === optIdx && selected !== q.answer) btn.classList.add('wrong');
+                });
+                if (selected === q.answer) score++;
             });
 
             document.getElementById('finishQuizBtn').style.display = 'none';
 
-            const percentage = totalMcq > 0 ? Math.round((score / totalMcq) * 100) : 100;
+            const percentage = total > 0 ? Math.round((score / total) * 100) : 100;
             let quizName = 'الاختبار الشامل';
-            if (selectedQuizType === 'u1') quizName = 'اختبار الوحدة الأولى';
-            if (selectedQuizType === 'u2') quizName = 'اختبار الوحدة الثانية';
+            if (selectedQuizType === 'u12') quizName = 'اختبار البنية والاتصال';
+            if (selectedQuizType === 'u3456') quizName = 'اختبار الواجهة والتحسين';
 
             studentSession.scores.push({
                 quizName: quizName,
                 score: score,
-                total: totalMcq,
+                total: total,
                 percent: percentage,
                 date: new Date().toLocaleDateString('ar-EG') + ' ' + new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'})
             });
@@ -1159,39 +1022,52 @@
             banner.innerHTML = `
                 <div class="glass-card" style="text-align: center; border-color: var(--accent-blue); background: rgba(72, 202, 228, 0.08);">
                     <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
-                    <p style="font-size: 1.15rem; margin-bottom: 6px;">درجة الاختياري: <strong>${score} من ${totalMcq}</strong></p>
+                    <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
                     <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
-                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">تم فتح الإجابات والتعليقات والنموذج المقالي أدناه للمراجعة.</p>
+                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">تم فتح الإجابات والتعليقات والنموذج أدناه للمراجعة.</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
             `;
             banner.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // المساعد الذكي التفاعلي مع دعم التحيات والدردشة الطبيعية
         function sendAiMessage() {
             const input = document.getElementById('chatInput');
-            const query = input.value.trim().toLowerCase();
+            const rawQuery = input.value.trim();
+            const query = rawQuery.toLowerCase();
             if (!query) return;
 
             const chatContainer = document.getElementById('chatContainer');
-            chatContainer.innerHTML += `<div class="chat-msg user">${input.value}</div>`;
+            chatContainer.innerHTML += `<div class="chat-msg user">${rawQuery}</div>`;
             input.value = '';
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
-            let aiReply = "عذراً يا بطل، هذا المصطلح أو السؤال غير موجود صراحة في منهج كتاب 'الفائز' للوحدتين الأولى والثانية. اسألني عن قانون مور، الذكاء الاصطناعي، التشفير، الحوسبة الطرفية، جدار الحماية، أو مراحل الاستجابة للحوادث وسأجيبك فوراً!";
+            let aiReply = "عذراً يا بطل، هذا السؤال غير موجود صراحة في كتاب 'الفائز' للبرمجة. اسألني عن بنية تطبيقات الويب، HTTP و API، الواجهة الأمامية، أو دورة PDCA وسأجيبك فوراً!";
 
-            if (query.includes('مور') || query.includes('ترانزستور') || query.includes('كمومي')) {
-                aiReply = "من كتاب الفائز (الوحدة الأولى): قانون مور ينص على أن عدد الترانزستورات في الشريحة يتضاعف كل عامين تقريباً. ويواجه عقبات فيزيائية مثل النفق الكمومي وتيار التسرب الحراري نتيجة التصغير الشديد لأبعاد ذرية.";
-            } else if (query.includes('هلوسة') || query.includes('ذكاء اصطناعي') || query.includes('xai') || query.includes('عميق')) {
-                aiReply = "من كتاب الفائز: 'الهلوسة' تعني اختلاق نماذج الذكاء الاصطناعي التوليدي لمعلومات خاطئة أو خيالية وتأكيدها بثقة عالية. ولحل مشكلة الصندوق الأسود وصعوبة تتبع القرارات، تم ابتكار مبدأ XAI (الذكاء الاصطناعي القابل للتفسير).";
-            } else if (query.includes('تشفي') || query.includes('tls') || query.includes('https')) {
-                aiReply = "من كتاب الفائز (الوحدة الثانية): يعتمد التصفح الآمن على بروتوكول TLS. في المصافحة يتم استخدام التشفير غير المتماثل (بالمفتاح العام) للمصادقة وتأمين المفتاح، ثم يُنتقل فوراً للتشفير المتماثل لنقل بيانات الجلسة بسرعة وكفاءة.";
-            } else if (query.includes('حوادث') || query.includes('استجابة') || query.includes('مخاطر')) {
-                aiReply = "من كتاب الفائز: مراحل الاستجابة للحوادث الست هي: (1) التحضير ⬅️ (2) الاكتشاف ⬅️ (3) الاحتواء (عزل الضرر أولاً) ⬅️ (4) الاستئصال ⬅️ (5) الاستعادة ⬅️ (6) الدروس المستفادة. ومعادلة الخطر = التأثير × الاحتمالية.";
-            } else if (query.includes('جدار') || query.includes('dmz') || query.includes('ثقة') || query.includes('vpn')) {
-                aiReply = "من كتاب الفائز: جدار الحماية (Firewall) يراقب حركة الشبكة. المنطقة المعزولة (DMZ) تعزل الخوادم العامة عن الشبكة الداخلية. ونهج انعدام الثقة (Zero Trust) يرفض منح أي ثقة تلقائية ويشترط التحقق المستمر.";
-            } else if (query.includes('كيوبت') || query.includes('حوسبة طرفية') || query.includes('واقع')) {
-                aiReply = "من كتاب الفائز: الكيوبت يستخدم التراكب الكمي لتمثيل 0 و1 معاً في نفس الوقت. والحوسبة الطرفية تعالج البيانات محلياً على الجهاز لتقليل التأخير (مثل السيارات ذاتية القيادة).";
+            // ردود تفاعلية طبيعية (دردشة)
+            if (query.includes('عامل ايه') || query.includes('ازيك') || query.includes('كيفك') || query.includes('اخبارك') || query.includes('أخبار')) {
+                aiReply = "الحمد لله يا بطل، كله تمام ومستعد معاك للتفوق! انت عامل ايه وطمني ماشي إزاي في مذاكرة البرمجة والذكاء الاصطناعي؟";
+            } else if (query.includes('السلام عليكم') || query.includes('مرحباً') || query.includes('أهلاً') || query.includes('هلا')) {
+                aiReply = "وعليكم السلام ورحمة الله وبركاته يا هلا بيك! منور المنصة. قول لي، إيه الجزئية اللي حابب نراجعها سوا النهارده من كتاب الفائز؟";
+            } else if (query.includes('شكراً') || query.includes('مشكور') || query.includes('تسلم')) {
+                aiReply = "العفو يا بطل! أنا هنا عشان أساعدك تقفل المنهج وتطلع الأول إن شاء الله. بالتوفيق دائماً!";
+            }
+            // ردود منهج كتاب الفائز
+            else if (query.includes('بنية') || query.includes('طبقات') || query.includes('امامية') || query.includes('خلفية') || query.includes('قاعدة')) {
+                aiReply = "من كتاب الفائز (بنية تطبيقات الويب): يتكون التطبيق من ثلاث طبقات: الواجهة الأمامية (العرض والتفاعل)، الواجهة الخلفية (المعالجة والتحكم على الخادم)، وطبقة البيانات (حفظ واسترجاع البيانات).";
+            } else if (query.includes('http') || query.includes('api') || query.includes('json') || query.includes('get') || query.includes('post') || query.includes('اتصال')) {
+                aiReply = "من كتاب الفائز (طرق اتصال الويب): يتم الاتصال بين العميل والخادم عبر الطلب (Request) والاستجابة (Response) ببروتوكول HTTP/HTTPS ومحمي بـ TLS للأمان. وتستخدم GET لاسترجاع البيانات وPOST للإرسال، بينما API هو الوسيط لتبادل البيانات بصيغة JSON.";
+            } else if (query.includes('html') || query.includes('css') || query.includes('javascript') || query.includes('متجاوب') || query.includes('إطار عمل')) {
+                aiReply = "من كتاب الفائز (تقنيات الواجهة الأمامية): HTML تبني الهيكل، CSS تنسق المظهر، وJavaScript تضيف التفاعل. وتدعم الواجهة الحديثة HTML الدلالية والتصميم المتجاوب وأطر العمل مثل React.";
+            } else if (query.includes('وسائط') || query.includes('تلفزيون') || query.includes('راديو')) {
+                aiReply = "من كتاب الفائز (أنواع الوسائط): التلفزيون والراديو للانتشار الواسع (اتجاه واحد)، الصحف بدون انترنت، والموقع الإلكتروني يجمع الوسائط المتعددة ويدعم التفاعل ثنائي الاتجاه.";
+            } else if (query.includes('مستخدم') || query.includes('persona') || query.includes('مخطط هيكلي') || query.includes('c-r-a-p') || query.includes('crap')) {
+                aiReply = "من كتاب الفائز (تجربة المستخدم): نبدأ بشخصية المستخدم (Persona)، ثم المخطط الهيكلي (Wireframe)، ومبادئ CRAP (التباين، التكرار، المحاذاة، التقارب) لتنظيم الشكل البصري.";
+            } else if (query.includes('تقييم') || query.includes('pv') || query.includes('ارتداد') || query.includes('cvr') || query.includes('إرشادي')) {
+                aiReply = "من كتاب الفائز (التقييم): التقييم إما نوعي (لفهم 'لماذا' عبر المقابلات واختبارات القابلية والتقييم الإرشادي) أو كمي (لقياس بالأرقام عبر تحليلات الويب مثل PV ومعدل الارتداد وCVR).";
+            } else if (query.includes('pdca') || query.includes('تحسين') || query.includes('تفكير تصميمي') || query.includes('a/b')) {
+                aiReply = "من كتاب الفائز (التحسين التكراري): نتحسن باستمرار عبر دورة PDCA (خطط، نفذ، تحقق، تصرف)، والتفكير التصميمي (5 مراحل)، واختبار A/B لمقارنة نسختين ببيانات حقيقية.";
             }
 
             setTimeout(() => {
