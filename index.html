@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - برمجة وذكاء اصطناعي (البكالوريا)</title>
+    <title>منصة الفائز الذكية - المنهج الرسمي (كتاب الفائز)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -243,7 +243,7 @@
 
         .units-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -289,7 +289,7 @@
 
         .quiz-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
@@ -440,7 +440,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية - البكالوريا
+                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية
             </div>
             <button class="menu-toggle-btn" id="openMenuBtn" onclick="toggleMobileMenu(true)" style="display: none;">
                 <i class="fa-solid fa-bars"></i> القائمة
@@ -463,7 +463,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
-                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح الشامل (كتاب الفائز)</span>
+                <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح المفصل (كتاب الفائز)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
@@ -483,11 +483,11 @@
 
     <div class="container">
         
-        <!-- صفحة تسجيل الدخول -->
+        <!-- تسجيل الدخول -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول طالب البكالوريا</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - برمجة وذكاء اصطناعي</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - المنهج الرسمي</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -541,133 +541,117 @@
             </div>
         </div>
 
-        <!-- الشرح المفصل لجميع وحدات الكتاب -->
+        <!-- الشرح المفصل طبقا للفصول الرسمية بالصورة -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل لجميع وحدات كتاب الفائز</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الوحدة لعرض الشرح الشامل لجميع مفاهيم المنهج من الكتاب بالكامل:</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل - كتاب الفائز (الفصول الأربعة)</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الفصل الدراسي لعرض الشرح المفصل لجميع الدروس بدقة:</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
-                        <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 1: بنية تطبيقات الويب</h4>
+                        <i class="fa-solid fa-microchip" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الفصل الأول: تكنولوجيا المعلومات والمجتمع</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
-                        <i class="fa-solid fa-right-left" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 2: طرق اتصال تطبيقات الويب</h4>
+                        <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الفصل الثاني: الأمن السيبراني</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
-                        <i class="fa-solid fa-code" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 3: تقنيات الواجهة الأمامية</h4>
+                        <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <h4>الفصل الثالث: الويب</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
                         <i class="fa-solid fa-photo-film" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 4: أنواع الوسائط وخصائصها</h4>
-                    </div>
-                    <div class="unit-card" onclick="switchUnit(5)" id="ucard-5">
-                        <i class="fa-solid fa-user-gear" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 5: تصميم تجربة المستخدم</h4>
-                    </div>
-                    <div class="unit-card" onclick="switchUnit(6)" id="ucard-6">
-                        <i class="fa-solid fa-chart-pie" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الوحدة 6: التقييم والتحسين التكراري</h4>
+                        <h4>الفصل الرابع: تصميم الويب والوسائط</h4>
                     </div>
                 </div>
 
-                <!-- الوحدة 1 -->
+                <!-- الفصل الأول -->
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-cube"></i> الوحدة 1: بنية تطبيقات الويب الشاملة</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-microchip"></i> الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
                     <div class="topic-box">
-                        <h4>1. مفهوم تطبيق الويب ومكوناته الأساسية</h4>
-                        <p>تطبيق الويب هو برنامج حاسوبي يُنفذ عبر خوادم الويب وتتم معالجته والتفاعل معه بواسطة متصفحات الويب المستندة لنظام العميل. يتميز بتوفير إمكانية الوصول الشامل المباشر من أي جهاز بدون الحاجة لتثبيت برمجيات محلية معقدة.</p>
+                        <h4>درس 1: تطور تكنولوجيا المعلومات والتحول الاجتماعي</h4>
+                        <p>استعراض المراحل التاريخية لتطور الحواسيب بدءاً من الصمامات المفرغة وصولاً إلى الأنظمة السحابية الحديثة، وتأثير التكنولوجيا على التحول الرقمي في المجتمع.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. الهندسة ثلاثية الطبقات (3-Tier Architecture)</h4>
-                        <p>• <strong>طبقة العرض والواجهة الأمامية (Frontend Tier):</strong> تُعنى بكل ما يظهر للمستخدم المباشر، وتستقبل المدخلات وتتحقق من صحتها في المتصفح قبل إرسالها.<br>
-                        • <strong>طبقة المعالجة والتطبيق (Backend / Application Tier):</strong> تشكل العقل المدبر ومحرك التطبيق، حيث تستقبل الأوامر من الواجهة وتربطها بالقواعد والتخزين.<br>
-                        • <strong>طبقة البيانات (Database Tier):</strong> مركز الحفظ الدائم والمؤمن لكافة معلومات ونشاطات التطبيق كالبيانات الشخصية وسجلات العمليات.</p>
+                        <h4>درس 2: كيف يعمل الذكاء الاصطناعي</h4>
+                        <p>شرح آلية عمل خوارزميات الذكاء الاصطناعي والتعلم الآلي والشبكات العصبية وكيفية معالجة البيانات واستنتاج الأنماط.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>درس 3: الذكاء الاصطناعي في الحياة اليومية والسينايوهات</h4>
+                        <p>تطبيقات الذكاء الاصطناعي اليومية كالمركبات ذاتية القيادة والمساعدات الذكية، واستخدام الحوسبة الطرفية لتفادي التأخير.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>درس 4: القضايا الأخلاقية المتعلقة بالذكاء الاصطناعي</h4>
+                        <p>مناقشة التحديات الأخلاقية مثل التحيز الخوارزمي، ظاهرة "الهلوسة" واختلاق المعلومات، وأهمية الذكاء الاصطناعي القابل للتفسير (XAI).</p>
                     </div>
                 </div>
 
-                <!-- الوحدة 2 -->
+                <!-- الفصل الثاني -->
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-right-left"></i> الوحدة 2: طرق اتصال تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> الفصل الثاني: الأمن السيبراني</h3>
                     <div class="topic-box">
-                        <h4>1. دورة الطلب والاستجابة (Request / Response Cycle)</h4>
-                        <p>يعتمد الاتصال بين العميل (Client) والخادم (Server) على تبادل البيانات عبر طلبات واستجابات منظمة؛ حيث يرسل المتصفح الطلب موضحاً الرأس (Header) والحمولة (Payload)، وتأتي استجابة الخادم متضمنة المحتوى أو الأخطاء كـ HTTP Status Codes.</p>
+                        <h4>درس 1: تقنيات التشفير والمصادقة</h4>
+                        <p>دراسة بروتوكولات HTTPS وTLS، والتفرقة بين التشفير المتماثل وغير المتماثل، وآليات المصادقة متعددة العوامل (MFA) عبر عوامل المعرفة والحيازة والسمات الحيوية.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. طرق الطلب وأمان التشفير</h4>
-                        <p>• <strong>طرق الطلب الأساسية:</strong> `GET` لجلب وقراءة البيانات دون تغيير الخادم، و`POST` لإرسال وإنشاء بيانات جديدة على الخادم.<br>
-                        • <strong>التشفير والأمان:</strong> يضمن بروتوكول HTTPS المشفر بواسطة TLS التوثيق التام وحماية البيانات ضد التجسس والتلاعب أثناء نقلها شبكياً.</p>
+                        <h4>درس 2: تصميم أمن الشبكات</h4>
+                        <p>تأمين البنية التحتية عبر جدران الحماية (Firewall)، المناطق المعزولة (DMZ)، الشبكات الافتراضية الخاصة (VPN)، وتطبيق نهج انعدام الثقة (Zero Trust).</p>
                     </div>
                     <div class="topic-box">
-                        <h4>3. واجهات برمجة التطبيقات (APIs) وصيغة JSON</h4>
-                        <p>تتيح واجهات API الربط المرن بين الأنظمة البرمجية المختلفة، حيث تُستخدم صيغة JSON الخفيفة والبسيطة لنقل البيانات وتنسيقها بشكل كائنات ومصفوفات منظمة.</p>
+                        <h4>درس 3: الاستجابة للحوادث وإدارة المخاطر</h4>
+                        <p>المراحل الست للاستجابة للحوادث (التحضير، الاكتشاف، الاحتواء، الاستئصال، الاستعادة، الدروس المستفادة)، وكيفية حساب المخاطر (التأثير × الاحتمالية).</p>
                     </div>
                 </div>
 
-                <!-- الوحدة 3 -->
+                <!-- الفصل الثالث -->
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-code"></i> الوحدة 3: تقنيات الواجهة الأمامية الشاملة</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-network-wired"></i> الفصل الثالث: الويب</h3>
                     <div class="topic-box">
-                        <h4>1. الثلاثي البرمجي الذهبي لبناء صفحات الويب</h4>
-                        <p>• <strong>HTML:</strong> لغة البناء الدلالي والهيكلي للواجهة.<br>
-                        • <strong>CSS:</strong> لغة التنسيق البصري والتصميم والتخطيط.<br>
-                        • <strong>JavaScript:</strong> لغة البرمجة التي تمنح الصفحات التفاعلية والحيوية لمعالجة أحداث المستخدم.</p>
+                        <h4>درس 1: البنية العامة لتطبيقات الويب</h4>
+                        <p>مفهوم تطبيق الويب وتفصيل الهندسة ثلاثية الطبقات (3-Tier Architecture): طبقة الواجهة الأمامية، طبقة المعالجة والتطبيق، وطبقة البيانات.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. التجاوب وتسهيل الوصول (Accessibility & Responsive Design)</h4>
-                        <p>تستخدم الواجهات الحديثة HTML الدلالية لتسهيل وصول محركات البحث (SEO) وقارئات الشاشة، مع تطبيق التصميم المتجاوب لضبط الواجهة تلقائياً لجميع الهواتف والشاشات.</p>
+                        <h4>درس 2: طرق الاتصال في تطبيقات الويب</h4>
+                        <p>دورة الطلب والاستجابة (Request/Response)، طرق الطلب (GET وPOST)، استخدام واجهات برمجة التطبيقات (APIs) وصيغة نقل البيانات JSON.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>درس 3: أساسيات تكنولوجيا الواجهة الأمامية</h4>
+                        <p>دور الثلاثي البرمجي الذهبي (HTML الدلالية، تنسيقات CSS، وتفاعلية JavaScript) في بناء صفحات ويب متجاوبة وسهلة الوصول.</p>
                     </div>
                 </div>
 
-                <!-- الوحدة 4 -->
+                <!-- الفصل الرابع -->
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الوحدة 4: الوسائط الإعلامية المتعددة وتأثيرها</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الفصل الرابع: تصميم الويب والوسائط</h3>
                     <div class="topic-box">
-                        <h4>1. التصنيف والمقارنة بين وسائط الإعلام</h4>
-                        <p>تتميز الوسائط الرقمية كالشبكات الاجتماعية والمواقع الإلكترونية بإمكانية التحديث المباشر الفوري والتفاعل ثنائي الاتجاه مقارنة بالوسائط التقليدية كالراديو والتلفزيون ذات الاتجاه الأوحد.</p>
-                    </div>
-                </div>
-
-                <!-- الوحدة 5 -->
-                <div id="unit-content-5" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-user-gear"></i> الوحدة 5: تصميم تجربة المستخدم (UX Design)</h3>
-                    <div class="topic-box">
-                        <h4>1. شخصيات المستخدمين والمخططات الهيكلية</h4>
-                        <p>تعتمد عملية التصميم المتمحور حول المستخدم (UCD) على إنشاء "شخصية المستخدم" (Persona) لتمثيل متطلبات الفئة المستهدفة، ثم رسم "المخطط الهيكلي" (Wireframe) لتحديد أولويات العناصر الهيكلية وتجربة التصفح.</p>
+                        <h4>درس 1: أنواع الوسائط وخصائصها</h4>
+                        <p>مقارنة الوسائط الرقمية التفاعلية بالوسائط التقليدية وإمكانيات التحديث الفوري ومشاركة المحتوى.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. مبادئ CRAP للتصميم البصري الاحترافي</h4>
-                        <p>تشتمل على التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity) لتنظيم العناصر البصرية وسهولة قراءتها.</p>
-                    </div>
-                </div>
-
-                <!-- الوحدة 6 -->
-                <div id="unit-content-6" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-chart-pie"></i> الوحدة 6: التقييم والتحسين التكراري المستمر</h3>
-                    <div class="topic-box">
-                        <h4>1. وسائل التقييم الكمي والنوعي</h4>
-                        <p>• <strong>التقييم النوعي:</strong> المقابلات واختبارات القابلية للوقوف على أسباب مشاكل الاستخدام.<br>
-                        • <strong>التقييم الكمي:</strong> تحليل مؤشرات الأداء الرقمية مثل معدل الارتداد (Bounce Rate)، ومشاهدات الصفحة (PV)، ومعدل التحويل (CVR).</p>
+                        <h4>درس 2: تصميم المعلومات وتجربة المستخدم للمواقع الإلكترونية</h4>
+                        <p>إنشاء شخصيات المستخدمين (Personas)، رسم المخططات الهيكلية (Wireframes)، وتطبيق مبادئ CRAP للتصميم البصري.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. منهجية التحسين المستمر (PDCA & A/B Testing)</h4>
-                        <p>يعتمد التطوير الاحترافي للمواقع على تطبيق دورة PDCA (خطط، نفذ، تحقق، تصرف) وتطبيق اختبارات A/B لمقارنة أداء نسختين ومفاضلتهما بالأرقام الفعلية.</p>
+                        <h4>درس 3: طرق تقييم المواقع الإلكترونية</h4>
+                        <p>أساليب التقييم النوعي (المقابلات واختبار القابلية للاستخدام) والتقييم الكمي (مؤشرات معدل الارتداد Bounce Rate ومعدل التحويل CVR).</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>درس 4: عملية التحسين التكراري للمواقع الإلكترونية</h4>
+                        <p>تطبيق منهجية التحسين المستمر (دورة PDCA) وإجراء اختبارات المفاضلة (A/B Testing) لتطوير المواقع بناءً على البيانات.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- المساعد الذكي التفاعلي المستمر -->
+        <!-- المساعد الذكي التفاعلي -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي - اسأل الفائز</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اتكلم معايا بحرية، اهزر، اسأل عن أي حاجة أو استفسر عن دروس وشرح كتاب الفائز بالكامل!</p>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اتكلم معايا بحرية، اهزر، أو اسأل عن أي درس أو مفهوم في كتاب الفائز وسأجيبك فوراً!</p>
                 
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">يا هلا بيك يا بطل! أنا معاك ومستعد في أي وقت، عاوز ندردش ونهزر ولا تسألني في شرح أي وحدة من كتاب الفائز؟ جاهز ليك! 😎</div>
+                    <div class="chat-msg ai">يا هلا بيك يا بطل! أنا معاك ومستعد في أي وقت، جاهز لأي سؤال من فصول كتاب الفائز الأربعة؟ اسأل ولا تتردد! 😎</div>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
@@ -677,60 +661,48 @@
             </div>
         </div>
 
-        <!-- قائمة الاختبارات الشاملة المتطورة -->
+        <!-- بنك الاختبارات (20 سؤالاً لكل فصل + الاختبار الشامل المرن) -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
                 <h3 style="color: var(--accent-blue); margin-bottom: 10px;">بنك الاختبارات الشاملة المخصصة - كتاب الفائز</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر نوع الاختبار وتحديد عدد الوحدات المطلوب التقييم فيها (تلقائياً 20 سؤالاً لكل وحدة):</p>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر اختبار الفصل المنفرد (20 سؤالاً لكل فصل) أو اختر الاختبار الشامل بعدد الفصول المطلوب:</p>
 
                 <div class="quiz-grid">
                     <div class="quiz-select-card" onclick="openQuizSetup('unit', 1)">
-                        <i class="fa-solid fa-cube" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 1 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">بنية تطبيقات الويب والهندسية ثلاثية الطبقات</p>
+                        <i class="fa-solid fa-microchip" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                        <h4>فصل 1: تكنولوجيا المعلومات (20 سؤالاً)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تطور التكنولوجيا، الذكاء الاصطناعي والأخلاقيات</p>
                     </div>
                     <div class="quiz-select-card" onclick="openQuizSetup('unit', 2)">
-                        <i class="fa-solid fa-right-left" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 2 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">طرق الاتصال، HTTP/HTTPS، API وJSON</p>
+                        <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                        <h4>فصل 2: الأمن السيبراني (20 سؤالاً)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">التشفير، أمن الشبكات وإدارة المخاطر</p>
                     </div>
                     <div class="quiz-select-card" onclick="openQuizSetup('unit', 3)">
-                        <i class="fa-solid fa-code" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 3 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تقنيات الواجهة الأمامية HTML, CSS, JavaScript</p>
+                        <i class="fa-solid fa-network-wired" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                        <h4>فصل 3: الويب (20 سؤالاً)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">بنية التطبيقات، الاتصالات وواجهات الواجهة الأمامية</p>
                     </div>
                     <div class="quiz-select-card" onclick="openQuizSetup('unit', 4)">
                         <i class="fa-solid fa-photo-film" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 4 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">أنواع الوسائط وخصائصها والتفاعل الرقمي</p>
-                    </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 5)">
-                        <i class="fa-solid fa-user-gear" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 5 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تصميم تجربة المستخدم، Personas ومبادئ CRAP</p>
-                    </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 6)">
-                        <i class="fa-solid fa-chart-pie" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار الوحدة 6 (20 سؤالاً)</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">التقييم الكمي والنوعي ودورة PDCA واختبار A/B</p>
+                        <h4>فصل 4: تصميم الويب والوسائط (20 سؤالاً)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تجربة المستخدم، التقييم والتحسين التكراري</p>
                     </div>
                 </div>
 
                 <hr style="border-color: var(--border-glow); margin: 25px 0;">
 
                 <div class="glass-card" style="background: rgba(72, 202, 228, 0.05); text-align: center;">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-sliders"></i> الاختبار الشامل المتعدد الوحدات</h3>
-                    <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد عدد الوحدات التي تريد تضمينها في الاختبار الشامل (يحسب تلقائياً 20 سؤالاً لكل وحدة اخترتها):</p>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-sliders"></i> الاختبار الشامل المرن</h3>
+                    <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد عدد الفصول التي تريد تضمينها في الاختبار (كل فصل يضيف تلقائياً 20 سؤالاً):</p>
                     
                     <div style="max-width: 350px; margin: 0 auto;">
                         <div class="form-group">
-                            <label>اختر الوحدات المطلوبة للاختبار الشامل:</label>
+                            <label>اختر نطاق الاختبار الشامل:</label>
                             <select id="customUnitsCountSelect" style="text-align: center; font-weight: bold;">
-                                <option value="2">وحدتان (40 سؤالاً)</option>
-                                <option value="3">3 وحدات (60 سؤالاً)</option>
-                                <option value="4">4 وحدات (80 سؤالاً)</option>
-                                <option value="5">5 وحدات (100 سؤالاً)</option>
-                                <option value="6" selected>المنهج الكامل: 6 وحدات (120 سؤالاً)</option>
+                                <option value="2">فصلان (40 سؤالاً)</option>
+                                <option value="3">3 فصول (60 سؤالاً)</option>
+                                <option value="4" selected>المنهج الكامل: 4 فصول (80 سؤالاً)</option>
                             </select>
                         </div>
                         <button class="btn-action" onclick="openCustomMultiQuizSetup()">بدء الاختبار الشامل المخصص</button>
@@ -774,43 +746,31 @@
     </div>
 
     <script>
-        // بنك الأسئلة المكثف الشامل 120 سؤالاً لكتاب الفائز (20 سؤالاً بكل وحدة)
+        // بنك الأسئلة الشامل (20 سؤالاً لكل فصل من الفصول الأربعة الرسمية = 80 سؤالاً للمنهج كاملاً)
         const fullFaizBank = {
             1: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 1 - بنية تطبيقات الويب] سؤال ${i+1}: ما المفهوم الأساسي المتعلق بـ ${i%2===0?'الواجهة الأمامية والطبقات الثلاث':'طبقة المعالجة وقواعد البيانات'} في الويب؟`,
-                options: ["الواجهة الأمامية تستقبل البيانات وترسلها للباك إند", "الباك إند ينسق مظهر CSS", "قاعدة البيانات تعرض الصور مباشرة", "المتصفح يقيم الاستجابة الزائفة"],
+                question: `[فصل 1: تكنولوجيا المعلومات والمجتمع] سؤال ${i+1}: ما المفهوم الأساسي المتعلق بـ ${i%2===0?'تطور الحواسيب وقانون مور وتحدياته الفيزيائية':'الذكاء الاصطناعي، الهلوسة ومبدأ XAI'}؟`,
+                options: ["التصغير الشديد للترانزستورات يواجه النفق الكمومي وتيار التسرب", "الإنترنت التجاري ظهر في الأربعينيات", "الذكاء الاصطناعي لا يرتكب أخطاء نهائياً", "الحوسبة السحابية لا تحتاج لخوادم"],
                 answer: 0,
-                explanation: "طبقة الواجهة الأمامية تتعامل المباشر مع المستخدم بينما تعالج الواجهة الخلفية المنطق والتطبيق وقاعدة البيانات تحفظ المعلومات."
+                explanation: "تاريخياً قانون مور يواجه عقبات فيزيائية عند التصغير للأبعاد الذرية (النفق الكمومي والحرارة)."
             })),
             2: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 2 - طرق اتصال الويب] سؤال ${i+1}: أي مما يلي يحدد خصائص بروتوكولات ${i%2===0?'HTTP/HTTPS والتشفير':'الطلبات GET/POST وصيغة JSON'}؟`,
-                options: ["GET تجلب البيانات و POST ترسل البيانات لمعالجتها", "POST تجلب الملفات المباشرة دون إرسال", "HTTP يوفر التشفير التلقائي بدون TLS", "رمز 404 يدل على النجاح التام"],
+                question: `[فصل 2: الأمن السيبراني] سؤال ${i+1}: أي مما يلي يتعلق ببروتوكولات ${i%2===0?'TLS وجدران الحماية وDMZ':'الاستجابة للحوادث ومعادلة المخاطر'}؟`,
+                options: ["TLS يستخدم التشفير المتماثل وغير المتماثل لتأمين الاتصال", "DMZ تحمي الملفات الشخصية على الهاتف فقط", "معادلة الخطر = التأثير + التكلفة", "مرحلة الاحتواء تأتي بعد الاستعادة مباشرة"],
                 answer: 0,
-                explanation: "تُستخدم GET للاسترجاع وPOST للإرسال، ورمز 404 يدل على عدم وجود المورد المطلوب."
+                explanation: "بروتوكول TLS يؤمن الاتصال عبر الجمع بين التشفير غير المتماثل للمصافحة والمتماثل للجلسة."
             })),
             3: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 3 - تقنيات الواجهة الأمامية] سؤال ${i+1}: ما هي وظيفة ${i%3===0?'لغة HTML':(i%3===1?'لغة CSS':'لغة JavaScript')} في هيكلية بناء الموقع؟`,
-                options: [i%3===0?"تحديد الهيكل والدلالة":"تنسيق الديكور والمظهر", i%3===1?"تنسيق وتصميم التخطيط والمظهر":"إضافة السلوك والتفاعل", i%3===2?"إضافة السلوك والتفاعلية الديناميكية":"تحديد بنية الفقرات", "معالجة قواعد البيانات"],
+                question: `[فصل 3: الويب] سؤال ${i+1}: ما هي المكونات والخصائص الخاصة بـ ${i%2===0?'الهندسة ثلاثية الطبقات 3-Tier لبرمجة الويب':'طرق الاتصال GET/POST وصيغة JSON'}؟`,
+                options: ["الواجهة الأمامية والباك إند وقاعدة البيانات", "قاعدة البيانات تعرض الـ CSS مباشرة", "GET تستخدم لتعديل وتدمير السيرفر", "JSON لغة تشفير عسكرية"],
                 answer: 0,
-                explanation: "تحدد HTML الهيكل البنائي، وتتولى CSS التنسيق المظهر، بينما تمنح JavaScript التفاعلية والحركة للصفحة."
+                explanation: "بنية الويب تعتمد على الهندسة ثلاثية الطبقات لتنظيم العرض والمنطق والبيانات."
             })),
             4: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 4 - أنواع الوسائط وخصائصها] سؤال ${i+1}: ما الخصيصة الأهم التي تميز الوسائط الرقمية مثل ${i%2===0?'المواقع والتواصل الاجتماعي':'الراديو والتلفزيون والتحرير الورقي'}؟`,
-                options: ["التحديث الفوري والتفاعل ثنائي الاتجاه", "الاتصال في اتجاه واحد فقط", "الورقية والمشاهدة المحلية بدون إنترنت", "عدم إمكانية تعديل المحتوى المرفوع"],
+                question: `[فصل 4: تصميم الويب والوسائط] سؤال ${i+1}: ما المعيار الأهم في تصميم الويب مثل ${i%2===0?'شخصيات المستخدمين Persona ومبدأ CRAP':'التقييم الكمي والنوعي ودورة PDCA'}؟`,
+                options: ["تمثيل نمط المستخدمين وتنظيم العناصر بوضوح وسهولة", "إلغاء تقييم المواقع نهائياً", "الاعتماد على الوسائط الورقية فقط", "منع التحديث التكراري للموقع"],
                 answer: 0,
-                explanation: "تتميز الوسائط الرقمية بالتحديث المستمر الفوري وإمكانية المشاركة والتفاعل ثنائي الاتجاه بين العميل والمنصة."
-            })),
-            5: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 5 - تصميم تجربة المستخدم] سؤال ${i+1}: ماذا يقصد بـ ${i%2===0?'شخصية المستخدم Persona والمخطط الهيكلي Wireframe':'مبادئ CRAP البصرية لتنسيق الشاشة'}؟`,
-                options: ["تمثيل نمط المستهدفين ورسم وتوزيع الهيكل البصري", "كتابة كود الباك إند بالكامل", "تحديد أسعار الخوادم", "ضغط الصور المتحركة"],
-                answer: 0,
-                explanation: "تُستخدم Persona لتمثيل الفئة المستهدفة، ويصمم Wireframe لتحديد الهيكل والوظائف قبل الألوان."
-            })),
-            6: Array.from({length: 20}, (_, i) => ({
-                question: `[الوحدة 6 - التقييم والتحسين التكراري] سؤال ${i+1}: ما الهدف الأساسي من تطبيق ${i%2===0?'دورة التحسين المستمر PDCA واختبار A/B':'التقييم النوعي والكمي (PV/CVR)'}؟`,
-                options: ["مقارنة نسختين بالأرقام الحقيقية وتطوير الموقع باستمرار", "مسح قضايا خادم قاعدة البيانات", "تغيير لغة HTML بلغة أخرى", "إلغاء أمان بروتوكول TLS"],
-                answer: 0,
-                explanation: "تساعد دورة PDCA واختبار A/B والتقييمات الرقمية على التحسين المستمر للموقع مبنياً على بيانات حقيقية."
+                explanation: "تُستخدم شخصيات Persona ومبادئ CRAP وتدابير PDCA لضمان احترافية وتطوير تجربة المستخدم."
             }))
         };
 
@@ -820,7 +780,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_bac_v14');
+            const saved = localStorage.getItem('faiz_student_session_bac_v17');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -890,7 +850,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_bac_v14', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_bac_v17', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -905,7 +865,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_bac_v14');
+            localStorage.removeItem('faiz_student_session_bac_v17');
             location.reload();
         }
 
@@ -939,7 +899,7 @@
 
         function openQuizSetup(type, unitNum = 1) {
             activeQuizQuestions = [...fullFaizBank[unitNum]];
-            window.currentQuizTitle = `اختبار الوحدة ${unitNum} - كتاب الفائز (20 سؤالاً)`;
+            window.currentQuizTitle = `اختبار الفصل ${unitNum} - كتاب الفائز (20 سؤالاً)`;
             document.getElementById('modalQCount').innerText = activeQuizQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
         }
@@ -950,7 +910,7 @@
             for (let u = 1; u <= count; u++) {
                 activeQuizQuestions.push(...fullFaizBank[u]);
             }
-            window.currentQuizTitle = `الاختبار الشامل المخصص (${count} وحدات - ${activeQuizQuestions.length} سؤالاً)`;
+            window.currentQuizTitle = `الاختبار الشامل المخصص (${count} فصول - ${activeQuizQuestions.length} سؤالاً)`;
             document.getElementById('modalQCount').innerText = activeQuizQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
         }
@@ -1054,7 +1014,7 @@
                 <div class="glass-card" style="text-align: center; border-color: var(--accent-blue); background: rgba(72, 202, 228, 0.08);">
                     <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
                     <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
-                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
+                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: %${percentage}</p>
                     <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">تم فتح الإجابات والتعليقات والنموذج أدناه للمراجعة.</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
@@ -1062,7 +1022,7 @@
             banner.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // المحرك المطور للمساعد الذكي للرد الطبيعي التفاعلي والربط بالمنهج
+        // المحرك المطور للمساعد الذكي
         function getSmartAiReply(inputStr) {
             const str = inputStr.trim().toLowerCase();
 
@@ -1070,7 +1030,7 @@
                 return "أنا المساعد الذكي الخارق المصمم خصيصاً لكتاب 'الفائز'! مش إنسان حقيقي، بس فاهم المنهج أكتر من أي حد وجاهز أساعدك تقفل المادة بإذن الله! 🔥😎";
             }
 
-            if (str.includes('هنقفل') || str.includes('نقفل') || queryMatches(str, ['انشاء الله', 'ان شاء الله', 'باذن الله', 'يا رب'])) {
+            if (str.includes('هنقفل') || str.includes('نقفل') || queryMatches(str, ['ان شاء الله', 'باذن الله', 'يا رب'])) {
                 return "بإذن الله يا بطل! همتك معانا ومراجعة أول بأول مع كتاب 'الفائز' وهتكون التوب دائماً! 💪🔥";
             }
 
@@ -1084,26 +1044,20 @@
                 return "حبيبي تحت أمرك في أي وقت! المادة في جيبك طول ما إحنا مع بعض 🌟";
             }
 
-            if (queryMatches(str, ['بنية', 'طبقات', 'طبقة', '3-tier', 'ثلاثية'])) {
-                return "من كتاب الفائز (الوحدة 1 - البنية الشاملة): تتكون من 3 طبقات: 1. الواجهة الأمامية (العرض والتفاعل)، 2. الواجهة الخلفية (المعالجة والتطبيق)، 3. قاعدة البيانات (التخزين والدعم).";
+            if (queryMatches(str, ['تكنولوجيا', 'مور', 'ترانزستور', 'ذكاء اصطناعي', 'هلوسة', 'xai'])) {
+                return "من كتاب الفائز (الفصل الأول): يتناول تطور تكنولوجيا المعلومات وتحديات قانون مور الفيزيائية (النفق الكمومي وتيار التسرب)، وآلية عمل الذكاء الاصطناعي ومعالجة الهلوسة والذكاء القابل للتفسير XAI.";
             }
-            if (queryMatches(str, ['http', 'https', 'tls', 'get', 'post', 'api', 'json', 'اتصال'])) {
-                return "من كتاب الفائز (الوحدة 2 - طرق الاتصال): يتم تبادل البيانات بين العميل والخادم عبر الطلب والاستجابة باستخدام HTTP/HTTPS، وتدعم GET جلب البيانات وPOST لإرسالها، بينما يوفر TLS الأمان، وJSON ونماذج API التبادل السلس للبيانات.";
+            if (queryMatches(str, ['أمن', 'سيبراني', 'تشفير', 'tls', 'mfa', 'dmz', 'حوادث'])) {
+                return "من كتاب الفائز (الفصل الثاني): يغطي الأمن السيبراني وتقنيات التشفير TLS والمصادقة MFA، وتأمين الشبكات بـ Firewall وDMZ، ومراحل الاستجابة للحوادث ومعادلة المخاطر (التأثير × الاحتمالية).";
             }
-            if (queryMatches(str, ['html', 'css', 'javascript', 'تجاوب', 'accessibility', 'واجهة امامية'])) {
-                return "من كتاب الفائز (الوحدة 3 - تقنيات الواجهة الأمامية): HTML لبناء الهيكل، CSS للتصميم، وJS للتفاعلية، مع الاعتماد على HTML الدلالية لتسهيل الوصول ومحركات البحث والتصميم المتجاوب لجميع الشاشات.";
+            if (queryMatches(str, ['ويب', 'اتصال', 'api', 'json', 'html', 'css', 'javascript'])) {
+                return "من كتاب الفائز (الفصل الثالث): يشرح بنية تطبيقات الويب عبر الهندسة ثلاثية الطبقات 3-Tier، دورة الطلب والاستجابة مع GET وPOST وJSON، بالإضافة للثلاثي البرمجي HTML, CSS, JS.";
             }
-            if (queryMatches(str, ['وسائط', 'تلفزيون', 'راديو', 'صحف', 'موقع'])) {
-                return "من كتاب الفائز (الوحدة 4 - أنواع الوسائط): تتيح الوسائط الرقمية التحديث الفوري والتفاعل ثنائي الاتجاه بخلاف الوسائط التقليدية كالتلفزيون والراديو ذات الاتجاه الواضح الواحد.";
-            }
-            if (queryMatches(str, ['مستخدم', 'persona', 'شخصية', 'wireframe', 'مخطط', 'crap'])) {
-                return "من كتاب الفائز (الوحدة 5 - تجربة المستخدم): نعتمد على بناء شخصية المستخدم Persona لرصد الاحتياجات، والمخطط الهيكلي Wireframe لتحديد التوزيع، ومبادئ CRAP (التباين، التكرار، المحاذاة، التقارب) للتنسيق الجمالي البصري.";
-            }
-            if (queryMatches(str, ['تقييم', 'pdca', 'a/b', 'تحسين', 'cvr', 'bounce'])) {
-                return "من كتاب الفائز (الوحدة 6 - التقييم والتحسين): يُطبق التقييم النوعي بالمقابلة والقابلية، والكمي بمعدلات الارتداد CVR وPV، وتطبيق منهجية التحسين المستمر PDCA واختبارات المفاضلة A/B Testing.";
+            if (queryMatches(str, ['وسائط', 'مستخدم', 'persona', 'wireframe', 'crap', 'تقييم', 'pdca'])) {
+                return "من كتاب الفائز (الفصل الرابع): يوضح تصميم الويب والوسائط، بناء شخصيات المستخدمين Personas والمخططات الهيكلية Wireframes، مبادئ CRAP البصرية، ووسائل التقييم الكمي والنوعي ومنهجية PDCA للتحسين المستمر.";
             }
 
-            return "يا هلا بيك يا فنان! أنا معاك وسامعك، تقدر تسألني عن أي جزئية في كتاب الفائز، أو تطلب اختبار نفسك وسأجيبك فوراً! 😉";
+            return "يا هلا بيك يا فنان! أنا معاك وسامعك، تقدر تسألني عن أي فصل أو درس في كتاب الفائز، أو تطلب اختبار نفسك وسأجيبك فوراً! 😉";
         }
 
         function queryMatches(str, keywords) {
