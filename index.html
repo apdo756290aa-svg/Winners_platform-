@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - نسخة Hard Mode (المستوى الخارق)</title>
+    <title>منصة الفائز الذكية - النسخة النهائية المخصصة</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -500,11 +500,11 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
-                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> بنك الاختبارات (عادي + Hard Mode)</span>
+                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> بنك الاختبارات المخصص</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('aiChatPage')">
-                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي التفاعلي (اسأل الفائز)</span>
+                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي التفاعلي</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="logout()" style="border-color: rgba(230, 57, 70, 0.4); color: #e63946; margin-top: 15px;">
@@ -520,7 +520,7 @@
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - نسخة التحدي (Hard Mode)</p>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - التحدي الذكي</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -599,46 +599,39 @@
                     </div>
                 </div>
 
-                <!-- الفصل الأول -->
                 <div id="unit-content-1" class="unit-content-section active">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-microchip"></i> الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
                     <div class="topic-box">
-                        <h4>1. درس 1: تطور تكنولوجيا المعلومات والتحول الاجتماعي</h4>
-                        <p>• <strong>المراحل التاريخية:</strong> من صمامات (ENIAC) إلى الحواسيب الشخصية والصفوة السحابية الحالية.</p>
-                        <p>• <strong>قانون مور (Moore's Law):</strong> تضاعف عدد الترانزستورات كل عامين، مع عقبة النفق الكمومي وتيار التسرب الحراري.</p>
+                        <h4>1. درس 1: تطور تكنولوجيا المعلومات وقانون مور</h4>
+                        <p>• <strong>ENIAC والصمامات المفرغة:</strong> بداية الحواسيب الضخمة. قانون مور يتحدث عن تضاعف الترانزستورات كل عامين وتحديات النفق الكمومي وتيار التسرب.</p>
                     </div>
                     <div class="topic-box">
-                        <h4>2. درس 4: القضايا الأخلاقية والذكاء الاصطناعي</h4>
-                        <p>• <strong>ظاهرة الهلوسة (Hallucination):</strong> توليد النماذج لمعلومات وهمية وغير دقيقة وتقديمها بثقة مقنعة.</p>
-                        <p>• <strong>الذكاء القابل للتفسير (XAI):</strong> لفك معضلة الصندوق الأسود وتوضيح أسباب قرارات الآلة.</p>
+                        <h4>2. أخلاقيات الذكاء الاصطناعي</h4>
+                        <p>• <strong>الهلوسة (Hallucination):</strong> اختلاق النماذج لمعلومات خاطئة بثقة. <strong>XAI:</strong> الذكاء القابل للتفسير لحل معضلة الصندوق الأسود.</p>
                     </div>
                 </div>
 
-                <!-- الفصل الثاني -->
                 <div id="unit-content-2" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> الفصل الثاني: الأمن السيبراني</h3>
                     <div class="topic-box">
-                        <h4>1. درس 1 & 2: التشفير وأمن الشبكات</h4>
-                        <p>• <strong>HTTPS/TLS:</strong> تشفير غير متماثل للمصافحة، ثم متماثل لسرعة نقل بيانات الجلسة.</p>
-                        <p>• <strong>DMZ و Zero Trust:</strong> عزل الخوادم العامة ومبدأ "لا تثق أبداً، تحقق دائماً".</p>
+                        <h4>التشفير وأمن الشبكات</h4>
+                        <p>• بروتوكول TLS يجمع بين التشفير غير المتماثل للمصافحة والمتماثل لسرعة الجلسة. DMZ تعزل خوادم الويب العامة لحماية الشبكة الداخلية.</p>
                     </div>
                 </div>
 
-                <!-- الفصل الثالث -->
                 <div id="unit-content-3" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-network-wired"></i> الفصل الثالث: الويب</h3>
                     <div class="topic-box">
-                        <h4>1. عمارة تطبيقات الويب (3-Tier)</h4>
-                        <p>• الواجهة الأمامية (Frontend)، طبقة المعالجة والتطبيق (Backend)، وقاعدة البيانات (Database).</p>
+                        <h4>بنية تطبيقات الويب</h4>
+                        <p>• الهندسة ثلاثية الطبقات (3-Tier Architecture): الواجهة الأمامية (Frontend)، طبقة التطبيق والمعالجة (Backend)، وقاعدة البيانات (Database).</p>
                     </div>
                 </div>
 
-                <!-- الفصل الرابع -->
                 <div id="unit-content-4" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الفصل الرابع: تصميم الويب والوسائط</h3>
                     <div class="topic-box">
-                        <h4>تصميم تجربة المستخدم والتحسين التكراري</h4>
-                        <p>• شخصية المستخدم (Persona)، مبادئ CRAP البصرية، دورة التحسين (PDCA)، واختبارات A/B Testing.</p>
+                        <h4>تجربة المستخدم والتحسين</h4>
+                        <p>• شخصية المستخدم Persona، مبادئ التصميم البصري CRAP، دورة التحسين المستمر PDCA، واختبارات A/B Testing.</p>
                     </div>
                 </div>
             </div>
@@ -647,10 +640,10 @@
         <!-- المساعد الذكي -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي - اسأل الفائز</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي، اسألني في أي مفهوم، أو دردش في أي حاجة برا المنهج وأنا معاك!</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي</h2>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي، اسألني في أي مفهوم، أو نتناقش في أي موضوع خارج المنهج!</p>
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">أهلاً يا بطل! أنا جاهز أرد عليك في المنهج أو في أي موضوع تحبه. اسألني وخلينا نسخن دماغنا!</div>
+                    <div class="chat-msg ai">أهلاً يا بطل! أنا معاك أهو، قول لي عندك امتحان إيه تاني بعد بكرة عشان نجهز له؟</div>
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="chatInput" placeholder="اكتب سؤالك أو كلامك هنا..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
@@ -659,26 +652,24 @@
             </div>
         </div>
 
-        <!-- بنك الاختبارات (عادي + Hard Mode) -->
+        <!-- بنك الاختبارات المخصص بالكامل -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 10px;">بنك الاختبارات الشاملة (عادي + Hard Mode)</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر نظام الاختبار (الأسئلة تتغير عشوائياً كل مرة تدخل فيها):</p>
+                <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-sliders"></i> بنك الاختبارات المرن (حسب طلبك)</h3>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px;">حدد الفصول اللي عاوز تدخل بيها الامتحان (كل فصل يحتوي على 20 سؤالاً عشوائياً):</p>
 
-                <div class="quiz-grid">
-                    <div class="quiz-select-card" onclick="openQuizSetup('standard', 1)">
-                        <i class="fa-solid fa-microchip" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار فصل 1 (عادي - 20 سؤال)</h4>
+                <div style="display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto;">
+                    <div class="form-group">
+                        <label>اختر نطاق الفصول المطلوبة للاختبار:</label>
+                        <select id="selectedUnitsMode" style="font-weight: bold; text-align: center;">
+                            <option value="1">وحدة واحدة فقط (20 سؤالاً)</option>
+                            <option value="2">وحدتان معاً (40 سؤالاً)</option>
+                            <option value="3">ثلاث وحدات (60 سؤالاً)</option>
+                            <option value="4" selected>المنهج الكامل: 4 وحدات (80 سؤالاً)</option>
+                            <option value="hard">مستوى الوحش الخارق (Hard Mode التحليلي)</option>
+                        </select>
                     </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('standard', 2)">
-                        <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
-                        <h4>اختبار فصل 2 (عادي - 20 سؤال)</h4>
-                    </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('hard', 0)">
-                        <i class="fa-solid fa-fire" style="font-size: 1.8rem; color: #ffb703; margin-bottom: 10px;"></i>
-                        <h4 style="color: #ffb703;">مستوى الوحش (Hard Mode الخارق)</h4>
-                        <p style="font-size: 0.82rem; color: var(--text-sub); margin-top: 5px;">أسئلة تحليلية وفكرية صعبة جداً لرفع الليفل</p>
-                    </div>
+                    <button class="btn-action" onclick="startCustomQuizConfig()">بدء الاختبار بالنطاق المحدد</button>
                 </div>
             </div>
         </div>
@@ -692,7 +683,6 @@
             
             <div id="resultBannerContainer"></div>
 
-            <!-- أزرار التصفية والفلترة للنتائج -->
             <div class="filter-btn-group" id="filterBtnGroup">
                 <button class="filter-btn active" onclick="filterReview('all')">عرض الكل</button>
                 <button class="filter-btn" onclick="filterReview('wrong')">عرض الأخطاء فقط ❌</button>
@@ -708,7 +698,7 @@
     <!-- Modal Setup -->
     <div id="setupModal" class="modal">
         <div class="modal-content">
-            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">إعدادات الاختبار</h3>
+            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">إعدادات مؤقت الاختبار</h3>
             <p style="margin-bottom: 15px;">عدد أسئلة هذا الاختبار: <strong id="modalQCount" style="color: var(--accent-blue); font-size: 1.2rem;">0</strong> سؤالاً</p>
             <div class="form-group">
                 <label>تفعيل المؤقت الزمني؟</label>
@@ -718,7 +708,7 @@
                 </select>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn-action" onclick="startQuizNow()">بدء الاختبار</button>
+                <button class="btn-action" onclick="startQuizNow()">بدء الاختبار فوراً</button>
                 <button class="btn-action" onclick="closeModal()" style="background: rgba(255,255,255,0.1); color: #fff;">إلغاء</button>
             </div>
         </div>
@@ -737,13 +727,17 @@
                 { question: "لماذا ينتقل بروتوكول TLS للتشفير المتماثل بعد المصافحة بالتشفير غير المتماثل؟", options: ["لأن غير المتماثل غير آمن", "لحماية بيانات الجلسة بسرعة وكفاءة عالية", "لأن المتصفح لا يدعم المفتاح", "لقلة الذاكرة"], answer: 1, explanation: "غير المتماثل لتأمين المصادقة، والمتماثل لسرعة نقل بيانات الجلسة." },
                 { question: "ما السبب الأساسي لجعل مرحلة الاحتواء قبل الاستئصال في الاستجابة للحوادث؟", options: ["لأنها أسرع", "لمنع انتشار الضرر إلى بقية أجزاء الشبكة فوراً", "لان الاستئصال غير مهم", "لصيانة الشاشات"], answer: 1, explanation: "الاحتواء السريع يعزل الأجهزة المصابة لوقف تمدد الهجوم." }
             ],
+            3: [
+                { question: "ما هي العمارة الثلاثية (3-Tier Architecture) المكونة لبنية تطبيقات الويب؟", options: ["طبقة العرض والواجهة الأمامية، طبقة المعالجة والتطبيق، طبقة البيانات", "طبقة الشاشة، طبقة الصوت، طبقة الألعاب", "طبقة الإنترنت، طبقة الكهرباء، طبقة التبريد", "طبقة البلوتوث، طبقة الـ Wi-Fi، طبقة الكابلات"], answer: 0, explanation: "العمارة ثلاثية الطبقات تنظم الواجهة والخلفية وقواعد البيانات." },
+                { question: "ما الغرض الأساسي من استخدام طريقة الطلب GET في بروتوكول HTTP؟", options: ["إرسال بيانات جديدة وقاعدة بيانات للسيرفر", "جلب وقراءة البيانات من الخادم دون تغيير محتوياته", "حذف السيرفر نهائياً", "تشفير اتصال الـ Wi-Fi"], answer: 1, explanation: "GET تُستخدم للاسترجاع والقراءة فقط." }
+            ],
+            4: [
+                { question: "ما هي الميزة الأبرز للوسائط الرقمية مقارنة بوسائط الإعلام التقليدية؟", options: ["الاتجاه الواحد للرسالة", "إمكانية التحديث المباشر الفوري والتفاعل ثنائي الاتجاه والمشاركة", "الاعتماد على الطباعة الورقية فقط", "عدم إمكانية التعليق"], answer: 1, explanation: "الوسائط الرقمية تتيح التفاعل الثنائي والتحديث الفوري." },
+                { question: "ما هو الغرض من إنشاء شخصية المستخدم (Persona) في تجربة المستخدم؟", options: ["تحديد أسعار الخوادم", "تمثيل نمط واحتياجات الفئة المستهدفة الحقيقية لتوجيه التصميم", "كتابة أكواد الباك إند", "ضغط الصور"], answer: 1, explanation: "Persona تُمثل النموذج التمثيلي للمستهدفين لتلبية احتياجاتهم." }
+            ],
             hard: [
-                { question: "سؤال الخبيث: بحث شخص عن 'قطط' وظهرت النتيجة خلال 3 ثوانٍ. من المسؤول وليه مش جهة واحدة اشتغت؟", options: ["الواجهة الأمامية وحدها", "الخلفية وقاعدة البيانات والواجهة معاً بتكامل دورة الطلب والاستجابة", "قاعدة البيانات وحدها", "السيرفر الخارجي فقط"], answer: 1, explanation: "تتكامل الواجهة لاستقبال الطلب، والخلفية لمعالجة المنطق، وقاعدة البيانات لجلب السجلات." },
-                { question: "سؤال الكاش: تطبيق يحفظ بياناته في التخزين المؤقت فقط ولا توجد قاعدة بيانات، ماذا يحدث عند إغلاق الهاتف وفتحه؟", options: ["تظل البيانات دائمًا", "تُفقد البيانات تماماً لعدم وجود حفظ دائم", "تتضاعف السرعة", "يتحول لنظام سحابي"], answer: 1, explanation: "التخزين المؤقت (Cache/RAM) يفقد بياناته بمجرد إغلاق الجهاز لعدم وجود حفظ دائم." },
-                { question: "سؤال التركيب: لماذا لا تتواصل الواجهة الأمامية مع قاعدة البيانات مباشرة دون الواجهة الخلفية؟", options: ["لتوفير الإنترنت", "لأن ذلك يسبب كارثة أمنية وكشف بيانات حساسة وغياب منطق المعالجة", "لتسريع الموقع", "لتغيير الألوان"], answer: 1, explanation: "التواصل المباشر يكشف بيانات الحساسة ويعرض قاعدة البيانات للاختراق دون وسيط (Backend)." },
-                { question: "سؤال قانون مور وتطبيقات الذكاء الاصطناعي: ما علاقة قانون مور بتشغيل الذكاء الاصطناعي على الهواتف الحديثة؟", options: ["لا علاقة لهما", "تصغير المعالجات ورفع كفاءتها سمح بتشغيل نماذج ذكية ضخمة على أجهزة صغيرة", "قانون مور يلغي الذكاء الاصطناعي", "يزيد استهلاك البطارية فقط"], answer: 1, explanation: "زيادة الترانزستورات وتصغيرها سمح بمعالجة قوية داخل الأجهزة المحمولة." },
-                { question: "سؤال الـ Hard Mode الشامل: لماذا تعتبر الحوسبة السحابية هي أساس انتشار العمل عن بعد؟", options: ["لأنها ترسل رسائل نصية", "لأنها تتيح الوصول للبيانات والأنظمة من أي مكان وفي أي وقت بأمان ومرونة", "لأنها تمنع استخدام الحواسيب", "لتقليل السرعات"],
-     answer: 1, explanation: "السحابة تتيح تخزين ومشاركة وإدارة البيانات مركزياً للموظفين عن بُعد." }
+                { question: "سؤال الخبيث: بحث شخص عن 'قطط' وظهرت النتيجة خلال 3 ثوانٍ. من المسؤول عن الـ 3 ثوانٍ؟", options: ["الواجهة الأمامية وحدها", "الخلفية وقاعدة البيانات والواجهة معاً بتكامل دورة الطلب والاستجابة", "قاعدة البيانات وحدها", "السيرفر الخارجي فقط"], answer: 1, explanation: "تتكامل الواجهة لاستقبال الطلب، والخلفية لمعالجة المنطق، وقاعدة البيانات لجلب السجلات." },
+                { question: "سؤال الكاش: تطبيق يحفظ بياناته في التخزين المؤقت فقط ولا توجد قاعدة بيانات، ماذا يحدث عند إغلاق الهاتف؟", options: ["تظل البيانات دائمًا", "تُفقد البيانات تماماً لعدم وجود حفظ دائم بالسيرفر أو القاعدة", "تتضاعف السرعة", "يتحول لنظام سحابي"], answer: 1, explanation: "التخزين المؤقت يفقد بياناته بمجرد إغلاق الجهاز لعدم وجود حفظ دائم." }
             ]
         };
 
@@ -753,7 +747,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_hard_v1');
+            const saved = localStorage.getItem('faiz_student_session_hard_v2');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -806,7 +800,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_hard_v1', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_hard_v2', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -820,7 +814,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_hard_v1');
+            localStorage.removeItem('faiz_student_session_hard_v2');
             location.reload();
         }
 
@@ -861,10 +855,24 @@
             return array;
         }
 
-        function openQuizSetup(type, unitNum) {
-            let pool = type === 'hard' ? fullFaizBank.hard : fullFaizBank[unitNum];
-            activeQuizQuestions = shuffleArray(JSON.parse(JSON.stringify(pool)));
-            window.currentQuizTitle = type === 'hard' ? 'اختبار مستوى الوحش (Hard Mode)' : `اختبار الفصل ${unitNum} (عشوائي)`;
+        function startCustomQuizConfig() {
+            const mode = document.getElementById('selectedUnitsMode').value;
+            let pool = [];
+            
+            if (mode === 'hard') {
+                pool = JSON.parse(JSON.stringify(fullFaizBank.hard));
+                window.currentQuizTitle = 'اختبار مستوى الوحش الخارق (Hard Mode)';
+            } else {
+                let count = parseInt(mode);
+                for (let i = 1; i <= count; i++) {
+                    if (fullFaizBank[i]) {
+                        pool.push(...JSON.parse(JSON.stringify(fullFaizBank[i])));
+                    }
+                }
+                window.currentQuizTitle = `اختبار شامل (${count} وحدات مخصصة)`;
+            }
+
+            activeQuizQuestions = shuffleArray(pool);
             document.getElementById('modalQCount').innerText = activeQuizQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
         }
@@ -961,7 +969,7 @@
 
             document.getElementById('resultBannerContainer').innerHTML = `
                 <div class="glass-card" style="text-align: center; border-color: var(--accent-blue); background: rgba(72, 202, 228, 0.08);">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> عاش يا بطل! أنهيت التحدي</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> عاش يا بطل! تم الانتهاء من الاختبار</h3>
                     <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
                     <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة: ${percentage}%</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
@@ -981,9 +989,8 @@
 
         function getSmartAiReply(inputStr) {
             const str = inputStr.trim().toLowerCase();
-            if (str.includes('ازيك') || str.includes('عامل ايه')) return "يا هلا بيك يا معلم، أنا في أتم حال وجاهز أساعدك تكسر الدنيا بكرة في الامتحان!";
-            if (str.includes('امتحان') || str.includes('بكرة')) return "امتحان بكرة ده بالنسبة لك هيكون لعبة بعد ما تخلص أسئلة الـ Hard Mode هنا. ركز وخلي دماغك صاحية!";
-            return "كلامك مظبوط يا وحش! أنا معاك أهو في أي فكرة أو سؤال تحب نتناقش فيه برا المنهج أو جواه.";
+            if (str.includes('ازيك') || str.includes('عامل ايه')) return "يا هلا بيك يا وحش، أنا جاهز لأي تحدي تحبه!";
+            return "ملاحظتك في محلها تماماً، المنصة دلوقتي بقت تحت سيطرتك تختار وحدة أو وحدتين أو الكل براحتك!";
         }
 
         function sendAiMessage() {
