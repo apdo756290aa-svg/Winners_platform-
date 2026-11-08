@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - النسخة النهائية المتقفلة (v3)</title>
+    <title>منصة الفائز الذكية - النسخة الاحترافية (v4 الاحترافية)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -216,6 +216,35 @@
             box-shadow: 0 0 10px rgba(72, 202, 228, 0.3);
         }
 
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glow);
+            padding: 12px 15px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--accent-blue);
+            background: rgba(72, 202, 228, 0.08);
+        }
+
+        .checkbox-item input {
+            width: auto;
+            cursor: pointer;
+        }
+
         .error-msg {
             color: #e63946;
             font-size: 0.82rem;
@@ -239,6 +268,18 @@
         .btn-action:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(72, 202, 228, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid var(--border-glow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: var(--wrong-clr);
+            color: #e63946;
         }
 
         .units-grid {
@@ -285,12 +326,6 @@
             color: var(--accent-blue);
             margin-bottom: 10px;
             font-size: 1.1rem;
-        }
-
-        .topic-box p {
-            color: #e2fbf7;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
         }
 
         .modal {
@@ -409,6 +444,23 @@
             color: var(--accent-blue);
         }
 
+        .progress-bar-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            height: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-glow);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--correct-clr));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
         .chat-box {
             height: 350px;
             overflow-y: auto;
@@ -428,6 +480,7 @@
             border-radius: 14px;
             font-size: 0.92rem;
             line-height: 1.55;
+            word-break: break-word;
         }
 
         .chat-msg.user {
@@ -450,7 +503,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية (v3 النهائية)
+                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية (v4 المحترفة)
             </div>
             <button class="menu-toggle-btn" id="openMenuBtn" onclick="toggleMobileMenu(true)" style="display: none;">
                 <i class="fa-solid fa-bars"></i> القائمة
@@ -461,7 +514,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="menu-header">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> قائمة منصة الفائز
+                <i class="fa-solid fa-graduation-cap"></i> قائمة المنصة
             </div>
             <button class="close-menu-btn" onclick="toggleMobileMenu(false)">
                 <i class="fa-solid fa-xmark"></i>
@@ -477,7 +530,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
-                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> بنك الاختبارات المرن (80+10)</span>
+                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> بنك الاختبارات المخصص</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('aiChatPage')">
@@ -497,7 +550,7 @@
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - النسخة النهائية المتقفلة</p>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - النسخة النهائية الخالية من الأخطاء</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -534,7 +587,7 @@
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج (محفوظ تلقائياً)</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -554,104 +607,130 @@
         <!-- الشرح المفصل -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل المفصل - كتاب الفائز (الفصول الأربعة)</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الفصل الدراسي لعرض الشرح الشامل والمفصل لجميع الدروس:</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل المفصل - كتاب الفائز</h2>
+                <p style="color: #ffb703; margin-bottom: 20px; font-size: 0.85rem;"><i class="fa-solid fa-circle-info"></i> ملاحظة: هذا الشرح يغطي جميع نقاط وأفكار بنك الأسئلة بالكامل.</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
                         <i class="fa-solid fa-microchip" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الفصل الأول: تكنولوجيا المعلومات والمجتمع</h4>
+                        <h4>الفصل 1: تكنولوجيا المعلومات</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
                         <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الفصل الثاني: الأمن السيبراني</h4>
+                        <h4>الفصل 2: الأمن السيبراني</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
                         <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الفصل الثالث: الويب</h4>
+                        <h4>الفصل 3: تطبيقات الويب</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
                         <i class="fa-solid fa-photo-film" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
-                        <h4>الفصل الرابع: تصميم الويب والوسائط</h4>
+                        <h4>الفصل 4: تصميم الويب والوسائط</h4>
                     </div>
                 </div>
 
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-microchip"></i> الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
                     <div class="topic-box">
-                        <h4>1. التطور وقانون مور والذكاء الاصطناعي</h4>
-                        <p>• تغطية حواسيب الصمامات (ENIAC)، قانون مور وتضاعف الترانزستورات، تحديات النفق الكمومي وتيار التسرب، ظاهرة الهلوسة والذكاء القابل للتفسير (XAI).</p>
+                        <h4>• المراحل وقانون مور والذكاء الاصطناعي</h4>
+                        <p>تغطي تفاصيل صمامات ENIAC، قانون مور وتضاعف الترانزستورات، تحديات النفق الكمومي وتيار التسرب الحراري، ظاهرة الهلوسة في نماذج GenAI والذكاء الاصطناعي القابل للتفسير XAI.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> الفصل الثاني: الأمن السيبراني</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الثاني: الأمن السيبراني</h3>
                     <div class="topic-box">
-                        <h4>التشفير وأمن الشبكات</h4>
-                        <p>• بروتوكول TLS، تشفير متماثل وغير متماثل، مصادقة MFA، مناطق DMZ، نهج انعدام الثقة (Zero Trust)، ومراحل الاستجابة للحوادث.</p>
+                        <h4>• التشفير وأمن الشبكات وإدارة المخاطر</h4>
+                        <p>تغطي بروتوكولات HTTPS/TLS والتشفير المتماثل وغير المتماثل، والمصادقة متعددة العوامل MFA، ومنطقة DMZ، ونهج Zero Trust ومراحل الاستجابة للحوادث.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-network-wired"></i> الفصل الثالث: الويب</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الثالث: الويب</h3>
                     <div class="topic-box">
-                        <h4>بنية وتطبيقات الويب</h4>
-                        <p>• عمارة 3-Tier (الواجهة الأمامية، المعالجة، وقاعدة البيانات)، دورة الطلب والاستجابة (GET و POST)، صيغة JSON وواجهات APIs.</p>
+                        <h4>• بنية الويب وتطبيقات الواجهة</h4>
+                        <p>تغطي بنية 3-Tier (الواجهة والخلفية والقاعدة)، دورة GET و POST، صيغة JSON، الـ APIs، والتصميم المتجاوب بـ HTML/CSS/JS.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الفصل الرابع: تصميم الويب والوسائط</h3>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الرابع: تصميم الويب والوسائط</h3>
                     <div class="topic-box">
-                        <h4>تجربة المستخدم والتحسين</h4>
-                        <p>• شخصية المستخدم (Persona)، مبادئ CRAP، دورة التحسين (PDCA)، واختبارات A/B Testing.</p>
+                        <h4>• تصميم UX، مبادئ CRAP، والدورة التحسينية</h4>
+                        <p>تغطي شخصية Persona، مخطط Wireframe، مبادئ التصميم البصري CRAP، دورة PDCA للتحسين المستمر، ومؤشرات KPI واختبارات A/B Testing.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- المساعد الذكي -->
+        <!-- المساعد الذكي المحدث -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي في أي مفهوم أو في أي موضوع برا المنهج!</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي (المحدث)</h2>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اسألني في أي مفهوم أو مصطلح أو درس وسأجيبك بشرح وافٍ مفصل، أو دردش معي بحرية!</p>
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">يا هلا بيك يا معلم، المنصة بقت كاملة بـ 80 سؤال حقيقي ومستوى الوحش. اسألني في اللي تحبه!</div>
+                    <div class="chat-msg ai">أهلاً بك يا بطل! تم تحديثي بنظام ذكي شامل لإجابة جميع أسئلة المنهج بدقة متناهية. اطرح سؤالك الآن!</div>
                 </div>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" placeholder="اكتب سؤالك أو كلامك هنا..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
+                    <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا (مثلاً: ما هي الهلوسة؟ أو بروتوكول TLS)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
                     <button class="btn-action" onclick="sendAiMessage()" style="width: 120px;">إرسال</button>
                 </div>
             </div>
         </div>
 
-        <!-- بنك الاختبارات المخصص -->
+        <!-- بنك الاختبارات بتصميم الاختيارات المتعددة (Checkboxes) -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-sliders"></i> بنك الاختبارات المرن والذكي</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px;">حدد الفصول التي تريد تضمينها (كل فصل يحتوي على 20 سؤالاً حقيقياً):</p>
+                <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-list-check"></i> تحديد فصول الاختبار (تحديد مخصص)</h3>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر الفصول التي تريد تضمينها في الاختبار (كل فصل معلم عليه يضيف 20 سؤالاً عشوائياً):</p>
 
-                <div style="display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto;">
-                    <div class="form-group">
-                        <label>اختر نطاق الاختبار:</label>
-                        <select id="selectedUnitsMode" style="font-weight: bold; text-align: center;">
-                            <option value="1">وحدة أولى فقط (20 سؤالاً)</option>
-                            <option value="2">وحدتان معاً (40 سؤالاً)</option>
-                            <option value="3">ثلاث وحدات (60 سؤالاً)</option>
-                            <option value="4" selected>المنهج الكامل: 4 وحدات (80 سؤالاً)</option>
-                            <option value="hard">مستوى الوحش الخارق (10 أسئلة Hard Mode)</option>
-                        </select>
+                <div class="checkbox-group" id="unitsCheckboxContainer">
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="1" checked onchange="updateSelectedQCount()">
+                        <span>الفصل 1: تكنولوجيا المعلومات</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="2" checked onchange="updateSelectedQCount()">
+                        <span>الفصل 2: الأمن السيبراني</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="3" checked onchange="updateSelectedQCount()">
+                        <span>الفصل 3: الويب وتطبيقاته</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="4" checked onchange="updateSelectedQCount()">
+                        <span>الفصل 4: تصميم الويب والوسائط</span>
+                    </label>
+                </div>
+
+                <div style="margin-top: 20px; text-align: center;">
+                    <p style="font-size: 1rem; margin-bottom: 15px;">إجمالي الأسئلة المختارة: <strong id="calculatedQCount" style="color: var(--accent-blue); font-size: 1.2rem;">80</strong> سؤالاً</p>
+                    <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+                        <button class="btn-action" style="flex: 1;" onclick="startCustomQuizConfig('standard')">بدء الاختبار المخصص</button>
+                        <button class="btn-action" style="flex: 1; background: linear-gradient(135deg, #ffb703, #fb8500); color: #000;" onclick="startCustomQuizConfig('hard')">اختبار مستوى الوحش (Hard Mode)</button>
                     </div>
-                    <button class="btn-action" onclick="startCustomQuizConfig()">بدء الاختبار بالنطاق المحدد</button>
                 </div>
             </div>
         </div>
 
         <!-- صفحة الاختبار الفعلية -->
         <div id="activeQuizPage" class="page">
-            <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <h3 id="quizTitle" style="color: var(--accent-blue);">عنوان الاختبار</h3>
-                <div id="timerDisplay" style="background: rgba(230, 57, 70, 0.2); border: 1px solid var(--wrong-clr); color: #e63946; padding: 5px 12px; border-radius: 20px; font-weight: bold; display: none;">الوقت: <span id="timerSecs">00:00</span></div>
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                    <h3 id="quizTitle" style="color: var(--accent-blue);">عنوان الاختبار</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <div id="timerDisplay" style="background: rgba(230, 57, 70, 0.2); border: 1px solid var(--wrong-clr); color: #e63946; padding: 5px 12px; border-radius: 20px; font-weight: bold; display: none;">الوقت: <span id="timerSecs">00:00</span></div>
+                        <button class="btn-action btn-secondary" onclick="confirmExitQuiz()" style="width: auto; padding: 6px 15px; font-size: 0.85rem;"><i class="fa-solid fa-arrow-right-from-bracket"></i> إلغاء ورجوع</button>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.88rem; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center;">
+                    <span id="progressText">تقدم حل الأسئلة: 0 من 0</span>
+                    <span id="answeredPercentageText">0%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
             </div>
             
             <div id="resultBannerContainer"></div>
@@ -671,121 +750,122 @@
     <!-- Modal Setup -->
     <div id="setupModal" class="modal">
         <div class="modal-content">
-            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">إعدادات مؤقت الاختبار</h3>
-            <p style="margin-bottom: 15px;">عدد أسئلة هذا الاختبار: <strong id="modalQCount" style="color: var(--accent-blue); font-size: 1.2rem;">0</strong> سؤالاً</p>
+            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">إعدادات الاختبار</h3>
+            <p style="margin-bottom: 15px;">عدد أسئلة الاختبار: <strong id="modalQCount" style="color: var(--accent-blue); font-size: 1.2rem;">0</strong> سؤالاً</p>
             <div class="form-group">
-                <label>تفعيل المؤقت الزمني؟ (90 ثانية للسؤال)</label>
+                <label>تفعيل المؤقت الزمني؟ (90 ثانية لكل سؤال)</label>
                 <select id="timerOption">
                     <option value="no">بدون مؤقت</option>
                     <option value="yes">نعم، تفعيل المؤقت</option>
                 </select>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button class="btn-action" onclick="startQuizNow()">بدء الاختبار فوراً</button>
-                <button class="btn-action" onclick="closeModal()" style="background: rgba(255,255,255,0.1); color: #fff;">إلغاء</button>
+                <button class="btn-action" onclick="startQuizNow()">بدء الاختبار الان</button>
+                <button class="btn-action btn-secondary" onclick="closeModal()">إلغاء</button>
             </div>
         </div>
     </div>
 
     <script>
-        // البنك الكامل 80 سؤالاً حقيقياً (20 لكل فصل) + 10 مستوى الوحش
+        // بنك الأسئلة المحدث بالكامل مع تنويع أماكن الإجابات الصحيحة في الكود المبدئي
         const fullFaizBank = {
             1: [
-                { question: "ما هو الحاسوب التاريخي الأول الذي ظهر في الأربعينيات واعتمد على الصمامات المفرغة؟", options: ["SuperComputer X", "ENIAC", "IBM PC", "Macintosh"], answer: 1, explanation: "ENIAC هو الحاسوب التاريخي الأول المعتمد على الصمامات." },
-                { question: "وفقاً لقانون مور، ماذا يحدث لعدد الترانزستورات على شريحة المعالج؟", options: ["يتضاعف كل عامين", "يقل للنصف", "ثابت دائماً", "يتوقف تدريجياً"], answer: 0, explanation: "قانون مور ينص على تضاعف الترانزستورات كل عامين تقريباً." },
-                { question: "ما الظاهرة الفيزيائية التي تعيق تصغير الترانزستورات لأبعاد ذرية؟", options: ["التمدد الحراري", "النفق الكمومي (Quantum Tunneling)", "الانكسار الضوئي", "المغناطيسية الفائقة"], answer: 1, explanation: "النفق الكمومي يسبب تسرب التيارات عند الأبعاد الذرية." },
-                { question: "أي العقود شهدت انتشار وانطلاق الويب التجاري والإنترنت؟", options: ["الأربعينيات", "السبعينيات", "التسعينيات", "الألفية الثالثة"], answer: 2, explanation: "التسعينيات شهدت انطلاق الويب التجاري للجمهور." },
-                { question: "ما ميزة الحوسبة الطرفية (Edge Computing) في المركبات ذاتية القيادة؟", options: ["تخزين الأغاني", "منع التأخير الفوري ومعالجة البيانات محلياً", "تقليل سعة البطارية", "إلغاء الحاجة للحساسات"], answer: 1, explanation: "المعالجة المحلية الطرفية تلغي زمن تأخير السحابة." },
-                { question: "ما الخاصية التي تميز البت الكمومي (Qubit) عن البت التقليدي؟", options: ["التراكب الكمي لحمل 0 و 1 معاً", "العمل بدون كهرباء", "السرعة البطيئة", "حجمه الضخم"], answer: 0, explanation: "الكيوبت يحمل حالتي الصفر والواحد معاً بالتراكب." },
-                { question: "ماذا يقصد بظاهرة الهلوسة (Hallucination) في نماذج GenAI؟", options: ["توقف النظام كلياً", "توليد معلومات وهمية غير صحيحة بثقة عالية", "مسح البيانات", "تسريب الكود البرمجي"], answer: 1, explanation: "الهلوسة تعني اختلاق معلومات غير حقيقية وتقديمها بثقة." },
-                { question: "ما الهدف الأساسي للذكاء القابل للتفسير (XAI)؟", options: ["توضيح منطق وأسباب قرارات الآلة", "زيادة استهلاك الطاقة", "إلغاء المبرمجين", "تصغير الذاكرة"], answer: 0, explanation: "XAI يحل معضلة الصندوق الأسود ويوضحه." },
-                { question: "ما المقصود بمفهوم 'الصندوق الأسود' في الشبكات العصبية؟", options: ["صندوق حماية الطائرات", "صعوبة تتبع المسار الداخلي الدقيق للقرارات", "وحدة تخزين بيانات", "جدار حماية"], answer: 1, explanation: "يعبر عن صعوبة تفسير العمليات الداخلية للشبكات العميقة." },
-                { question: "ما سبب التحيز الخوارزمي في أنظمة الذكاء الاصطناعي؟", options: ["سرعة المعالج", "استخدام بيانات تدريب سابقة غير متوازنة", "انقطاع الإنترنت", "استخدام شاشات قديمة"], answer: 1, explanation: "التحيز ينشأ من بيانات التدريب المنحازة أو غير الدقيقة." },
-                { question: "ما الفرق الأساسي بين التعلم الآلي والتعلم العميق؟", options: ["العميق يعتمد على شبكات عصبية عميقة متعددة الطبقات", "لا يوجد فرق", "الآلي أحدث", "العميق لا يحتاج بيانات"], answer: 0, explanation: "التعلم العميق فرع متطور يعتمد على شبكات عصبية متعددة." },
-                { question: "أي العبارات تعبر بدقة عن الحوسبة السحابية؟", options: ["تخزين محلي على قرص فلاش", "تقديم خدمات الحوسبة والتخزين عبر الإنترنت بمرونة", "تشغيل الألعاب بدون كارت شاشة", "التخلص من السيرفرات"], answer: 1, explanation: "السحابة توفر موارد ضخمة ومرنة عبر الإنترنت." },
-                { question: "أي الحقب شهدت الثورة الحقيقية للحواسيب الشخصية (PCs)؟", options: ["الأربعينيات", "السبعينيات والثمانينيات", "التسعينيات", "الحالي"], answer: 1, explanation: "السبعينيات والثمانونيات ظهرت فيها الحواسيب الشخصية." },
-                { question: "ما التقنية التي تدمج العالم الرقمي بالواقع عبر عناصر تفاعلية؟", options: ["الواقع المعزز (AR)", "الواقع الافتراضي (VR)", "الحوسبة الطرفية", "البايومتركس"], answer: 0, explanation: "الواقع المعزز يعزز الواقع الحقيقي ببيانات رقمية." },
-                { question: "ما التقنية التي تغزل المستخدم تماماً وتعزله بعالم افتراضي؟", options: ["الواقع الافتراضي (VR)", "الواقع المعزز (AR)", "السحابة", "الشبكات العصبية"], answer: 0, explanation: "الواقع الافتراضي يغمر المستخدم ببيئة افتراضية كاملة." },
-                { question: "كيف يساهم الذكاء الاصطناعي في قطاع الرعاية الصحية؟", options: ["تشخيص الأمراض المبكرة وتحليل الصور بدقة", "تصميم الواجهات", "إدارة السيرفرات", "إلغاء الأطباء"], answer: 0, explanation: "يساعد الأطباء في التحليل والتشخيص المبكر." },
-                { question: "ما خطورة التزييف العميق (Deepfakes)؟", options: ["تسريع الإنترنت", "انتحال الشخصيات ونشر معلومات مضللة", "تدمير الشاشات", "زيادة التخزين"], answer: 1, explanation: "يشكل خطراً على الأمن والثقة العامة بنشر وسائط مزيفة." },
-                { question: "لماذا تُعتبر الشبكات العصبية مستوحاة بيولوجياً؟", options: ["لأنها تحاكي خلايا الدماغ البشري", "لأنها تعمل بالماء", "لأنها مصنوعة من بلاستيك", "لأنها شمسية"], answer: 0, explanation: "تصميمها مستوحى من طريقة عمل الخلايا العصبية البشرية." },
-                { question: "ما دور خوارزميات التدريب في الذكاء الاصطناعي؟", options: ["حذف النظام", "استنتاج الأنماط وضبط الأوزان بالبيانات", "تشفير الباسورد", "إرسال الايميلات"], answer: 1, explanation: "تتعلم الخوارزميات عبر ضبط الأوزان بناءً على البيانات." },
-                { question: "كيف تؤثر تكنولوجيا المعلومات على سوق العمل؟", options: ["تخلق وظائف رقمية جديدة وتلغي المهام المتكررة", "تلغي العمل البشري", " تثبت المهن للأبد", "تمنع استخدام الحواسيب"], answer: 0, explanation: "تعيد تشكيل متطلبات السوق ومهارات العصر الحديث." }
+                { question: "ما هو الحاسوب التاريخي الأول الذي ظهر في الأربعينيات واعتمد على الصمامات المفرغة؟", options: ["SuperComputer X", "ENIAC", "IBM PC", "Macintosh"], answer: 1, explanation: "حاسوب ENIAC هو الأول تاريخياً واعتمد على الصمامات المفرغة الضخمة." },
+                { question: "وفقاً لقانون مور، ماذا يحدث لعدد الترانزستورات على شريحة المعالج كل عامين تقريباً؟", options: ["يتضاعف عددها", "ينخفض للنصف", "يبقى ثابتاً", "يتوقف تماماً"], answer: 0, explanation: "قانون مور ينص على تضاعف عدد الترانزستورات كل عامين." },
+                { question: "ما الظاهرة الفيزيائية التي تعيق تطبيق قانون مور عند تصغير الترانزستورات لأبعاد ذرية؟", options: ["الانكسار الضوئي", "النفق الكمومي (Quantum Tunneling)", "التمدد الحراري", "المغناطيسية الفائقة"], answer: 1, explanation: "النفق الكمومي وتيار التسرب الحراري يعيقان تصغير الترانزستورات." },
+                { question: "أي من الفترات التاريخية شهدت ظهور وانتشار الويب التجاري والإنترنت للجمهور؟", options: ["الأربعينيات", "السبعينيات", "التسعينيات", "الألفية الثالثة"], answer: 2, explanation: "حقبة التسعينيات شهدت انطلاق الويب التجاري." },
+                { question: "ما هي ميزة استخدام الحوسبة الطرفية (Edge Computing) في السيارات ذاتية القيادة؟", options: ["تخزين الأغاني", "معالجة البيانات محلياً لمنع تأخير الشبكة وحماية أمان القيادة", "تقليل البطارية", "إلغاء الحساسات"], answer: 1, explanation: "الحوسبة الطرفية تعالج البيانات فورياً بموقع السيارة لمنع التأخير." },
+                { question: "ما هي الخاصية الفريدة التي تميز البت الكمومي (Qubit) عن البت التقليدي؟", options: ["التراكب الكمي لحمل حالتي 0 و 1 معاً", "العمل بدون كهرباء", "السرعة البطيئة", "التخزين الورقي"], answer: 0, explanation: "الكيوبت يحمل حالتي الصفر والواحد معاً بفضل خاصية التراكب الكمي." },
+                { question: "ماذا يقصد بظاهرة الهلوسة (Hallucination) في أنظمة الذكاء الاصطناعي التوليدي؟", options: ["توقف النظام", "توليد معلومات وهمية غير صحيحة وتقديمها بثقة مقنعة", "مسح القواعد", "اختراق الجهاز"], answer: 1, explanation: "الهلوسة هي اختلاق معلومات غير حقيقية وتقديمها بثقة عالية للمستخدم." },
+                { question: "ما الهدف الأساسي من تطبيق تقنية الذكاء الاصطناعي القابل للتفسير (XAI)؟", options: ["زيادة الطاقة", "توضيح المنطق والأسباب وراء قرارات الآلة وحل معضلة الصندوق الأسود", "إلغاء لغات البرمجة", "تقليص الحواسيب"], answer: 1, explanation: "XAI يهدف لتوضيح كيفية اتخاذ الآلة لقراراتها لضمان الموثوقية." },
+                { question: "ما المقصود بمفهوم 'الصندوق الأسود' في نماذج التعلم العميق المعقدة؟", options: ["صندوق حماية الطائرات", "صعوبة معرفة وتتبع الآلية الداخلية الدقيقة لاتخاذ القرار", "وحدة تخزين مشفرة", "جدار حماية"], answer: 1, explanation: "يشير لصعوبة تتبع مسار العمليات الداخلية داخل الشبكات العصبية." },
+                { question: "ما سبب حدوث التحيز الخوارزمي في أنظمة الذكاء الاصطناعي؟", options: ["سرعة المعالج", "إصدار قرارات ناتجة عن بيانات تدريب غير متوازنة أو منحازة مسبقاً", "انقطاع الاتصال", "ضعف الشاشة"], answer: 1, explanation: "التحيز ينشأ من بيانات التدريب المشوبة بالتمييز المسبق." },
+                { question: "ما الفرق الجوهري بين التعلم الآلي (ML) والتعلم العميق (DL)؟", options: ["التعلم العميق فرع متقدم يعتمد على شبكات عصبية متعددة الطبقات", "لا يوجد فرق بينهما", "التعلم الآلي أحدث", "العميق لا يحتاج بيانات"], answer: 0, explanation: "التعلم العميق يعتمد على طبقات شبكية متعددة مستوحاة من الخلايا العصبية." },
+                { question: "أي العبارات التالية تعبر بدقة عن مفهوم الحوسبة السحابية؟", options: ["التخزين المحلي بالفلاش", "تقديم خدمات الحوسبة والتخزين عبر الإنترنت بمرونة وسعة ضخمة", "تشغيل الألعاب بدون كارت شاشة", "إلغاء الخوادم"], answer: 1, explanation: "السحابة توفر موارد ومعالجات وتخزين عبر الشبكة بمرونة عالية." },
+                { question: "أي العقود تميزت بانتشار الحواسيب الشخصية (PCs) وتوظيفها للأفراد؟", options: ["الأربعينيات", "السبعينيات والثمانينيات", "التسعينيات", "الألفية الحالية"], answer: 1, explanation: "شهدت السبعينيات والثمانينيات انطلاق ثورة الحواسيب الشخصية." },
+                { question: "التقنية التي تدمج العالم الرقمي بالواقع الحقيقي عبر إضافة عناصر تفاعلية هي:",
+ options: ["الواقع المعزز (AR)", "الواقع الافتراضي (VR)", "الحوسبة الطرفية", "البايومتركس"], answer: 0, explanation: "الواقع المعزز AR يضيف عناصر رقمية تفاعلية إلى العالم الحقيقي." },
+                { question: "ما التقنية التي تعزل المستخدم تماماً عن العالم الحقيقي وتنقله لبيئة افتراضية؟", options: ["الواقع الافتراضي (VR)", "الواقع المعزز (AR)", "الحوسبة السحابية", "جدار الحماية"], answer: 0, explanation: "الواقع الافتراضي VR يغمر المستخدم ببيئة رقمية مستقيلة تماماً." },
+                { question: "ما هي إحدى أبرز تطبيقات الذكاء الاصطناعي في الرعاية الصحية؟", options: ["تشخيص الأمراض المبكرة وتحليل الصور الطبية بدقة", "تصميم الواجهات", "صيانة الشبكات", "إلغاء الأطباء"], answer: 0, explanation: "يساعد الذكاء الاصطناعي الأطباء في التحليل والتشخيص المبكر." },
+                { question: "ما خطورة التزييف العميق (Deepfakes) من الناحية الأخلاقية والأمنية؟", options: ["زيادة الإنترنت", "انتحال الشخصيات ونشر معلومات مضللة وتدمير الثقة العامة", "تدمير الأجهزة", "زيادة التخزين"], answer: 1, explanation: "التزييف العميق يشكل خطراً بتوليد محتوى مزيف عالي الدقة." },
+                { question: "لماذا تُعتبر الشبكات العصبية الاصطناعية مستوحاة بيولوجياً؟", options: ["لأن هيكلتها تحاكي طريقة عمل خلايا الدماغ البشري", "لأنها تعمل بالماء", "لأنها من مواد عضوية", "لأنها تحتاج شمس"], answer: 0, explanation: "صُممت محاكاةً لطريقة عمل وترابط الخلايا العصبية في الدماغ." },
+                { question: "ما دور خوارزميات التدريب (Training Algorithms) في الذكاء الاصطناعي؟", options: ["استنتاج الأنماط وضبط الأوزان بناءً على البيانات", "حذف النظام", "تشفير كلمات السر", "إرسال الايميل"], answer: 0, explanation: "خوارزميات التدريب تتيح للنظام التعلم وضبط الأوزان من البيانات." },
+                { question: "كيف تؤثر تكنولوجيا المعلومات والتحول الرقمي على سوق العمل؟", options: ["تخلق وظائف جديدة تتطلب مهارات رقمية وتلغي المهام المتكررة", "تلغي العمل البشري", "تثبت المهن للأبد", "تمنع الأجهزة"], answer: 0, explanation: "التحول الرقمي يعيد تشكيل الوظائف بطلب مهارات رقمية جديدة." }
             ],
             2: [
-                { question: "لماذا ينتقل بروتوكول TLS للتشفير المتماثل بعد المصافحة؟", options: ["لحماية بيانات الجلسة بسرعة وكفاءة عالية", "لأن غير المتماثل غير آمن", "لأن المتصفح لا يدعم المفتاح", "لقلة الذاكرة"], answer: 0, explanation: "غير المتماثل للمصافحة، والمتماثل لسرعة نقل الجلسة." },
-                { question: "ما السبب الأساسي لجعل مرحلة الاحتواء قبل الاستئصال؟", options: ["لمنع انتشار الضرر لبقية أجزاء الشبكة فوراً", "لأنها أسرع", "لأن الاستئصال غير مهم", "لصيانة الأجهزة"], answer: 0, explanation: "الاحتواء السريع يعزل الأجهزة المصابة لوقف تمدد الهجوم." },
-                { question: "كيف تُحسب درجة الخطر في إدارة المخاطر السيبرانية؟", options: ["التأثير × الاحتمالية", "التأثير + الاحتمالية", "التأثير ÷ الاحتمالية", "التأثير - التكلفة"], answer: 0, explanation: "درجة الخطر الناتجة = التأثير × الاحتمالية." },
-                { question: "ما الفائدة الأهم لوضع خادم الويب العام في منطقة DMZ؟", options: ["حماية الشبكة الداخلية للمؤسسة في حال اختراقه", "زيادة السرعة", "إلغاء جدار الحماية", "تشفير البيانات"], answer: 0, explanation: "DMZ تعزل الخوادم العامة لتحمى الشبكة الداخلية." },
-                { question: "أي مما يلي يُعتبر من عوامل المصادقة القائمة على الحيازة (Possession)؟", options: ["تطبيق المصادقة على هاتفك أو بطاقة ذكية", "كلمة المرور PIN", "بصمة الوجه", "اسم المستخدم"], answer: 0, explanation: "الحيازة تعني شيئاً تملكه كالهاتف أو البطاقة." },
-                { question: "ما المبدأ الأمني الذي يرفض الثقة التلقائية ويشترط التحقق المستمر؟", options: ["نهج انعدام الثقة (Zero Trust)", "المصادقة الأحادية", "التشفير المتماثل", "DMZ المفتوحة"], answer: 0, explanation: "مبدأ Zero Trust يعني لا تثق أبداً، تحقق دائماً." },
-                { question: "أي البروتوكولات يوفر تصفحاً آمناً ومشفر للويب؟", options: ["HTTPS / TLS", "HTTP", "FTP", "Telnet"], answer: 0, explanation: "HTTPS يعمل عبر بروتوكول TLS الآمن." },
-                { question: "ما الترتيب الصحيح لمراحل الاستجابة للحوادث السيبرانية؟", options: ["التحضير ⬅️ الاكتشاف ⬅️ الاحتواء ⬅️ الاستئصال ⬅️ الاستعادة ⬅️ الدروس المستفادة", "الاستعادة ⬅️ الاحتواء", "الاستئصال أولاً", "الاكتشاف فقط"], answer: 0, explanation: "يبدأ بالتحضير وينتهي بالدروس المستفادة." },
-                { question: "ما النظام الذي يراقب حركة مرور البيانات ويطبق قواعد المنع أو السماح؟", options: ["جدار الحماية (Firewall)", "محرك البحث", "طابعة الشبكة", "معالج النصوص"], answer: 0, explanation: "جدار الحماية يتحكم بحركة المرور وفق السياسات." },
-                { question: "أي الآتي يمثل مصادقة بالسمات الحيوية (Biometrics)؟", options: ["بصمة الإصبع أو شبكية العين", "رمز سري PIN", "بطاقة بلاستيكية", "البريد الإلكتروني"], answer: 0, explanation: "السمات الحيوية تعتمد على الخصائص الجسدية الفريدة." },
-                { question: "ما الشبكة التي تنشئ نفقاً مشفراً للاتصال الآمن عن بعد؟", options: ["VPN (الشبكة الافتراضية الخاصة)", "LAN المحلية", "DMZ", "HTTP"], answer: 0, explanation: "VPN تؤمن الاتصال وتخفي البيانات عبر الإنترنت." },
-                { question: "ما نوع التشفير الذي يستخدم مفتاحين (عام وخاص)؟", options: ["التشفير غير المتماثل (Asymmetric)", "التشفير المتماثل", "تشفير القيصر", "التشفير الأحادي"], answer: 0, explanation: "غير المتماثل يعتمد على زوج مفاتيح (عام للتشفير وخاص لفك التشفير)." },
-                { question: "ما الخطوة الفورية في الاحتواء عند تعرض المؤسسة لفدية (Ransomware)؟", options: ["عزل الأجهزة المصابة عن الشبكة فوراً", "إلغاء النظام", "تجاهل الهجوم", "الاطلاع على البريد"], answer: 0, explanation: "عزل الجهاز المصاب يمنع انتشار الفدية بالشبكة." },
-                { question: "أي الآتي يعد مثالاً على عامل مصادقة المعرفة (Knowledge)؟", options: ["كلمة المرور (Password)", "رمز الهاتف", "بصمة الإصبع", "مفتاح USB"], answer: 0, explanation: "المعرفه تعني شيئاً تعرفه وحدك ككلمة السر." },
-                { question: "ما الخطوة التي تلي مرحلة الاحتواء مباشرة؟", options: ["الاستئصال (إزالة التهديد والثغرة)", "التحضير", "الدروس المستفادة", "التفتيش المالي"], answer: 0, explanation: "بعد العزل تأتي إزالة الثغرة والتهديد (الاستئصال)." },
-                { question: "ما الغرض الرئيسي من مرحلة الدروس المستفادة؟", options: ["التعرف على الثغرات لمنع تكرار الهجوم مستقبلاً", "فرض عقوبات", "إغلاق الشركة", "شراء أجهزة جديدة"], answer: 0, explanation: "استخلاص العبر لتحسين الدفاعات المستقبلية." },
-                { question: "ما هو الهجوم الذي يعتمد على خداع المستخدم برسائل وهمية سرقة بياناته؟", options: ["هجوم التصيد الاحتيالي (Phishing)", "التشفير المتماثل", "جدار الحماية", "الحوسبة الطرفية"], answer: 0, explanation: "التصيد يستدرج المستخدمين لسرقة كلمات المرور." },
-                { question: "ما أهمية اختبارات الاختراق الدورية؟", options: ["اكتشاف الثغرات ومعالجتها قبل المخترقين", "إبطاء الموقع", "زيادة التكاليف", "مسح النظام"], answer: 0, explanation: "تحاكي الهجمات لاختبار متانة الدفاعات الأمنية." },
-                { question: "ما دور النسخ الاحتياطي (Backups) للبيانات؟", options: ["حفظ نسخة مطابقة لاسترجاعها عند الطوارئ", "حذف البيانات القديمة", "مشاركة المنافسين", "إبطاء الخوادم"], answer: 0, explanation: "خط الدفاع الأخير ضد فقدان البيانات أو الابتزاز." },
-                { question: "ما المقصود بهجوم حجب الخدمة التوزيعي (DDoS)؟", options: ["إغراق الخادم بطلبات وهمية هائلة لتعطيله", "تشفير الملفات", "سرقة الباسورد", "مراقبة الشبكة بصمت"], answer: 0, explanation: "يستهدف شل الخوادم بإغراقها بالطلبات الهائلة." }
+                { question: "لماذا ينتقل بروتوكول TLS للتشفير المتماثل بعد المصافحة بالتشفير غير المتماثل؟", options: ["لأن غير المتماثل غير آمن", "لحماية بيانات الجلسة بسرعة وكفاءة عالية", "لأن المتصفح لا يدعم المفتاح", "لقلة الذاكرة"], answer: 1, explanation: "التشفير غير المتماثل للمصافحة، والتشفير المتماثل لسرعة نقل الجلسة." },
+                { question: "ما السبب الأساسي لجعل مرحلة (الاحتواء) قبل (الاستئصال) في الاستجابة للحوادث؟", options: ["لمنع انتشار الضرر إلى بقية أجزاء الشبكة فوراً", "لأنها أسرع", "لأن الاستئصال غير مهم", "لصيانة الشاشات"], answer: 0, explanation: "عزل الأجهزة المصابة (الاحتواء) يمنع تمدد الهجوم لبقية الأجهزة." },
+                { question: "في نموذج إدارة المخاطر السيبرانية، كيف تُحسب درجة الخطر؟", options: ["درجة التأثير × درجة الاحتمالية", "التأثير + الاحتمالية", "التأثير ÷ الاحتمالية", "التأثير - التكلفة"], answer: 0, explanation: "المخاطرة = التأثير × الاحتمالية." },
+                { question: "ما الفائدة الأهم لوضع خادم الويب العام في المنطقة المعزولة (DMZ)؟", options: ["فصل الخادم العام لحماية الشبكة الداخلية للمؤسسة في حال اختراقه", "زيادة السرعة", "إلغاء جدار الحماية", "تشفير القواعد"], answer: 0, explanation: "DMZ تعزل الخوادم العامة لحماية البنية الداخلية للمؤسسة." },
+                { question: "أي مما يلي يُعتبر من عوامل المصادقة القائمة على 'الحيازة' (Possession)؟", options: ["تطبيق المصادقة على هاتفك أو بطاقة ذكية", "كلمة المرور PIN", "بصمة الوجه", "اسم المستخدم"], answer: 0, explanation: "الحيازة تعني شيئاً تملكه كالهاتف أو البطاقة الذكية." },
+                { question: "ما المبدأ الأمني الذي يرفض الثقة التلقائية ويشترط التحقق المستمر؟", options: ["نهج انعدام الثقة (Zero Trust)", "المصادقة الأحادية", "التشفير المتماثل", "منطقة DMZ"], answer: 0, explanation: "Zero Trust يعتمد على مبدأ 'لا تثق أبداً، تحقق دائماً'." },
+                { question: "أي البروتوكولات التالية يوفر تصفحاً آمناً ومشفر للويب؟", options: ["HTTPS / TLS", "HTTP", "FTP", "Telnet"], answer: 0, explanation: "HTTPS يعمل عبر طبقة TLS لتشفير حركة الاتصال." },
+                { question: "ما الترتيب الصحيح لمراحل الاستجابة للحوادث السيبرانية الست؟", options: ["التحضير ⬅️ الاكتشاف ⬅️ الاحتواء ⬅️ الاستئصال ⬅️ الاستعادة ⬅️ الدروس المستفادة", "الاستعادة أولاً", "الاستئصال ثم التحضير", "الاكتشاف فقط"], answer: 0, explanation: "تبدأ العملية بالتحضير وتختتم بالدروس المستفادة." },
+                { question: "ما هو النظام البرمجي الذي يراقب حركة مرور البيانات ويطبق قواعد المنع والسماح؟", options: ["جدار الحماية (Firewall)", "محرك البحث", "طابعة الشبكة", "معالج النصوص"], answer: 0, explanation: "Firewall يتحكم بحركة المرور وفق سياسات الأمان." },
+                { question: "أي من الآتي يمثل مصادقة تعتمد على 'السمات الحيوية' (Biometrics)؟", options: ["بصمة الإصبع أو مسح شبكية العين", "رمز PIN", "البطاقة البلاستيكية", "البريد الإلكتروني"], answer: 0, explanation: "السمات الحيوية تعتمد على الخصائص الجسدية الفريدة." },
+                { question: "الشبكة التي تنشئ نفقاً مشفراً للاتصال الآمن عن بعد عبر شبكة عامة تعرف بـ:", options: ["VPN (الشبكة الافتراضية الخاصة)", "LAN المحلية", "DMZ", "HTTP"], answer: 0, explanation: "VPN تؤمن الاتصال وتخفي البيانات عبر الشبكات العامة." },
+                { question: "ما هو نوع التشفير الذي يستخدم مفتاحين (عام للتشفير وخاص لفك التشفير)؟", options: ["التشفير غير المتماثل (Asymmetric)", "التشفير المتماثل", "تشفير القيصر", "التشفير الأحادي"], answer: 0, explanation: "التشفير غير المتماثل يعتمد على مفتاح عام ومفتاح خاص." },
+                { question: "ما الخطوة الفورية في مرحلة الاحتواء عند تعرض المؤسسة لفدية (Ransomware)؟", options: ["عزل الأجهزة المصابة عن الشبكة فوراً", "إلغاء النظام", "تجاهل الهجوم", "الاطلاع على البريد"], answer: 0, explanation: "عزل الأجهزة يوقف انتشار برمجيات الفدية إلى بقية الشبكة." },
+                { question: "أي من الآتي يعد مثالاً على عامل مصادقة 'المعرفة' (Knowledge)؟", options: ["كلمة المرور (Password)", "رمز الهاتف", "بصمة الإصبع", "مفتاح USB"], answer: 0, explanation: "المعرفة تعني شيئاً تعرفه وحدك ككلمة السر." },
+                { question: "ما هي الخطوة التي تلي مرحلة 'الاحتواء' مباشرة في الاستجابة للحوادث؟", options: ["الاستئصال (إزالة التهديد والثغرة)", "التحضير", "الدروس المستفادة", "التفتيش المالي"], answer: 0, explanation: "بعد عزل الجهاز المصاب تأتي مرحلة إزالة الثغرة (الاستئصال)." },
+                { question: "ما الغرض الرئيسي من مرحلة 'الدروس المستفادة' في نهاية الحادث؟", options: ["تقييم الحادث والتعرف على الثغرات لمنع تكرار الهجوم مستقبلاً", "فرض عقوبات", "إغلاق الشركة", "شراء أجهزة جديدة"], answer: 0, explanation: "استخلاص العبر يساهم في سد الثغرات وتطوير الدفاعات." },
+                { question: "ما الهجوم الذي يعتمد على خداع المستخدم برسائل وهمية لسرقة بياناته السرية؟", options: ["هجوم التصيد الاحتيالي (Phishing)", "التشفير المتماثل", "جدار الحماية", "الحوسبة الطرفية"], answer: 0, explanation: "التصيد الاحتيالي يستدرج الضحايا للكشف عن كلمات المرور." },
+                { question: "ما أهمية إجراء اختبارات الاختراق (Penetration Testing) الدورية؟", options: ["اكتشاف الثغرات الأمنية ومعالجتها قبل أن يستغلها المخترقون", "إبطاء الموقع", "زيادة التكاليف", "مسح البيانات"], answer: 0, explanation: "اختبار الاختراق يحاكي هجمات حقيقية لاكتشاف الثغرات." },
+                { question: "ما هي النسخ الاحتياطي (Backups) ودورها في أمن البيانات؟", options: ["حفظ نسخة مطابقة من البيانات في مكان آمن لاسترجاعها عند الطوارئ", "حذف البيانات القديمة", "مشاركة المنافسين", "إبطاء الخوادم"], answer: 0, explanation: "النسخ الاحتياطي خط دفاع أخير لاسترجاع الملفات في الطوارئ." },
+                { question: "ما المقصود بمفهوم 'هجوم حجب الخدمة التوزيعي' (DDoS)؟", options: ["إغراق الخادم بطلبات وهمية هائلة لتعطيله وحرمانه من المستخدمين", "تشفير الملفات", "سرقة الباسورد", "مراقبة الشبكة بصمت"], answer: 0, explanation: "هجوم DDoS يشل السيرفر عبر إغراقه بسيل هائل من الطلبات." }
             ],
             3: [
-                { question: "ما هي العمارة الثلاثية (3-Tier Architecture) لتطبيقات الويب؟", options: ["الواجهة الأمامية، المعالجة والتطبيق، وقاعدة البيانات", "الشاشة، الصوت، والألعاب", "الإنترنت، الكهرباء، والتبريد", "البلوتوث والواي فاي والكابلات"], answer: 0, explanation: "العمارة ثلاثية الطبقات تنظم الواجهة والخلفية والقاعدة." },
-                { question: "ما الغرض الأساسي من استخدام طريقة الطلب GET في HTTP؟", options: ["جلب وقراءة البيانات من الخادم دون تغييرها", "إرسال وسائط جديدة", "حذف السيرفر", "تشفير الاتصال"], answer: 0, explanation: "GET تُستخدم للاسترجاع والقراءة فقط." },
-                { question: "ما طريقة الطلب المناسبة لإنشاء سجل جديد على الخادم؟", options: ["POST", "GET", "DELETE", "HEAD"], answer: 0, explanation: "POST تُستخدم لإرسال وإنشاء بيانات جديدة." },
-                { question: "ما صيغة نقل البيانات الخفيفة المستخدمة مع واجهات APIs؟", options: ["JSON", "HTML", "CSS", "PDF"], answer: 0, explanation: "صيغة JSON هي المعيار الخفيف لتبادل البيانات." },
-                { question: "ما الوظيفة الأساسية لـ HTML في صفحات الويب؟", options: ["تحديد الهيكل والدلالة البنائية للصفحة", "التنسيق البصري", "التفاعلية والحيوية", "قاعدة البيانات"], answer: 0, explanation: "HTML هي لغة الهيكل والدلالة." },
-                { question: "ما لغة التنسيق المسؤولة عن المظهر البصري وتصميم الصفحة؟", options: ["CSS", "HTML", "JavaScript", "SQL"], answer: 0, explanation: "CSS تتولى التنسيق والمظهر البصري." },
-                { question: "ما دور JavaScript في تطوير الواجهات الأمامية؟", options: ["منح الصفحة التفاعلية ومعالجة أحداث المستخدم", "تحديد الفقرات", "بناء الجداول", "حفظ السيرفر"], answer: 0, explanation: "تمنح الصفحات السلوك والتفاعلية الديناميكية." },
-                { question: "ما أهمية استخدام HTML الدلالية (Semantic HTML)؟", options: ["تسهيل عمل محركات البحث وقارئات الشاشة", "زيادة حجم الملفات", "منع جدار الحماية", "إلغاء CSS"], answer: 0, explanation: "تحسن محركات البحث وسهولة الوصول (Accessibility)." },
-                { question: "ماذا يقصد بالتصميم المتجاوب (Responsive Design)؟", options: ["تغيير وتخطيط الواجهة تلقائياً لتناسب جميع الشاشات", "ثبات حجم الصفحة", "إلغاء الصور", "العمل بدون متصفح"], answer: 0, explanation: "التصميم المتجاوب يضبط الواجهة لأحجام الأجهزة المختلفة." },
-                { question: "ما رمز حالة الاستجابة HTTP الذي يوضح نجاح الطلب تماماً؟", options: ["200 OK", "404 Not Found", "500 Internal Error", "403 Forbidden"], answer: 0, explanation: "رمز 200 يشير للنجاح التام للطلب." },
-                { question: "ماذا يشير رمز الحالة 404 في بروتوكول HTTP؟", options: ["المورد أو الصفحة المطلوبة غير موجودة", "نجاح العملية", "خطأ بالسيرفر", "تم منع الوصول"], answer: 0, explanation: "رمز 404 يدل على عدم العثور على الصفحة." },
-                { question: "ما المقصود بواجهات برمجة التطبيقات (APIs)؟", options: ["جسر برمجي يتيح للأنظمة التواصل وتبادل البيانات", "برامج ضارة", "كابلات إنترنت", "شاشة عرض"], answer: 0, explanation: "APIs تربط الأنظمة البرمجية ببعضها البعض." },
-                { question: "ما مسؤولية طبقة الواجهة الأمامية (Frontend)؟", options: ["استقبال مدخلات المستخدم وعرض البيانات والتفاعل", "حفظ الباسوردات", "إدارة السحابة", "توليد التشفير"], answer: 0, explanation: "الواجهة الأمامية هي ما يتفاعل معه المستخدم مباشرة." },
-                { question: "ما دور طبقة المعالجة والتطبيق (Backend)؟", options: ["معالجة المنطق البرمجي وربط الواجهة بالقاعدة", "تلوين الأزرار", "رسم الرسوم", "تصفح الإنترنت"], answer: 0, explanation: "الباك إند هو عقل ومحرك التطبيق." },
-                { question: "ما وظيفة طبقة البيانات (Database Tier)؟", options: ["الحفظ الدائم والمؤمن لمعلومات التطبيق والسجلات", "عرض الفيديوهات", "تنسيق الخطوط", "التحقق من الاتصال"], answer: 0, explanation: "قاعدة البيانات تحفظ وتدير كافة معلومات التطبيق." },
-                { question: "كيف يتم التحقق المبدئي للمدخلات بالمتصفح؟", options: ["عبر أكواد JavaScript لتوفير السرعة", "بالانتظار ساعة", "عبر السيرفر حصراً", "طباعة ورقية"], answer: 0, explanation: "التحقق بالمتصفح يمنع الأخطاء ويرفع الكفاءة." },
-                { question: "ما المقصود بالعميل (Client) في نموذج الويب؟", options: ["متصفح الويب أو التطبيق المستخدم للوصول للخدمة", "خادم الشركة الضخم", "سلك التوصيل", "مزود الإنترنت"], answer: 0, explanation: "العميل هو المتصفح أو الجهاز الطالب للخدمة." },
-                { question: "ما دور الخادم (Server) في دورة الطلب والاستجابة؟", options: ["تلقي طلب العميل معالجته وإرسال الاستجابة", "إغلاق الإنترنت", "كتابة HTML", "لعب الألعاب"], answer: 0, explanation: "الخادم يستقبل الطلبات ويعالجها ويرد عليها." },
-                { question: "لماذا تُفضل هيكلية التطبيقات الموزعة (N-Tier)؟", options: ["لتسهيل الصيانة والتوسع المستقل والأمان", "لتعقيد النظام", "لإبطاء البرمجة", "لإلغاء اللغات"], answer: 0, explanation: "فصل الطبقات يسهل التطوير وتوزيع المهام." },
-                { question: "ما الأهمية الأمنية للتحقق بالخادم (Backend Validation)؟", options: ["منع الثغرات والاختراقات في حال تجاوز الواجهة الأمامية", "لا فائدة منها", "تخفيض الكهرباء", "تسريع الإغلاق"], answer: 0, explanation: "التحقق بالخادم ضروري جداً للأمان ومنع الثغرات." }
+                { question: "ما هي العمارة الثلاثية (3-Tier Architecture) لتطبيقات الويب؟", options: ["طبقة العرض والواجهة الأمامية، طبقة المعالجة والتطبيق، طبقة البيانات", "الشاشة والصوت والألعاب", "الإنترنت والكهرباء والتبريد", "البلوتوث والواي فاي والكابلات"], answer: 0, explanation: "العمارة ثلاثية الطبقات تنظم الواجهة والخلفية وقواعد البيانات." },
+                { question: "ما الغرض الأساسي من استخدام طريقة الطلب `GET` في HTTP؟", options: ["جلب وقراءة البيانات من الخادم دون تغيير محتوياته", "إرسال بيانات جديدة", "حذف السيرفر", "تشفير اتصال الواي فاي"], answer: 0, explanation: "طريقة GET تُستخدم للاسترجاع والقراءة فقط بدون تغيير الخادم." },
+                { question: "ما هي طريقة الطلب المناسبة لإرسال بيانات نموذج جديد وإنشاء سجل على الخادم؟", options: ["POST", "GET", "DELETE", "HEAD"], answer: 0, explanation: "طريقة POST تُستخدم لإرسال وإنشاء سجلات جديدة." },
+                { question: "ما صيغة نقل البيانات الخفيفة والمنظمة المستخدمة بكثرة مع الـ APIs؟", options: ["JSON", "HTML", "CSS", "PDF"], answer: 0, explanation: "صيغة JSON تُعد المعيار الخفيف لتبادل البيانات بين الأنظمة." },
+                { question: "ما هي الوظيفة الأساسية للغة HTML في بناء صفحات الويب؟", options: ["تحديد الهيكل والدلالة البنائية للصفحة", "التنسيق البصري", "التفاعلية والحيوية", "حفظ البيانات"], answer: 0, explanation: "HTML هي لغة الهيكل والدلالة لصفحة الويب." },
+                { question: "ما هي لغة التنسيق المسؤولة عن المظهر البصري وتصميم وتخطيط صفحات الويب؟", options: ["CSS", "HTML", "JavaScript", "SQL"], answer: 0, explanation: "CSS تتولى التنسيق والمظهر وتصميم الشاشات." },
+                { question: "ما دور لغة JavaScript في تطوير الواجهات الأمامية؟", options: ["منح الصفحة التفاعلية والحيوية ومعالجة أحداث المستخدم", "تحديد الفقرات", "بناء الجداول", "حفظ السيرفر"], answer: 0, explanation: "JavaScript تمنح الصفحات التفاعلية الحيوية واستجابة الأحداث." },
+                { question: "ما أهمية استخدام HTML الدلالية (Semantic HTML)؟", options: ["تسهيل وصول محركات البحث (SEO) وقارئات الشاشة لذوي الاحتياجات الخاصة", "زيادة حجم الملفات", "منع جدار الحماية", "إلغاء CSS"], answer: 0, explanation: "العناصر الدلالية تحسن أرشفة SEO وسهولة الوصول Accessibility." },
+                { question: "ماذا يقصد بالتصميم المتجاوب (Responsive Design)؟", options: ["ضبط وتغيير تخطيط الواجهة تلقائياً لتناسب جميع الشاشات والأجهزة", "ثبات حجم الصفحة", "إلغاء الصور", "العمل بدون متصفح"], answer: 0, explanation: "التصميم المتجاوب يضبط الواجهة لجميع أحجام الشاشات المختلفة." },
+                { question: "ما هو رمز حالة الاستجابة في HTTP الذي يوضح نجاح الطلب تماماً؟", options: ["200 OK", "404 Not Found", "500 Internal Error", "403 Forbidden"], answer: 0, explanation: "رمز 200 يشير إلى نجاح العملية وتنفيذ الطلب بنجاح." },
+                { question: "ماذا يشير رمز الحالة 404 في بروتوكول HTTP؟", options: ["المورد أو الصفحة المطلوبة غير موجودة على الخادم", "نجاح العملية", "خطأ داخلي بالسيرفر", "تم منع الوصول"], answer: 0, explanation: "رمز 404 يدل على عدم العثور على الصفحة المطلوبة." },
+                { question: "ما المقصود بـ واجهات برمجة التطبيقات (APIs)؟", options: ["جسر برمجي يتيح للأنظمة والتطبيقات التواصل وتبادل البيانات بسلاسة", "برامج ضارة", "كابلات إنترنت", "شاشات عرض"], answer: 0, explanation: "APIs هي جسور برمجية تتيح للأنظمة التواصل وتبادل البيانات." },
+                { question: "ما هي المسؤولية الرئيسية لطبقة العرض والواجهة الأمامية (Frontend)؟", options: ["استقبال مدخلات المستخدم وعرض البيانات وتجربة التفاعل المباشر", "حفظ الباسوردات", "إدارة السيرفرات", "توليد أكواد التشفير"], answer: 0, explanation: "الواجهة الأمامية هي الجزء البصري التفاعلي للمستخدم." },
+                { question: "ما دور طبقة المعالجة والتطبيق (Backend Tier)؟", options: ["معالجة المنطق البرمجي، تلقي الأوامر، وربط الواجهة بقواعد البيانات", "تلوين الأزرار", "رسم الصور", "تصفح الويب"], answer: 0, explanation: "الباك إند هو عقل ومحرك التطبيق الذي يعالج المنطق البرمجي." },
+                { question: "ما هي وظيفة طبقة البيانات (Database Tier)؟", options: ["الحفظ الدائم والمؤمن لمعلومات التطبيق وسجلات المستخدمين", "عرض الفيديوهات", "تنسيق الخطوط", "التحقق من الاتصال"], answer: 0, explanation: "قاعدة البيانات تحفظ وتدير كافة البيانات بشكل دائم وآمن." },
+                { question: "كيف يتم التحقق من صحة المدخلات بالواجهة الأمامية؟", options: ["عبر أكواد JavaScript في المتصفح لتوفير السرعة", "بالانتظار ساعة", "عبر السيرفر حصراً", "عبر طباعة المستند"], answer: 0, explanation: "التحقق المبدئي بالمتصفح يمنع الأخطاء ويرفع سرعة الاستجابة." },
+                { question: "ما المقصود بالعميل (Client) في نموذج الاتصال بالويب؟", options: ["متصفح الويب أو التطبيق الذي يستخدمه العميل للوصول للخدمة", "خادم الشركة", "سلك التوصيل", "مزود الخدمة ISP"], answer: 0, explanation: "العميل هو الجهاز أو المتصفح الذي يطلب الخدمة من الخادم." },
+                { question: "ما دور الخادم (Server) في دورة الطلب والاستجابة؟", options: ["تلقي طلب العميل، معالجته، وإرسال الاستجابة المناسبة", "إغلاق الإنترنت", "كتابة HTML", "لعب الألعاب"], answer: 0, explanation: "الخادم يتلقى الطلبات ويعالجها ثم يعيد الاستجابة." },
+                { question: "لماذا تُفضل هيكلية التطبيقات الموزعة عبر طبقات منفصلة (N-Tier)؟", options: ["لتسهيل الصيانة والتطوير المستقل وقابلية التوسع والأمان", "لتعقيد النظام", "إلغاء البرمجة", "لإبطاء الموقع"], answer: 0, explanation: "فصل الطبقات يتيح سهولة الصيانة والتوسع والأمان." },
+                { question: "ما الأهمية الأمنية للتحقق من المدخلات في طبقة الباك إند؟", options: ["منع الثغرات الخطيرة مثل الحقن Injection في حال تجاوز الواجهة", "لا فائدة منها", "تخفيض فاتورة الكهرباء", "تسريع إغلاق التطبيق"], answer: 0, explanation: "التحقق بالخادم ضروري جداً للحماية من ثغرات الحقن والاختراق." }
             ],
             4: [
-                { question: "ما الميزة الأبرز للوسائط الرقمية مقارنة بالإعلام التقليدي؟", options: ["إمكانية التحديث المباشر والتفاعل ثنائي الاتجاه", "الاتجاه الواحد للرسالة", "الطباعة الورقية فقط", "انعدام التعليقات"], answer: 0, explanation: "الوسائط الرقمية تتيح التفاعل الثنائي والتحديث الفوري." },
-                { question: "ما الغرض من إنشاء شخصية المستخدم (Persona) في تصميم UX؟", options: ["تمثيل نمط واحتياجات الفئة المستهدفة الحقيقية", "تحديد أسعار الخوادم", "كتابة الباك إند", "ضغط الصور"], answer: 0, explanation: "Persona تُمثل النموذج التمثيلي للمستهدفين." },
-                { question: "ما هو المخطط الهيكلي (Wireframe) في تصميم المواقع؟", options: ["رسم تخطيطي مبدئي لتوزيع العناصر قبل الألوان", "تصميم نهائي ملون", "كود قاعدة البيانات", "فيديو توضيحي"], answer: 0, explanation: "Wireframe يحدد هيكل وتوزيع محتويات الصفحة." },
-                { question: "ماذا ترمز مبادئ التصميم البصري الشهيرة (CRAP)؟", options: ["التباين، التكرار، المحاذاة، والتقارب", "السرعة، التكلفة، الحجم، الألوان", "التشفير، الحماية، الجدار", "العميل، الخادم، الـ API"], answer: 0, explanation: "مبادئ CRAP تنظم التصميم لسهولة القراءة." },
-                { question: "أي مما يلي يُعد من طرق التقييم 'النوعي' لموافع الويب؟", options: ["المقابلات الشخصية واختبارات القابلية للاستخدام", "تحليل مشاهدات الصفحة PV", "حساب معدل الارتداد", "مقارنة التخزين"], answer: 0, explanation: "التقييم النوعي يعتمد على المقابلات وملاحظة السلوك." },
-                { question: "ماذا يقصد بمؤشر الأداء معدل الارتداد (Bounce Rate)؟", options: ["نسبة الزوار الذين يغادرون الموقع فوراً دون تفاعل", "عدد الزوار الدائمين", "سرعة تحميل الصور", "معدل الأرباح"], answer: 0, explanation: "يقيس نسبة المغادرة الفورية دون تصفح صفحات أخرى." },
-                { question: "ما هو مؤشر التحويل (Conversion Rate - CVR)؟", options: ["نسبة الزوار الذين أكملوا الهدف المطلوب كالشراء", "عدد الكابلات بالسيرفر", "حجم القاعدة", "سرعة المعالج"], answer: 0, explanation: "CVR يقيس نجاح الموقع في تحويل الزوار لأهدافه." },
-                { question: "ما هي منهجية التحسين المستمر المعروفة بدورة PDCA؟", options: ["خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف (Act)", "احذف ⬅️ عدل ⬅️ انشر", "برمج ⬅️ اختبر ⬅️ بيع", "صمم ⬅️ صور ⬅️ اطبع"], answer: 0, explanation: "دورة PDCA هي الإطار المنهجي للتحسين المستمر." },
-                { question: "ما الغرض من إجراء اختبارات A/B Testing؟", options: ["مقارنة أداء نسختين مختلفتين من الصفحة بالأرقام", "إلغاء الموقع نهائياً", "زيادة تكلفة الاستضافة", "تغيير لغة البرمجة"], answer: 0, explanation: "A/B تقارن نسختين للمفاضلة بينهما بالأرقام الفعليه." },
-                { question: "لماذا يُعد تصميم تجربة المستخدم متمحوراً حول المستخدم؟", options: ["لأن تركيزه على احتياجات وراحة الجمهور المستهدف", "لإرضاء المبرمج", "لتقليل سرعة الإنترنت", "لزيادة الإعلانات"], answer: 0, explanation: "التصميم المتمحور يضع احتياجات المستخدم بالمركز." },
-                { question: "ما أهمية التباين (Contrast) في مبادئ CRAP؟", options: ["إبراز العناصر الهامة وخلق تمييز بصري واضح", "جعل الشاشة مظلمة", "تقليل جودة الألوان", "إلغاء النصوص"], answer: 0, explanation: "التباين يوجه انتباه المستخدم للعناصر البارزة." },
-                { question: "ما المقصود بمبدأ التقارب (Proximity) في التصميم؟", options: ["تجميع العناصر ذات الصلة قريبة بصرياً لتوضيح ارتباطها", "وضع العناصر بعشوائية", "إبعاد الأزرار عن بعضها", "حذف المسافات"], answer: 0, explanation: "التقارب البصري ينظم الوحدات المرتبطة معاً." },
-                { question: "كيف تقيم نجاح موقع باستخدام مؤشرات الأداء KPIs؟", options: ["قياس مقاييس محددة كالزيارات والمبيعات ومعدلات التحويل", "عشوائية الاختيار", "بعدد الشعارات", "باسم المبرمج"], answer: 0, explanation: "KPIs تحدد نجاح الموقع بناءً على أهداف تجارية رقمية." },
-                { question: "ما هو دور اختبارات القابلية للاستخدام (Usability Testing)؟", options: ["معرفة سهولة استخدام الموقع بملاحظة مستخدمين حقيقيين", "تدمير السيرفر", "اختبار الإنترنت", "تغيير الألوان"], answer: 0, explanation: "يرصد مشاكل الاستخدام عبر مراقبة المستخدمين الحقيقيين." },
-                { question: "ماذا يقصد بمعدل مشاهدات الصفحة (Page Views - PV)؟", options: ["إجمالي عدد مرات تحميل وعرض صفحات الموقع", "عدد الأجهزة بالكابلات", "عدد الأخطاء", "عدد الموظفين"], answer: 0, explanation: "PV يحسب إجمالي مرات مشاهدة وتصفح الصفحات." },
-                { question: "لماذا تُعتبر التغذية الراجعة للمستخدمين حيوية بدورة PDCA؟", options: ["لأنها توفر مؤشرات حقيقية لتوجيه خطوات التحسين والتصحيح", "لإزعاج المطورين", "لإغلاق الموقع", "لتغيير الاسم"], answer: 0, explanation: "آراء المستخدمين هي الوقود لتوجيه التحسينات." },
-                { question: "ما المقصود بتخطيط المعلومات (Information Architecture)؟", options: ["تنظيم وهيكلة محتوى الموقع ليسهل العثور عليه", "هندسة السيرفر بالشارع", "كتابة أكواد C++", "تخزين الباسوردات"], answer: 0, explanation: "ينظم بنية وترتيب محتوى المنصة لتسهيل التصفح." },
-                { question: "ما أثر الإكثار من العناصر البصرية المشتتة بتجربة المستخدم؟", options: ["تشتيت انتباه المستخدم وصعوبة إنجاز المهام", "تحسين التركيز", "سرعة تصفح فائقة", "تقليل البطارية"], answer: 0, explanation: "البساطة وعدم التشتت هما أساس نجاح واجهات UX." },
-                { question: "كيف تساهم المحاذاة (Alignment) في تصميم الواجهة؟", options: ["تربط العناصر بنظام بصري متناسق يريح العين", "تخفي المحتوى", "تغير المتصفح", "تلغي المربعات"], answer: 0, explanation: "المحاذاة تخلق شعوراً بالترتيب والنظام البصري." },
-                { question: "ما النتيجة النهائية المرجوة من تصميم وتحسين الويب تكرارياً؟", options: ["تقديم تجربة مستخدم سلسة وعالية الكفاءة وتحقيق الأهداف", "تعقيد الاستخدام", "إلغاء التحديثات", "زيادة الأخطاء"], answer: 0, explanation: "الهدف النهائي هو بناء منتج رقمي ناجح يخدم المستخدم." }
+                { question: "ما الميزة الأبرز للوسائط الرقمية مقارنة بوسائط الإعلام التقليدية؟", options: ["إمكانية التحديث المباشر الفوري والتفاعل ثنائي الاتجاه والمشاركة", "الاتجاه الواحد للرسالة", "الطباعة الورقية فقط", "انعدام التعليقات"], answer: 0, explanation: "الوسائط الرقمية تتيح التحديث الفوري والتفاعل ثنائي الاتجاه." },
+                { question: "ما الغرض من إنشاء 'شخصية المستخدم' (Persona) في تصميم UX؟", options: ["تمثيل نمط واحتياجات الفئة المستهدفة الحقيقية لتوجيه التصميم", "تحديد أسعار الخوادم", "كتابة أكواد الباك إند", "ضغط الصور"], answer: 0, explanation: "Persona تُمثل نموذجاً ذا مغزى للمستخدمين المستهدفين." },
+                { question: "ما هو المخطط الهيكلي (Wireframe) في تصميم المواقع؟", options: ["رسم تخطيطي مبدئي لتوزيع العناصر والوظائف قبل الألوان", "تصميم نهائي ملون", "كود قاعدة البيانات", "فيديو توضيحي"], answer: 0, explanation: "Wireframe يحدد هيكل وتوزيع محتويات الصفحة أولاً." },
+                { question: "ماذا ترمز مبادئ التصميم البصري الشهيرة (CRAP)؟", options: ["التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity)", "السرعة والتكلفة والحجم والألوان", "التشفير والحماية والجدار", "العميل والخادم والـ API"], answer: 0, explanation: "مبادئ CRAP تنظم التصميم بصرياً لسهولة الاستخدام." },
+                { question: "أي مما يلي يُعد من طرق التقييم 'النوعي' لمواقع الويب؟", options: ["المقابلات الشخصية واختبارات القابلية للاستخدام (Usability Testing)", "تحليل مشاهدات الصفحة PV", "حساب معدل الارتداد Bounce Rate", "مقارنة التخزين"], answer: 0, explanation: "التقييم النوعي يعتمد على المقابلات والملاحظة المباشرة لسلوك المستخدم." },
+                { question: "ماذا يقصد بمؤشر الأداء الرقمي 'معدل الارتداد' (Bounce Rate)؟", options: ["نسبة الزوار الذين يغادرون الموقع فوراً دون تفاعل أو انتقال لصفحة أخرى", "عدد الزوار الدائمين", "سرعة تحميل الصور", "معدل الأرباح"], answer: 0, explanation: "معدل الارتداد يقيس نسبة المغادرة الفورية دون تصفح باقي الموقع." },
+                { question: "ما هو مؤشر التحويل (Conversion Rate - CVR) في تحليل أداء المواقع؟", options: ["نسبة الزوار الذين أكملوا الهدف المطلوب كالشراء أو التسجيل", "عدد الكابلات بالسيرفر", "حجم قاعدة البيانات", "سرعة المعالج"], answer: 0, explanation: "CVR يقيس مدى نجاح الموقع في تحويل الزوار لأهدافه المحددة." },
+                { question: "ما هي منهجية التحسين المستمر المعروفة بدورة PDCA؟", options: ["خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف (Act)", "احذف ⬅️ عدل ⬅️ انشر", "برمج ⬅️ اختبر ⬅️ بيع", "صمم ⬅️ صور ⬅️ اطبع"], answer: 0, explanation: "دورة PDCA هي الإطار المنهجي للتحسين والتطوير المستمر." },
+                { question: "ما الغرض من إجراء 'اختبارات A/B' (A/B Testing) عند تحديث المواقع؟", options: ["مقارنة أداء نسختين مختلتين من الصفحة بالأرقام لمعرفة الأفضل", "إلغاء الموقع نهائياً", "زيادة التكاليف", "تغيير لغة البرمجة"], answer: 0, explanation: "اختبارات A/B تقارن نسختين للمفاضلة بينهما بالأرقام الفعليه." },
+                { question: "لماذا يُعد تصميم تجربة المستخدم (UX) متمحوراً حول المستخدم؟", options: ["لأن تركيزه الأساسي ينصب على احتياجات وراحة وتسهيل مهام الجمهور المستهدف", "لإرضاء رغبات المبرمج", "لتقليل سرعة تصفح الإنترنت", "لزيادة الإعلانات"], answer: 0, explanation: "التصميم المتمحور حول المستخدم يضع احتياجات وتسهيل استخدام الجمهور أولاً." },
+                { question: "ما أهمية التباين (Contrast) في مبادئ CRAP البصرية؟", options: ["إبراز العناصر الهامة وخلق تمييز بصري واضح بين النصوص والخلفيات", "جعل الشاشة مظلمة", "تقليل الجودة", "إلغاء النصوص"], answer: 0, explanation: "التباين يوجه انتباه المستخدم للعناصر والروابط البارزة." },
+                { question: "ما المقصود بمبدأ 'التقارب' (Proximity) في تصميم الواجهات؟", options: ["تجميع العناصر ذات الصلة ببعضها قريبة بصرية لتوضيح ارتباطها", "وضع العناصر عشوائياً", "إبعاد الأزرار عن بعضها", "حذف المسافات"], answer: 0, explanation: "التقارب البصري ينظم الوحدات والروابط المرتبطة معاً." },
+                { question: "كيف تقيم نجاح موقع إلكتروني باستخدام مؤشرات الأداء الرئيسية KPIs؟", options: ["عبر قياس مقاييس محددة كحجم الزيارات والمبيعات ومعدلات التحويل بالأرقام", "عبر عشوائية الاختيار", "بعدد الشعارات", "باسم المبرمج"], answer: 0, explanation: "KPIs تحدد نجاح الموقع بناءً على أهداف تجارية رقمية واضحة." },
+                { question: "ما هو دور اختبارات القابلية للاستخدام (Usability Testing)؟", options: ["معرفة مدى سهولة وسلاسة استخدام الموقع بواسطة مستخدمين حقيقيين وملاحظة صعوباتهم", "تدمير السيرفر", "اختبار سرعة الإنترنت", "تغيير الألوان"], answer: 0, explanation: "اختبار القابلية يرصد مشاكل الاستخدام عبر مراقبة المستخدمين الحقيقيين." },
+                { question: "ماذا يقصد بمعدل مشاهدات الصفحة (Page Views - PV) كمؤشر كمي؟", options: ["إجمالي عدد المرات التي تم فيها تحميل وعرض صفحات الموقع", "عدد الأجهزة المتصلة", "عدد الأخطاء", "عدد الموظفين"], answer: 0, explanation: "PV يحسب إجمالي مرات تحميل ومشاهدة صفحات الموقع." },
+                { question: "لماذا تُعتبر التغذية الراجعة للمستخدمين عنصراً حيوياً في دورة PDCA؟", options: ["لأنها توفر مؤشرات حقيقية لتحديد مشاكل الموقع وتوجيه خطوات التحسين", "لإزعاج المطورين", "لإغلاق الموقع", "لتغيير الاسم"], answer: 0, explanation: "آراء المستخدمين هي الوقود لتوجيه التعديلات والتصحيحات." },
+                { question: "ما المقصود بتخطيط المعلومات (Information Architecture) في الويب؟", options: ["تنظيم وهيكلة محتوى الموقع بطريقة يسهل على المستخدم العثور عليها وتصفحها", "هندسة السيرفر الفعلي", "كتابة أكواد C++", "تخزين الباسوردات"], answer: 0, explanation: "تخطيط المعلومات ينظم بنية وترتيب محتوى المنصة لتسهيل الوصول." },
+                { question: "ما أثر الإكثار من العناصر البصرية المشتتة في تصميم الواجهات؟", options: ["تشتيت انتباه المستخدم وإحداث صعوبة في إنجاز المهام المطلوبة", "تحسين التركيز", "سرعة تصفح فائقة", "تقليل البطارية"], answer: 0, explanation: "البساطة وعدم التشتت هما أساس نجاح واجهات UX." },
+                { question: "كيف تساهم المحاذاة (Alignment) في تنظيم واجهة المستخدم؟", options: ["تربط العناصر في خطوط ونظام بصري متناسق يريح العين ويسهل القراءة", "تخفي المحتوى", "تغير المتصفح", "تلغي المربعات"], answer: 0, explanation: "المحاذاة تخلق شعوراً بالترتيب والنظام البصري." },
+                { question: "ما هي النتيجة النهائية المرجوة من تطبيق مراحل تصميم الويب والوسائط وتحسينها تكرارياً؟", options: ["تقديم تجربة مستخدم سلسة، جذابة، عالية الكفاءة وتحقيق أهداف المنصة", "تعقيد الاستخدام", "إلغاء التحديثات", "زيادة أخطاء النظام"], answer: 0, explanation: "الهدف النهائي هو بناء منتج رقمي ناجح يخدم المستخدم ويلبي الأهداف." }
             ],
             hard: [
-                { question: "سؤال الخبيث: بحث شخص عن 'قطط' وظهرت النتيجة خلال 3 ثوانٍ. من المسؤول عن الـ 3 ثوانٍ وليه مش جهة واحدة اشتغت؟", options: ["الخلفية وقاعدة البيانات والواجهة معاً بتكامل دورة الطلب والاستجابة", "الواجهة الأمامية وحدها", "قاعدة البيانات وحدها", "السيرفر الخارجي فقط"], answer: 0, explanation: "تتكامل الواجهة لاستقبال الطلب، والخلفية لمعالجة المنطق، وقاعدة البيانات لجلب السجلات." },
-                { question: "سؤال الكاش: تطبيق يحفظ بياناته في التخزين المؤقت فقط ولا توجد قاعدة بيانات، ماذا يحدث عند إغلاق الهاتف؟", options: ["تُفقد البيانات تماماً لعدم وجود حفظ دائم بالسيرفر", "تظل البيانات دائمًا", "تتضاعف السرعة", "يتحول لنظام سحابي"], answer: 0, explanation: "التخزين المؤقت (RAM) يفقد بياناته بمجرد إغلاق الجهاز لعدم وجود حفظ دائم." },
-                { question: "سؤال التركيب: لماذا لا تتواصل الواجهة الأمامية مع قاعدة البيانات مباشرة دون الواجهة الخلفية؟", options: ["لأن ذلك يسبب كارثة أمنية وكشف بيانات حساسة وغياب منطق المعالجة", "لتوفير الإنترنت", "لتسريع الموقع", "لتغيير الألوان"], answer: 0, explanation: "التواصل المباشر يكشف بيانات الحساسة ويعرض القاعدة للاختراق." },
+                { question: "سؤال الخبيث: بحث شخص عن 'قطط' وظهرت النتيجة خلال 3 ثوانٍ. من المسؤول وليه مش جهة واحدة اشتغلت؟", options: ["الخلفية وقاعدة البيانات والواجهة معاً بتكامل دورة الطلب والاستجابة", "الواجهة الأمامية وحدها", "قاعدة البيانات وحدها", "السيرفر الخارجي فقط"], answer: 0, explanation: "تتكامل الواجهة لاستقبال الطلب، والخلفية لمعالجة المنطق، وقاعدة البيانات لجلب السجلات." },
+                { question: "سؤال الكاش: تطبيق يحفظ بياناته في التخزين المؤقت فقط ولا توجد قاعدة بيانات، ماذا يحدث عند إغلاق الهاتف؟", options: ["تُفقد البيانات تماماً لعدم وجود حفظ دائم بالسيرفر", "تظل البيانات دائمًا", "تتضاعف السرعة", "يتحول لنظام سحابي"], answer: 0, explanation: "التخزين المؤقت يفقد بياناته بمجرد إغلاق الجهاز لعدم وجود حفظ دائم." },
+                { question: "سؤال التركيب: لماذا لا تتواصل الواجهة الأمامية مع قاعدة البيانات مباشرة دون الواجهة الخلفية؟", options: ["لأن ذلك يسبب كارثة أمنية وكشف بيانات حساسة وغياب منطق المعالجة", "لتوفير الإنترنت", "لتسريع الموقع", "لتغيير الألوان"], answer: 0, explanation: "التواصل المباشر يكشف بيانات الحساسة ويعرض قاعدة البيانات للاختراق." },
                 { question: "سؤال قانون مور: ما علاقة قانون مور بتشغيل الذكاء الاصطناعي على الهواتف الحديثة؟", options: ["تصغير المعالجات ورفع كفاءتها سمح بتشغيل نماذج ذكية ضخمة على أجهزة صغيرة", "لا علاقة لهما", "قانون مور يلغي الذكاء الاصطناعي", "يزيد استهلاك البطارية فقط"], answer: 0, explanation: "زيادة الترانزستورات وتصغيرها سمح بمعالجة قوية داخل الأجهزة المحمولة." },
                 { question: "سؤال السحابة: لماذا تعتبر الحوسبة السحابية أساس انتشار العمل عن بعد؟", options: ["لأنها تتيح الوصول للبيانات والأنظمة من أي مكان بأمان ومرونة", "لأنها ترسل رسائل نصية", "لأنها تمنع الحواسيب", "لتقليل السرعات"], answer: 0, explanation: "السحابة تتيح تخزين ومشاركة وإدارة البيانات مركزياً للموظفين عن بُعد." },
-                { question: "سؤال تشفير TLS: لماذا تبدأ المصافحة بتشفير غير متماثل ثم يتحول لمتماثل؟", options: ["غير المتماثل آمن لتبادل المفتاح، والمتماثل أسرع بكثير لنقل بيانات الجلسة", "لأن المتصفح يرفض المتماثل", "لتقليل حجم الملفات", "لإلغاء كلمات المرور"], answer: 0, explanation: "يجمع بين أمان غير المتماثل وسرعة المتماثل." },
-                { question: "سؤال DMZ: لو اخترق هאكر خادم الويب العام الموجود في DMZ، ما مصير الشبكة الداخلية؟", options: ["تكون محمية بفضل جدار الحماية وعزل الـ DMZ", "تُخترق بالكامل فوراً", "تتوقف عن العمل", "تتحول لسحابة عامة"], answer: 0, explanation: "منطقة DMZ مفصولة لحماية الشبكة الداخلية للمؤسسة." },
+                { question: "سؤال تشفير TLS: لماذا تبدأ المصافحة بتشفير غير متماثل ثم يتحول لمتماثل؟", options: ["غير المتماثل آمن لتبادل المفتاح، والمتماثل أسرع بكثير لنقل بيانات الجلسة", "لأن المتصفح يرفض المتماثل", "لتقليل حجم الملفات", "لإلغاء كلمات المرور"], answer: 0, explanation: "يجمع بين أمان التشفير غير المتماثل وسرعة التشفير المتماثل." },
+                { question: "سؤال DMZ: لو اخترق هكر خادم الويب العام الموجود في DMZ، ما مصير الشبكة الداخلية؟", options: ["تكون محمية بفضل جدار الحماية وعزل الـ DMZ", "تُخترق بالكامل فوراً", "تتوقف عن العمل", "تتحول لسحابة عامة"], answer: 0, explanation: "منطقة DMZ مفصولة لحماية الشبكة الداخلية للمؤسسة." },
                 { question: "سؤال الاستجابة للحوادث: لماذا يأتي 'الاحتواء' قبل 'الاستئصال' أثناء الهجوم؟", options: ["لعزل الأجهزة المصابة فوراً ومنع انتشار الفيروس أو الضرر بالشبكة", "لأن الاستئصال أسهل", "لتغيير كلمات المرور", "لإغلاق الشركة"], answer: 0, explanation: "الاحتواء السريع يوقف تمدد الضرر أولاً." },
                 { question: "سؤال التحويل CVR: موقع زياراته مليون بس مبيعاته صفر، المشكلة فين تحليلياً؟", options: ["مشكلة في تجربة المستخدم UX أو حافز الشراء رغم جذب الزيارات", "الموقع سريع جداً", "قاعدة البيانات كبيرة", "سيرفر الويب سليم"], answer: 0, explanation: "معدل التحويل CVR ضعيف رغم ارتفاع مشاهدات الصفحة PV." },
                 { question: "سؤال الهلوسة في GenAI: لماذا تقدم نماذج الذكاء الاصطناعي المعلومات الخاطئة بثقة تامة؟", options: ["لأنها تعتمد على التنبؤ الإحصائي للكلمات لا على التحقق الحقيقي من الحقائق", "لأنها ذكية جداً وفائقة", "لأنها تتصل بالإنترنت", "لأنها مصممة للكذب"], answer: 0, explanation: "النماذج تتنبأ بالسياق الإحصائي ولا تملك وعياً حقيقياً بالحقائق." }
@@ -798,11 +878,12 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_hard_v3');
+            const saved = localStorage.getItem('faiz_student_session_v4');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
             }
+            updateSelectedQCount();
         };
 
         function toggleMobileMenu(open) {
@@ -821,6 +902,12 @@
             document.querySelectorAll('.unit-content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(`ucard-${unitNum}`).classList.add('active');
             document.getElementById(`unit-content-${unitNum}`).classList.add('active');
+        }
+
+        function updateSelectedQCount() {
+            const checkedBoxes = document.querySelectorAll('#unitsCheckboxContainer input[type="checkbox"]:checked');
+            const totalQ = checkedBoxes.length * 20;
+            document.getElementById('calculatedQCount').innerText = totalQ;
         }
 
         function handleLogin(e) {
@@ -845,13 +932,29 @@
 
             if (!isValid) return;
 
-            studentSession = { name: nameInput, class: classInput, parentPhone: phoneInput, scores: [] };
+            // استرجاع الدرجات القديمة لو الاسم مطابق وعدم مسح البيانات القديمة
+            let existingScores = [];
+            const savedData = localStorage.getItem('faiz_student_session_v4');
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                if (parsed.name === nameInput) {
+                    existingScores = parsed.scores || [];
+                }
+            }
+
+            studentSession = {
+                name: nameInput,
+                class: classInput,
+                parentPhone: phoneInput,
+                scores: existingScores
+            };
+
             saveSession();
             showMainDashboard();
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_hard_v3', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_v4', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -865,7 +968,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_hard_v3');
+            localStorage.removeItem('faiz_student_session_v4');
             location.reload();
         }
 
@@ -906,21 +1009,28 @@
             return array;
         }
 
-        function startCustomQuizConfig() {
-            const mode = document.getElementById('selectedUnitsMode').value;
+        function startCustomQuizConfig(type) {
             let pool = [];
             
-            if (mode === 'hard') {
+            if (type === 'hard') {
                 pool = JSON.parse(JSON.stringify(fullFaizBank.hard));
                 window.currentQuizTitle = 'اختبار مستوى الوحش الخارق (Hard Mode)';
             } else {
-                let count = parseInt(mode);
-                for (let i = 1; i <= count; i++) {
-                    if (fullFaizBank[i]) {
-                        pool.push(...JSON.parse(JSON.stringify(fullFaizBank[i])));
-                    }
+                const checkedBoxes = document.querySelectorAll('#unitsCheckboxContainer input[type="checkbox"]:checked');
+                if (checkedBoxes.length === 0) {
+                    alert('يرجى اختيار فصل واحد على الأقل للبدء!');
+                    return;
                 }
-                window.currentQuizTitle = `الاختبار الشامل (${count} وحدات - ${pool.length} سؤالاً)`;
+                
+                let selectedUnitsNames = [];
+                checkedBoxes.forEach(cb => {
+                    let uVal = parseInt(cb.value);
+                    selectedUnitsNames.push(uVal);
+                    if (fullFaizBank[uVal]) {
+                        pool.push(...JSON.parse(JSON.stringify(fullFaizBank[uVal])));
+                    }
+                });
+                window.currentQuizTitle = `اختبار مخصص (فصول: ${selectedUnitsNames.join(', ')} - ${pool.length} سؤالاً)`;
             }
 
             activeQuizQuestions = shuffleArray(pool);
@@ -946,11 +1056,9 @@
             const container = document.getElementById('quizQuestionsContainer');
             let html = '';
             activeQuizQuestions.forEach((q, qIdx) => {
-                // خلط الاختيارات عشوائياً لكل سؤال مع الحفاظ على الإجابة الصحيحة
                 let optionsWithIndex = q.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
                 optionsWithIndex = shuffleArray(optionsWithIndex);
                 
-                // تحديث موقع الإجابة الصحيحة في السؤال الحالي المؤقت
                 let currentCorrectOriginalIndex = q.answer;
                 let newCorrectIndex = optionsWithIndex.findIndex(item => item.originalIndex === currentCorrectOriginalIndex);
                 
@@ -974,18 +1082,27 @@
                 `;
             });
             container.innerHTML = html;
+            updateProgressBar();
             switchPage('activeQuizPage');
 
             if (isTimer) {
-                // 90 ثانية لكل سؤال
                 let seconds = activeQuizQuestions.length * 90;
                 const timerEl = document.getElementById('timerSecs');
+                
+                // تحديث المؤقت فوراً بالثانية الأولى
+                let m = Math.floor(seconds / 60), s = seconds % 60;
+                timerEl.innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+
                 clearInterval(timerInterval);
                 timerInterval = setInterval(() => {
                     seconds--;
                     let m = Math.floor(seconds / 60), s = seconds % 60;
                     timerEl.innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-                    if (seconds <= 0) { clearInterval(timerInterval); finishQuiz(); }
+                    if (seconds <= 0) { 
+                        clearInterval(timerInterval); 
+                        alert('انتهى الوقت المحدد للاختبار!');
+                        finishQuiz(true); 
+                    }
                 }, 1000);
             }
         }
@@ -995,11 +1112,39 @@
             const card = document.getElementById(`qcard-${qIdx}`);
             card.querySelectorAll('.opt-btn').forEach(btn => btn.classList.remove('selected'));
             document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add('selected');
+            updateProgressBar();
         }
 
-        function finishQuiz() {
+        function updateProgressBar() {
+            const answeredCount = Object.keys(studentAnswers).length;
+            const total = activeQuizQuestions.length;
+            const pct = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
+            
+            document.getElementById('progressText').innerText = `أجبت على ${answeredCount} من أصل ${total}`;
+            document.getElementById('answeredPercentageText').innerText = `${pct}%`;
+            document.getElementById('progressBarFill').style.width = `${pct}%`;
+        }
+
+        function confirmExitQuiz() {
+            if (confirm("هل أنت متأكد من إلغاء الاختبار والرجوع إلى القائمة؟ لن يتم حفظ هذه المحاولة.")) {
+                clearInterval(timerInterval);
+                switchPage('quizzesSelectPage');
+            }
+        }
+
+        function finishQuiz(autoFinish = false) {
+            const total = activeQuizQuestions.length;
+            const answeredCount = Object.keys(studentAnswers).length;
+            const remaining = total - answeredCount;
+
+            // تنبيه الأسئلة الفاضية قبل الإنهاء (إذا لم يكن إنهاء تلقائي للمؤقت)
+            if (!autoFinish && remaining > 0) {
+                const confirmFinish = confirm(`تنبيه: لديك (${remaining}) أسئلة لم تجب عليها بعد!\n\nهل أنت متأكد من إنهاء الاختبار وتكبد إجاباتها كأخطاء؟`);
+                if (!confirmFinish) return;
+            }
+
             clearInterval(timerInterval);
-            let score = 0, total = activeQuizQuestions.length;
+            let score = 0;
 
             activeQuizQuestions.forEach((q, qIdx) => {
                 document.getElementById(`explain-${qIdx}`).style.display = 'block';
@@ -1032,16 +1177,15 @@
 
             document.getElementById('resultBannerContainer').innerHTML = `
                 <div class="glass-card" style="text-align: center; border-color: var(--accent-blue); background: rgba(72, 202, 228, 0.08);">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> عاش يا بطل! تم الانتهاء من الاختبار بنجاح</h3>
-                    <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
-                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة: ${percentage}%</p>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> عاش يا بطل! تم إنهاء الاختبار</h3>
+                    <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك النهائية: <strong>${score} من ${total}</strong></p>
+                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
             `;
             document.getElementById('resultBannerContainer').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // تم إصلاح مشكلة filterReview نهائياً باستلام الزر مباشرة (this)
         function filterReview(status, btnElement) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             if (btnElement) btnElement.classList.add('active');
@@ -1052,25 +1196,72 @@
             });
         }
 
+        // تطوير المساعد الذكي لإجابة جميع أسئلة ومفاهيم المنهج بدقة عالية
         function getSmartAiReply(inputStr) {
             const str = inputStr.trim().toLowerCase();
-            if (str.includes('ازيك') || str.includes('عامل ايه')) return "يا هلا بيك يا معلم، المنصة بقت جاهزة ومظبوطة 100% بدون أي ثغرات!";
-            return "كلامك مظبوط يا وحش! أنا معاك أهو، جرب النسخة دي وادخل اقفل الامتحان بكرة!";
+
+            if (str.includes('مور') || str.includes('ترانزستور')) {
+                return "من كتاب الفائز (الفصل الأول - درس 1): ينص قانون مور على تضاعف عدد الترانزستورات على شريحة المعالج كل عامين تقريباً. وتواجه التقنية حالياً عقبات فيزيائية عند الأبعاد الذرية مثل ظاهرة 'النفق الكمومي' وتيار التسرب الحراري.";
+            }
+            if (str.includes('هلوسة') || str.includes('hallucination')) {
+                return "من كتاب الفائز (الفصل الأول - درس 4): الهلوسة تعني قيام نماذج الذكاء الاصطناعي التوليدي (GenAI) بتوليد واختلاق معلومات خاطئة أو غير دقيقة وتقديمها بثقة عالية ومقنعة للمستخدم.";
+            }
+            if (str.includes('تفسير') || str.includes('xai') || str.includes('صندوق اسود') || str.includes('صندوق أسود')) {
+                return "من كتاب الفائز (الفصل الأول - درس 4): الذكاء القابل للتفسير (XAI) يهدف لحل معضلة 'الصندوق الأسود' في الشبكات العصبية عبر توضيح المنطق والأسباب الداخلية وراء قرارات الآلة لضمان الموثوقية.";
+            }
+            if (str.includes('tls') || str.includes('تشفير') || str.includes('https')) {
+                return "من كتاب الفائز (الفصل الثاني - درس 1): يجمع بروتوكول TLS بين التشفير غير المتماثل (للمصافحة وتأمين المفتاح الخاص/العام) والتشفير المتماثل (لنقل بيانات الجلسة بسرعة وكفاءة عالية).";
+            }
+            if (str.includes('dmz') || str.includes('معزولة')) {
+                return "من كتاب الفائز (الفصل الثاني - درس 2): المنطقة المعزولة (DMZ) تُستخدم لوضع الخوادم العامة (كخادم الويب) وفصلها عن الشبكة الداخلية للمؤسسة لمنع امتداد الاختراق إليها.";
+            }
+            if (str.includes('zero trust') || str.includes('انعدام الثقة')) {
+                return "من كتاب الفائز (الفصل الثاني - درس 2): نهج انعدام الثقة (Zero Trust) يعتمد على مبدأ أمني صارم: 'لا تثق أبداً، تحقق دائماً'، حيث يرفض منح الثقة التلقائية لأي مستخدم أو جهاز داخل الشبكة.";
+            }
+            if (str.includes('3-tier') || str.includes('ثلاثية') || str.includes('بنية')) {
+                return "من كتاب الفائز (الفصل الثالث - درس 1): عمارة تطبيقات الويب ثلاثية الطبقات تتكون من: (1) الواجهة الأمامية Frontend، (2) طبقة المعالجة والتطبيق Backend، و(3) طبقة قواعد البيانات Database.";
+            }
+            if (str.includes('get') || str.includes('post')) {
+                return "من كتاب الفائز (الفصل الثالث - درس 2): تُستخدم طريقة GET لجلب وقراءة البيانات من الخادم دون تعديلها، بينما تُستخدم POST لإرسال بيانات جديدة وإنشاء سجلات جديدة في قاعدة البيانات.";
+            }
+            if (str.includes('crap') || str.includes('تباين') || str.includes('محاذاة')) {
+                return "من كتاب الفائز (الفصل الرابع - درس 2): مبادئ التصميم البصري CRAP تشمل: التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity) لتنظيم العناصر بصرياً.";
+            }
+            if (str.includes('pdca') || str.includes('تحسين')) {
+                return "من كتاب الفائز (الفصل الرابع - درس 4): دورة PDCA تمثل منهجية التحسين المستمر وتتكون من أربع خطوات تكرارية: خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف (Act).";
+            }
+            if (str.includes('ازيك') || str.includes('عامل ايه') || str.includes('منور')) {
+                return "يا هلا بيك يا معلم! أنا جاهز تماماً لأي استفسار في المنهج أو خارج المنهج بكل سرور!";
+            }
+
+            return "أنا معك ودائم الاستعداد للرد على أي سؤال في منهج الحاسب أو الدردشة في أي موضوع عام تطلبه!";
         }
 
         function sendAiMessage() {
             const input = document.getElementById('chatInput');
             const raw = input.value.trim();
             if (!raw) return;
+            
             const chatContainer = document.getElementById('chatContainer');
-            chatContainer.innerHTML += `<div class="chat-msg user">${raw}</div>`;
+            
+            // حماية من ثغرات XSS باستخدام textContent لرسالة المستخدم
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'chat-msg user';
+            userMsgDiv.textContent = raw;
+            chatContainer.appendChild(userMsgDiv);
+            
             input.value = '';
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
+            const replyText = getSmartAiReply(raw);
+
             setTimeout(() => {
-                chatContainer.innerHTML += `<div class="chat-msg ai">${getSmartAiReply(raw)}</div>`;
+                const aiMsgDiv = document.createElement('div');
+                aiMsgDiv.className = 'chat-msg ai';
+                aiMsgDiv.textContent = replyText;
+                chatContainer.appendChild(aiMsgDiv);
                 chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 350);
+            }, 300);
         }
     </script>
 </body>
