@@ -275,16 +275,22 @@
         .topic-box {
             background: rgba(255,255,255,0.02);
             border-right: 3px solid var(--accent-blue);
-            padding: 14px 18px;
-            margin-bottom: 14px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .topic-box h4 {
             color: var(--accent-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .topic-box p {
+            color: #e2fbf7;
+            font-size: 0.95rem;
             margin-bottom: 8px;
-            font-size: 1.05rem;
         }
 
         .quiz-grid {
@@ -379,6 +385,33 @@
             border-radius: var(--radius-md);
             color: #ffb703;
             font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .filter-btn-group {
+            display: none;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-blue);
+            color: #0b132b;
+            border-color: var(--accent-blue);
         }
 
         .score-table {
@@ -541,11 +574,11 @@
             </div>
         </div>
 
-        <!-- الشرح المفصل طبقا للفصول الرسمية بالصورة -->
+        <!-- الشرح المفصل الشامل والموسع طبقا لكتاب الفائز -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل - كتاب الفائز (الفصول الأربعة الرسمية)</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الفصل الدراسي لعرض الشرح المفصل لجميع الدروس بدقة:</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-book-bookmark"></i> الشرح الشامل المفصل - كتاب الفائز (الفصول الأربعة)</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.9rem;">اختر الفصل الدراسي لعرض الشرح الشامل والمفصل لجميع الدروس بدقة متناهية:</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
@@ -569,76 +602,106 @@
                 <!-- الفصل الأول -->
                 <div id="unit-content-1" class="unit-content-section active">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-microchip"></i> الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
+                    
                     <div class="topic-box">
-                        <h4>درس 1: تطور تكنولوجيا المعلومات والتحول الاجتماعي</h4>
-                        <p>استعراض المراحل التاريخية لتطور الحواسيب بدءاً من الصمامات المفرغة وصولاً إلى الأنظمة السحابية الحديثة، وتأثير التكنولوجيا على التحول الرقمي في المجتمع.</p>
+                        <h4>1. درس 1: تطور تكنولوجيا المعلومات والتحول الاجتماعي</h4>
+                        <p>• <strong>المراحل التاريخية:</strong> بدأ تطور الحواسيب من حقبة الأربعينيات إلى الستينيات باستخدام حواسيب الصمامات المفرغة الضخمة مثل (ENIAC) والتي كانت تولد حرارة هائلة. وفي السبعينيات والثمانينيات ظهرت الحواسيب الشخصية (PCs)، بينما شهدت التسعينيات انطلاق الويب والإنترنت التجاري، وصولاً للألفية الحالية بالهواتف الذكية والحوسبة السحابية.</p>
+                        <p>• <strong>قانون مور (Moore's Law):</strong> ينص على أن عدد الترانزستورات على شريحة المعالج يتضاعف تقريباً كل عامين، مما يرفع الكفاءة ويخفض التكاليف. غير أنه يواجه حالياً عقبات فيزيائية دقيقة عند تقليص الترانزستورات لأبعاد ذرية، أبرزها <strong>النفق الكمومي (Quantum Tunneling)</strong> وتيار التسرب الحراري.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 2: كيف يعمل الذكاء الاصطناعي</h4>
-                        <p>شرح آلية عمل خوارزميات الذكاء الاصطناعي والتعلم الآلي والشبكات العصبية وكيفية معالجة البيانات واستنتاج الأنماط.</p>
+                        <h4>2. درس 2: كيف يعمل الذكاء الاصطناعي</h4>
+                        <p>• تعتمد خوارزميات الذكاء الاصطناعي على تحليل كميات هائلة من البيانات، استنتاج الأنماط، وضبط الأوزان عبر التدريب المستمر.</p>
+                        <p>• <strong>التعلم العميق (Deep Learning):</strong> فرع متطور من التعلم الآلي يعتمد على شبكات عصبية اصطناعية متعددة الطبقات مستوحاة من الخلايا العصبية للدماغ البشري لمعالجة البيانات المعقدة كالصور والنصوص.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 3: الذكاء الاصطناعي في الحياة اليومية والصناعية</h4>
-                        <p>تطبيقات الذكاء الاصطناعي اليومية كالمركبات ذاتية القيادة والمساعدات الذكية، واستخدام الحوسبة الطرفية لتفادي التأخير.</p>
+                        <h4>3. درس 3: الذكاء الاصطناعي في الحياة اليومية والصناعية</h4>
+                        <p>• تُستخدم تطبيقات الذكاء الاصطناعي في المركبات ذاتية القيادة والمساعدات الرقمية.</p>
+                        <p>• <strong>الحوسبة الطرفية (Edge Computing):</strong> معالجة البيانات محلياً على الجهاز المستشعر مباشرة (مثل سيارات القيادة الآلية) لتفادي أي تأخير زمني قد تسببه السحابة، ولضمان سرعة الاستجابة القصوى في المواقف الحرجة.</p>
+                        <p>• <strong>الحوسبة الكمومية والكيوبت (Qubit):</strong> تعتمد على خاصية التراكب الكمي (Superposition) لتمثيل حالتي 0 و 1 معاً في نفس الوقت، مما يمنحها قدرة معالجة موازية فائقة السرعة.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 4: القضايا الأخلاقية المتعلقة بالذكاء الاصطناعي</h4>
-                        <p>مناقشة التحديات الأخلاقية مثل التحيز الخوارزمي، ظاهرة "الهلوسة" واختلاق المعلومات، وأهمية الذكاء الاصطناعي القابل للتفسير (XAI).</p>
+                        <h4>4. درس 4: القضايا الأخلاقية المتعلقة بالذكاء الاصطناعي</h4>
+                        <p>• <strong>التحيز الخوارزمي:</strong> إصدار قرارات تمييزية غير عادلة بسبب تدريب النماذج على بيانات سابقة غير متوازنة.</p>
+                        <p>• <strong>ظاهرة الهلوسة (Hallucination):</strong> يقصد بها توليد نماذج الذكاء الاصطناعي التوليدي (GenAI) لمعلومات غير صحيحة، وهمية، أو غير دقيقة واختلاقها وتقديمها بثقة عالية ومقنعة للمستخدم، مما يستوجب الحذر الشديد والتحقق المستمر.</p>
+                        <p>• <strong>الذكاء القابل للتفسير (XAI):</strong> تقنية تهدف إلى حل معضلة "الصندوق الأسود" عبر توضيح الأسباب والمنطق الداخلي وراء قرارات الآلة لضمان الموثوقية والأمان.</p>
                     </div>
                 </div>
 
                 <!-- الفصل الثاني -->
                 <div id="unit-content-2" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> الفصل الثاني: الأمن السيبراني</h3>
+                    
                     <div class="topic-box">
-                        <h4>درس 1: تقنيات التشفير والمصادقة</h4>
-                        <p>دراسة بروتوكولات HTTPS وTLS، والتفرقة بين التشفير المتماثل وغير المتماثل، وآليات المصادقة متعددة العوامل (MFA) عبر عوامل المعرفة والحيازة والسمات الحيوية.</p>
+                        <h4>1. درس 1: تقنيات التشفير والمصادقة</h4>
+                        <p>• <strong>بروتوكول HTTPS وTLS:</strong> يؤمن تصفح الويب. في بداية الاتصال (المصافحة) يُستخدم التشفير غير المتماثل (بالمفتاح العام والخاص) للمصادقة وتأمين تبادل المفتاح السري، ثم ينتقل الاتصال فوراً لاستخدام التشفير المتماثل لنقل بيانات الجلسة بسرعة وكفاءة عالية.</p>
+                        <p>• <strong>المصادقة متعددة العوامل (MFA):</strong> تعتمد على 3 فئات رئيسية للتحقق من هوية المستخدم: شيء تعرفه (كلمة المرور)، شيء تملكه (هاتف أو رمز)، وسمة حيوية (بصمة الإصبع أو الوجه).</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 2: تصميم أمن الشبكات</h4>
-                        <p>تأمين البنية التحتية عبر جدران الحماية (Firewall)، المناطق المعزولة (DMZ)، الشبكات الافتراضية الخاصة (VPN)، وتطبيق نهج انعدام الثقة (Zero Trust).</p>
+                        <h4>2. درس 2: تصميم أمن الشبكات</h4>
+                        <p>• <strong>جدار الحماية (Firewall) والمناطق المعزولة (DMZ):</strong> يُستخدم Firewall لمراقبة حركة البيانات. ويتم وضع خوادم الويب العامة في منطقة DMZ لفصلها وحماية الشبكة الداخلية للمؤسسة في حال تعرض السيرفر للاختراق.</p>
+                        <p>• <strong>نهج انعدام الثقة (Zero Trust):</strong> مبدأ أمني ينص على "لا تثق أبداً، تحقق دائماً"، حيث يرفض منح الثقة التلقائية لأي جهاز أو مستخدم داخل أو خارج شبكة المؤسسة.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 3: الاستجابة للحوادث وإدارة المخاطر</h4>
-                        <p>المراحل الست للاستجابة للحوادث (التحضير، الاكتشاف، الاحتواء، الاستئصال، الاستعادة، الدروس المستفادة)، وكيفية حساب المخاطر (التأثير × الاحتمالية).</p>
+                        <h4>3. درس 3: الاستجابة للحوادث وإدارة المخاطر</h4>
+                        <p>• <strong>مراحل الاستجابة للحوادث الست:</strong> (1) التحضير ⬅️ (2) الاكتشاف ⬅️ (3) الاحتواء (عزل الأجهزة المصابة فوراً لمنع انتشار الضرر) ⬅️ (4) الاستئصال (إزالة الثغرة) ⬅️ (5) الاستعادة ⬅️ (6) الدروس المستفادة (لتقييم الثغرات ومنع تكرارها).</p>
+                        <p>• <strong>معادلة المخاطر:</strong> درجة الخطر = التأثير × الاحتمالية.</p>
                     </div>
                 </div>
 
                 <!-- الفصل الثالث -->
                 <div id="unit-content-3" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-network-wired"></i> الفصل الثالث: الويب</h3>
+                    
                     <div class="topic-box">
-                        <h4>درس 1: البنية العامة لتطبيقات الويب</h4>
-                        <p>مفهوم تطبيق الويب وتفصيل الهندسة ثلاثية الطبقات (3-Tier Architecture): طبقة الواجهة الأمامية، طبقة المعالجة والتطبيق، وطبقة البيانات.</p>
+                        <h4>1. درس 1: البنية العامة لتطبيقات الويب</h4>
+                        <p>• تعتمد بنية التطبيقات الحديثة على الهندسة ثلاثية الطبقات (3-Tier Architecture):<br>
+                        1. <strong>طبقة العرض والواجهة الأمامية (Frontend):</strong> تتفاعل مباشرة مع المستخدم وتستقبل المدخلات.<br>
+                        2. <strong>طبقة المعالجة والتطبيق (Backend):</strong> العقل المدبر ومحرك المنطق البرمجي.<br>
+                        3. <strong>طبقة البيانات (Database):</strong> مركز الحفظ الدائم والمؤمن لمعلومات وسجلات التطبيق.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 2: طرق الاتصال في تطبيقات الويب</h4>
-                        <p>دورة الطلب والاستجابة (Request/Response)، طرق الطلب (GET وPOST)، استخدام واجهات برمجة التطبيقات (APIs) وصيغة نقل البيانات JSON.</p>
+                        <h4>2. درس 2: طرق الاتصال في تطبيقات الويب</h4>
+                        <p>• تعتمد على دورة الطلب والاستجابة (Request / Response). تُستخدم طريقة `GET` لجلب وقراءة البيانات من الخادم دون تغييرها، بينما تُستخدم `POST` لإرسال وإنشاء بيانات جديدة.</p>
+                        <p>• صيغة **JSON** تُعد المعيار الخفيف لتبادل البيانات ونقلها بسلاسة بين الأنظمة عبر واجهات برمجة التطبيقات (APIs).</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 3: أساسيات تكنولوجيا الواجهة الأمامية</h4>
-                        <p>دور الثلاثي البرمجي الذهبي (HTML الدلالية، تنسيقات CSS، وتفاعلية JavaScript) في بناء صفحات ويب متجاوبة وسهلة الوصول.</p>
+                        <h4>3. درس 3: أساسيات تكنولوجيا الواجهة الأمامية</h4>
+                        <p>• الثلاثي البرمجي: <strong>HTML</strong> لتحديد الهيكل والدلالة، <strong>CSS</strong> للتنسيق البصري، و<strong>JavaScript</strong> لمنح الصفحات التفاعلية الحيوية.</p>
+                        <p>• استخدام HTML الدلالية يسهل عمل محركات البحث (SEO) وقارئات الشاشة لذوي الاحتياجات الخاصة (Accessibility)، إلى جانب التصميم المتجاوب (Responsive Design) لضبط الواجهة لجميع الشاشات.</p>
                     </div>
                 </div>
 
                 <!-- الفصل الرابع -->
                 <div id="unit-content-4" class="unit-content-section">
                     <h3 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-photo-film"></i> الفصل الرابع: تصميم الويب والوسائط</h3>
+                    
                     <div class="topic-box">
-                        <h4>درس 1: أنواع الوسائط وخصائصها</h4>
-                        <p>مقارنة الوسائط الرقمية التفاعلية بالوسائط التقليدية وإمكانيات التحديث الفوري ومشاركة المحتوى.</p>
+                        <h4>1. درس 1: أنواع الوسائط وخصائصها</h4>
+                        <p>• تتميز الوسائط الرقمية كالشبكات الاجتماعية والمواقع بإمكانية التحديث المباشر الفوري والتفاعل ثنائي الاتجاه بين المنصة والمستخدم، مقارنة بالوسائط التقليدية كالراديو والتلفزيون ذات الاتجاه الأوحد.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 2: تصميم المعلومات وتجربة المستخدم للمواقع الإلكترونية</h4>
-                        <p>إنشاء شخصيات المستخدمين (Personas)، رسم المخططات الهيكلية (Wireframes)، وتطبيق مبادئ CRAP للتصميم البصري.</p>
+                        <h4>2. درس 2: تصميم المعلومات وتجربة المستخدم للمواقع الإلكترونية</h4>
+                        <p>• يتم إنشاء **شخصية المستخدم (Persona)** لتمثيل متطلبات الفئة المستهدفة، ثم رسم **المخطط الهيكلي (Wireframe)** لتوزيع عناصر الصفحة ومحتواها مبدئياً.</p>
+                        <p>• **مبادئ CRAP:** التباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity) لتنظيم الشاشة بصرياً.</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 3: طرق تقييم المواقع الإلكترونية</h4>
-                        <p>أساليب التقييم النوعي (المقابلات واختبار القابلية للاستخدام) والتقييم الكمي (مؤشرات معدل الارتداد Bounce Rate ومعدل التحويل CVR).</p>
+                        <h4>3. درس 3: طرق تقييم المواقع الإلكترونية</h4>
+                        <p>• <strong>التقييم النوعي:</strong> المقابلات واختبارات القابلية للاستخدام (Usability Testing) لمعرفة مشاكل المستخدمين.<br>
+                        • <strong>التقييم الكمي:</strong> تحليل مؤشرات الأداء كـ معدل الارتداد (Bounce Rate)، ومشاهادت الصفحة (PV)، ومعدل التحويل (CVR).</p>
                     </div>
+
                     <div class="topic-box">
-                        <h4>درس 4: عملية التحسين التكراري للمواقع الإلكترونية</h4>
-                        <p>تطبيق منهجية التحسين المستمر (دورة PDCA) وإجراء اختبارات المفاضلة (A/B Testing) لتطوير المواقع بناءً على البيانات.</p>
+                        <h4>4. درس 4: عملية التحسين التكراري للمواقع الإلكترونية</h4>
+                        <p>• تطبيق منهجية التحسين المستمر **دورة PDCA** (خطط، نفذ، تحقق، تصرف) وإجراء **اختبارات المفاضلة A/B Testing** للمقارنة بين نسختين من الصفحة بالأرقام والبيانات الحقيقية.</p>
                     </div>
                 </div>
             </div>
@@ -648,10 +711,10 @@
         <div id="aiChatPage" class="page">
             <div class="glass-card">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي - اسأل الفائز</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اتكلم معايا بحرية، اهزر، أو اسأل عن أي درس أو مفهوم في كتاب الفائز وسأجيبك فوراً من قلب الكتاب!</p>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">استفسر عن أي مفهوم أو درس في كتاب الفائز وسأجيبك فوراً بشرح وافٍ مفصل ودقيق!</p>
                 
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">يا هلا بيك يا بطل! أنا جاهز لأي سؤال من دروس فصول كتاب الفائز الأربعة بالتفصيل! اسأل ولا تتردد! 😎</div>
+                    <div class="chat-msg ai">أهلاً بك. أنا جاهز للإجابة عن أي استفسار أو مفهوم من فصول كتاب الفائز بالتفصيل. اطرح سؤالك!</div>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
@@ -661,7 +724,7 @@
             </div>
         </div>
 
-        <!-- بنك الاختبارات (20 سؤالاً حقيقياً لكل فصل + الاختبار الشامل المرن) -->
+        <!-- بنك الاختبارات -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
                 <h3 style="color: var(--accent-blue); margin-bottom: 10px;">بنك الاختبارات الشاملة المخصصة - كتاب الفائز</h3>
@@ -720,6 +783,14 @@
             </div>
             
             <div id="resultBannerContainer"></div>
+
+            <!-- أزرار التصفية والفلترة للنتائج (تظهر بعد إنهاء الاختبار) -->
+            <div class="filter-btn-group" id="filterBtnGroup">
+                <button class="filter-btn active" onclick="filterReview('all')">عرض الكل</button>
+                <button class="filter-btn" onclick="filterReview('wrong')">عرض الأخطاء فقط ❌</button>
+                <button class="filter-btn" onclick="filterReview('correct')">عرض الصحيحة فقط ✅</button>
+            </div>
+
             <div id="quizQuestionsContainer"></div>
             <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 15px;">إنهاء الاختبار وإظهار النتيجة والتعليلات</button>
         </div>
@@ -746,7 +817,6 @@
     </div>
 
     <script>
-        // بنك الأسئلة الدقيق والمستخرج حرفياً من محتوى الكتاب والدروس الأربعة (20 سؤالاً لكل فصل = 80 سؤالاً)
         const fullFaizBank = {
             1: [
                 {
@@ -789,7 +859,7 @@
                     question: "ماذا يقصد بظاهرة 'الهلوسة' في أنظمة الذكاء الاصطناعي التوليدي (GenAI)؟",
                     options: ["توقف النظام عن العمل", "توليد معلومات خاطئة أو وهمية وتقديمها بثقة عالية ومقنعة", "اختراق السيرفر الخارجي", "مسح قواعد البيانات تلقائياً"],
                     answer: 1,
-                    explanation: "من الفصل الأول (درس 4): الهلوسة تعني اختلاق معلومات لا أصل لها واقعياً."
+                    explanation: "من الفصل الأول (درس 4): الهلوسة تعني اختلاق معلومات لا أصل لها واقعياً وتقديمها بثقة مقنعة."
                 },
                 {
                     question: "ما هو الهدف الأساسي من تطبيق تقنية الذكاء الاصطناعي القابل للتفسير (XAI)؟",
@@ -807,7 +877,7 @@
                     question: "ماذا يقصد بالتحيز الخوارزمي في أنظمة الذكاء الاصطناعي؟",
                     options: ["سرعة المعالجة الفائقة", "إصدار قرارات تمييزية ناتجة عن بيانات تدريب غير متوازنة أو منحازة مسبقاً", "تحديث السيرفرات تلقائياً", "انقطاع الاتصال بالإنترنت"],
                     answer: 1,
-                    explanation: "من الفصل الأول (درس 4): التحيز ينشأ من بيانات التدريب المشوبة بالتمييز."
+                    explanation: "من الفصل الأول (درس 4): التحيز ينشأ من بيانات التدريب المشوبة بالتمييز المسبق."
                 },
                 {
                     question: "ما الفرق الجوهري بين التعلم الآلي (ML) والتعلم العميق (DL)؟",
@@ -853,7 +923,7 @@
                 },
                 {
                     question: "لماذا تُعتبر الشبكات العصبية الاصطناعية مستوحاة بيولوجياً؟",
-                    options: ["لأنها تعمل بالماء والدم", "لأن هيكلتها تحاكي طريقة عمل خلايا العصب الدماغية البشري", "لأنها تصنع من مواد عضوية", "لأنها تحتاج لطاقة شمسية"],
+                    options: ["لأنها تعمل بالماء والدم", "لأن هيكلتها تحاكي طريقة عمل خلايا الدماغ البشري", "لأنها تصنع من مواد عضوية", "لأنها تحتاج لطاقة شمسية"],
                     answer: 1,
                     explanation: "من الفصل الأول (درس 2): صُممت الشبكات العصبية محاكاةً لخلايا الدماغ البشري."
                 },
@@ -1069,7 +1139,7 @@
                     question: "ما هي المسؤولية الرئيسية لطبقة العرض والواجهة الأمامية (Frontend Tier)؟",
                     options: ["حفظ كلمات المرور في قاعدة البيانات", "استقبال مدخلات المستخدم وعرض البيانات وتجربة التفاعل المباشر", "إدارة خوادم السحاب الكبرى", "توليد أكواد التشفير"],
                     answer: 0,
-                    explanation: "من الفصل الثالث (درس 1): الواجهة الأمامية هي ما يراه ويithفاعل معه المستخدم مباشرة."
+                    explanation: "من الفصل الثالث (درس 1): الواجهة الأمامية هي ما يراه ويتفاعل معه المستخدم مباشرة."
                 },
                 {
                     question: "ما دور طبقة المعالجة والتطبيق (Backend Tier) في تطبيقات الويب؟",
@@ -1091,7 +1161,7 @@
                 },
                 {
                     question: "ما المقصود بالعميل (Client) في نموذج الاتصال بالويب؟",
-                    options: ["خادم الشركة الضخم", "متصفح الويب أو التطبيق الذي يستخدمه العميل للوصول للخدمة", "سلك التوصيل الأراضي", "مزود خدمة الإنترنت الأساسي ISP"],
+                    options: ["خادم الشركة الضخم", "متصفح الويب أو التطبيق الذي يستخدمه العميل للوصول للخدمة", "سلك التوصيل الأرضي", "مزود خدمة الإنترنت الأساسي ISP"],
                     answer: 1,
                     explanation: "من الفصل الثالث (درس 2): العميل هو الجهاز أو المتصفح الذي يطلب الخدمة."
                 },
@@ -1125,7 +1195,7 @@
                     question: "ما هو الغرض من إنشاء 'شخصية المستخدم' (Persona) في مراحل تصميم تجربة المستخدم (UX)؟",
                     options: ["تحديد أسعار الخوادم", "تمثيل نمط واحتياجات الفئة المستهدفة الحقيقية لتوجيه التصميم نحوهم", "كتابة أكواد الباك إند برمجياً", "ضغط الصور الكبيرة"],
                     answer: 1,
-                    explanation: "من الفصل الرابع (درس 2): Persona تُمثل الشوذج التمثيلي للمستهدفين لتلبية احتياجاتهم."
+                    explanation: "من الفصل الرابع (درس 2): Persona تُمثل النموذج التمثيلي للمستهدفين لتلبية احتياجاتهم."
                 },
                 {
                     question: "ما هو المخطط الهيكلي (Wireframe) في تصميم المواقع الإلكترونية؟",
@@ -1167,7 +1237,7 @@
                     question: "ما الغرض من إجراء 'اختبارات A/B' (A/B Testing) عند تطوير وتحديث المواقع؟",
                     options: ["إلغاء الموقع نهائياً", "مقارنة أداء نسختين مختلتين من الصفحة بالأرقام الحقيقية لمعرفة أيهما أفضل", "زيادة تكلفة الاستضافة", "تغيير لغة البرمجة تماماً"],
                     answer: 1,
-                    explanation: "من الفصل الرابع (درس 4): اختبارات A/B تقارن نسختين للمفاضلة بينهما بالأرقام الفعليه."
+                    explanation: "من الفصل الرابع (درس 4): اختبارات A/B تقارن نسختين للمفاضلة بينهما بالأرقام الفعلية."
                 },
                 {
                     question: "لماذا يُعد تصميم تجربة المستخدم (UX) متمحوراً حول المستخدم (User-Centered Design)؟",
@@ -1213,7 +1283,7 @@
                 },
                 {
                     question: "ما المقصود بتخطيط المعلومات (Information Architecture) في تصميم الويب؟",
-                    options: ["هندسة بناء السيرفر الفعلي بالشارع", "تنظيم وструктура وهيكلة محتوى الموقع بطريقة يسهل على المستخدم العثور عليها وتصفحها", "كتابة الأكواد بلغة C++", "تخزين كلمات المرور"],
+                    options: ["هندسة بناء السيرفر الفعلي بالشارع", "تنظيم وهيكلة محتوى الموقع بطريقة يسهل على المستخدم العثور عليها وتصفحها", "كتابة الأكواد بلغة C++", "تخزين كلمات المرور"],
                     answer: 1,
                     explanation: "من الفصل الرابع (درس 2): تخطيط المعلومات ينظم بنية وترتيب محتوى المنصة."
                 },
@@ -1244,7 +1314,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_bac_v18');
+            const saved = localStorage.getItem('faiz_student_session_bac_v19');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -1314,7 +1384,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_bac_v18', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_bac_v19', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -1329,7 +1399,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_bac_v18');
+            localStorage.removeItem('faiz_student_session_bac_v19');
             location.reload();
         }
 
@@ -1337,6 +1407,7 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             document.getElementById('resultBannerContainer').innerHTML = '';
+            document.getElementById('filterBtnGroup').style.display = 'none';
             clearInterval(timerInterval);
         }
 
@@ -1387,6 +1458,7 @@
             closeModal();
             studentAnswers = {};
             document.getElementById('resultBannerContainer').innerHTML = '';
+            document.getElementById('filterBtnGroup').style.display = 'none';
             const isTimer = document.getElementById('timerOption').value === 'yes';
             
             document.getElementById('timerDisplay').style.display = isTimer ? 'block' : 'none';
@@ -1449,16 +1521,26 @@
                 explainBox.style.display = 'block';
 
                 const selected = studentAnswers[qIdx];
-                const btns = document.getElementById(`qcard-${qIdx}`).querySelectorAll('.opt-btn');
+                const card = document.getElementById(`qcard-${qIdx}`);
+                const btns = card.querySelectorAll('.opt-btn');
+                
+                // تخزين حالة الصحة أو الخطأ في كارت السؤال لتسهيل الفلترة
+                if (selected === q.answer) {
+                    score++;
+                    card.setAttribute('data-status', 'correct');
+                } else {
+                    card.setAttribute('data-status', 'wrong');
+                }
+
                 btns.forEach((btn, optIdx) => {
                     btn.disabled = true;
                     if (optIdx === q.answer) btn.classList.add('correct');
                     if (selected === optIdx && selected !== q.answer) btn.classList.add('wrong');
                 });
-                if (selected === q.answer) score++;
             });
 
             document.getElementById('finishQuizBtn').style.display = 'none';
+            document.getElementById('filterBtnGroup').style.display = 'flex'; // إظهار أزرار التصفية
 
             const percentage = total > 0 ? Math.round((score / total) * 100) : 100;
 
@@ -1479,49 +1561,62 @@
                     <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
                     <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
                     <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
-                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">تم فتح الإجابات والتعليقات والنموذج أدناه للمراجعة.</p>
+                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">استخدم أزرار التصفية أدناه لعرض الأخطاء أو الإجابات الصحيحة للمراجعة.</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
             `;
             banner.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // المحرك المطور للمساعد الذكي
+        // دالة تصفية الأسئلة (الكل، الأخطاء فقط، الصحيحة فقط)
+        function filterReview(status) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.q-card');
+            cards.forEach(card => {
+                const cardStatus = card.getAttribute('data-status');
+                if (status === 'all') {
+                    card.style.display = 'block';
+                } else if (status === 'wrong' && cardStatus === 'wrong') {
+                    card.style.display = 'block';
+                } else if (status === 'correct' && cardStatus === 'correct') {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // المساعد الذكي
         function getSmartAiReply(inputStr) {
             const str = inputStr.trim().toLowerCase();
 
             if (str.includes('انسان') || str.includes('إنسان') || str.includes('بشر') || str.includes('مين انت') || str.includes('انت مين')) {
-                return "أنا المساعد الذكي الخارق المصمم خصيصاً لكتاب 'الفائز'! مش إنسان حقيقي، بس فاهم المنهج أكتر من أي حد وجاهز أساعدك تقفل المادة بإذن الله! 🔥😎";
+                return "أنا المساعد الذكي المصمم خصيصاً لكتاب 'الفائز' لتقديم الشرح والإجابات المعتمدة من المنهج بدقة.";
             }
 
-            if (str.includes('هنقفل') || str.includes('نقفل') || str.includes('ان شاء الله') || str.includes('باذن الله') || str.includes('يا رب')) {
-                return "بإذن الله يا بطل! همتك معانا ومراجعة أول بأول مع كتاب 'الفائز' وهتكون التوب دائماً! 💪🔥";
+            if (str.includes('هلوسة') || str.includes('hallucination')) {
+                return "من كتاب الفائز (الفصل الأول - درس 4): الهلوسة تعني قيام نماذج الذكاء الاصطناعي التوليدي بتوليد واختلاق معلومات خاطئة، وهمية، أو غير دقيقة وتقديمها بثقة عالية ومقنعة جداً للمستخدم دون سند حقيقي.";
             }
 
-            if (str.includes('عامل ايه') || str.includes('ازيك') || str.includes('اخبارك') || str.includes('كيفك') || str.includes('إزيك')) {
-                return "الحمد لله يا غالي زي الفل ومتحمس معاك! طمني المذاكرة عاملة إيه معاك اليوم؟ 😃";
-            }
-            if (str.includes('سلام') || str.includes('السلام عليكم') || str.includes('مرحبا') || str.includes('أهلا') || str.includes('هلا')) {
-                return "وعليكم السلام ورحمة الله وبركاته يا هلا بيك! منور المنصة، تحب تسأل عن إيه في كتاب الفائز؟ 🚀";
-            }
-            if (str.includes('شكرا') || str.includes('تسلم') || str.includes('حبيبي') || str.includes('يعطيك العافية') || str.includes('ربنا يخليك')) {
-                return "حبيبي تحت أمرك في أي وقت! المادة في جيبك طول ما إحنا مع بعض 🌟";
+            if (str.includes('مور') || str.includes('ترانزستور') || str.includes('كمومي')) {
+                return "من كتاب الفائز (الفصل الأول - درس 1): قانون مور ينص على تضاعف عدد الترانزستورات كل عامين. ويواجه عقبات فيزيائية كالنفق الكمومي وتيار التسرب عند التصغير لأبعاد ذرية.";
             }
 
-            if (str.includes('تكنولوجيا') || str.includes('مور') || str.includes('ترانزستور') || str.includes('ذكاء اصطناعي') || str.includes('هلوسة') || str.includes('xai')) {
-                return "من كتاب الفائز (الفصل الأول): يتناول تطور تكنولوجيا المعلومات وتحديات قانون مور الفيزيائية (النفق الكمومي وتيار التسرب)، وآلية عمل الذكاء الاصطناعي ومعالجة الهلوسة والذكاء القابل للتفسير XAI.";
-            }
-            if (str.includes('أمن') || str.includes('سيبراني') || str.includes('تشفير') || str.includes('tls') || str.includes('mfa') || str.includes('dmz') || str.includes('حوادث')) {
-                return "من كتاب الفائز (الفصل الثاني): يغطي الأمن السيبراني وتقنيات التشفير TLS والمصادقة MFA، وتأمين الشبكات بـ Firewall وDMZ، ومراحل الاستجابة للحوادث ومعادلة المخاطر (التأثير × الاحتمالية).";
-            }
-            if (str.includes('ويب') || str.includes('اتصال') || str.includes('api') || str.includes('json') || str.includes('html') || str.includes('css') || str.includes('javascript')) {
-                return "من كتاب الفائز (الفصل الثالث): يشرح بنية تطبيقات الويب عبر الهندسة ثلاثية الطبقات 3-Tier، دورة الطلب والاستجابة مع GET وPOST وJSON، بالإضافة للثلاثي البرمجي HTML, CSS, JS.";
-            }
-            if (str.includes('وسائط') || str.includes('مستخدم') || str.includes('persona') || str.includes('wireframe') || str.includes('crap') || str.includes('تقييم') || str.includes('pdca')) {
-                return "من كتاب الفائز (الفصل الرابع): يوضح تصميم الويب والوسائط، بناء شخصيات المستخدمين Personas والمخططات الهيكلية Wireframes، مبادئ CRAP البصرية، ووسائل التقييم الكمي والنوعي ومنهجية PDCA للتحسين المستمر.";
+            if (str.includes('تشفير') || str.includes('tls') || str.includes('mfa')) {
+                return "من كتاب الفائز (الفصل الثاني - درس 1): بروتوكول TLS يجمع بين التشفير غير المتماثل للمصافحة وتأمين المفتاح، والمتماثل لسرعة نقل بيانات الجلسة. والمصادقة MFA تعتمد على المعرفة، الحيازة، والسمات الحيوية.";
             }
 
-            return "يا هلا بيك يا فنان! أنا معاك وسامعك، تقدر تسألني عن أي فصل أو درس في كتاب الفائز، أو تطلب اختبار نفسك وسأجيبك فوراً! 😉";
+            if (str.includes('ويب') || str.includes('3-tier') || str.includes('get') || str.includes('post') || str.includes('json')) {
+                return "من كتاب الفائز (الفصل الثالث): بنية الويب تعتمد على عمارة 3-Tier (الواجهة الأمامية، المعالجة، البيانات). وطريقة GET تستخدم لجلب وقراءة البيانات بينما POST لإنشاء بيانات جديدة، وJSON صيغة نقل بيانات خفيفة.";
+            }
+
+            if (str.includes('persona') || str.includes('crap') || str.includes('pdca') || str.includes('تقييم')) {
+                return "من كتاب الفائز (الفصل الرابع): Persona تُمثل شخصية المستخدم المستهدف، ومبادئ CRAP تنظم التصميم بصرياً، ودورة PDCA تمثل منهجية التحسين المستمر للمواقع.";
+            }
+
+            return "مرحباً بك. يمكنك سؤالي عن أي مصطلح أو درس في كتاب الفائز (مثل: الهلوسة، قانون مور، TLS، العمارة ثلاثية الطبقات، دورة PDCA) وسأشرحه لك تفصيلياً.";
         }
 
         function sendAiMessage() {
