@@ -731,22 +731,22 @@
                 <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر اختبار الفصل المنفرد (20 سؤالاً حقيقياً لكل فصل) أو اختر الاختبار الشامل بعدد الفصول المطلوب:</p>
 
                 <div class="quiz-grid">
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 1)">
+                    <div class="quiz-select-card" onclick="openQuizSetup(1)">
                         <i class="fa-solid fa-microchip" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
                         <h4>فصل 1: تكنولوجيا المعلومات (20 سؤالاً)</h4>
                         <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تطور التكنولوجيا، الذكاء الاصطناعي والأخلاقيات</p>
                     </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 2)">
+                    <div class="quiz-select-card" onclick="openQuizSetup(2)">
                         <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
                         <h4>فصل 2: الأمن السيبراني (20 سؤالاً)</h4>
                         <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">التشفير، أمن الشبكات وإدارة المخاطر</p>
                     </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 3)">
+                    <div class="quiz-select-card" onclick="openQuizSetup(3)">
                         <i class="fa-solid fa-network-wired" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
                         <h4>فصل 3: الويب (20 سؤالاً)</h4>
                         <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">بنية التطبيقات، الاتصالات وواجهات الواجهة الأمامية</p>
                     </div>
-                    <div class="quiz-select-card" onclick="openQuizSetup('unit', 4)">
+                    <div class="quiz-select-card" onclick="openQuizSetup(4)">
                         <i class="fa-solid fa-photo-film" style="font-size: 1.8rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
                         <h4>فصل 4: تصميم الويب والوسائط (20 سؤالاً)</h4>
                         <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">تجربة المستخدم، التقييم والتحسين التكراري</p>
@@ -1314,7 +1314,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_bac_v19');
+            const saved = localStorage.getItem('faiz_student_session_bac_v20');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -1384,7 +1384,7 @@
         }
 
         function saveSession() {
-            localStorage.setItem('faiz_student_session_bac_v19', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_bac_v20', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -1399,7 +1399,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_bac_v19');
+            localStorage.removeItem('faiz_student_session_bac_v20');
             location.reload();
         }
 
@@ -1432,20 +1432,35 @@
             });
         }
 
-        function openQuizSetup(type, unitNum = 1) {
-            activeQuizQuestions = [...fullFaizBank[unitNum]];
-            window.currentQuizTitle = `اختبار الفصل ${unitNum} - كتاب الفائز (20 سؤالاً)`;
+        // دالة خلط عشوائي للأسئلة (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function openQuizSetup(unitNum) {
+            // نسوّي نسخ وخلط للأسئلة عشان تطلع بشكل عشوائي مختلف كل مرة
+            let questionsPool = JSON.parse(JSON.stringify(fullFaizBank[unitNum]));
+            activeQuizQuestions = shuffleArray(questionsPool);
+            window.currentQuizTitle = `اختبار الفصل ${unitNum} - كتاب الفائز (20 سؤالاً عشوائياً)`;
             document.getElementById('modalQCount').innerText = activeQuizQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
         }
 
         function openCustomMultiQuizSetup() {
             const count = parseInt(document.getElementById('customUnitsCountSelect').value);
-            activeQuizQuestions = [];
+            let combinedPool = [];
             for (let u = 1; u <= count; u++) {
-                activeQuizQuestions.push(...fullFaizBank[u]);
+                combinedPool.push(...JSON.parse(JSON.stringify(fullFaizBank[u])));
             }
-            window.currentQuizTitle = `الاختبار الشامل المخصص (${count} فصول - ${activeQuizQuestions.length} سؤالاً)`;
+            // خلط الأسئلة الشاملة عشوائياً
+            activeQuizQuestions = shuffleArray(combinedPool);
+            window.currentQuizTitle = `الاختبار الشامل المخصص (${count} فصول - ${activeQuizQuestions.length} سؤالاً عشوائياً)`;
             document.getElementById('modalQCount').innerText = activeQuizQuestions.length;
             document.getElementById('setupModal').style.display = 'flex';
         }
@@ -1524,7 +1539,6 @@
                 const card = document.getElementById(`qcard-${qIdx}`);
                 const btns = card.querySelectorAll('.opt-btn');
                 
-                // تخزين حالة الصحة أو الخطأ في كارت السؤال لتسهيل الفلترة
                 if (selected === q.answer) {
                     score++;
                     card.setAttribute('data-status', 'correct');
@@ -1540,7 +1554,7 @@
             });
 
             document.getElementById('finishQuizBtn').style.display = 'none';
-            document.getElementById('filterBtnGroup').style.display = 'flex'; // إظهار أزرار التصفية
+            document.getElementById('filterBtnGroup').style.display = 'flex';
 
             const percentage = total > 0 ? Math.round((score / total) * 100) : 100;
 
@@ -1561,14 +1575,13 @@
                     <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
                     <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك: <strong>${score} من ${total}</strong></p>
                     <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
-                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">استخدم أزرار التصفية أدناه لعرض الأخطاء أو الإجابات الصحيحة للمراجعة.</p>
+                    <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 15px;">استخدم أزرار التصفية أدناه لعرض أخطائك أو إجاباتك الصحيحة للمراجعة.</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
             `;
             banner.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // دالة تصفية الأسئلة (الكل، الأخطاء فقط، الصحيحة فقط)
         function filterReview(status) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
@@ -1588,7 +1601,6 @@
             });
         }
 
-        // المساعد الذكي
         function getSmartAiReply(inputStr) {
             const str = inputStr.trim().toLowerCase();
 
@@ -1616,7 +1628,7 @@
                 return "من كتاب الفائز (الفصل الرابع): Persona تُمثل شخصية المستخدم المستهدف، ومبادئ CRAP تنظم التصميم بصرياً، ودورة PDCA تمثل منهجية التحسين المستمر للمواقع.";
             }
 
-            return "مرحباً بك. يمكنك سؤالي عن أي مصطلح أو درس في كتاب الفائز (مثل: الهلوسة، قانون مور، TLS، العمارة ثلاثية الطبقات، دورة PDCA) وسأشرحه لك تفصيلياً.";
+            return "مرحباً بك. يمكنك سؤالي عن أي مصطلح أو درس في كتاب الفائز وسأشرحه لك تفصيلياً.";
         }
 
         function sendAiMessage() {
