@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A&M Code | إدارة التحكم السحابية الآمنة</title>
+    <title>A&M Code | إدارة التحكم السحابية (Supabase)</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -47,7 +47,7 @@
             z-index: 0; opacity: 0.12; pointer-events: none;
         }
 
-        /* Supabase Auth Modal Overlay */
+        /* Password Auth Modal Overlay */
         .auth-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -91,8 +91,9 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             color: #fff;
-            text-align: right;
-            font-size: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
             outline: none;
             margin-bottom: 15px;
         }
@@ -212,7 +213,7 @@
         }
         .btn-action-main:active { transform: scale(0.95); }
 
-        /* Cards Style */
+        /* Order Cards & Account Cards & Portfolio Cards */
         .order-card, .account-card, .portfolio-card {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(10px);
@@ -324,18 +325,17 @@
 
     <canvas id="binary-canvas"></canvas>
 
-    <!-- Supabase Auth Login Modal -->
+    <!-- Password Modal -->
     <div id="auth-modal" class="auth-overlay">
         <div class="auth-card">
             <div style="font-size: 2.5rem; color: var(--neon-blue); margin-bottom: 10px;">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <h2>دخول الأدمن (Supabase Auth)</h2>
-            <p>أدخل إيميل وباسورد الأدمن الخاص بك وبمحمود</p>
-            <input type="email" id="admin-email" class="auth-input" placeholder="admin@amcode.com">
-            <input type="password" id="admin-password" class="auth-input" placeholder="كلمة المرور الآمنة">
-            <button class="btn-action-main" style="width: 100%; padding: 12px; font-size: 1rem;" onclick="loginAdmin()">تسجيل الدخول الآمن</button>
-            <p id="pass-error" style="color: var(--bright-red); font-size: 0.8rem; margin-top: 10px; display: none;">خطأ في البريد أو كلمة المرور!</p>
+            <h2>لوحة إدارة A&M Code</h2>
+            <p>أدخل كود المرور للوصول إلى التحكم</p>
+            <input type="password" id="pass-code-input" class="auth-input" placeholder="••••" maxlength="8">
+            <button class="btn-action-main" style="width: 100%; padding: 12px; font-size: 1rem;" onclick="checkAdminPassword()">دخول اللوحة</button>
+            <p id="pass-error" style="color: var(--bright-red); font-size: 0.8rem; margin-top: 10px; display: none;">كود المرور غير صحيح!</p>
         </div>
     </div>
 
@@ -345,8 +345,8 @@
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-sliders"></i></div>
                 <div>
-                    <div class="brand-title">إدارة A&M Code الفورية الآمنة</div>
-                    <div class="brand-sub">مربوط بـ Supabase Auth & RLS 🚀</div>
+                    <div class="brand-title">إدارة A&M Code الفورية</div>
+                    <div class="brand-sub">مربوط بقاعدة بيانات Supabase 🚀</div>
                 </div>
             </div>
             <button class="btn-nav-icon" id="open-drawer-btn"><i class="fa-solid fa-bars"></i></button>
@@ -403,26 +403,26 @@
             </div>
             
             <div class="info-card">
-                <h3>إضافة موقع أو فيديو جديد في "أعمالنا":</h3>
+                <h3>إضافة مشروع أو فيديو جديد لمعاينة الزبائن:</h3>
                 <br>
                 <div class="form-group">
                     <label>عنوان المشروع / الموقع:</label>
-                    <input type="text" id="port-title" placeholder="مثال: موقع مطعم أونلاين بريفيو فيديو">
+                    <input type="text" id="port-title" placeholder="مثال: منيو مطعم البرجر الذهبي أو بريفيو فيديو">
                 </div>
                 <div class="form-group">
                     <label>وصف مختصر للمشروع:</label>
-                    <input type="text" id="port-desc" placeholder="مثال: معاينة شكل الموقع ونظام الطلبات بالفيديو والتصميم">
+                    <input type="text" id="port-desc" placeholder="مثال: نظام طلبات تفاعلي مباشر ومعاينة بالصوت والفيديو">
                 </div>
                 <div class="form-group">
-                    <label>رابط الموقع/المعاينة (أو رابط فيديو يوتيوب/مباشر):</label>
+                    <label>رابط المعاينة (أو رابط يوتيوب/فيديو):</label>
                     <input type="text" id="port-link" placeholder="مثال: https://example.com أو رابط فيديو">
                 </div>
                 <div class="form-group">
-                    <label>صورة الموقع أو غلاف الفيديو (من الملفات):</label>
+                    <label>صورة الموقع أو غلاف الفيديو:</label>
                     <input type="file" id="port-img-file" accept="image/*" style="padding: 5px;">
                 </div>
                 <div class="form-group">
-                    <label>أو ملف فيديو شرح شكل الموقع (من الملفات):</label>
+                    <label>أو رفع ملف فيديو شرح الموقع (اختياري):</label>
                     <input type="file" id="port-video-file" accept="video/*" style="padding: 5px;">
                 </div>
                 <button class="btn-action-main" style="width:100%;" onclick="addPortfolioProject()"><i class="fa-solid fa-plus"></i> نشر في قسم أعمالنا</button>
@@ -563,52 +563,27 @@
     </div>
 
     <script>
+        // Check Admin Password
+        function checkAdminPassword() {
+            const input = document.getElementById('pass-code-input').value;
+            const errorMsg = document.getElementById('pass-error');
+            if (input === '8372') {
+                document.getElementById('auth-modal').style.display = 'none';
+                renderQueueOrders();
+                loadAccountsForNotifications();
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        document.getElementById('pass-code-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkAdminPassword();
+        });
+
         // Supabase Client Initialization
         const SUPABASE_URL = 'https://qmvnobnkzdqgasollkzv.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_AETlvXHTGMEtQPQCQOhEKQ_Bn7tJX0K';
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        // Check if Admin is already logged in via Supabase Session
-        async function checkInitialAuth() {
-            const { data: { session } } = await _supabase.auth.getSession();
-            if (session) {
-                document.getElementById('auth-modal').style.display = 'none';
-                renderQueueOrders();
-                loadAccountsForNotifications();
-            }
-        }
-        checkInitialAuth();
-
-        // Login using Supabase Auth (Email & Password)
-        async function loginAdmin() {
-            const email = document.getElementById('admin-email').value.trim();
-            const password = document.getElementById('admin-password').value.trim();
-            const errorMsg = document.getElementById('pass-error');
-
-            if(!email || !password) {
-                errorMsg.innerText = "يرجى إدخال البريد وكلمة المرور!";
-                errorMsg.style.display = 'block';
-                return;
-            }
-
-            const { data, error } = await _supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-
-            if (error) {
-                errorMsg.innerText = "خطأ في البريد أو كلمة المرور!";
-                errorMsg.style.display = 'block';
-            } else {
-                document.getElementById('auth-modal').style.display = 'none';
-                renderQueueOrders();
-                loadAccountsForNotifications();
-            }
-        }
-
-        document.getElementById('admin-password').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') loginAdmin();
-        });
 
         let phone1 = localStorage.getItem('p1') || "201148041323";
         let phone2 = localStorage.getItem('p2') || "201279364446";
@@ -672,12 +647,6 @@
             if (viewId === 'services-view') renderServices();
         }
 
-        // Secure Escape function against XSS
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-        }
-
         // Fetch Orders from Supabase (FIFO Ordered)
         async function renderQueueOrders() {
             const container = document.getElementById('queue-container');
@@ -714,38 +683,38 @@
                         <div class="queue-badge ${queueNumber === 1 ? 'priority-1' : ''}">
                             ${queueNumber === 1 ? '🔴 الأول بالدور (#1)' : 'الدور رقم #' + queueNumber}
                         </div>
-                        <div class="status-badge ${statusBadgeClass}">${escapeHtml(order.status || 'جديد')}</div>
+                        <div class="status-badge ${statusBadgeClass}">${order.status || 'جديد'}</div>
                     </div>
                     
                     <div class="client-header-flex">
-                        <img src="${escapeHtml(order.avatar || 'https://via.placeholder.com/50')}" class="client-avatar" alt="صورة العميل">
+                        <img src="${order.avatar || 'https://via.placeholder.com/50'}" class="client-avatar" alt="صورة العميل">
                         <div class="client-info">
-                            <strong>العميل:</strong> ${escapeHtml(order.name || 'عميل')} <br>
-                            <strong>الهاتف:</strong> ${escapeHtml(order.phone)}
+                            <strong>العميل:</strong> ${order.name || 'عميل'} <br>
+                            <strong>الهاتف:</strong> ${order.phone}
                         </div>
                     </div>
 
                     <div class="order-details-box">
-                        <strong>وصف الطلب:</strong> ${escapeHtml(order.desc || 'لا يوجد وصف نصي')}
+                        <strong>وصف الطلب:</strong> ${order.desc || 'لا يوجد وصف نصي'}
                     </div>
 
                     <div class="attachments-box">
                         <div class="attachments-title"><i class="fa-solid fa-paperclip"></i> مرفقات الزبون (فويس وصورة):</div>
-                        ${order.audioUrl ? `<audio controls class="audio-player"><source src="${escapeHtml(order.audioUrl)}" type="audio/webm">متصفحك لا يدعم المشغل الصوتي</audio>` : '<div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">⚪ لم يتم إرفاق فويس.</div>'}
-                        ${order.imgUrl ? `<img src="${escapeHtml(order.imgUrl)}" class="attached-img" onclick="window.open(this.src)" alt="صورة الطلب">` : '<div style="font-size:0.78rem; color:var(--text-muted);">⚪ لم يتم إرفاق صورة.</div>'}
+                        ${order.audioUrl ? `<audio controls class="audio-player"><source src="${order.audioUrl}" type="audio/webm">متصفحك لا يدعم المشغل الصوتي</audio>` : '<div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">⚪ لم يتم إرفاق فويس.</div>'}
+                        ${order.imgUrl ? `<img src="${order.imgUrl}" class="attached-img" onclick="window.open(this.src)" alt="صورة الطلب">` : '<div style="font-size:0.78rem; color:var(--text-muted);">⚪ لم يتم إرفاق صورة.</div>'}
                     </div>
 
                     <div class="card-bottom">
                         <div class="action-btns-group">
-                            <button class="btn-card-action btn-working" onclick="updateOrderStatus('${escapeHtml(order.id)}', 'نعمل عليه')"><i class="fa-solid fa-spinner"></i> نعمل عليه</button>
-                            <button class="btn-card-action btn-accept" onclick="updateOrderStatus('${escapeHtml(order.id)}', 'تم الإنجاز')"><i class="fa-solid fa-check"></i> تم الإنجاز</button>
-                            <button class="btn-card-action btn-reject" onclick="updateOrderStatus('${escapeHtml(order.id)}', 'مرفوض')"><i class="fa-solid fa-xmark"></i> رفض</button>
-                            <button class="btn-card-action btn-block" onclick="blockUser('${escapeHtml(order.phone)}', '${escapeHtml(order.id)}')"><i class="fa-solid fa-ban"></i> بلوك</button>
-                            <button class="btn-card-action btn-delete" onclick="deleteOrder('${escapeHtml(order.id)}')" title="حذف"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn-card-action btn-working" onclick="updateOrderStatus('${order.id}', 'نعمل عليه')"><i class="fa-solid fa-spinner"></i> نعمل عليه</button>
+                            <button class="btn-card-action btn-accept" onclick="updateOrderStatus('${order.id}', 'تم الإنجاز')"><i class="fa-solid fa-check"></i> تم الإنجاز</button>
+                            <button class="btn-card-action btn-reject" onclick="updateOrderStatus('${order.id}', 'مرفوض')"><i class="fa-solid fa-xmark"></i> رفض</button>
+                            <button class="btn-card-action btn-block" onclick="blockUser('${order.phone}', '${order.id}')"><i class="fa-solid fa-ban"></i> بلوك</button>
+                            <button class="btn-card-action btn-delete" onclick="deleteOrder('${order.id}')" title="حذف"><i class="fa-solid fa-trash"></i></button>
                         </div>
                         <div class="action-btns-group">
-                            <button class="btn-card-action btn-wa-a" onclick="shareWhatsApp('${phone1}', ${queueNumber}, '${escapeHtml(order.name)}', '${escapeHtml(order.desc)}')"><i class="fa-brands fa-whatsapp"></i> عبدو</button>
-                            <button class="btn-card-action btn-wa-m" onclick="shareWhatsApp('${phone2}', ${queueNumber}, '${escapeHtml(order.name)}', '${escapeHtml(order.desc)}')"><i class="fa-brands fa-whatsapp"></i> محمود</button>
+                            <button class="btn-card-action btn-wa-a" onclick="shareWhatsApp('${phone1}', ${queueNumber}, '${order.name}', '${order.desc}')"><i class="fa-brands fa-whatsapp"></i> عبدو</button>
+                            <button class="btn-card-action btn-wa-m" onclick="shareWhatsApp('${phone2}', ${queueNumber}, '${order.name}', '${order.desc}')"><i class="fa-brands fa-whatsapp"></i> محمود</button>
                         </div>
                     </div>
                 `;
@@ -753,13 +722,13 @@
             });
         }
 
-        // Render Added Accounts
+        // Render Added Accounts from Supabase
         async function renderAddedAccounts() {
             const container = document.getElementById('accounts-container');
             container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:20px;">جارٍ تحميل الحسابات...</div>`;
             
             let { data: accounts, error } = await _supabase.from('accounts').select('*');
-            if (error) {
+            if (error || !accounts) {
                 accounts = JSON.parse(localStorage.getItem('am_registered_accounts')) || [];
             }
 
@@ -774,16 +743,16 @@
                 card.className = 'account-card';
                 card.innerHTML = `
                     <div class="client-header-flex">
-                        <img src="${escapeHtml(acc.avatar || 'https://via.placeholder.com/50')}" class="client-avatar" alt="صورة الحساب">
+                        <img src="${acc.avatar || 'https://via.placeholder.com/50'}" class="client-avatar" alt="صورة الحساب">
                         <div class="client-info">
-                            <strong>اسم الحساب:</strong> ${escapeHtml(acc.name || 'بدون اسم')} <br>
-                            <strong>رقم الهاتف:</strong> ${escapeHtml(acc.phone)} <br>
-                            <strong>العمر:</strong> ${escapeHtml(acc.age || 'غير محدد')} | <strong>تاريخ التسجيل:</strong> ${escapeHtml(acc.regDate || 'حديث')}
+                            <strong>اسم الحساب:</strong> ${acc.name || 'بدون اسم'} <br>
+                            <strong>رقم الهاتف:</strong> ${acc.phone} <br>
+                            <strong>العمر:</strong> ${acc.age || 'غير محدد'} | <strong>تاريخ التسجيل:</strong> ${acc.regDate || 'حديث'}
                         </div>
                     </div>
                     <div style="display:flex; justify-content:flex-end; gap:6px; border-top:1px solid var(--border-color); padding-top:10px;">
-                        <button class="btn-card-action btn-wa-a" onclick="sendDirectNotificationToAccount('${escapeHtml(acc.phone)}', '${escapeHtml(acc.name)}')"><i class="fa-solid fa-bell"></i> إرسال إشعار خاص</button>
-                        <button class="btn-card-action btn-delete" onclick="deleteAccount('${escapeHtml(acc.id)}')"><i class="fa-solid fa-trash"></i> حذف الحساب</button>
+                        <button class="btn-card-action btn-wa-a" onclick="sendDirectNotificationToAccount('${acc.phone}', '${acc.name}')"><i class="fa-solid fa-bell"></i> إرسال إشعار خاص</button>
+                        <button class="btn-card-action btn-delete" onclick="deleteAccount('${acc.id}')"><i class="fa-solid fa-trash"></i> حذف الحساب</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -793,17 +762,17 @@
         /* --- PORTFOLIO & VIDEOS MANAGEMENT --- */
         async function renderPortfolio() {
             const container = document.getElementById('portfolio-list-container');
-            container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:20px;">جارٍ تحميل قسم أعمالنا من السحاب...</div>`;
+            container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:20px;">جارٍ تحميل قسم أعمالنا والفيديوهات من السحاب...</div>`;
 
             let { data: items, error } = await _supabase.from('portfolio').select('*').order('created_at', { ascending: false });
             
-            if (error) {
+            if (error || !items) {
                 items = JSON.parse(localStorage.getItem('am_portfolio')) || [];
             }
 
             container.innerHTML = '';
             if (!items || items.length === 0) {
-                container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:20px;">لا توجد مشاريع مضافة في الأعمال حتى الآن</div>`;
+                container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:20px;">لا توجد مشاريع أو فيديوهات مضافة في الأعمال حتى الآن</div>`;
                 return;
             }
 
@@ -812,13 +781,13 @@
                 card.className = 'portfolio-card';
                 card.innerHTML = `
                     <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
-                        ${item.video_url ? `<video controls style="width:120px; height:80px; border-radius:8px; border:1px solid var(--neon-blue);"><source src="${escapeHtml(item.video_url)}"></video>` : `<img src="${escapeHtml(item.img_url || 'https://via.placeholder.com/100')}" style="width:100px; height:70px; border-radius:8px; object-fit:cover; border:1px solid var(--neon-blue);" alt="صورة العمل">`}
+                        ${item.video_url ? `<video controls style="width:120px; height:80px; border-radius:8px; border:1px solid var(--neon-blue);"><source src="${item.video_url}"></video>` : `<img src="${item.img_url || 'https://via.placeholder.com/100'}" style="width:100px; height:70px; border-radius:8px; object-fit:cover; border:1px solid var(--neon-blue);" alt="صورة العمل">`}
                         <div style="flex:1;">
-                            <h4 style="color:var(--neon-blue); font-size:1rem; margin-bottom:4px;">${escapeHtml(item.title)}</h4>
-                            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">${escapeHtml(item.description || 'بدون وصف')}</p>
-                            ${item.link ? `<a href="${escapeHtml(item.link)}" target="_blank" style="color:var(--accent-green); font-size:0.8rem; text-decoration:none;"><i class="fa-solid fa-link"></i> ${escapeHtml(item.link)}</a>` : ''}
+                            <h4 style="color:var(--neon-blue); font-size:1rem; margin-bottom:4px;">${item.title}</h4>
+                            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">${item.description || item.desc || 'بدون وصف'}</p>
+                            ${item.link ? `<a href="${item.link}" target="_blank" style="color:var(--accent-green); font-size:0.8rem; text-decoration:none;"><i class="fa-solid fa-link"></i> ${item.link}</a>` : ''}
                         </div>
-                        <button class="btn-card-action btn-delete" onclick="deletePortfolioProject('${escapeHtml(item.id)}')"><i class="fa-solid fa-trash"></i> حذف</button>
+                        <button class="btn-card-action btn-delete" onclick="deletePortfolioProject('${item.id}')"><i class="fa-solid fa-trash"></i> حذف</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -844,33 +813,31 @@
                 const reader = new FileReader();
                 reader.onload = async function(e) {
                     video_url = e.target.result;
-                    await savePortfolioToSupabase(title, description, link, img_url, video_url);
+                    await savePortfolioItem(title, description, link, img_url, video_url);
                 };
                 reader.readAsDataURL(videoFileInput.files[0]);
             } else if (imgFileInput.files && imgFileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = async function(e) {
                     img_url = e.target.result;
-                    await savePortfolioToSupabase(title, description, link, img_url, video_url);
+                    await savePortfolioItem(title, description, link, img_url, video_url);
                 };
                 reader.readAsDataURL(imgFileInput.files[0]);
             } else {
-                await savePortfolioToSupabase(title, description, link, img_url, video_url);
+                await savePortfolioItem(title, description, link, img_url, video_url);
             }
         }
 
-        async function savePortfolioToSupabase(title, description, link, img_url, video_url) {
+        async function savePortfolioItem(title, description, link, img_url, video_url) {
             const newItem = { id: Date.now().toString(), title, description, link, img_url, video_url, created_at: new Date().toISOString() };
             
             const { error } = await _supabase.from('portfolio').insert([newItem]);
             
-            if (error) {
-                let localItems = JSON.parse(localStorage.getItem('am_portfolio')) || [];
-                localItems.unshift(newItem);
-                localStorage.setItem('am_portfolio', JSON.stringify(localItems));
-            }
-            
-            alert('تمت إضافة الموقع / الفيديو بنجاح في قسم أعمالنا!');
+            let localItems = JSON.parse(localStorage.getItem('am_portfolio')) || [];
+            localItems.unshift(newItem);
+            localStorage.setItem('am_portfolio', JSON.stringify(localItems));
+
+            alert('✅ تمت إضافة المشروع أو الفيديو في قسم أعمالنا بنجاح!');
             document.getElementById('port-title').value = '';
             document.getElementById('port-desc').value = '';
             document.getElementById('port-link').value = '';
@@ -880,7 +847,7 @@
         }
 
         async function deletePortfolioProject(id) {
-            if (confirm('هل أنت متأكد من حذف هذا العمل؟')) {
+            if (confirm('هل أنت متأكد من حذف هذا المشروع؟')) {
                 await _supabase.from('portfolio').delete().eq('id', id);
                 let localItems = JSON.parse(localStorage.getItem('am_portfolio')) || [];
                 localItems = localItems.filter(i => i.id !== id);
@@ -909,7 +876,7 @@
                 return;
             }
 
-            select.innerHTML = accounts.map(acc => `<option value="${escapeHtml(acc.phone)}">${escapeHtml(acc.name || 'بدون اسم')} (${escapeHtml(acc.phone)})</option>`).join('');
+            select.innerHTML = accounts.map(acc => `<option value="${acc.phone}">${acc.name || 'بدون اسم'} (${acc.phone})</option>`).join('');
         }
 
         function sendDirectNotificationToAccount(phone, name) {
@@ -947,7 +914,7 @@
             localNotifs.unshift(notifObj);
             localStorage.setItem('am_notifications', JSON.stringify(localNotifs));
 
-            alert('✅ تم إرسال الإشعار بنجاح إلى ' + (targetType === 'single' ? `الحساب (${targetPhone})` : 'جميع الحسابات!'));
+            alert('✅ تم إرسال الإشعار بنجاح!');
             document.getElementById('notif-title').value = '';
             document.getElementById('notif-body').value = '';
             renderNotificationsHistory();
@@ -977,11 +944,11 @@
                 card.className = 'info-card';
                 card.innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <strong style="color:var(--neon-blue); font-size:0.95rem;">📢 ${escapeHtml(n.title)}</strong>
-                        <span style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(n.sent_at || '')}</span>
+                        <strong style="color:var(--neon-blue); font-size:0.95rem;">📢 ${n.title}</strong>
+                        <span style="font-size:0.75rem; color:var(--text-muted);">${n.sent_at || ''}</span>
                     </div>
-                    <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:6px;">${escapeHtml(n.body)}</p>
-                    <div style="font-size:0.78rem; color:var(--accent-orange);">المستهدف: <strong>${escapeHtml(n.target_phone)}</strong></div>
+                    <p style="font-size:0.85rem; color:var(--text-main); margin-bottom:6px;">${n.body}</p>
+                    <div style="font-size:0.78rem; color:var(--accent-orange);">المستهدف: <strong>${n.target_phone}</strong></div>
                 `;
                 container.appendChild(card);
             });
@@ -1019,8 +986,8 @@
             }
             box.innerHTML = blockedList.map(item => `
                 <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-color);">
-                    <span>🚫 رقم محظور: <strong>${escapeHtml(item.phone)}</strong></span>
-                    <button class="btn-card-action btn-accept" onclick="unblockUser('${escapeHtml(item.id)}')">إلغاء الحظر</button>
+                    <span>🚫 رقم محظور: <strong>${item.phone}</strong></span>
+                    <button class="btn-card-action btn-accept" onclick="unblockUser('${item.id}')">إلغاء الحظر</button>
                 </div>
             `).join('');
         }
@@ -1047,8 +1014,8 @@
             const box = document.getElementById('services-list-box');
             box.innerHTML = services.map(s => `
                 <div class="info-card" style="display:flex; justify-content:space-between; align-items:center;">
-                    <div><strong>${escapeHtml(s.name)}</strong></div>
-                    <div style="color:var(--neon-blue); font-weight:800;">${escapeHtml(s.price)}</div>
+                    <div><strong>${s.name}</strong></div>
+                    <div style="color:var(--neon-blue); font-weight:800;">${s.price}</div>
                 </div>
             `).join('');
         }
