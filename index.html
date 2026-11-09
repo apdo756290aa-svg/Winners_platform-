@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A&M Code | لوحة التحكم السحابية الآمنة</title>
+    <title>A&M Code | تسجيل الدخول للوحة التحكم</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -47,13 +47,13 @@
             z-index: 0; opacity: 0.12; pointer-events: none;
         }
 
-        /* Supabase Auth Modal Overlay */
+        /* Supabase Auth Modal Overlay - Forced to display until authenticated */
         .auth-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 9, 20, 0.95);
-            backdrop-filter: blur(15px);
-            z-index: 9999;
+            background: rgba(5, 9, 20, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99999;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -61,9 +61,9 @@
         }
 
         .auth-card {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.98);
             border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 30px var(--glow-blue);
+            box-shadow: 0 0 40px var(--glow-blue);
             border-radius: 20px;
             padding: 30px;
             max-width: 400px;
@@ -75,7 +75,7 @@
             color: var(--neon-blue);
             font-weight: 800;
             margin-bottom: 10px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .auth-card p {
@@ -142,15 +142,16 @@
         .brand-title { font-weight: 800; font-size: 1rem; color: var(--text-main); }
         .brand-sub { font-size: 0.75rem; color: var(--neon-blue); }
 
-        .btn-nav-icon {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            width: 38px; height: 38px; border-radius: 8px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        .btn-nav-icon, .btn-logout {
+            background: rgba(255, 42, 95, 0.15);
+            border: 1px solid var(--bright-red);
+            color: var(--bright-red);
+            padding: 8px 12px; border-radius: 8px;
+            cursor: pointer; font-weight: 700; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 5px;
             transition: 0.3s;
         }
-        .btn-nav-icon:hover { border-color: var(--neon-blue); }
+        .btn-nav-icon { background: rgba(255, 255, 255, 0.05); border-color: var(--border-color); color: var(--text-main); width: 38px; height: 38px; justify-content: center; }
 
         /* Status Control Banner */
         .status-control-banner {
@@ -288,7 +289,6 @@
         .btn-wa-a { background: rgba(0, 210, 255, 0.15); color: var(--neon-blue); border: 1px solid rgba(0, 210, 255, 0.3); }
         .btn-wa-m { background: rgba(255, 42, 95, 0.15); color: var(--bright-red); border: 1px solid rgba(255, 42, 95, 0.3); }
 
-        /* General Info Cards */
         .info-card {
             background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-color);
             border-radius: 16px; padding: 18px; margin-bottom: 15px;
@@ -324,7 +324,7 @@
 
     <canvas id="binary-canvas"></canvas>
 
-    <!-- Supabase Auth Login Modal -->
+    <!-- Supabase Auth Login Modal (Forced open until verified) -->
     <div id="auth-modal" class="auth-overlay">
         <div class="auth-card">
             <div style="font-size: 2.5rem; color: var(--neon-blue); margin-bottom: 10px;">
@@ -349,14 +349,17 @@
                     <div class="brand-sub">مربوط بـ Supabase Auth & RLS 🚀</div>
                 </div>
             </div>
-            <button class="btn-nav-icon" id="open-drawer-btn"><i class="fa-solid fa-bars"></i></button>
+            <div style="display:flex; gap:8px;">
+                <button class="btn-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+                <button class="btn-nav-icon" id="open-drawer-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
         </div>
 
         <!-- Status Control Banner -->
         <div class="status-control-banner">
             <div>
                 <strong style="color:var(--neon-blue);"><i class="fa-solid fa-clock"></i> حالة استقبال الطلبات للزبائن:</strong>
-                <div style="font-size:0.8rem; color:var(--text-muted);">تعديل الحالة يتم حفظه سحابياً ويظهر للزبون فوراً</div>
+                <div style="font-size:0.80rem; color:var(--text-muted);">تعديل الحالة يتم حفظه سحابياً ويظهر للزبون فوراً</div>
             </div>
             <select id="global-system-status" class="status-select" onchange="updateGlobalStatus()">
                 <option value="open">🟢 الطلبات مفتوحة واستقبال عادي</option>
@@ -564,14 +567,17 @@
         const SUPABASE_KEY = 'sb_publishable_AETlvXHTGMEtQPQCQOhEKQ_Bn7tJX0K';
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // Check Initial Authentication via Supabase Session
+        // Forced Check Session on Load: Modal stays open unless active session exists
         async function checkInitialAuth() {
             const { data: { session } } = await _supabase.auth.getSession();
+            const authModal = document.getElementById('auth-modal');
             if (session) {
-                document.getElementById('auth-modal').style.display = 'none';
+                authModal.style.display = 'none';
                 loadSystemSettings();
                 renderQueueOrders();
                 loadAccountsForNotifications();
+            } else {
+                authModal.style.display = 'flex';
             }
         }
         checkInitialAuth();
@@ -601,6 +607,12 @@
             }
         }
 
+        // Logout Function
+        async function logoutAdmin() {
+            await _supabase.auth.signOut();
+            location.reload();
+        }
+
         document.getElementById('admin-password').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') loginAdmin();
         });
@@ -610,7 +622,7 @@
 
         // Load & Save System Settings in Supabase
         async function loadSystemSettings() {
-            let { data, error } = await _supabase.from('settings').select('*').eq('key', 'system_status').single();
+            let { data } = await _supabase.from('settings').select('*').eq('key', 'system_status').single();
             if(data && data.value) {
                 document.getElementById('global-system-status').value = data.value;
             }
@@ -684,7 +696,6 @@
             if (viewId === 'services-view') renderServices();
         }
 
-        // Secure Escape against XSS and single quote breaking
         function escapeHtml(str) {
             if (!str) return '';
             return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
@@ -997,7 +1008,7 @@
         function renderServices() {
             const box = document.getElementById('services-list-box');
             box.innerHTML = services.map(s => `
-                <div class="info-card" style="display:flex; justify-content:space-between; align-items:center;">
+                - <div class="info-card" style="display:flex; justify-content:space-between; align-items:center;">
                     <div><strong>${escapeHtml(s.name)}</strong></div>
                     <div style="color:var(--neon-blue); font-weight:800;">${escapeHtml(s.price)}</div>
                 </div>
