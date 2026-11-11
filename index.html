@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - النسخة التفاعلية الخارقة (v7)</title>
+    <title>منصة الفائز الذكية - النسخة السحابية المبرمجة بـ Firebase (v8)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -502,6 +502,13 @@
             align-self: flex-end;
             color: #e2fbf7;
         }
+
+        .sync-status {
+            font-size: 0.75rem;
+            color: var(--correct-clr);
+            text-align: left;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -509,7 +516,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز الذكية (v7 الخارقة)
+                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز السحابية (v8 Firebase)
             </div>
             <button class="menu-toggle-btn" id="openMenuBtn" onclick="toggleMobileMenu(true)" style="display: none;">
                 <i class="fa-solid fa-bars"></i> القائمة
@@ -520,7 +527,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="menu-header">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> قائمة المنصة
+                <i class="fa-solid fa-graduation-cap"></i> قائمة المنصة السحابية
             </div>
             <button class="close-menu-btn" onclick="toggleMobileMenu(false)">
                 <i class="fa-solid fa-xmark"></i>
@@ -556,7 +563,7 @@
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز الذكية - نسخة التحدي (v7)</p>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">متصل بقاعدة بيانات Firebase السحابية (v8)</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -578,7 +585,7 @@
                         <input type="tel" id="parentPhone" maxlength="11" required placeholder="010xxxxxxx / 011 / 012 / 015">
                         <div id="phoneErr" class="error-msg">رقم غير صحيح! يجب أن يبدأ بـ (010, 011, 012, 015) ويتكون من 11 رقماً.</div>
                     </div>
-                    <button type="submit" class="btn-action">الدخول إلى المنصة</button>
+                    <button type="submit" class="btn-action">الدخول إلى المنصة السحابية</button>
                 </form>
             </div>
         </div>
@@ -590,10 +597,11 @@
                 <p style="margin-bottom: 6px;"><strong>اسم الطالب:</strong> <span id="pName"></span></p>
                 <p style="margin-bottom: 6px;"><strong>المسار الدراسي:</strong> <span id="pClass"></span></p>
                 <p><strong>رقم ولي الأمر:</strong> <span id="pPhone"></span></p>
+                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> البيانات متزامنة مع Firebase السحابي</div>
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج (محفوظ تلقائياً)</h3>
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج (محفوظ سحابياً)</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -811,6 +819,9 @@
     </div>
 
     <script>
+        // رابط قاعدة بيانات Firebase الخاصة بك
+        const FIREBASE_URL = "https://apdowebsite-99ed7-default-rtdb.europe-west1.firebasedatabase.app";
+
         const fullFaizBank = {
             1: [
                 { question: "لماذا كان حاسوب ENIAC التاريخي يستهلك طاقة هائلة ويولد حرارة مفرطة مقارنة بحواسيب اليوم؟", options: ["لاعتماده على الصمامات المفرغة الضخمة التي تتطلب طاقة عالية للتشغيل", "لاستخدامه معالجات كمومية فائقة السرعة", "لأنه كان يعمل بالبطاريات الشمسية", "لاعتماده على التخزين السحابي المركزي"], answer: 0, explanation: "الصمامات المفرغة كانت تتطلب طاقة ضخمة وتولد حرارة هائلة أثناء التبديل والتضخيم." },
@@ -920,7 +931,7 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_v7');
+            const saved = localStorage.getItem('faiz_student_session_v8');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
@@ -952,6 +963,23 @@
             document.getElementById('calculatedQCount').innerText = totalQ;
         }
 
+        // حفظ البيانات محلياً وفي فايربيز سحابياً
+        async function saveSessionToCloud() {
+            localStorage.setItem('faiz_student_session_v8', JSON.stringify(studentSession));
+            try {
+                const safeKey = studentSession.name.replace(/[.#$[\]]/g, "_");
+                await fetch(`${FIREBASE_URL}/students/${safeKey}.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(studentSession)
+                });
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> تم المزامنة مع Firebase بنجاح!`;
+            } catch (err) {
+                console.error("خطأ في المزامنة السحابية:", err);
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-clr);"></i> تعمل بوضع التخزين المحلي الاحتياطي`;
+            }
+        }
+
         function handleLogin(e) {
             e.preventDefault();
             const nameInput = document.getElementById('studentName').value.trim();
@@ -975,7 +1003,7 @@
             if (!isValid) return;
 
             let existingScores = [];
-            const savedData = localStorage.getItem('faiz_student_session_v7');
+            const savedData = localStorage.getItem('faiz_student_session_v8');
             if (savedData) {
                 const parsed = JSON.parse(savedData);
                 if (parsed.name === nameInput) {
@@ -990,12 +1018,8 @@
                 scores: existingScores
             };
 
-            saveSession();
+            saveSessionToCloud();
             showMainDashboard();
-        }
-
-        function saveSession() {
-            localStorage.setItem('faiz_student_session_v7', JSON.stringify(studentSession));
         }
 
         function showMainDashboard() {
@@ -1009,7 +1033,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_v7');
+            localStorage.removeItem('faiz_student_session_v8');
             location.reload();
         }
 
@@ -1211,7 +1235,7 @@
                 date: new Date().toLocaleDateString('ar-EG') + ' ' + new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'})
             });
 
-            saveSession();
+            saveSessionToCloud();
             renderScoreHistory();
 
             document.getElementById('resultBannerContainer').innerHTML = `
@@ -1252,7 +1276,7 @@
 
             // فحص دلالي شامل لأي صياغة عن الهلوسة
             if (raw.includes('هلوسة') || raw.includes('الهلوسة') || raw.includes('بتهلوس') || raw.includes('يألف') || raw.includes('اختلاق')) {
-                return "يا سيدي بص باختصار: ظاهرة 'الهلوسة' في الذكاء الاصطناعي التوليدي (GenAI) معناه إن النموذج بدل ما يقولك 'معرفش'، بيألف معلومات خطأ ويديهالك بثقة عمياء ومقنعة جداً؛ وده بيحصل لأنه بيتنبأ بالكلمات إحصائياً مش بيتحقق من الحقيقة واقعياً!";
+                return "يا سيدي بص باختصار: ظاهرة 'الهلوسة' في الذكاء الاصطناعي التوليدي (GenAI) معناه إن النموذج بدل ما يقولك 'معرفش'، بيألف معلومات خطأ ويديهالك بثقة عمياء ومقنعة جداً؛ ده بيحصل لأنه بيتنبأ بالكلمات إحصائياً مش بيتحقق من الحقيقة واقعياً!";
             }
             if (raw.includes('مور') || raw.includes('ترانزستور') || raw.includes('كمومي') || raw.includes('الكل سنتين')) {
                 return "قبايل قانون مور! ده القانون اللي بيقول إن عدد الترانزستورات بيتضاعف كل سنتين. المشكلة دلوقتي إننا لما صغرناها لأبعاد ذرية قريبة من النانو، ظهرت 'ظاهرة النفق الكمومي' والإلكترونات بدأت تسرب تيار وحرارة، وده خلى الشركات تبتكر تصاميم ثلاثية الأبعاد عشان تحل الأزمة دي.";
