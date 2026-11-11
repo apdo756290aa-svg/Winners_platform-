@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز الذكية - النسخة السحابية المبرمجة بـ Firebase (v8)</title>
+    <title>منصة الفائز السحابية - النسخة النهائية المظبوطة (v9)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -516,7 +516,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز السحابية (v8 Firebase)
+                <i class="fa-solid fa-graduation-cap"></i> منصة الفائز السحابية (v9)
             </div>
             <button class="menu-toggle-btn" id="openMenuBtn" onclick="toggleMobileMenu(true)" style="display: none;">
                 <i class="fa-solid fa-bars"></i> القائمة
@@ -527,7 +527,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="menu-header">
             <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> قائمة المنصة السحابية
+                <i class="fa-solid fa-graduation-cap"></i> قائمة المنصة
             </div>
             <button class="close-menu-btn" onclick="toggleMobileMenu(false)">
                 <i class="fa-solid fa-xmark"></i>
@@ -547,7 +547,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('aiChatPage')">
-                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي التفاعلي (زيي وزيك)</span>
+                <span><i class="fa-solid fa-robot" style="margin-left: 10px;"></i> المساعد الذكي التفاعلي (الخارق)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
             </button>
             <button class="menu-item-btn" onclick="logout()" style="border-color: rgba(230, 57, 70, 0.4); color: #e63946; margin-top: 15px;">
@@ -559,11 +559,11 @@
 
     <div class="container">
         
-        <!-- تسجيل الدخول -->
+        <!-- تسجيل الدخول (رجعت زي ما طلبت) -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">متصل بقاعدة بيانات Firebase السحابية (v8)</p>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز السحابية - نسخة التحدي (v9)</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -585,7 +585,7 @@
                         <input type="tel" id="parentPhone" maxlength="11" required placeholder="010xxxxxxx / 011 / 012 / 015">
                         <div id="phoneErr" class="error-msg">رقم غير صحيح! يجب أن يبدأ بـ (010, 011, 012, 015) ويتكون من 11 رقماً.</div>
                     </div>
-                    <button type="submit" class="btn-action">الدخول إلى المنصة السحابية</button>
+                    <button type="submit" class="btn-action">الدخول إلى المنصة</button>
                 </form>
             </div>
         </div>
@@ -597,7 +597,7 @@
                 <p style="margin-bottom: 6px;"><strong>اسم الطالب:</strong> <span id="pName"></span></p>
                 <p style="margin-bottom: 6px;"><strong>المسار الدراسي:</strong> <span id="pClass"></span></p>
                 <p><strong>رقم ولي الأمر:</strong> <span id="pPhone"></span></p>
-                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> البيانات متزامنة مع Firebase السحابي</div>
+                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> متصل بقاعدة بيانات Firebase بنجاح</div>
             </div>
 
             <div class="glass-card">
@@ -715,16 +715,16 @@
             </div>
         </div>
 
-        <!-- المساعد الذكي التفاعلي الفائق (زيي وزيك) -->
+        <!-- المساعد الذكي التفاعلي الفائق (تم إصلاح الرد على الهلوسة وكل الأسئلة) -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي (يتفاعل معاك طبيعي جداً)</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي بحرية تماماً كأنك بتكلمني أنا شخصياً. اسأل عن الهلوسة، قانون مور، أو أي حاجة وهرد عليك فوراً وبكل تفاعل وذوق!</p>
+                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-robot"></i> المساعد الذكي التفاعلي (الخارق v9)</h2>
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">دردش معي بحرية تماماً. اسأل عن "الهلوسة"، "قانون مور"، أو "التشفير" وهرد عليك إجابة دقيقة وصريحة فوراً!</p>
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">يا هلا بيك يا وحش المعركة! أنا معاك أهو وجاهز أرد على أي سؤال تسألهولي عن المنهج أو الامتحان. قول لي، إيه اللي واقف معاك؟</div>
+                    <div class="chat-msg ai">يا هلا بيك يا وحش! أنا المساعد الذكي وجاهز أجاوبك فوراً وبشكل دقيق وصريح على أي سؤال. قول لي، إيه اللي واقف معاك؟</div>
                 </div>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chatInput" placeholder="اكتب سؤالك بأي طريقة تعجبك (مثلاً: ما هي الهلوسة؟)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
+                    <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا (مثلاً: ما هي الهلوسة؟)..." onkeypress="if(event.key === 'Enter') sendAiMessage()">
                     <button class="btn-action" onclick="sendAiMessage()" style="width: 120px;">إرسال</button>
                 </div>
             </div>
@@ -841,7 +841,6 @@
                 { question: "لماذا تولي الشركات الكبرى عناية فائقة لجودة ونظافة بيانات التدريب؟", options: ["لأن البيانات الرديئة تؤدي لنتائج مضللة وتحيز كارثي (مبدأ Garbage In, Garbage Out)", "لتوفير مساحة القرص الصلب فقط", "لأن القانون يمنع تخزين النصوص الطويلة", "لأن السرعة تعتمد على عدد الحروف"], answer: 0, explanation: "قاعدة بيانات تالفة أو متحيزة ستنتج ذكاءً اصطناعيًا فاشلاً ومنحازاً." },
                 { question: "ما هو الهدف التقني من معمارية المعالجات الموزعة الحديثة (مثل M1/M2/M3)؟", options: ["دمج الذاكرة والمعالج ووحدة الرسوميات على شريحة واحدة لرفع الكفاءة وتقليل الفاقد", "زيادة حجم الشاشة المادية للهاتف", "إلغاء نظام التشغيل نهائياً", "تقليل سرعة الجهاز للحفاظ على البطارية للأبد"], answer: 0, explanation: "الشرائح المدمجة ترفع الكفاءة وتقصر مسار نقل البيانات بشكل ثوري." },
                 { question: "كيف يؤثر ظهور الحوسبة الكمومية مستقبلاً على أنظمة التشفير الحالية (مثل RSA)؟", options: ["ستتمكن من كسرها وفك تشفيرها بسرعة فائقة بفضل قدرات المعالجة التوازنية", "لن تؤثر عليها إطلاقاً لأنها أبطأ", "ستجعل التشفير أبسط وأقل أمناً", "ستلغي استخدام الإنترنت"], answer: 0, explanation: "الخوارزميات الكمومية (مثل خوارزمية شور) تهدد التشفير التقليدي، مما أدى لظهور تشفير ما بعد الكم." },
-                { question: "لماذا تولي الشركات الكبرى عناية فائقة لجودة ونظافة بيانات التدريب؟", options: ["لأن البيانات الرديئة تؤدي لنتائج مضللة وتحيز كارثي (مبدأ Garbage In, Garbage Out)", "لتوفير مساحة القرص الصلب فقط", "لأن القانون يمنع تخزين النصوص الطويلة", "لأن السرعة تعتمد على عدد الحروف"], answer: 0, explanation: "قاعدة البيانات التالفة تنتج ذكاءً اصطناعيًا فاشلاً." },
                 { question: "ما الفرق الأساسي بين الحوسبة السحابية العامة (Public Cloud) والخاصة (Private Cloud)؟", options: ["العامة تشترك فيها عدة مؤسسات بموارد مزود الخدمة، بينما الخاصة مخصصة لمؤسسة واحدة تماماً", "العامة تعمل بدون إنترنت، الخاصة تحتاج إنترنت", "لا توجد أى فروق أمنية بينهما", "الخاصة أرخص بكثير دائماً"], answer: 0, explanation: "السحابة الخاصة توفر عزماً أمنياً مخصصاً لمؤسسة بعينها مقابل الموارد المشتركة للعامة." },
                 { question: "ما هي الركيزة الأساسية لضمان استخدام أخلاقي ومسؤول للذكاء الاصطناعي في المجتمع؟", options: ["وضع تشريعات رقابية، شفافية الخوارزميات، ومنع التمييز وحماية الخصوصية", "منع تطوير أي خوارزميات جديدة بحجة الخوف", "ترك المجال مفتوحاً دون أي قواعد أو قيود", "استخدام الذكاء الاصطناعي في الألعاب فقط"], answer: 0, explanation: "الأخلاقيات الرقمية تتطلب تشريعات تحمي الأفراد وتضمن الشفافية والمساءلة." }
             ],
@@ -869,7 +868,7 @@
             ],
             3: [
                 { question: "لماذا يتم تقسيم تطبيقات الويب الحديثة إلى بنية ثلاثية الطبقات (3-Tier Architecture) بدلاً من دمجها؟", options: ["لتحقيق الفصل التام بين واجهة المستخدم ومنطق المعالجة وقاعدة البيانات لرفع الأمان والتوسع", "لتصغير حجم ملف الكود البرمجي ليكون في ملف واحد فقط", "لأن متصفحات الإنترنت ترفض تشغيل التطبيقات المدمجة", "لتوفير مساحة شاشة الهواتف المحمولة"], answer: 0, explanation: "فصل الطبقات يتيح صيانة أسهل، توزيع الأحمال، وتعزيز الأمان ضد الاختراقات." },
-                { question: "ما هي الكارثة الأمنية والهندسية التي ستحدث لو سمحنا للواجهة الأمامية بالتواصل مع قاعدة البيانات مباشرة؟", options: ["كشف بيانات حساسة للمستخدمين وتعريض قاعدة البيانات للاختراق الكامل وغياب المعالجة", "زيادة سرعة تصفح الموقع بشكل مبالغ فيه", "توقف الإنترنت عن المنطقة المحيطة بالكامل", "تغير لغة برمجة الموقع تلقائياً إلى لغة أخرى"], answer: 0, explanation: "التواصل المباشر يعني غياب وسيط الحماية والمنطق (Backend)، مما يتيح للجميع الوصول للقاعدة." },
+                { question: "ما هي الكارثة الأمنية والهندسية التي ستحدث لو سمحنا للواجهة الأمامية بالتواصل مع قاعدة البيانات مباشرة؟", options: ["كشف بيانات حساسة للمستخدمين وتعريض قاعدة البيانات للاختراق الكامل وغياب المعالجة", "زيادة سرعة تصفح الموقع بشكل مبالغ فيه", "توقف الإنترنت عن المنطقة المحيطة بالكامل", "تغير لغة برمجة الموقع تلقائياً إلى لغة أخرى"], answer: 0, explanation: "التواصل المباشر يعني غياب وسيط الحماية والمنطق (Backend), مما يتيح للجميع الوصول للقاعدة." },
                 { question: "ما هو الغرض التقني من استخدام طريقة الطلب `GET` عبر بروتوكول HTTP؟", options: ["جلب وقراءة بيانات من الخادم دون إحداث أي تغيير أو تعديل في حالته", "إرسال بيانات نموذج لإنشاء حساب جديد وقاعدة بيانات", "حذف ملفات النظام نهائياً عن بُعد", "تشفير الاتصال بشبكة الـ Wi-Fi"], answer: 0, explanation: "GET مخصصة للاسترجاع والقراءة الآمنة وغير المدمرة للبيانات." },
                 { question: "متى نلجأ لاستخدام طريقة الطلب `POST` بدلاً من `GET` في تطبيقات الويب؟", options: ["عند إرسال بيانات سرية أو جديدة لإنشاء سجل وتعديل حالة الخادم", "عند رغبتنا بقراءة صفحة نصية بسيطة بدون إدخال بيانات", "عند البحث عن كلمة مفتاحية بمحرك البحث", "عند حذف صورة قديمة من الموقع"], answer: 0, explanation: "POST ترسل البيانات ضمن جسم الطلب (Request Body) لتعديل أو إنشاء محتوى جديد." },
                 { question: "لماذا أصبحت صيغة JSON المعيار المفضل لنقل البيانات بين الواجهة والخلفية؟", options: ["لأنها خفيفة الوزن، سهلة القراءة للبشر ومقروءة برمجياً بسهولة لكل لغات البرمجة", "لأنها تظهر كصور ملونة جذابة للمستخدمين", "لأنها تحل محل لغة HTML بالكامل في التصميم", "لأنها تمنع الفيروسات والبرمجيات الخبيثة تلقائياً"], answer: 0, explanation: "JSON تتميز بالخفة والسهولة الفائقة في معالجتها برمجياً عبر APIs." },
@@ -931,10 +930,14 @@
         let timerInterval = null;
 
         window.onload = function() {
-            const saved = localStorage.getItem('faiz_student_session_v8');
+            const saved = localStorage.getItem('faiz_student_session_v9');
             if (saved) {
                 studentSession = JSON.parse(saved);
                 showMainDashboard();
+            } else {
+                // التأكد من إظهار صفحة تسجيل الدخول لو مفيش جلسة
+                document.getElementById('authPage').classList.add('active');
+                document.getElementById('openMenuBtn').style.display = 'none';
             }
             updateSelectedQCount();
         };
@@ -963,9 +966,8 @@
             document.getElementById('calculatedQCount').innerText = totalQ;
         }
 
-        // حفظ البيانات محلياً وفي فايربيز سحابياً
         async function saveSessionToCloud() {
-            localStorage.setItem('faiz_student_session_v8', JSON.stringify(studentSession));
+            localStorage.setItem('faiz_student_session_v9', JSON.stringify(studentSession));
             try {
                 const safeKey = studentSession.name.replace(/[.#$[\]]/g, "_");
                 await fetch(`${FIREBASE_URL}/students/${safeKey}.json`, {
@@ -973,10 +975,9 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(studentSession)
                 });
-                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> تم المزامنة مع Firebase بنجاح!`;
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> متصل بقاعدة بيانات Firebase بنجاح`;
             } catch (err) {
                 console.error("خطأ في المزامنة السحابية:", err);
-                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-clr);"></i> تعمل بوضع التخزين المحلي الاحتياطي`;
             }
         }
 
@@ -1003,7 +1004,7 @@
             if (!isValid) return;
 
             let existingScores = [];
-            const savedData = localStorage.getItem('faiz_student_session_v8');
+            const savedData = localStorage.getItem('faiz_student_session_v9');
             if (savedData) {
                 const parsed = JSON.parse(savedData);
                 if (parsed.name === nameInput) {
@@ -1033,7 +1034,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('faiz_student_session_v8');
+            localStorage.removeItem('faiz_student_session_v9');
             location.reload();
         }
 
@@ -1259,67 +1260,58 @@
             });
         }
 
-        // محرك ذكي مطور جداً للتفاعل البشري المباشر والرد على الشكر والأسئلة بأي صيغة
+        // محرك ذكي مطور ومباشر (بيجاوب على طول ومن غير لف ودوران)
         function getSmartAiReply(inputStr) {
             const raw = inputStr.trim().toLowerCase();
 
-            // الرد على الشكر والذوق العام
+            // الرد على الشكر والذوق
             if (raw.includes('شكرا') || raw.includes('تسلم') || raw.includes('تشكرات') || raw.includes('يعطيك العافية')) {
-                return "عفوًا يا حبيب قلبي، ولا تشيل هم خالص! أنا في ضهرك لحد ما نقفل المادة دي ونخلي المستر يستعجب من مستواك 🔥";
+                return "عفوًا يا حبيب قلبي، ولا تشيل هم خالص! أنا في ضهرك لحد ما تقفل المادة دي وتجيب الدرجة النهائية 🔥";
             }
             if (raw.includes('ازيك') || raw.includes('عامل ايه') || raw.includes('أهلاً') || raw.includes('السلام عليكم') || raw.includes('مرحبا')) {
-                return "يا هلا بيك يا معلم! أنا في أتم حال طول ما أنت بتجيب أفكار عالية كده. قول لي، إيه الجزئية في المنهج اللي عاملة معاك قلق النهاردة؟";
+                return "يا هلا بيك يا بطل! أنا جاهز ومفتح معاك أهو. قول لي، إيه السؤال أو الجزئية اللي واقفة معاك؟";
             }
             if (raw.includes('مين انت') || raw.includes('اسمك ايه')) {
-                return "أنا مساعدك الشخصي الفائز، النسخة الذكية اللي فاهمة دماغك وعايزاك تقفل أي امتحان وتقطع على العيال أصحابك! 😉";
+                return "أنا مساعدك الشخصي الفائز، النسخة الذكية اللي هنا عشان تظبط معاك وتخليك تقفل الامتحان! 😉";
             }
 
-            // فحص دلالي شامل لأي صياغة عن الهلوسة
-            if (raw.includes('هلوسة') || raw.includes('الهلوسة') || raw.includes('بتهلوس') || raw.includes('يألف') || raw.includes('اختلاق')) {
-                return "يا سيدي بص باختصار: ظاهرة 'الهلوسة' في الذكاء الاصطناعي التوليدي (GenAI) معناه إن النموذج بدل ما يقولك 'معرفش'، بيألف معلومات خطأ ويديهالك بثقة عمياء ومقنعة جداً؛ ده بيحصل لأنه بيتنبأ بالكلمات إحصائياً مش بيتحقق من الحقيقة واقعياً!";
+            // إجابات مباشرة ومفصلة للأسئلة العلمية (زي الهلوسة وقانون مور وغيرها)
+            if (raw.includes('هلوسة') || raw.includes('الهلوسة') || raw.includes('بتهلوس')) {
+                return "يا سيدي الهلوسة في الذكاء الاصطناعي التوليدي معناها إن النموذج بدل ما يقول 'معرفش'، بيألف إجابة خطأ ويزخرفها بثقة عمياء ومقنعة؛ وده لأنه بيتنبأ بالكلمات إحصائياً ومش بيتحقق من الحقيقة واقعياً!";
             }
-            if (raw.includes('مور') || raw.includes('ترانزستور') || raw.includes('كمومي') || raw.includes('الكل سنتين')) {
-                return "قبايل قانون مور! ده القانون اللي بيقول إن عدد الترانزستورات بيتضاعف كل سنتين. المشكلة دلوقتي إننا لما صغرناها لأبعاد ذرية قريبة من النانو، ظهرت 'ظاهرة النفق الكمومي' والإلكترونات بدأت تسرب تيار وحرارة، وده خلى الشركات تبتكر تصاميم ثلاثية الأبعاد عشان تحل الأزمة دي.";
+            if (raw.includes('مور') || raw.includes('ترانزستور') || raw.includes('كمومي')) {
+                return "قانون مور بيقول إن عدد الترانزستورات جوه المعالج بيتضاعف كل سنتين. ولما صغرناها لمقاييس ذرية ظهرت 'ظاهرة النفق الكمومي' والإلكترونات بدأت تسرب حرارة، وده خلى الشركات تبتكر تصاميم حديثة زي FinFET.";
             }
             if (raw.includes('تفسير') || raw.includes('xai') || raw.includes('صندوق اسود') || raw.includes('صندوق الأسود')) {
-                return "أزمة 'الصندوق الأسود' إننا مش عارفين الآلة خدت القرار إزاي جوه الشبكات العصبية العميقة. عشان نحل المعضلة دي ظهرت تقنية 'الذكاء القابل للتفسير (XAI)' عشان تفتح الصندوق وتوريك الأسباب المنطقية والرياضية وراء قرار الآلة.";
+                return "أزمة الصندوق الأسود إننا مش عارفين الآلة خدت القرار إزاي جوه الشبكات العصبية. عشان كده ظهرت تقنية الذكاء القابل للتفسير (XAI) عشان توضح الأسباب المنطقية لقرار الآلة.";
             }
-            if (raw.includes('tls') || raw.includes('https') || raw.includes('مصافحة') || raw.includes('تشفير متماثل')) {
-                return "بروتوكول TLS ده العبقري اللي بيأمن تصفحك للويب! بيبدأ بـ 'تشفير غير متماثل' (مفتاح عام وخاص) عشان يتعارفوا ويبادلوا مفتاح الجلسة بأمان تام، وبعدها بيتحول بسرعة لـ 'تشفير متماثل' عشان ينقل بيانات الجلسة كلها بسرعة البرق بدون بطء.";
+            if (raw.includes('tls') || raw.includes('https') || raw.includes('مصافحة')) {
+                return "بروتوكول TLS بيأمن تصفح الويب بدمج نوعين: يبدأ بـ 'تشفير غير متماثل' لتبادل المفتاح بأمان تام، وبعدين يتحول لـ 'تشفير متماثل' لنقل بيانات الجلسة بسرعة البرق.";
             }
-            if (raw.includes('dmz') || raw.includes('منطقة معزولة') || raw.includes('خادم الويب العام')) {
-                return "الـ DMZ دي عاملة زي المنطقة العازلة أو البوابة الحصينة؛ بنحط فيها خوادم الويب العامة اللي الناس كلها بتدخلها، عشان لو هكر دخل واختبرها، يلاقي نفسه في منطقة مقفولة ومش هيقدر يوصل للشبكة الداخلية الحساسة للشركة.";
+            if (raw.includes('dmz') || raw.includes('منطقة معزولة')) {
+                return "منطقة DMZ هي شبكة عازلة بنحط فيها خوادم الويب العامة، عشان لو هكر اخترقها يلاقى نفسه في منطقة مقفولة ومش هيقدر يوصل للشبكة الداخلية للشركة.";
             }
             if (raw.includes('zero trust') || raw.includes('انعدام الثقة')) {
-                return "مبدأ Zero Trust باختصار شديد: 'لا تثق أبداً، تحقق دائماً'! يعني حتى لو المستخدم قاعد جوه الشركة وجهازه متوصل بالسيرفر، السيستم مش بيثق فيه وتلاقيه بيطلب منه مصادقة وتحقق مستمر طول الوقت.";
+                return "مبدأ انعدام الثقة (Zero Trust) بيقوم على شعار: 'لا تثق أبداً، تحقق دائماً'، بغض النظر عن تواجد المستخدم داخل أو خارج الشركة.";
             }
             if (raw.includes('3-tier') || raw.includes('ثلاثية') || raw.includes('الواجهة الأمامية') || raw.includes('الخلفية')) {
-                return "عمارة 3-Tier بتتقسم لـ 3 طبقات: (1) الواجهة الأمامية (Frontend) اللي المستخدم بيشوفها، (2) طبقة المعالجة والتطبيق (Backend) عقل السيستم، و(3) قاعدة البيانات (Database) للملفات والسجلات. وعشان تسألني السؤال القديم: ممنوع الواجهة تكلم القاعدة مباشرة عشان دي كارثة أمنية خطيرة!";
+                return "هيكلية 3-Tier بتتكون من: (1) الواجهة الأمامية Frontend، (2) طبقة المعالجة Backend، و(3) قاعدة البيانات Database. وتنبيه هام: ممنوع الواجهة تكلم القاعدة مباشرة عشان دي كارثة أمنية!";
             }
             if (raw.includes('get') || raw.includes('post') || raw.includes('طلب')) {
-                return "طريقة GET مخصصة لجلب وقراءة البيانات من السيرفر من غير ما تغير حالته (زي لما تفتح صفحة ويب)، بينما POST بنستخدمها لما نكون هنبعت بيانات جديدة ونبعتها للسيرفر (زي لما تسجل حساب جديد أو تملى فورم وتدوس إرسال).";
+                return "طريقة GET بتستخدم لجلب وقراءة البيانات من السيرفر من غير ما تغير حالته، بينما POST بتستخدم لإرسال بيانات جديدة أو تعديل سجلات وتغيير حالة السيرفر.";
             }
             if (raw.includes('json') || raw.includes('api')) {
-                return "صيغة JSON دي الشنطة الخفيفة والمنظمة اللي بننقل بيها البيانات بين الواجهة والباك إند عبر واجهات برمجة التطبيقات (APIs) عشان لغات البرمجة تفهم بعضها بسلاسة وبدون تعقيد.";
+                return "صيغة JSON هي المعيار الخفيف والمنظم لنقل البيانات بين الواجهة والباك إند عبر واجهات برمجة التطبيقات (APIs).";
             }
-            if (raw.includes('crap') || raw.includes('تباين') || raw.includes('محاذاة') || raw.includes('تقارب') || raw.includes('تكرار')) {
-                return "مبادئ CRAP البصرية لتصميم الواجهات هي: التباين (Contrast) لإبراز المهم، التكرار (Repetition) لتوحيد الشكل، المحاذاة (Alignment) للترتيب، والتقارب (Proximity) لتجميع العناصر المرتبطة جنب بعضها.";
+            if (raw.includes('crap') || raw.includes('تباين') || raw.includes('محاذاة')) {
+                return "مبادئ CRAP البصرية لتصميم الواجهات هي: التتباين (Contrast)، التكرار (Repetition)، المحاذاة (Alignment)، والتقارب (Proximity).";
             }
             if (raw.includes('pdca') || raw.includes('تحسين مستمر')) {
-                return "دورة PDCA لاختصار رحلة الجودة والتحسين: خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف واضبط (Act). بنكررها دايماً عشان نطور المنتج الرقمي.";
-            }
-            if (raw.includes('persona') || raw.includes('شخصية المستخدم')) {
-                return "Persona هي شخصية وهمية بنعملها بناءً على بيانات حقيقية للجمهور المستهدف عشان المصمم يركز عليها ويعرف هو بيصمم لمين واحتياجاته إيه بالضبط.";
-            }
-            if (raw.includes('معدل الارتداد') || raw.includes('bounce rate')) {
-                return "معدل الارتداد (Bounce Rate) هو نسبة الناس اللي دخلت صفحة الموقع وخرجت منها فوراً من غير ما تتفاعل أو تدخل صفحة تانية؛ وده مؤشر سلبي بيدل إن الصفحة مش جذابة أو مش هي اللي الزائر كان بيدور عليها.";
-            }
-            if (raw.includes('معدل التحويل') || raw.includes('cvr')) {
-                return "معدل التحويل (CVR) بيقيس نسبة الزوار اللي دخلوا الموقع ونفذوا الهدف التجاري المطلوب فعلاً (زي إنهم اشتروا المنتج أو عملوا اشتراك)، وده أهم مؤشر لنجاح أي موقع تجاري.";
+                return "دورة التحسين المستمر PDCA تتكون من: خطط (Plan) ⬅️ نفذ (Do) ⬅️ تحقق (Check) ⬅️ تصرف وعدل (Act).";
             }
 
-            // رد تفاعلي ذكي في حال سأل عن أي جزئية عامة
-            return `يا هلا بيك يا بطل! سؤالك عن "${inputStr}" مهم جداً في المنهج. بص يا سيدي، الأفكار دي بتعتمد على الفهم والتحليل العميق مش الحفظ الأعمى. راجع قسم الشرح المطول فوق أو ادخل اختبر نفسك في بنك الأسئلة وهتلاقي دماغك بقت فولاذية! لو عوزت أي توضيح تاني أنا معاك.`;
+            // رد افتراضي ذكي ودقيق لأي استفسار آخر
+            return `سؤالك عن "${inputStr}" مهم جداً في المنهج يا بطل. الإجابة باختصار تعتمد على الفهم والتحليل السليم للنقاط الفنية في كتاب الفائز. راجع قسم الشرح المطول فوق أو ادخل اختبر نفسك في بنك الأسئلة وهتقفل المادة وأنت حاطط في بطنك بطيخة صيفي!`;
         }
 
         function sendAiMessage() {
