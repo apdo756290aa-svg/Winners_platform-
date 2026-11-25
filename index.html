@@ -7,19 +7,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0b132b;
-            --bg-card: rgba(28, 37, 65, 0.85);
-            --accent-blue: #48cae4;
-            --accent-hover: #00b4d8;
-            --text-title: #ffffff;
-            --text-sub: #90e0ef;
-            --border-glow: rgba(72, 202, 228, 0.25);
-            --correct-clr: #2ec4b6;
-            --wrong-clr: #e63946;
-            --explain-bg: rgba(255, 183, 3, 0.12);
-            --explain-border: #ffb703;
-            --radius-lg: 20px;
-            --radius-md: 12px;
+            --bg-main: #060913;
+            --bg-card: rgba(18, 24, 48, 0.75);
+            --bg-card-hover: rgba(28, 37, 65, 0.9);
+            --accent-cyan: #38bdf8;
+            --accent-blue: #0ea5e9;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --text-title: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-glow: rgba(56, 189, 248, 0.18);
+            --correct-clr: #10b981;
+            --wrong-clr: #f43f5e;
+            --explain-bg: rgba(245, 158, 11, 0.1);
+            --explain-border: #f59e0b;
+            --radius-lg: 24px;
+            --radius-md: 14px;
         }
 
         * {
@@ -30,22 +32,22 @@
         }
 
         body {
-            background: radial-gradient(circle at top right, #1c2541, #0b132b);
+            background: radial-gradient(circle at top center, #111c3a, #060913);
             color: var(--text-title);
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
             display: flex;
             flex-direction: column;
         }
 
         header {
-            background: rgba(11, 19, 43, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(6, 9, 19, 0.85);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-glow);
             position: sticky;
             top: 0;
             z-index: 99;
-            padding: 15px 20px;
+            padding: 16px 24px;
         }
 
         .nav-container {
@@ -57,31 +59,34 @@
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            color: var(--accent-blue);
+            color: var(--accent-cyan);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.5px;
         }
 
         .menu-toggle-btn {
-            background: rgba(72, 202, 228, 0.1);
-            border: 1px solid var(--accent-blue);
-            color: var(--accent-blue);
-            padding: 8px 14px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-cyan);
+            padding: 10px 16px;
             border-radius: var(--radius-md);
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 600;
         }
 
         .menu-toggle-btn:hover {
-            background: var(--accent-blue);
-            color: #0b132b;
+            background: var(--accent-cyan);
+            color: #060913;
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .mobile-menu-overlay {
@@ -90,11 +95,11 @@
             right: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(11, 19, 43, 0.95);
-            backdrop-filter: blur(15px);
+            background: rgba(6, 9, 19, 0.96);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 25px 20px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 24px;
             display: flex;
             flex-direction: column;
         }
@@ -107,37 +112,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border-bottom: 1px solid var(--border-glow);
-            padding-bottom: 15px;
+            padding-bottom: 18px;
         }
 
         .close-menu-btn {
-            background: rgba(230, 57, 70, 0.2);
-            border: 1px solid var(--wrong-clr);
-            color: #e63946;
-            width: 40px;
-            height: 40px;
+            background: rgba(244, 63, 94, 0.15);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            color: var(--wrong-clr);
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.2s;
+        }
+
+        .close-menu-btn:hover {
+            background: var(--wrong-clr);
+            color: #fff;
         }
 
         .menu-items-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .menu-item-btn {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
-            color: #fff;
-            padding: 16px 20px;
+            color: var(--text-title);
+            padding: 18px 22px;
             font-size: 1.05rem;
             font-weight: 600;
             text-align: right;
@@ -149,23 +160,23 @@
         }
 
         .menu-item-btn:hover, .menu-item-btn.active {
-            background: rgba(72, 202, 228, 0.15);
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-            transform: translateX(-5px);
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateX(-6px);
         }
 
         .container {
             max-width: 950px;
-            margin: 25px auto;
-            padding: 0 15px;
+            margin: 30px auto;
+            padding: 0 20px;
             flex: 1;
             width: 100%;
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .page.active {
@@ -173,7 +184,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -181,141 +192,154 @@
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-lg);
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
+            padding: 30px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+            margin-bottom: 24px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-align: right;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--text-sub);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            font-weight: 500;
         }
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 18px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-glow);
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(11, 15, 30, 0.6);
             color: #fff;
             outline: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
 
         .form-group select option {
-            background: #1c2541;
+            background: #0b0f1e;
             color: #fff;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(72, 202, 228, 0.3);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(11, 15, 30, 0.9);
         }
 
         .checkbox-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
         }
 
         .checkbox-item {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glow);
-            padding: 12px 15px;
+            padding: 14px 18px;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s;
+            font-weight: 500;
         }
 
         .checkbox-item:hover {
-            border-color: var(--accent-blue);
-            background: rgba(72, 202, 228, 0.08);
+            border-color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.06);
         }
 
         .checkbox-item input {
-            width: auto;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-cyan);
             cursor: pointer;
         }
 
         .error-msg {
-            color: #e63946;
-            font-size: 0.82rem;
-            margin-top: 4px;
+            color: var(--wrong-clr);
+            font-size: 0.85rem;
+            margin-top: 6px;
             display: none;
+            font-weight: 500;
         }
 
         .btn-action {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-hover));
-            color: #0b132b;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #060913;
             border: none;
             border-radius: var(--radius-md);
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
         }
 
         .btn-action:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(72, 202, 228, 0.4);
+            box-shadow: 0 6px 25px var(--accent-glow);
         }
 
         .btn-whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             color: #ffffff;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
         }
 
         .btn-whatsapp:hover {
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 25px rgba(34, 197, 94, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             border: 1px solid var(--border-glow);
+            box-shadow: none;
         }
 
         .btn-secondary:hover {
-            background: rgba(230, 57, 70, 0.2);
+            background: rgba(244, 63, 94, 0.15);
             border-color: var(--wrong-clr);
-            color: #e63946;
+            color: var(--wrong-clr);
+            box-shadow: none;
         }
 
         .units-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .unit-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.025);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
-            padding: 18px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
         }
 
         .unit-card:hover, .unit-card.active {
-            border-color: var(--accent-blue);
-            background: rgba(72, 202, 228, 0.1);
-            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         .unit-content-section {
@@ -327,23 +351,24 @@
         }
 
         .topic-box {
-            background: rgba(255,255,255,0.02);
-            border-right: 3px solid var(--accent-blue);
-            padding: 18px 22px;
-            margin-bottom: 18px;
+            background: rgba(255,255,255,0.015);
+            border-right: 4px solid var(--accent-cyan);
+            padding: 20px 24px;
+            margin-bottom: 20px;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            line-height: 1.9;
+            line-height: 2;
         }
 
         .topic-box h4 {
-            color: var(--accent-blue);
+            color: var(--accent-cyan);
             margin-bottom: 12px;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .topic-box p {
-            color: #e2fbf7;
-            font-size: 0.95rem;
+            color: #cbd5e1;
+            font-size: 0.98rem;
             margin-bottom: 10px;
         }
 
@@ -351,8 +376,8 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -360,178 +385,186 @@
         }
 
         .modal-content {
-            background: #1c2541;
-            border: 1px solid var(--accent-blue);
+            background: #0f172a;
+            border: 1px solid var(--accent-cyan);
             border-radius: var(--radius-lg);
             width: 100%;
             max-width: 480px;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
 
         .q-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
-            padding: 18px;
-            margin-bottom: 15px;
+            padding: 22px;
+            margin-bottom: 18px;
         }
 
         .opt-btn {
             width: 100%;
             text-align: right;
-            padding: 12px;
-            margin-top: 8px;
-            background: rgba(255, 255, 255, 0.04);
+            padding: 14px 18px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
             color: #fff;
             cursor: pointer;
             transition: all 0.2s;
+            font-size: 0.98rem;
         }
 
         .opt-btn.selected {
-            background: rgba(72, 202, 228, 0.2);
-            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: 600;
         }
 
         .opt-btn.correct {
-            background: rgba(46, 196, 182, 0.25) !important;
+            background: rgba(16, 185, 129, 0.2) !important;
             border-color: var(--correct-clr) !important;
-            color: #2ec4b6;
+            color: #34d399 !important;
+            font-weight: 600;
         }
 
         .opt-btn.wrong {
-            background: rgba(230, 57, 70, 0.25) !important;
+            background: rgba(244, 63, 94, 0.2) !important;
             border-color: var(--wrong-clr) !important;
-            color: #e63946;
+            color: #fb7185 !important;
+            font-weight: 600;
         }
 
         .explain-box {
             display: none;
-            margin-top: 10px;
-            padding: 12px;
+            margin-top: 14px;
+            padding: 14px;
             background: var(--explain-bg);
             border: 1px solid var(--explain-border);
             border-radius: var(--radius-md);
             color: #ffb703;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.92rem;
+            line-height: 1.7;
         }
 
         .filter-btn-group {
             display: none;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-glow);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: #fff;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             transition: all 0.3s;
         }
 
         .filter-btn.active, .filter-btn:hover {
-            background: var(--accent-blue);
-            color: #0b132b;
-            border-color: var(--accent-blue);
+            background: var(--accent-cyan);
+            color: #060913;
+            border-color: var(--accent-cyan);
         }
 
         .score-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 18px;
         }
 
         .score-table th, .score-table td {
             border: 1px solid var(--border-glow);
-            padding: 10px;
+            padding: 12px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
         }
 
         .score-table th {
-            background: rgba(72, 202, 228, 0.15);
-            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            font-weight: 700;
         }
 
         .progress-bar-container {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 10px;
-            height: 10px;
-            margin-top: 10px;
+            height: 12px;
+            margin-top: 12px;
             overflow: hidden;
             border: 1px solid var(--border-glow);
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), var(--correct-clr));
+            background: linear-gradient(90deg, var(--accent-cyan), var(--correct-clr));
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.35s ease;
         }
 
         .chat-box {
-            height: 320px;
+            height: 340px;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(11, 15, 30, 0.5);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 18px;
+            margin-bottom: 18px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .chat-msg {
-            max-width: 82%;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-size: 0.93rem;
-            line-height: 1.6;
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
             word-break: break-word;
             white-space: pre-wrap;
         }
 
         .chat-msg.user {
-            background: rgba(72, 202, 228, 0.2);
-            border: 1px solid var(--accent-blue);
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.4);
             align-self: flex-start;
             color: #fff;
         }
 
         .chat-msg.ai {
-            background: rgba(46, 196, 182, 0.15);
-            border: 1px solid var(--correct-clr);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             align-self: flex-end;
             color: #e2fbf7;
         }
 
         .sync-status {
-            font-size: 0.75rem;
+            font-size: 0.82rem;
             color: var(--correct-clr);
             text-align: left;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-weight: 500;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 24px;
             color: var(--text-sub);
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             border-top: 1px solid var(--border-glow);
             margin-top: auto;
-            background: rgba(11, 19, 43, 0.8);
+            background: rgba(6, 9, 19, 0.8);
         }
     </style>
 </head>
@@ -560,21 +593,21 @@
         <div class="menu-items-list">
             <button class="menu-item-btn" onclick="navigateTo('profilePage')">
                 <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات</span>
-                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
+                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
                 <span><i class="fa-solid fa-book-open" style="margin-left: 10px;"></i> الشرح المفصل والمطول</span>
-                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
+                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
                 <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> بنك الاختبارات الشامل</span>
-                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
+                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('aiChatPage')">
                 <span><i class="fa-solid fa-comments" style="margin-left: 10px;"></i> تواصل مع صاحب المنصة</span>
-                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-blue);"></i>
+                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
-            <button class="menu-item-btn" onclick="logout()" style="border-color: rgba(230, 57, 70, 0.4); color: #e63946; margin-top: 15px;">
+            <button class="menu-item-btn" onclick="logout()" style="border-color: rgba(244, 63, 94, 0.4); color: var(--wrong-clr); margin-top: 15px;">
                 <span><i class="fa-solid fa-right-from-bracket" style="margin-left: 10px;"></i> تسجيل الخروج</span>
                 <i class="fa-solid fa-arrow-left" style="font-size: 0.8rem;"></i>
             </button>
@@ -586,8 +619,8 @@
         <!-- صفحة تسجيل الدخول -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.88rem; text-align: center;">منصة الفائز التعليمية</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center; font-size: 1.5rem;">تسجيل دخول الطالب</h2>
+                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">منصة الفائز التعليمية - مرحباً بك يا بطل</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -617,15 +650,15 @@
         <!-- البروفايل -->
         <div id="profilePage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب</h3>
-                <p style="margin-bottom: 6px;"><strong>اسم الطالب:</strong> <span id="pName"></span></p>
-                <p style="margin-bottom: 6px;"><strong>المسار الدراسي:</strong> <span id="pClass"></span></p>
-                <p><strong>رقم ولي الأمر:</strong> <span id="pPhone"></span></p>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب</h3>
+                <p style="margin-bottom: 8px;"><strong>اسم الطالب:</strong> <span id="pName" style="color: #fff;"></span></p>
+                <p style="margin-bottom: 8px;"><strong>المسار الدراسي:</strong> <span id="pClass" style="color: #fff;"></span></p>
+                <p><strong>رقم ولي الأمر:</strong> <span id="pPhone" style="color: #fff;"></span></p>
                 <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> متصل بقاعدة البيانات بنجاح</div>
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -645,30 +678,30 @@
         <!-- الشرح المفصل المطول -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-book-bookmark"></i> الشرح المطول والوافِ - كتاب الفائز</h2>
-                <p style="color: #ffb703; margin-bottom: 20px; font-size: 0.88rem;"><i class="fa-solid fa-circle-info"></i> شروح وتفاصيل دقيقة لكل فصل لضمان الفهم الكامل والتميز.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-book-bookmark"></i> الشرح المطول والوافِ - كتاب الفائز</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> شروح وتفاصيل دقيقة لكل فصل لضمان الفهم الكامل والتميز.</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
-                        <i class="fa-solid fa-microchip" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <i class="fa-solid fa-microchip" style="font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
                         <h4>الفصل 1: تكنولوجيا المعلومات</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
-                        <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
                         <h4>الفصل 2: الأمن السيبراني</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
-                        <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <i class="fa-solid fa-network-wired" style="font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
                         <h4>الفصل 3: تطبيقات الويب</h4>
                     </div>
                     <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
-                        <i class="fa-solid fa-photo-film" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 8px;"></i>
+                        <i class="fa-solid fa-photo-film" style="font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
                         <h4>الفصل 4: تصميم الويب والوسائط</h4>
                     </div>
                 </div>
 
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px; font-size: 1.25rem;">الفصل الأول: تكنولوجيا المعلومات والمجتمع</h3>
                     <div class="topic-box">
                         <h4>1. جذور الحوسبة وحواسيب الجيل الأول (ENIAC)</h4>
                         <p>• بدأ التاريخ الحقيقي للحوسبة مع ظهور العملاق <strong>ENIAC</strong>، وهو حاسوب اعتمد على آلاف "الصمامات المفرغة" (Vacuum Tubes). هذه الصمامات كانت بمثابة مفاتيح كهربائية تبدل وتضخم الإشارات، لكنها كانت تتسبب في استهلاك طاقة مرعبة وتوليد حرارة هائلة، فضلاً عن سهولة احتراقها وتلفها المستمر.</p>
@@ -687,7 +720,7 @@
                 </div>
 
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الثاني: الأمن السيبراني وحماية البنى</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px; font-size: 1.25rem;">الفصل الثاني: الأمن السيبراني وحماية البنى</h3>
                     <div class="topic-box">
                         <h4>1. سر العمارة المزدوجة في بروتوكول التشفير TLS</h4>
                         <p>• حماية الويب تعتمد على بروتوكول <strong>TLS</strong> الذي يدمج نوعين من التشفير: يبدأ بـ <strong>التشفير غير المتماثل (Asymmetric)</strong> لتبادل مفتاح الجلسة بأمان، ثم يتحول فوراً إلى <strong>التشفير المتماثل (Symmetric)</strong> لنقل البيانات بسرعة.</p>
@@ -700,7 +733,7 @@
                 </div>
 
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الثالث: هندسة تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px; font-size: 1.25rem;">الفصل الثالث: هندسة تطبيقات الويب</h3>
                     <div class="topic-box">
                         <h4>1. الهيكلية ثلاثية الطبقات (3-Tier Architecture)</h4>
                         <p>• تنقسم البنية إلى ثلاث طبقات مستقلة: الواجهة الأمامية (Frontend)، طبقة الخلفية (Backend)، وطبقة قاعدة البيانات (Database).</p>
@@ -709,7 +742,7 @@
                 </div>
 
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 12px;">الفصل الرابع: تصميم الويب وتجربة المستخدم</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px; font-size: 1.25rem;">الفصل الرابع: تصميم الويب وتجربة المستخدم</h3>
                     <div class="topic-box">
                         <h4>1. أدوات تصميم UX ومبادئ التصميم البصري CRAP</h4>
                         <p>• <strong>شخصية المستخدم (Persona) والمخطط الهيكلي (Wireframe).</strong></p>
@@ -722,20 +755,20 @@
         <!-- التواصل مع صاحب المنصة -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-comments"></i> تواصل مع صاحب المنصة</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اكتب سؤالك أو مشكلتك واضغط على الرقم اللي تحب تتواصل معاه على الواتساب.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-comments"></i> تواصل مع صاحب المنصة</h2>
+                <p style="color: var(--text-sub); font-size: 0.92rem; margin-bottom: 20px;">اكتب سؤالك أو مشكلتك واضغط على الرقم المناسب للتواصل مباشرة عبر الواتساب.</p>
                 <div class="chat-box" id="chatContainer">
-                    <div class="chat-msg ai">أهلاً بك يا بطل! اكتب استفسارك تحت، وبعدين اختار أي رقم من أرقام الواتساب لإرسال رسالتك مرتبة فوراً.</div>
+                    <div class="chat-msg ai">أهلاً بك يا بطل! اكتب استفسارك في الأسفل، ثم اختر أحد أرقام الواتساب لإرسال رسالتك مرتبة ومجهزة فوراً.</div>
                 </div>
-                <div class="form-group" style="margin-bottom: 12px;">
+                <div class="form-group" style="margin-bottom: 15px;">
                     <textarea id="chatInput" rows="3" placeholder="اكتب سؤالك أو مشكلتك هنا بالتفصيل..."></textarea>
                 </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201279364446')" style="flex: 1; min-width: 180px;">
-                        <i class="fa-brands fa-whatsapp"></i> إرسال للرقم الأول (012)
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201279364446')" style="flex: 1; min-width: 200px;">
+                        <i class="fa-brands fa-whatsapp" style="margin-left: 6px;"></i> إرسال للرقم الأول (012)
                     </button>
-                    <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201148041323')" style="flex: 1; min-width: 180px;">
-                        <i class="fa-brands fa-whatsapp"></i> إرسال للرقم الثاني (011)
+                    <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201148041323')" style="flex: 1; min-width: 200px;">
+                        <i class="fa-brands fa-whatsapp" style="margin-left: 6px;"></i> إرسال للرقم الثاني (011)
                     </button>
                 </div>
             </div>
@@ -744,8 +777,8 @@
         <!-- بنك الاختبارات -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-blue); margin-bottom: 10px;"><i class="fa-solid fa-list-check"></i> بنك الاختبارات الشامل</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد الفصول التي تريد تضمينها في اختبارك:</p>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-list-check"></i> بنك الاختبارات الشامل</h3>
+                <p style="color: var(--text-sub); font-size: 0.92rem; margin-bottom: 20px;">حدد الفصول التي تريد تضمينها في اختبارك:</p>
 
                 <div class="checkbox-group" id="unitsCheckboxContainer">
                     <label class="checkbox-item">
@@ -766,11 +799,11 @@
                     </label>
                 </div>
 
-                <div style="margin-top: 20px; text-align: center;">
-                    <p style="font-size: 1rem; margin-bottom: 15px;">إجمالي الأسئلة المختارة: <strong id="calculatedQCount" style="color: var(--accent-blue); font-size: 1.2rem;">10</strong> سؤالاً</p>
-                    <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+                <div style="margin-top: 25px; text-align: center;">
+                    <p style="font-size: 1.05rem; margin-bottom: 18px;">إجمالي الأسئلة المختارة: <strong id="calculatedQCount" style="color: var(--accent-cyan); font-size: 1.3rem;">10</strong> سؤالاً</p>
+                    <div style="display: flex; gap: 12px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
                         <button class="btn-action" style="flex: 1;" onclick="startCustomQuizConfig('standard')">بدء الاختبار</button>
-                        <button class="btn-action" style="flex: 1; background: linear-gradient(135deg, #ffb703, #fb8500); color: #000;" onclick="startCustomQuizConfig('hard')">وضع التحدي الأقصى</button>
+                        <button class="btn-action" style="flex: 1; background: linear-gradient(135deg, #f59e0b, #d97706); color: #060913;" onclick="startCustomQuizConfig('hard')">وضع التحدي الأقصى</button>
                     </div>
                 </div>
             </div>
@@ -779,17 +812,17 @@
         <!-- صفحة الاختبار الفعلية -->
         <div id="activeQuizPage" class="page">
             <div class="glass-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
-                    <h3 id="quizTitle" style="color: var(--accent-blue);">عنوان الاختبار</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+                    <h3 id="quizTitle" style="color: var(--accent-cyan);">عنوان الاختبار</h3>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <div id="timerDisplay" style="background: rgba(230, 57, 70, 0.2); border: 1px solid var(--wrong-clr); color: #e63946; padding: 5px 12px; border-radius: 20px; font-weight: bold; display: none;">الوقت: <span id="timerSecs">00:00</span></div>
-                        <button class="btn-action btn-secondary" onclick="confirmExitQuiz()" style="width: auto; padding: 6px 15px; font-size: 0.85rem;"><i class="fa-solid fa-arrow-right-from-bracket"></i> إلغاء ورجوع</button>
+                        <div id="timerDisplay" style="background: rgba(244, 63, 94, 0.15); border: 1px solid var(--wrong-clr); color: var(--wrong-clr); padding: 6px 14px; border-radius: 20px; font-weight: bold; display: none;">الوقت: <span id="timerSecs">00:00</span></div>
+                        <button class="btn-action btn-secondary" onclick="confirmExitQuiz()" style="width: auto; padding: 8px 16px; font-size: 0.88rem;"><i class="fa-solid fa-arrow-right-from-bracket"></i> إلغاء ورجوع</button>
                     </div>
                 </div>
 
-                <div style="font-size: 0.88rem; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 0.9rem; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center;">
                     <span id="progressText">تقدم حل الأسئلة: 0 من 0</span>
-                    <span id="answeredPercentageText">0%</span>
+                    <span id="answeredPercentageText" style="font-weight: bold; color: var(--accent-cyan);">0%</span>
                 </div>
                 <div class="progress-bar-container">
                     <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -805,7 +838,7 @@
             </div>
 
             <div id="quizQuestionsContainer"></div>
-            <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 15px;">إنهاء الاختبار وإظهار النتيجة</button>
+            <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 20px;">إنهاء الاختبار وإظهار النتيجة</button>
         </div>
 
     </div>
@@ -818,8 +851,8 @@
     <!-- Modal Setup -->
     <div id="setupModal" class="modal">
         <div class="modal-content">
-            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">إعدادات الاختبار</h3>
-            <p style="margin-bottom: 15px;">عدد أسئلة الاختبار: <strong id="modalQCount" style="color: var(--accent-blue); font-size: 1.2rem;">0</strong> سؤالاً</p>
+            <h3 style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.3rem;">إعدادات الاختبار</h3>
+            <p style="margin-bottom: 15px; font-size: 1.05rem;">عدد أسئلة الاختبار: <strong id="modalQCount" style="color: var(--accent-cyan); font-size: 1.3rem;">0</strong> سؤالاً</p>
             <div class="form-group">
                 <label>تفعيل المؤقت الزمني؟</label>
                 <select id="timerOption">
@@ -827,7 +860,7 @@
                     <option value="yes">نعم، تفعيل المؤقت</option>
                 </select>
             </div>
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <div style="display: flex; gap: 12px; margin-top: 25px;">
                 <button class="btn-action" onclick="startQuizNow()">بدء الاختبار الآن</button>
                 <button class="btn-action btn-secondary" onclick="closeModal()">إلغاء</button>
             </div>
@@ -1072,7 +1105,7 @@
 
                 html += `
                     <div class="q-card" id="qcard-${qIdx}">
-                        <div style="font-weight: bold; margin-bottom: 10px; font-size: 1rem;">س${qIdx + 1}: ${q.question}</div>
+                        <div style="font-weight: bold; margin-bottom: 12px; font-size: 1.05rem;">س${qIdx + 1}: ${q.question}</div>
                         <div>
                             ${optionsWithIndex.map((item, optIdx) => `
                                 <button class="opt-btn" id="opt-${qIdx}-${optIdx}" onclick="selectAnswer(${qIdx}, ${optIdx})">
@@ -1178,10 +1211,10 @@
             renderScoreHistory();
 
             document.getElementById('resultBannerContainer').innerHTML = `
-                <div class="glass-card" style="text-align: center; border-color: var(--accent-blue); background: rgba(72, 202, 228, 0.08);">
-                    <h3 style="color: var(--accent-blue); margin-bottom: 8px;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
+                <div class="glass-card" style="text-align: center; border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.05);">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 8px; font-size: 1.3rem;"><i class="fa-solid fa-award"></i> تم إنهاء الاختبار بنجاح</h3>
                     <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك النهائية: <strong>${score} من ${total}</strong></p>
-                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 10px;">النسبة المئوية: ${percentage}%</p>
+                    <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 15px;">النسبة المئوية: ${percentage}%</p>
                     <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
                 </div>
             `;
