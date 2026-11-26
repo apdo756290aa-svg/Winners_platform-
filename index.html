@@ -463,6 +463,29 @@
             margin-top: 8px;
         }
 
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .auth-tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            color: var(--text-sub);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .auth-tab-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
         footer {
             text-align: center;
             padding: 24px;
@@ -471,6 +494,26 @@
             border-top: 1px solid var(--border-glow);
             margin-top: auto;
             background: rgba(6, 9, 19, 0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -506,7 +549,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
-                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> اختبارات البرمجة</span>
+                <span><i class="fa-solid fa-pen-to-square" style="margin-left: 10px;"></i> اختبارات البرمجة (مجانية/مدفوعة)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('financialCulturePage')">
@@ -530,33 +573,60 @@
 
     <div class="container">
         
-        <!-- صفحة تسجيل الدخول -->
+        <!-- صفحة تسجيل الدخول / إنشاء حساب بكلمة سر -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">منصة الفائز التعليمية</p>
-                <form onsubmit="handleLogin(event)">
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">منصة الفائز التعليمية</h2>
+                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">بوابة الطالب الآمنة والمدعومة بالسيرفر</p>
+                
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthMode('login')">تسجيل الدخول</button>
+                    <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthMode('register')">حساب جديد</button>
+                </div>
+
+                <!-- نموذج تسجيل الدخول -->
+                <form id="loginFormElement" onsubmit="handleRealLogin(event)">
                     <div class="form-group">
-                        <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
-                        <input type="text" id="studentName" required placeholder="مثال: أحمد محمد علي">
-                        <div id="nameErr" class="error-msg">يرجى كتابة الاسم الثلاثي كاملاً (3 كلمات تفصلها مسافات).</div>
+                        <label>البريد الإلكتروني أو اسم المستخدم *</label>
+                        <input type="text" id="loginEmail" required placeholder="example@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة السر *</label>
+                        <input type="password" id="loginPassword" required placeholder="********">
+                        <div id="loginErr" class="error-msg">بيانات الدخول غير صحيحة أو الحساب غير مسجل.</div>
+                    </div>
+                    <button type="submit" class="btn-action">تسجيل الدخول للسيرفر</button>
+                </form>
+
+                <!-- نموذج إنشاء حساب -->
+                <form id="registerFormElement" onsubmit="handleRealRegister(event)" style="display: none;">
+                    <div class="form-group">
+                        <label>اسم الطالب بالكامل (ثلاثي) *</label>
+                        <input type="text" id="regName" required placeholder="أحمد محمد علي">
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني *</label>
+                        <input type="email" id="regEmail" required placeholder="example@domain.com">
+                        <div id="regEmailErr" class="error-msg">هذا البريد مسجل مسبقاً!</div>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة السر (6 أحرف على الأقل) *</label>
+                        <input type="password" id="regPassword" minlength="6" required placeholder="********">
                     </div>
                     <div class="form-group">
                         <label>المسار الدراسي *</label>
-                        <select id="studentClass" required>
-                            <option value="">-- اختر المسار الدراسي --</option>
+                        <select id="regClass" required>
+                            <option value="">-- اختر المسار --</option>
                             <option value="الصف الثاني بكالوريا - مسار حاسب وبرمجة">الصف الثاني بكالوريا (مسار حاسب وبرمجة)</option>
                             <option value="الصف الثاني بكالوريا - مسار هندسي">الصف الثاني بكالوريا (مسار هندسي)</option>
                             <option value="الصف الثاني بكالوريا - مسار طب وعلوم">الصف الثاني بكالوريا (مسار طب وعلوم)</option>
                         </select>
-                        <div id="classErr" class="error-msg">يرجى اختيار المسار الدراسي.</div>
                     </div>
                     <div class="form-group">
                         <label>رقم هاتف ولي الأمر (11 رقماً) *</label>
-                        <input type="tel" id="parentPhone" maxlength="11" required placeholder="010xxxxxxx / 011 / 012 / 015">
-                        <div id="phoneErr" class="error-msg">رقم غير صحيح! يجب أن يبدأ بـ (010, 011, 012, 015) ويتكون من 11 رقماً.</div>
+                        <input type="tel" id="regPhone" maxlength="11" required placeholder="010xxxxxxxx">
                     </div>
-                    <button type="submit" class="btn-action">الدخول إلى المنصة</button>
+                    <button type="submit" class="btn-action">إنشاء الحساب وحفظه بالسيرفر</button>
                 </form>
             </div>
         </div>
@@ -564,23 +634,25 @@
         <!-- البروفايل -->
         <div id="profilePage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب (متصل بالسيرفر)</h3>
                 <p style="margin-bottom: 8px;"><strong>اسم الطالب:</strong> <span id="pName" style="color: #fff;"></span></p>
+                <p style="margin-bottom: 8px;"><strong>البريد الإلكتروني:</strong> <span id="pEmail" style="color: #fff;"></span></p>
                 <p style="margin-bottom: 8px;"><strong>المسار الدراسي:</strong> <span id="pClass" style="color: #fff;"></span></p>
                 <p><strong>رقم ولي الأمر:</strong> <span id="pPhone" style="color: #fff;"></span></p>
-                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> متصل بقاعدة البيانات بنجاح</div>
+                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> متصل بالسيرفر وقاعدة البيانات بنجاح</div>
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج على السيرفر</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
                             <tr>
                                 <th>اسم الاختبار</th>
+                                <th>النوع</th>
                                 <th>النتيجة</th>
-                                <th>النسبة المئوية</th>
-                                <th>التاريخ والوقت</th>
+                                <th>النسبة</th>
+                                <th>التاريخ</th>
                             </tr>
                         </thead>
                         <tbody id="scoresHistoryBody"></tbody>
@@ -589,178 +661,167 @@
             </div>
         </div>
 
-        <!-- صفحة البرمجة (شرح تفصيلي موسع وعميق) -->
+        <!-- صفحة البرمجة -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> البرمجة وتكنولوجيا المعلومات (الشرح المفصل والمطول)</h2>
-                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> شروح متقدمة وموسعّة لفصول البرمجة وتكنولوجيا المعلومات والحوسبة المتقدمة لضمان الفهم الفائق.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> البرمجة وتكنولوجيا المعلومات</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> شروح متقدمة وموسعّة لفصول البرمجة وتكنولوجيا المعلومات والحوسبة.</p>
                 
                 <div class="units-grid">
-                    <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
-                        <h4>الفصل 1: تكنولوجيا المعلومات</h4>
-                    </div>
-                    <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
-                        <h4>الفصل 2: الأمن السيبراني</h4>
-                    </div>
-                    <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
-                        <h4>الفصل 3: تطبيقات الويب</h4>
-                    </div>
-                    <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
-                        <h4>الفصل 4: تصميم الويب UX</h4>
-                    </div>
+                    <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1"><h4>الفصل 1: تكنولوجيا المعلومات</h4></div>
+                    <div class="unit-card" onclick="switchUnit(2)" id="ucard-2"><h4>الفصل 2: الأمن السيبراني</h4></div>
+                    <div class="unit-card" onclick="switchUnit(3)" id="ucard-3"><h4>الفصل 3: تطبيقات الويب</h4></div>
+                    <div class="unit-card" onclick="switchUnit(4)" id="ucard-4"><h4>الفصل 4: تصميم الويب UX</h4></div>
                 </div>
 
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب (تفاصيل موسعة)</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب</h3>
                     <div class="topic-box">
                         <h4>1. جذور الحوسبة وحواسيب الجيل الأول (ENIAC)</h4>
-                        <p>• بدأ التاريخ الحقيقي للحوسبة الحديثة مع ظهور العملاق ENIAC، وهو أول حاسوب إلكتروني رقمي عام الاستخدام. اعتمد كلياً على آلاف "الصمامات المفرغة" (Vacuum Tubes) كمفاتيح كهربائية للتبديل والتضخيم.</p>
-                        <p>• <strong>العيوب التقنية:</strong> استهلاك طاقة مرعبة، توليد حرارة هائلة تستوجب أنظمة تبريد ضخمة، وعرضة للاحتراق الدائم، مما استدعى القفزة التاريخية نحو الترانزستورات ثم الدوائر المتكاملة (ICs) التي قلصت الأحجام ورفعت الكفاءة.</p>
-                    </div>
-                    <div class="topic-box">
-                        <h4>2. قانون مور وعقبة النفق الكمومي الفيزيائية</h4>
-                        <p>• <strong>قانون مور (Moore's Law):</strong> تنبؤ هندسي بأن عدد الترانزستورات داخل المعالج يتضاعف تقريباً كل عامين مع انخفاض التكلفة وزيادة القوة الحسابية بشكل مطرد.</p>
-                        <p>• <strong>المأزق الفيزيائي الحديث:</strong> عند تصغير البوابات المنطقية لأبعاد نانومترية متناهية الصغر تقترب من حجم الذرات الفردية، تظهر ظاهرة "النفق الكمومي" (Quantum Tunneling) حيث تتقافز الإلكترونات عبر الحواجز العازلة الرقيقة مسببة تسرباً حرارياً ومقاليد ضياع التيار، مما أجبر المهندسين على ابتكار تصميمات شرائح ثلاثية الأبعاد حديثة مثل FinFET.</p>
-                    </div>
-                    <div class="topic-box">
-                        <h4>3. الذكاء الاصطناعي التوليدي ومعضلة الصندوق الأسود</h4>
-                        <p>• نماذج التوليد (GenAI) تعتمد على التنبؤ الإحصائي البحت للسياق وليست ذات وعي حقيق بالحقائق، مما يوقعها في فخ "الهلوسة" (Hallucination) وتقديم معلومات غير صحيحة بثقة تامة.</p>
-                        <p>• لفك غموض "الصندوق الأسود" (Black Box) للشبكات العصبية العميقة، ظهرت تقنية الذكاء القابل للتفسير (XAI) لتتبع الأوزان وتوضيح الأسباب المنطقية لقرارات الآلة للمختصين.</p>
+                        <p>• اعتمد على الصمامات المفرغة واستهلك طاقة مرعبة وحرارة هائلة تستوجب تبريداً ضخماً، مما أدى لابتكار الترانزستورات لاحقاً.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني وحماية البنى التحتية</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني</h3>
                     <div class="topic-box">
-                        <h4>1. العمارة المزدوجة في بروتوكول التشفير TLS</h4>
-                        <p>• حماية الويب تعتمد على بروتوكول TLS (Transport Layer Security) الذي يدمج نوعين من التشفير: يبدأ بالتشفير غير المتماثل (Asymmetric) المعتمد على المفتاحين العام والخاص لتبادل مفتاح الجلسة بأمان تام، ثم يتحول فوراً للتشفير المتماثل (Symmetric) لنقل كميات البيانات الضخمة بسرعة فائقة وكفاءة أمنية عالية.</p>
-                    </div>
-                    <div class="topic-box">
-                        <h4>2. هندسة DMZ ومنهج انعدام الثقة Zero Trust</h4>
-                        <p>• <strong>منطقة DMZ (Demilitarized Zone):</strong> شبكة عازلة تفصل خوادم الويب العامة المتاحة للزوار عن الشبكة الداخلية الحساسة للمؤسسة لحمايتها تماماً عند حدوث أي اختراق خارجي.</p>
-                        <p>• <strong>Zero Trust:</strong> نموذج أمني حديث يتبنى شعار قاطع: "لا تثق أبداً في أي مستخدم أو جهاز مهما كان، وتحقق باستمرار ومستدام من الهوية والصلاحيات".</p>
+                        <h4>1. بروتوكول TLS والعمارة المزدوجة</h4>
+                        <p>• يدمج بين التشفير غير المتماثل لتبادل المفتاح، والمتماثل لنقل البيانات بسرعة وأمان فائق.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: هندسة وتصميم تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: تطبيقات الويب</h3>
                     <div class="topic-box">
                         <h4>1. الهيكلية ثلاثية الطبقات (3-Tier Architecture)</h4>
-                        <p>• التقسيم الهندسي المثالي لأي تطبيق ويب حديث إلى ثلاث طبقات مستقلة: طبقة العرض والواجهة الأمامية (Frontend)، طبقة منطق التطبيق ومعالجة الطلبات (Backend)، وطبقة تخزين وإدارة البيانات (Database).</p>
-                        <p>• <em>تحذير أمني كلاسيكي:</em> ربط الواجهة الأمامية بقاعدة البيانات مباشرة يعتبر كارثة أمنية كبرى تتيح للمستخدمين التلاعب المباشر بالبيانات وتعريض النظام للاختراق الشامل.</p>
+                        <p>• فصل الواجهة عن الخلفية وقاعدة البيانات لحماية الأنظمة من الاختراق المباشر.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الرابع: تصميم واجهات وتجربة المستخدم (UX/UI)</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الرابع: تصميم الويب UX</h3>
                     <div class="topic-box">
-                        <h4>1. أدوات التصميم ومبادئ CRAP البصرية</h4>
-                        <p>• بناء شخصية المستخدم الوهمية (Persona) ورسم المخططات الهيكلية الأولية (Wireframes) لدراسة سلوك ودوافع الجمهور الحقيقي قبل كتابة سطر برمجي واحد.</p>
-                        <p>• <strong>مبادئ CRAP الأساسية:</strong> التباين (Contrast) لإبراز العناصر، التكرار (Repetition) للاتساق، المحاذاة (Alignment) للتنظيم، والتقارب (Proximity) لتجميع العناصر المرتبطة بصرياً.</p>
+                        <h4>1. مبادئ التصميم Persona و CRAP</h4>
+                        <p>• دراسة سلوك الجمهور وتطبيق التباين والمحاذاة لتجربة مستخدم مثالية.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- بنك اختبارات البرمجة -->
+        <!-- بنك اختبارات البرمجة (مع فصل المجاني عن المدفوع) -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-list-check"></i> اختبارات البرمجة الشاملة</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد الفصول التي تريد تضمينها في اختبار البرمجة:</p>
-
-                <div class="checkbox-group" id="unitsCheckboxContainer">
-                    <label class="checkbox-item"><input type="checkbox" value="1" checked onchange="updateSelectedQCount('prog')"><span>الفصل 1: تكنولوجيا المعلومات</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="2" checked onchange="updateSelectedQCount('prog')"><span>الفصل 2: الأمن السيبراني</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="3" checked onchange="updateSelectedQCount('prog')"><span>الفصل 3: تطبيقات الويب</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="4" checked onchange="updateSelectedQCount('prog')"><span>الفصل 4: تصميم الويب UX</span></label>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات البرمجة (مجانية ومدفوعة)</h3>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button class="auth-tab-btn active" id="progFreeTab" onclick="switchQuizTypeTab('prog', 'free')">الاختبارات المجانية</button>
+                    <button class="auth-tab-btn" id="progPaidTab" onclick="switchQuizTypeTab('prog', 'paid')">الاختبارات المدفوعة (VIP)</button>
                 </div>
 
-                <div style="margin-top: 20px; text-align: center;">
-                    <p style="font-size: 1rem; margin-bottom: 15px;">إجمالي الأسئلة المختارة: <strong id="calculatedProgQCount" style="color: var(--accent-cyan); font-size: 1.2rem;">2</strong> سؤالاً</p>
-                    <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
-                        <button class="btn-action" style="flex: 1;" onclick="openSetupModal('prog', 'standard')">بدء الاختبار</button>
-                        <button class="btn-action" style="flex: 1; background: linear-gradient(135deg, #ffb703, #fb8500); color: #000;" onclick="openSetupModal('prog', 'hard')">وضع التحدي الأقصى</button>
+                <div id="progFreeSection">
+                    <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">اختر الفصول لاختبار البرمجة المجاني:</p>
+                    <div class="checkbox-group" id="unitsCheckboxContainer">
+                        <label class="checkbox-item"><input type="checkbox" value="1" checked onchange="updateSelectedQCount('prog')"><span>الفصل 1: تكنولوجيا المعلومات</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="2" checked onchange="updateSelectedQCount('prog')"><span>الفصل 2: الأمن السيبراني</span></label>
                     </div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <p style="font-size: 1rem; margin-bottom: 15px;">الأسئلة المختارة: <strong id="calculatedProgQCount" style="color: var(--accent-cyan); font-size: 1.2rem;">2</strong></p>
+                        <button class="btn-action" onclick="openSetupModal('prog', 'standard', 'free')">بدء الاختبار المجاني</button>
+                    </div>
+                </div>
+
+                <div id="progPaidSection" style="display: none;">
+                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات البرمجة المتقدمة المدفوعة تتطلب كود اشتراك معتمد من المنصة:</p>
+                    <div class="form-group">
+                        <label>كود التفعيل (أدخل: FAIZ-VIP-2026)</label>
+                        <input type="text" id="progVipCode" placeholder="FAIZ-VIP-2026">
+                    </div>
+                    <button class="btn-action" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000;" onclick="openSetupModal('prog', 'hard', 'paid')">فتح وبدء الاختبار المدفوع</button>
                 </div>
             </div>
         </div>
 
-        <!-- كتاب الثقافة المالية (شرح وافٍ وعميق لجميع الوحدات الـ 6) -->
+        <!-- كتاب الثقافة المالية -->
         <div id="financialCulturePage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز) - الشرح المفصل</h2>
-                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> الشرح الكامل والمطول لجميع وحدات الثقافة المالية الستة لضمان استيعاب مفاهيم المال والأعمال بعمق.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز)</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> الشرح الكامل والمفصل لجميع وحدات الثقافة المالية الستة.</p>
                 
                 <div class="units-grid">
-                    <div class="unit-card active" onclick="switchFinanceUnit(1)" id="fcard-1"><h4>الوحدة 01</h4><p style="font-size:0.8rem; color:var(--text-sub);">المال والتمويل (15 درس)</p></div>
-                    <div class="unit-card" onclick="switchFinanceUnit(2)" id="fcard-2"><h4>الوحدة 02</h4><p style="font-size:0.8rem; color:var(--text-sub);">الأعمال والاقتصاد (22 درس)</p></div>
-                    <div class="unit-card" onclick="switchFinanceUnit(3)" id="fcard-3"><h4>الوحدة 03</h4><p style="font-size:0.8rem; color:var(--text-sub);">التمويل والائتمان (20 درس)</p></div>
-                    <div class="unit-card" onclick="switchFinanceUnit(4)" id="fcard-4"><h4>الوحدة 04</h4><p style="font-size:0.8rem; color:var(--text-sub);">ريادة الأعمال (13 درس)</p></div>
-                    <div class="unit-card" onclick="switchFinanceUnit(5)" id="fcard-5"><h4>الوحدة 05</h4><p style="font-size:0.8rem; color:var(--text-sub);">الاستثمار والثروات (14 درس)</p></div>
-                    <div class="unit-card" onclick="switchFinanceUnit(6)" id="fcard-6"><h4>الوحدة 06</h4><p style="font-size:0.8rem; color:var(--text-sub);">الذكاء الاصطناعي (14 درس)</p></div>
+                    <div class="unit-card active" onclick="switchFinanceUnit(1)" id="fcard-1"><h4>الوحدة 01</h4><p style="font-size:0.8rem; color:var(--text-sub);">أساسيات المال</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(2)" id="fcard-2"><h4>الوحدة 02</h4><p style="font-size:0.8rem; color:var(--text-sub);">الأعمال والاقتصاد</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(3)" id="fcard-3"><h4>الوحدة 03</h4><p style="font-size:0.8rem; color:var(--text-sub);">التمويل والائتمان</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(4)" id="fcard-4"><h4>الوحدة 04</h4><p style="font-size:0.8rem; color:var(--text-sub);">ريادة الأعمال</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(5)" id="fcard-5"><h4>الوحدة 05</h4><p style="font-size:0.8rem; color:var(--text-sub);">الاستثمار والثروات</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(6)" id="fcard-6"><h4>الوحدة 06</h4><p style="font-size:0.8rem; color:var(--text-sub);">الذكاء الاصطناعي</p></div>
                 </div>
 
                 <div id="fcontent-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. نشأة المال والتطور التاريخي</h5><p>بدأ الإنسان قديماً بنظام "المقايضة" (تبادل سلعة بسلعة)، ولكنه اصطدم بصعوبة بالغة تتمثل في عدم توافق الرغبات بين الطرفين واستحالة قياس القيم بدقة. من هنا ظهرت الحاجة الملحة لاختراع "المال" كوسيط مقبول عموماً يسهل عمليات التبادل ويحفظ قيمة الجهود البشرية.</p></div>
-                    <div class="lesson-item"><h5>2. الوظائف الثلاث الكبرى للمال</h5><p>يؤدي المال ثلاث وظائف رئيسية لا غنى عنها لأي اقتصاد: أ) وسيط للتبادل يقضي على تعقيدات المقايضة، ب) مخزن للقيمة يتيح للأفراد ادخار قوتهم الشرائية للمستقبل، ج) وحدة قياس وحساب تُستخدم لتسعير السلع والخدمات ومقارنتها.</p></div>
-                    <div class="lesson-item"><h5>3. أشكال المال والوساطة المالية والبنوك</h5><p>تطور المال من العملات المعدنية والورقية إلى الصكوك والبطاقات البلاستيكية والمحافظ الرقمية الإلكترونية. وهنا تبرز "الوساطة المالية" حيث تلعب البنوك دور الوسيط الآمن بنقل الأموال الفائضة من المدخرين وتوجيهها في صورة قروض واستثمارات للمحتاجين لتنمية المجتمع.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل</h3>
+                    <div class="lesson-item"><h5>1. كيف نشأ المال</h5><p>بدأ بمقايضة السلع ثم تطور لتسهيل التبادل.</p></div>
                 </div>
 
                 <div id="fcontent-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. فقه أحكام الزكاة الاقتصادية</h5><p>الزكاة ركن أساسي من أركان الإسلام ونظام تكافلي فريد يهدف لتطهير الأموال وتحقيق العدالة الاجتماعية؛ حيث تُقدر بنسبة 2.5% على الأموال المدخرة التي بلغ النصاب وحال عليها الحول، وتُصرف في مصارفها الثمانية المحددة لرفع مستوى الفقراء.</p></div>
-                    <div class="lesson-item"><h5>2. المسؤولية الاجتماعية للشركات (CSR)</h5><p>لم يعد هدف الشركات مقتصراً على تحقيق الأرباح المادية البحتة، بل امتد لتبني المسؤولية الاجتماعية عبر حماية البيئة، دعم المجتمعات المحلية، وتوفير بيئة عمل عادلة ومستدامة.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد</h3>
+                    <div class="lesson-item"><h5>1. فهم الزكاة</h5><p>ركن إسلامي بنسبة 2.5% على المال البالغ النصاب.</p></div>
                 </div>
 
                 <div id="fcontent-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. إعداد الميزانية وإدارة الاحتياجات والرغبات</h5><p>الميزانية الناجحة هي خريطة طريق واضحة لتوجيه الدخل المالي. يجب التفرقة بصرامة بين "الاحتياجات" الضرورية للبقاء (كالغذاء والسكن الصحي) و"الرغبات" الكمالية (كالهواتف الحديثة)، مع أهمية تأسيس صندوق طوارئ مالي يقي من صدمات المستقبل.</p></div>
-                    <div class="lesson-item"><h5>2. سحر الفائدة المركبة والائتمان المسؤول</h5><p>الفائدة المركبة تُعد المعجزة الثامنة في تنمية الثروات لأنها تحسب العوائد على الأصل والأرباح المتراكمة معاً بمرور الوقت. ويجب استخدام الائتمان والاقتراض بحكمة تامة مع الالتزام بسداد الديون في مواعيدها لحماية السجل الائتماني.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان</h3>
+                    <div class="lesson-item"><h5>1. الميزانية والادخار</h5><p>خطة واضحة للدخل والنفقات وتكوين صندوق طوارئ.</p></div>
                 </div>
 
                 <div id="fcontent-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. العقلية الريادية ونماذج العمل المستدامة</h5><p>ريادة الأعمال ليست مجرد فتح مشروع، بل هي "عقلية" تبحث عن المشكلات الحقيقية في السوق وتبتكر لها حلولاً ذات جدوى اقتصادية. يعتمد نجاح المشروع على بناء نموذج عمل رصين (Business Model) يحدد بدقة مصادر الإيرادات وتدفقات الأموال.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال</h3>
+                    <div class="lesson-item"><h5>1. العقلية الريادية ونماذج العمل</h5><p>حل المشكلات وابتكار مصادر إيرادات مستدامة.</p></div>
                 </div>
 
                 <div id="fcontent-5" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار وإدارة الثروات (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. قواعد الاستثمار، الأسهم، والتنويع</h5><p>الاستثمار الحقيقي هو توظيف الأموال في أصول منتجة لتنميتها بمرور الوقت. القاعدة الذهبية تؤكد أن "العائد يتناسب طردياً مع المخاطرة". ولحماية الأموال من الانهيار، يجب تطبيق مبدأ "التنويع" وعدم وضع البيض كله في سلة واحدة عبر توزيع الاستثمارات بين الأسهم، السندات، الذهب، والعقارات.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار</h3>
+                    <div class="lesson-item"><h5>1. الأسهم والمخاطرة والعائد</h5><p>تنويع الأصول لبناء الثروة وتقليل المخاطر.</p></div>
                 </div>
 
                 <div id="fcontent-6" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل (شرح موسع)</h3>
-                    <div class="lesson-item"><h5>1. ثورة الذكاء الاصطناعي في قطاع المال والأعمال</h5><p>يحدث الذكاء الاصطناعي (AI) ثورة جذرية في عالم التمويل والأعمال عبر أتمتة العمليات المالية، تحليل البيانات الضخمة (Big Data) للتنبؤ باتجاهات الأسواق، كشف عمليات النصب والاحتيال لحظياً، وتقديم استشارات مالية آلية للعملاء 24/7.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل</h3>
+                    <div class="lesson-item"><h5>1. الـ AI في الأعمال</h5><p>أتمتة العمليات المالية واكتشاف عمليات النصب.</p></div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة اختيار اختبارات الثقافة المالية -->
+        <!-- صفحة اختيار اختبارات الثقافة المالية (مجانية ومدفوعة) -->
         <div id="financeQuizSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-list-check"></i> اختبارات الثقافة المالية الشاملة</h3>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد الوحدات التي تريد تضمينها في اختبار الثقافة المالية:</p>
-
-                <div class="checkbox-group" id="financeUnitsCheckboxContainer">
-                    <label class="checkbox-item"><input type="checkbox" value="1" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 01: أساسيات المال والتمويل</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="2" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 02: الأعمال والاقتصاد</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="3" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 03: التمويل الشخصي والائتمان</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="4" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 04: ريادة الأعمال</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="5" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 05: الاستثمار والثروات</span></label>
-                    <label class="checkbox-item"><input type="checkbox" value="6" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 06: الذكاء الاصطناعي</span></label>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات الثقافة المالية (مجانية ومدفوعة)</h3>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button class="auth-tab-btn active" id="finFreeTab" onclick="switchQuizTypeTab('fin', 'free')">الاختبارات المجانية</button>
+                    <button class="auth-tab-btn" id="finPaidTab" onclick="switchQuizTypeTab('fin', 'paid')">الاختبارات المدفوعة (VIP)</button>
                 </div>
 
-                <div style="margin-top: 20px; text-align: center;">
-                    <p style="font-size: 1rem; margin-bottom: 15px;">إجمالي الأسئلة المختارة: <strong id="calculatedFinQCount" style="color: var(--accent-cyan); font-size: 1.2rem;">2</strong> سؤالاً</p>
-                    <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
-                        <button class="btn-action" style="flex: 1;" onclick="openSetupModal('fin', 'standard')">بدء الاختبار</button>
+                <div id="finFreeSection">
+                    <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px;">حدد الوحدات المجانية:</p>
+                    <div class="checkbox-group" id="financeUnitsCheckboxContainer">
+                        <label class="checkbox-item"><input type="checkbox" value="1" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 01: أساسيات المال والتمويل</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="2" checked onchange="updateSelectedQCount('fin')"><span>الوحدة 02: الأعمال والاقتصاد</span></label>
                     </div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <p style="font-size: 1rem; margin-bottom: 15px;">الأسئلة المختارة: <strong id="calculatedFinQCount" style="color: var(--accent-cyan); font-size: 1.2rem;">2</strong></p>
+                        <button class="btn-action" onclick="openSetupModal('fin', 'standard', 'free')">بدء الاختبار المجاني</button>
+                    </div>
+                </div>
+
+                <div id="finPaidSection" style="display: none;">
+                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات الثقافة المالية الشاملة والمدفوعة تتطلب كود تفعيل:</p>
+                    <div class="form-group">
+                        <label>كود التفعيل (أدخل: FAIZ-VIP-2026)</label>
+                        <input type="text" id="finVipCode" placeholder="FAIZ-VIP-2026">
+                    </div>
+                    <button class="btn-action" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000;" onclick="openSetupModal('fin', 'hard', 'paid')">فتح وبدء الاختبار المدفوع</button>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة تنفيذ الاختبار الموحد (برمجة أو ثقافة مالية) -->
+        <!-- صفحة تنفيذ الاختبار الموحد -->
         <div id="activeQuizPage" class="page">
             <div class="glass-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
@@ -779,7 +840,23 @@
                 </div>
             </div>
             <div id="quizQuestionsContainer"></div>
-            <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 15px;">إنهاء الاختبار وإظهار النتيجة</button>
+            <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 15px;">إنهاء الاختبار وإرسال النتيجة للسيرفر</button>
+        </div>
+
+        <!-- صفحة سياسة الخصوصية -->
+        <div id="privacyPage" class="page">
+            <div class="glass-card">
+                <h2 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-shield-halved"></i> سياسة الخصوصية وشروط الاستخدام</h2>
+                <div class="topic-box" style="margin-bottom: 15px;">
+                    <h4>1. حماية بيانات الطالب</h4>
+                    <p>نلتزم في منصة الفائز التعليمية بحماية سرية البيانات الشخصية للطلاب وأولياء الأمور وعدم مشاركتها مع أي طرف ثالث، واستخدامها فقط للأغراض التعليمية ومتابعة النتائج.</p>
+                </div>
+                <div class="topic-box" style="margin-bottom: 15px;">
+                    <h4>2. شروط الاستخدام والاختبارات</h4>
+                    <p>جميع المحتويات والشروح والاختبارات محمية بموجب حقوق الملكية الفكرية لصاحب المنصة. يحظر إعادة نشرها أو استخدام أكواد مزيفة في الاختبارات المدفوعة.</p>
+                </div>
+                <button class="btn-action" onclick="switchPage('profilePage')">الرجوع للملف الشخصي</button>
+            </div>
         </div>
 
         <!-- التواصل مع صاحب المنصة -->
@@ -826,7 +903,11 @@
     </div>
 
     <footer>
-        جميع الحقوق محفوظة © MA
+        <div class="footer-links">
+            <a onclick="navigateTo('privacyPage')">سياسة الخصوصية</a>
+            <a onclick="navigateTo('aiChatPage')">الدعم الفني</a>
+        </div>
+        جميع الحقوق محفوظة © MA - منصة الفائز التعليمية 2026
     </footer>
 
     <script>
@@ -840,36 +921,21 @@
             2: [
                 { question: "لماذا يبدأ بروتوكول TLS بتشفير غير متماثل ثم يتحول لمتماثل؟", options: ["لأمان عالٍ لتبادل المفتاح وسرعة فائقة لنقل الجلسة", "لأن المتصفح يرفض المتماثل", "لتخفيض الذاكرة", "محظور دولياً"], answer: 0, explanation: "غير المتماثل آمن وبطيء لتبادل المفتاح، والمتماثل سريع لكامل الجلسة." }
             ],
-            3: [
-                { question: "لماذا يتم تقسيم تطبيقات الويب إلى بنية ثلاثية الطبقات (3-Tier)?", options: ["لتحقيق الفصل التام لرفع الأمان والتوسع", "لتصغير الكود لملف واحد", "لأن المتصفحات ترفض الدمج", "لتوفير الشاشة"], answer: 0, explanation: "فصل الطبقات يتيح صيانة أسهل، توزيع الأحمال، وتعزيز الأمان." }
-            ],
-            4: [
-                { question: "ما هو الهدف من بناء 'شخصية المستخدم' (Persona) في UX؟", options: ["تجسيد احتياجات وسلوكيات الجمهور الحقيقي", "تحديد أسعار الإعلانات", "كتابة قاعدة البيانات", "اختيار ألوان عشوائية"], answer: 0, explanation: "Persona تساعد المصممين على التعاطف وبناء واجهات تلبي الاحتياجات." }
-            ],
-            hard: [
-                { question: "سؤال تحدي البرمجة: بحث شخص عن كلمة وظهرت بـ 3 ثوانٍ، من المسؤول؟", options: ["الخلفية وقاعدة البيانات والواجهة بتكامل تام", "الواجهة وحدها", "قاعدة البيانات وحدها", "السيرفر الخارجي"], answer: 0, explanation: "تتكامل الواجهة لاستقبال الطلب، والخلفية للمعالجة، وقاعدة البيانات لجلب السجلات." }
+            paid: [
+                { question: "سؤال مدفوع (VIP): ما هي الآلية الأمثل لحماية قواعد البيانات من هجمات الحقن SQL Injection؟", options: ["استخدام الاستعلامات المعدة مسبقاً Prepared Statements", "حذف كلمات السر", "إيقاف السيرفر", "استخدام ملفات النصية"], answer: 0, explanation: "Prepared Statements تفصل البيانات عن أوامر الاستعلام تماماً لتأمين النظام." },
+                { question: "سؤال مدفوع (VIP): في العمارة المصغرة Microservices، ما فائدة API Gateway؟", options: ["توجيه الطلبات، المصادقة المركزية، وتخفيف الضغط", "بطء النظام", "إلغاء السيرفرات", "تخزين الصور فقط"], answer: 0, explanation: "بوابة API تنظم وتدير كافة الطلبات الخارجية بكفاءة عالية وأمان." }
             ]
         };
 
         const fullFinanceBank = {
             1: [
-                { question: "ما هي المشكلة الأساسية التي جعلت الإنسان يخترع المال بدل المقايضة؟", options: ["صعوبة توافق الرغبات وتحديد القيمة العادلة", "كثرة الأوراق", "ظهور البنوك", "عدم وجود سلع"], answer: 0, explanation: "المقايضة كانت تتطلب توافقاً مزدوجاً وصعباً في الرغبات المتبادلة." },
-                { question: "سعر الكتاب 50 جنيهاً، هذه أي وظيفة للمال؟", options: ["وحدة للقياس ومقياس للقيمة", "وسيط للتبادل", "مخزن للقيمة", "دفع آجل"], answer: 0, explanation: "المال يُستخدم كأداة رئيسية لتسعير وقياس الأشياء." }
+                { question: "ما هي المشكلة الأساسية التي جعلت الإنسان يخترع المال بدل المقايضة؟", options: ["صعوبة توافق الرغبات وتحديد القيمة العادلة", "كثرة الأوراق", "ظهور البنوك", "عدم وجود سلع"], answer: 0, explanation: "المقايضة كانت تتطلب توافقاً مزدوجاً وصعباً في الرغبات المتبادلة." }
             ],
             2: [
                 { question: "ما هي نسبة زكاة المال البالغ النصاب وحال عليها الحول؟", options: ["2.5%", "10%", "5%", "20%"], answer: 0, explanation: "النسبة المقررة لزكاة الأموال المدخرة هي 2.5% بانتظام الحول." }
             ],
-            3: [
-                { question: "ما هي الميزانية المالية؟", options: ["خطة توضح الدخل والنفقات", "حجم الديون", "مبلغ طوارئ", "شراء كماليات"], answer: 0, explanation: "الميزانية عبارة عن خطة تنظم وتوجه الأموال بحكمة." }
-            ],
-            4: [
-                { question: "ما هي العقلية الريادية؟", options: ["البحث عن المشكلات وابتكار حلول ومشاريع", "الانتظار لوظيفة", "تجنب المخاطر", "العمل بلا تخطيط"], answer: 0, explanation: "ريادة الأعمال تعتمد على اقتناص الفرص وحل المشكلات المجتمعية." }
-            ],
-            5: [
-                { question: "ما العلاقة بين المخاطرة والعائد في الاستثمار؟", options: ["كلما زاد العائد، زادت المخاطرة", "المخاطرة العالية تعني عائداً صفرياً", "لا علاقة", "العائد العالي بلا مخاطر"], answer: 0, explanation: "القاعدة الاستثمارية الذهبية: العائد يتبع حجم المخاطرة المرتبطة به." }
-            ],
-            6: [
-                { question: "كيف يغير الذكاء الاصطناعي الأعمال والمال؟", options: ["بجعل العمليات أسرع وأدق عبر الأتمتة", "يوقف الأعمال", "يزيد الأخطاء", "يلغي التكنولوجيا"], answer: 0, explanation: "الذكاء الاصطناعي يحدث ثورة في كفاءة الشركات والمال عبر الأتمتة." }
+            paid: [
+                { question: "سؤال مدفوع (VIP): كيف تساهم المشتقات المالية في تقليل مخاطر المحافظ الاستثمارية؟", options: ["عبر التحوط Hedging ضد تقلبات الأسعار المستقبلية", "زيادة الديون", "إيقاف الأرباح", "بيع الأصول عشوائياً"], answer: 0, explanation: "التحوط بالمشتقات يحمي المستثمر من الخسائر الكبرى عند تقلب الأسواق." }
             ]
         };
 
@@ -892,6 +958,20 @@
             updateSelectedQCount('prog');
             updateSelectedQCount('fin');
         };
+
+        function switchAuthMode(mode) {
+            if (mode === 'login') {
+                document.getElementById('tabLoginBtn').classList.add('active');
+                document.getElementById('tabRegisterBtn').classList.remove('active');
+                document.getElementById('loginFormElement').style.display = 'block';
+                document.getElementById('registerFormElement').style.display = 'none';
+            } else {
+                document.getElementById('tabRegisterBtn').classList.add('active');
+                document.getElementById('tabLoginBtn').classList.remove('active');
+                document.getElementById('registerFormElement').style.display = 'block';
+                document.getElementById('loginFormElement').style.display = 'none';
+            }
+        }
 
         function toggleMobileMenu(open) {
             const overlay = document.getElementById('mobileMenuOverlay');
@@ -918,6 +998,34 @@
             document.getElementById(`fcontent-${unitNum}`).classList.add('active');
         }
 
+        function switchQuizTypeTab(subject, type) {
+            if (subject === 'prog') {
+                if (type === 'free') {
+                    document.getElementById('progFreeTab').classList.add('active');
+                    document.getElementById('progPaidTab').classList.remove('active');
+                    document.getElementById('progFreeSection').style.display = 'block';
+                    document.getElementById('progPaidSection').style.display = 'none';
+                } else {
+                    document.getElementById('progPaidTab').classList.add('active');
+                    document.getElementById('progFreeTab').classList.remove('active');
+                    document.getElementById('progPaidSection').style.display = 'block';
+                    document.getElementById('progFreeSection').style.display = 'none';
+                }
+            } else {
+                if (type === 'free') {
+                    document.getElementById('finFreeTab').classList.add('active');
+                    document.getElementById('finPaidTab').classList.remove('active');
+                    document.getElementById('finFreeSection').style.display = 'block';
+                    document.getElementById('finPaidSection').style.display = 'none';
+                } else {
+                    document.getElementById('finPaidTab').classList.add('active');
+                    document.getElementById('finFreeTab').classList.remove('active');
+                    document.getElementById('finPaidSection').style.display = 'block';
+                    document.getElementById('finFreeSection').style.display = 'none';
+                }
+            }
+        }
+
         function updateSelectedQCount(type) {
             if (type === 'prog') {
                 const checked = document.querySelectorAll('#unitsCheckboxContainer input[type="checkbox"]:checked');
@@ -938,68 +1046,86 @@
             }
         }
 
+        async function handleRealRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const password = document.getElementById('regPassword').value;
+            const studentClass = document.getElementById('regClass').value;
+            const parentPhone = document.getElementById('regPhone').value.trim();
+
+            const safeKey = email.replace(/[.#$[\]]/g, "_");
+            try {
+                const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
+                const existing = await res.json();
+                if (existing) {
+                    document.getElementById('regEmailErr').style.display = 'block';
+                    return;
+                }
+                document.getElementById('regEmailErr').style.display = 'none';
+
+                const newUser = {
+                    name, email, password, studentClass, parentPhone, scores: []
+                };
+
+                await fetch(`${FIREBASE_URL}/users/${safeKey}.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                });
+
+                studentSession = newUser;
+                localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
+                showMainDashboard();
+            } catch (err) {
+                alert("حدث خطأ أثناء الاتصال بالسيرفر. يجيب المحاولة لاحقاً.");
+            }
+        }
+
+        async function handleRealLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+
+            const safeKey = email.replace(/[.#$[\]]/g, "_");
+            try {
+                const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
+                const user = await res.json();
+                if (!user || user.password !== password) {
+                    document.getElementById('loginErr').style.display = 'block';
+                    return;
+                }
+                document.getElementById('loginErr').style.display = 'none';
+
+                studentSession = user;
+                localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
+                showMainDashboard();
+            } catch (err) {
+                alert("تعذر الاتصال بقاعدة بيانات السيرفر.");
+            }
+        }
+
         async function saveSessionToCloud() {
             localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
             try {
-                const safeKey = studentSession.name.replace(/[.#$[\]]/g, "_");
-                await fetch(`${FIREBASE_URL}/students/${safeKey}.json`, {
+                const safeKey = studentSession.email.replace(/[.#$[\]]/g, "_");
+                await fetch(`${FIREBASE_URL}/users/${safeKey}.json`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(studentSession)
                 });
-                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> متصل بقاعدة البيانات بنجاح`;
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> تم مزامنة النتائج مع السيرفر بنجاح`;
             } catch (err) {
                 console.error("خطأ في المزامنة:", err);
             }
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const nameInput = document.getElementById('studentName').value.trim();
-            const classInput = document.getElementById('studentClass').value;
-            const phoneInput = document.getElementById('parentPhone').value.trim();
-
-            let isValid = true;
-            if (nameInput.split(/\s+/).filter(w => w.length > 0).length < 3) {
-                document.getElementById('nameErr').style.display = 'block';
-                isValid = false;
-            } else { document.getElementById('nameErr').style.display = 'none'; }
-
-            if (!classInput) { document.getElementById('classErr').style.display = 'block'; isValid = false; }
-            else { document.getElementById('classErr').style.display = 'none'; }
-
-            if (!/^01[0125]\d{8}$/.test(phoneInput)) {
-                document.getElementById('phoneErr').style.display = 'block';
-                isValid = false;
-            } else { document.getElementById('phoneErr').style.display = 'none'; }
-
-            if (!isValid) return;
-
-            let existingScores = [];
-            const savedData = localStorage.getItem('faiz_student_session');
-            if (savedData) {
-                const parsed = JSON.parse(savedData);
-                if (parsed.name === nameInput) {
-                    existingScores = parsed.scores || [];
-                }
-            }
-
-            studentSession = {
-                name: nameInput,
-                class: classInput,
-                parentPhone: phoneInput,
-                scores: existingScores
-            };
-
-            saveSessionToCloud();
-            showMainDashboard();
         }
 
         function showMainDashboard() {
             document.getElementById('authPage').classList.remove('active');
             document.getElementById('openMenuBtn').style.display = 'flex';
             document.getElementById('pName').innerText = studentSession.name;
-            document.getElementById('pClass').innerText = studentSession.class;
+            document.getElementById('pEmail').innerText = studentSession.email;
+            document.getElementById('pClass').innerText = studentSession.studentClass;
             document.getElementById('pPhone').innerText = studentSession.parentPhone;
             renderScoreHistory();
             switchPage('profilePage');
@@ -1020,13 +1146,14 @@
             const tbody = document.getElementById('scoresHistoryBody');
             tbody.innerHTML = '';
             if (!studentSession.scores || studentSession.scores.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="color: var(--text-sub);">لا توجد اختبارات مسجلة حتى الآن</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="color: var(--text-sub);">لا توجد اختبارات مسجلة على السيرفر حتى الآن</td></tr>';
                 return;
             }
             studentSession.scores.forEach(s => {
                 tbody.innerHTML += `
                     <tr>
                         <td>${s.quizName}</td>
+                        <td><span style="background:${s.isPaid ? 'rgba(245,158,11,0.2); color:#f59e0b' : 'rgba(56,189,248,0.2); color:var(--accent-cyan)'}; padding:3px 8px; border-radius:6px; font-size:0.8rem;">${s.isPaid ? 'مدفوع VIP' : 'مجاني'}</span></td>
                         <td>${s.score} / ${s.total}</td>
                         <td style="color: ${s.percent >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold;">${s.percent}%</td>
                         <td>${s.date}</td>
@@ -1045,23 +1172,40 @@
             return array;
         }
 
-        function openSetupModal(type, mode) {
+        function openSetupModal(type, mode, tier) {
             pendingQuizType = type;
             pendingQuizMode = mode;
             let poolCount = 0;
+
+            if (tier === 'paid') {
+                const codeInput = type === 'prog' ? document.getElementById('progVipCode').value.trim() : document.getElementById('finVipCode').value.trim();
+                if (codeInput !== 'FAIZ-VIP-2026') {
+                    alert('كود التفعيل غير صحيح! أدخل: FAIZ-VIP-2026');
+                    return;
+                }
+            }
+
             if (type === 'prog') {
-                if (mode === 'hard') {
-                    poolCount = fullProgBank.hard.length;
+                if (tier === 'paid') {
+                    poolCount = fullProgBank.paid.length;
+                    window.currentQuizTier = 'مدفوع VIP';
                 } else {
                     const checked = document.querySelectorAll('#unitsCheckboxContainer input[type="checkbox"]:checked');
                     if (checked.length === 0) { alert('اختر فصلاً واحداً على الأقل!'); return; }
                     checked.forEach(cb => { if (fullProgBank[cb.value]) poolCount += fullProgBank[cb.value].length; });
+                    window.currentQuizTier = 'مجاني';
                 }
                 document.getElementById('modalTitle').innerText = 'إعدادات اختبار البرمجة';
             } else {
-                const checked = document.querySelectorAll('#financeUnitsCheckboxContainer input[type="checkbox"]:checked');
-                if (checked.length === 0) { alert('اختر وحدة واحدة على الأقل!'); return; }
-                checked.forEach(cb => { if (fullFinanceBank[cb.value]) poolCount += fullFinanceBank[cb.value].length; });
+                if (tier === 'paid') {
+                    poolCount = fullFinanceBank.paid.length;
+                    window.currentQuizTier = 'مدفوع VIP';
+                } else {
+                    const checked = document.querySelectorAll('#financeUnitsCheckboxContainer input[type="checkbox"]:checked');
+                    if (checked.length === 0) { alert('اختر وحدة واحدة على الأقل!'); return; }
+                    checked.forEach(cb => { if (fullFinanceBank[cb.value]) poolCount += fullFinanceBank[cb.value].length; });
+                    window.currentQuizTier = 'مجاني';
+                }
                 document.getElementById('modalTitle').innerText = 'إعدادات اختبار الثقافة المالية';
             }
             document.getElementById('modalQCount').innerText = poolCount;
@@ -1076,9 +1220,9 @@
             closeModal();
             let pool = [];
             if (pendingQuizType === 'prog') {
-                if (pendingQuizMode === 'hard') {
-                    pool = JSON.parse(JSON.stringify(fullProgBank.hard));
-                    window.currentQuizTitle = 'اختبار تحدي البرمجة الأقصى';
+                if (window.currentQuizTier === 'مدفوع VIP') {
+                    pool = JSON.parse(JSON.stringify(fullProgBank.paid));
+                    window.currentQuizTitle = 'اختبار البرمجة المتقدم (VIP)';
                 } else {
                     const checked = document.querySelectorAll('#unitsCheckboxContainer input[type="checkbox"]:checked');
                     let units = [];
@@ -1086,16 +1230,21 @@
                         units.push(cb.value);
                         if (fullProgBank[cb.value]) pool.push(...JSON.parse(JSON.stringify(fullProgBank[cb.value])));
                     });
-                    window.currentQuizTitle = `اختبار البرمجة (فصول: ${units.join(', ')})`;
+                    window.currentQuizTitle = `اختبار البرمجة المجاني (فصول: ${units.join(', ')})`;
                 }
             } else {
-                const checked = document.querySelectorAll('#financeUnitsCheckboxContainer input[type="checkbox"]:checked');
-                let units = [];
-                checked.forEach(cb => {
-                    units.push(cb.value);
-                    if (fullFinanceBank[cb.value]) pool.push(...JSON.parse(JSON.stringify(fullFinanceBank[cb.value])));
-                });
-                window.currentQuizTitle = `اختبار الثقافة المالية (وحدات: ${units.join(', ')})`;
+                if (window.currentQuizTier === 'مدفوع VIP') {
+                    pool = JSON.parse(JSON.stringify(fullFinanceBank.paid));
+                    window.currentQuizTitle = 'اختبار الثقافة المالية المتقدم (VIP)';
+                } else {
+                    const checked = document.querySelectorAll('#financeUnitsCheckboxContainer input[type="checkbox"]:checked');
+                    let units = [];
+                    checked.forEach(cb => {
+                        units.push(cb.value);
+                        if (fullFinanceBank[cb.value]) pool.push(...JSON.parse(JSON.stringify(fullFinanceBank[cb.value])));
+                    });
+                    window.currentQuizTitle = `اختبار الثقافة المالية المجاني (وحدات: ${units.join(', ')})`;
+                }
             }
 
             activeQuizQuestions = shuffleArray(pool);
@@ -1188,7 +1337,7 @@
             const remaining = total - answeredCount;
 
             if (!autoFinish && remaining > 0) {
-                if (!confirm(`تنبيه: لديك (${remaining}) أسئلة لم تجب عليها بعد!\n\nهل تريد إنهاء الاختبار؟`)) return;
+                if (!confirm(`تنبيه: لديك (${remaining}) أسئلة لم تجب عليها بعد!\n\nهل تريد إنهاء الاختبار وإرسال النتيجة؟`)) return;
             }
 
             clearInterval(timerInterval);
@@ -1212,8 +1361,11 @@
             document.getElementById('finishQuizBtn').style.display = 'none';
 
             const percentage = total > 0 ? Math.round((score / total) * 100) : 100;
+            if (!studentSession.scores) studentSession.scores = [];
+
             studentSession.scores.push({
                 quizName: window.currentQuizTitle,
+                isPaid: window.currentQuizTier === 'مدفوع VIP',
                 score: score, total: total, percent: percentage,
                 date: new Date().toLocaleDateString('ar-EG') + ' ' + new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'})
             });
@@ -1240,7 +1392,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
             const sName = studentSession ? studentSession.name : "طالب غير مسجل";
-            const sClass = studentSession ? studentSession.class : "غير محدد";
+            const sClass = studentSession ? studentSession.studentClass : "غير محدد";
             const sPhone = studentSession ? studentSession.parentPhone : "غير محدد";
 
             const whatsappMessage = `أهلاً يا مستر، عندي استفسار أو مشكلة في المنصة:\n\n` +
