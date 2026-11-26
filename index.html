@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفائز التعليمية - </title>
+    <title>منصة الفائز التعليمية -  </title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -74,7 +74,7 @@
             border-radius: var(--radius-md);
             font-size: 1.05rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -169,7 +169,7 @@
 
         .page {
             display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .page.active {
@@ -201,7 +201,6 @@
             margin-bottom: 8px;
             color: var(--text-sub);
             font-size: 0.92rem;
-            font-weight: 500;
         }
 
         .form-group input, .form-group select, .form-group textarea {
@@ -213,7 +212,6 @@
             color: #fff;
             outline: none;
             font-size: 1rem;
-            transition: all 0.3s;
         }
 
         .form-group select option {
@@ -221,17 +219,11 @@
             color: #fff;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
         .error-msg {
             color: var(--wrong-clr);
             font-size: 0.85rem;
             margin-top: 6px;
             display: none;
-            font-weight: 500;
         }
 
         .btn-action {
@@ -258,15 +250,9 @@
             color: #ffffff;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-            border: 1px solid var(--border-glow);
-        }
-
         .units-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -295,24 +281,24 @@
             display: block;
         }
 
-        .lesson-item {
+        .topic-box, .lesson-item {
             background: rgba(255,255,255,0.015);
-            border-right: 3px solid var(--accent-cyan);
-            padding: 14px 18px;
-            margin-bottom: 12px;
+            border-right: 4px solid var(--accent-cyan);
+            padding: 18px 22px;
+            margin-bottom: 18px;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        .lesson-item h5 {
+        .topic-box h4, .lesson-item h5 {
             color: var(--accent-cyan);
-            margin-bottom: 4px;
-            font-size: 1.05rem;
+            margin-bottom: 10px;
+            font-size: 1.15rem;
         }
 
-        .lesson-item p {
+        .topic-box p, .lesson-item p {
             color: #cbd5e1;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
         }
 
         .q-card {
@@ -334,7 +320,6 @@
             color: #fff;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 0.98rem;
         }
 
         .opt-btn.selected {
@@ -348,14 +333,12 @@
             background: rgba(16, 185, 129, 0.2) !important;
             border-color: var(--correct-clr) !important;
             color: #34d399 !important;
-            font-weight: 600;
         }
 
         .opt-btn.wrong {
             background: rgba(244, 63, 94, 0.2) !important;
             border-color: var(--wrong-clr) !important;
             color: #fb7185 !important;
-            font-weight: 600;
         }
 
         .explain-box {
@@ -386,7 +369,6 @@
         .score-table th {
             background: rgba(56, 189, 248, 0.1);
             color: var(--accent-cyan);
-            font-weight: 700;
         }
 
         .chat-box {
@@ -431,7 +413,6 @@
             color: var(--correct-clr);
             text-align: left;
             margin-top: 8px;
-            font-weight: 500;
         }
 
         footer {
@@ -472,8 +453,12 @@
                 <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
+            <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
+                <span><i class="fa-solid fa-laptop-code" style="margin-left: 10px;"></i> شرح البرمجة وتكنولوجيا المعلومات</span>
+                <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
+            </button>
             <button class="menu-item-btn" onclick="navigateTo('financialCulturePage')">
-                <span><i class="fa-solid fa-coins" style="margin-left: 10px;"></i> الثقافة المالية (كتاب الفائز)</span>
+                <span><i class="fa-solid fa-coins" style="margin-left: 10px;"></i> كتاب الثقافة المالية (الفائز)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('financeQuizSelectPage')">
@@ -496,8 +481,8 @@
         <!-- صفحة تسجيل الدخول -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center; font-size: 1.5rem;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">منصة الفائز التعليمية - مرحباً بك يا بطل</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
+                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">منصة الفائز التعليمية</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي على الأقل) *</label>
@@ -527,7 +512,7 @@
         <!-- البروفايل -->
         <div id="profilePage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي للطالب</h3>
                 <p style="margin-bottom: 8px;"><strong>اسم الطالب:</strong> <span id="pName" style="color: #fff;"></span></p>
                 <p style="margin-bottom: 8px;"><strong>المسار الدراسي:</strong> <span id="pClass" style="color: #fff;"></span></p>
                 <p><strong>رقم ولي الأمر:</strong> <span id="pPhone" style="color: #fff;"></span></p>
@@ -535,7 +520,7 @@
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل الاختبارات والنتائج</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -552,128 +537,119 @@
             </div>
         </div>
 
-        <!-- قسم الثقافة المالية (كتاب الفائز) -->
-        <div id="financialCulturePage" class="page">
+        <!-- شرح البرمجة وتكنولوجيا المعلومات -->
+        <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز)</h2>
-                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> المذكرة الكاملة لجميع الوحدات والدروس لتعزيز الوعي المالي والاقتصادي.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> الشرح المفصل - مسار البرمجة وتكنولوجيا المعلومات</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> شروح دقيقة لفصول البرمجة وتكنولوجيا المعلومات والحوسبة.</p>
                 
                 <div class="units-grid">
-                    <div class="unit-card active" onclick="switchFinanceUnit(1)" id="fcard-1">
-                        <h4>الوحدة 01</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">أساسيات المال والتمويل (15 درس)</p>
+                    <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1">
+                        <h4>الفصل 1: تكنولوجيا المعلومات</h4>
                     </div>
-                    <div class="unit-card" onclick="switchFinanceUnit(2)" id="fcard-2">
-                        <h4>الوحدة 02</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">أساسيات الأعمال والاقتصاد (22 درس)</p>
+                    <div class="unit-card" onclick="switchUnit(2)" id="ucard-2">
+                        <h4>الفصل 2: الأمن السيبراني</h4>
                     </div>
-                    <div class="unit-card" onclick="switchFinanceUnit(3)" id="fcard-3">
-                        <h4>الوحدة 03</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">التمويل الشخصي والائتمان (20 درس)</p>
+                    <div class="unit-card" onclick="switchUnit(3)" id="ucard-3">
+                        <h4>الفصل 3: تطبيقات الويب</h4>
                     </div>
-                    <div class="unit-card" onclick="switchFinanceUnit(4)" id="fcard-4">
-                        <h4>الوحدة 04</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">ريادة الأعمال (13 درس)</p>
-                    </div>
-                    <div class="unit-card" onclick="switchFinanceUnit(5)" id="fcard-5">
-                        <h4>الوحدة 05</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">الاستثمار وإدارة الثروات (14 درس)</p>
-                    </div>
-                    <div class="unit-card" onclick="switchFinanceUnit(6)" id="fcard-6">
-                        <h4>الوحدة 06</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-sub);">الذكاء الاصطناعي والتمويل (14 درس)</p>
+                    <div class="unit-card" onclick="switchUnit(4)" id="ucard-4">
+                        <h4>الفصل 4: تصميم الويب UX</h4>
                     </div>
                 </div>
 
-                <!-- محتوى الوحدات -->
-                <div id="fcontent-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل (15 درس)</h3>
-                    <div class="lesson-item"><h5>1. كيف نشأ المال</h5><p>الناس كانت بتبدل سلعة بسلعة، وكان صعب، فاخترعوا المال عشان يسهل التبادل.</p></div>
-                    <div class="lesson-item"><h5>2. الوظائف الثلاث للمال</h5><p>وسيط للتبادل، مخزن للقيمة، وحدة للقياس.</p></div>
-                    <div class="lesson-item"><h5>3. أشكال المال الحديث</h5><p>عملات معدنية، ورقية، بطاقات، فلوس إلكترونية ومحافظ.</p></div>
-                    <div class="lesson-item"><h5>4. ما هو التمويل؟</h5><p>إدارة الفلوس، منين تجيبها وفين تصرفها.</p></div>
-                    <div class="lesson-item"><h5>5. الوساطة المالية</h5><p>البنوك بتاخد فلوس من اللي معاه زيادة، وتديها للي محتاج قرض.</p></div>
-                    <div class="lesson-item"><h5>6. دور المال</h5><p>بيخلي البيع والشراء والادخار والاستثمار أسهل.</p></div>
-                    <div class="lesson-item"><h5>7. أنواع المؤسسات المالية</h5><p>بنوك، شركات تأمين، شركات استثمار، جمعيات.</p></div>
-                    <div class="lesson-item"><h5>8. كيف يحرك التمويل المجتمع</h5><p>الفلوس بتروح للمشاريع، المشاريع بتعمل شغل، والناس بتقبض.</p></div>
-                    <div class="lesson-item"><h5>9. دور التمويل في المجتمع</h5><p>بيساعد الناس تشتري بيت، والشركات تكبر، والدولة تبني مشاريع.</p></div>
-                    <div class="lesson-item"><h5>10. آليات السوق وتحديد الأسعار</h5><p>العرض والطلب هما اللي بيحددوا السعر، لو الطلب زاد السعر بيزيد.</p></div>
-                    <div class="lesson-item"><h5>11. ماذا يمكن أن يفعله المال؟</h5><p>يشتري احتياجات، يحقق أهداف، ويبني ثروة لو اتدار صح.</p></div>
-                    <div class="lesson-item"><h5>12. أهداف المال وعلاقته بالثروة</h5><p>المال مش هدف، هو وسيلة عشان توصل لحياة كويسة.</p></div>
-                    <div class="lesson-item"><h5>13. مبادئ الاقتصاد</h5><p>الموارد محدودة، والرغبات كتيرة، فلازم تختار.</p></div>
-                    <div class="lesson-item"><h5>14. أنواع المبادئ الاقتصادية</h5><p>اقتصاد كلي بيبص على الدولة كلها، وجزئي بيبص على فرد أو شركة.</p></div>
-                    <div class="lesson-item"><h5>15. البنية الأساسية للاقتصاد</h5><p>الأسرة، الشركة، الحكومة، والبنك المركزي.</p></div>
+                <div id="unit-content-1" class="unit-content-section active">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب</h3>
+                    <div class="topic-box">
+                        <h4>1. جذور الحوسبة وحواسيب الجيل الأول (ENIAC)</h4>
+                        <p>• اعتمد على الصمامات المفرغة (Vacuum Tubes) التي استهلكت طاقة هائلة وولدت حرارة مفرطة وعرضة للتلف المستمر.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. قانون مور والنفق الكمومي</h4>
+                        <p>• تضاعف الترانزستورات كل عامين، وعند الأبعاد النانومترية تظهر ظاهرة تسرب الإلكترونات (Quantum Tunneling).</p>
+                    </div>
                 </div>
 
-                <div id="fcontent-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد (22 درس)</h3>
-                    <div class="lesson-item"><h5>1. فهم الزكاة</h5><p>ركن من أركان الإسلام، حق الفقراء في مال الأغنياء.</p></div>
-                    <div class="lesson-item"><h5>2. ما هي الزكاة؟</h5><p>نسبة 2.5% من المال اللي عدى عليه سنة وبلغ النصاب.</p></div>
-                    <div class="lesson-item"><h5>3. كيف تحسب الزكاة؟</h5><p>شوف فلوسك كلها، تخصم ديونك، وتضرب الباقي في 2.5%.</p></div>
-                    <div class="lesson-item"><h5>4. من يستحق الزكاة؟</h5><p>الفقراء، المساكين، الغارمين، ابن السبيل، وغيرهم 8 مصارف.</p></div>
-                    <div class="lesson-item"><h5>5. أنواع ملكية المشاريع التجارية</h5><p>فردي، شراكة، شركة مساهمة.</p></div>
-                    <div class="lesson-item"><h5>6. الغرض من المشاريع التجارية ودورها</h5><p>تكسب فلوس، وتوفر شغل، وتقدم منتجات للناس.</p></div>
-                    <div class="lesson-item"><h5>7. المسؤولية الاجتماعية CSR</h5><p>الشركة لازم تفيد المجتمع مش تكسب بس، زي الحفاظ على البيئة.</p></div>
-                    <div class="lesson-item"><h5>8. الدخل ومصادر الدخل</h5><p>مرتب، مشروع، إيجار، استثمار.</p></div>
-                    <div class="lesson-item"><h5>9. فهم النفقات</h5><p>مصاريف ثابتة زي الإيجار، ومتغيرة زي الأكل والخروجات.</p></div>
-                    <div class="lesson-item"><h5>10. الأسر والاقتصاد</h5><p>الأسرة هي اللي بتصرف وبتدخر وبتشغل الاقتصاد.</p></div>
-                    <div class="lesson-item"><h5>11. كيف تحرك الشركات الاقتصاد</h5><p>الشركات بتنتج، بتشغل ناس، وبتدفع ضرايب.</p></div>
-                    <div class="lesson-item"><h5>12. سلاسل التوريد والقيمة</h5><p>من الخامة لحد ما المنتج يوصل لإيدك، كل مرحلة بتزود قيمة.</p></div>
-                    <div class="lesson-item"><h5>13. المشاريع التجارية والحكومة والمجتمع</h5><p>الحكومة بتنظم، والشركات بتنتج، والمجتمع بيستفيد.</p></div>
-                    <div class="lesson-item"><h5>14. المؤشرات الاقتصادية</h5><p>زي الناتج المحلي، التضخم، البطالة، بيعرفوك الاقتصاد رايح فين.</p></div>
-                    <div class="lesson-item"><h5>15. النظم الاقتصادية</h5><p>رأسمالي، اشتراكي، مختلط.</p></div>
-                    <div class="lesson-item"><h5>16. الأسواق والمنافسة</h5><p>المنافسة بتخلي الأسعار أحسن والجودة أعلى.</p></div>
+                <div id="unit-content-2" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني</h3>
+                    <div class="topic-box">
+                        <h4>1. بروتوكول TLS والعمارة المزدوجة</h4>
+                        <p>• يجمع بين التشفير غير المتماثل لتبادل المفاتيح بأمان، ثم المتماثل لنقل البيانات بسرعة عالية.</p>
+                    </div>
                 </div>
 
-                <div id="fcontent-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان (20 درس)</h3>
-                    <div class="lesson-item"><h5>1. ما هي الميزانية؟</h5><p>خطة لفلوسك، داخل كام وخارج كام.</p></div>
-                    <div class="lesson-item"><h5>2. الاحتياجات مقابل الرغبات</h5><p>الاحتياج زي الأكل والسكن، الرغبة زي الموبايل الجديد.</p></div>
-                    <div class="lesson-item"><h5>3. تخصيص الموارد المحدودة</h5><p>فلوسك محدودة، فلازم ترتب أولوياتك.</p></div>
-                    <div class="lesson-item"><h5>4. لماذا الادخار؟</h5><p>عشان الطوارئ والمستقبل والأهداف الكبيرة.</p></div>
-                    <div class="lesson-item"><h5>5. سحر الفائدة المركبة</h5><p>فلوسك بتجيب فايدة، والفايدة بتجيب فايدة تاني، ففلوسك بتكبر أسرع.</p></div>
-                    <div class="lesson-item"><h5>6. التحضير لمخاطر المستقبل</h5><p>التأمين والادخار للطوارئ بيحموك لو حصلت مشكلة.</p></div>
-                    <div class="lesson-item"><h5>7. ما هو العقد؟</h5><p>اتفاق بين طرفين، ليه حقوق وواجبات.</p></div>
-                    <div class="lesson-item"><h5>8. كيف يعمل الائتمان</h5><p>تستلف دلوقتي وتدفع بعدين، بس بفايدة.</p></div>
-                    <div class="lesson-item"><h5>9. المسؤولية عن الديون وحقوق المستهلك</h5><p>لازم تدفع في معادك، ومن حقك تعرف كل الشروط قبل ما تمضي.</p></div>
-                    <div class="lesson-item"><h5>10. محاكاة رحلة الحياة - النجاة المالية</h5><p>لو صرفت من غير خطة هتغرق، لو خططت هتنجو.</p></div>
+                <div id="unit-content-3" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: هندسة تطبيقات الويب</h3>
+                    <div class="topic-box">
+                        <h4>1. الهيكلية ثلاثية الطبقات (3-Tier Architecture)</h4>
+                        <p>• فصل الواجهة الأمامية عن الخلفية وقاعدة البيانات لرفع مستوى الأمان والتوسع المرن.</p>
+                    </div>
                 </div>
 
-                <div id="fcontent-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال (13 درس)</h3>
-                    <div class="lesson-item"><h5>1. العقلية الريادية</h5><p>بتدور على مشكلة وتحلها، مش بتستنى وظيفة.</p></div>
-                    <div class="lesson-item"><h5>2. من الفكرة إلى المشروع التجاري</h5><p>فكرة، دراسة، تجربة، إطلاق.</p></div>
-                    <div class="lesson-item"><h5>3. المخاطر والتأثير الاجتماعي</h5><p>رائد الأعمال بيخاطر، بس ممكن يفيد مجتمعه.</p></div>
-                    <div class="lesson-item"><h5>4. ما هو نموذج العمل؟</h5><p>ازاي الشركة هتكسب فلوس.</p></div>
-                    <div class="lesson-item"><h5>5. نماذج العمل الشائعة</h5><p>اشتراك، بيع مباشر، إعلانات، عمولة.</p></div>
-                    <div class="lesson-item"><h5>6. تصميم تدفقات الإيراد</h5><p>منين الفلوس هتيجي، وكل مصدر هيجيب كام.</p></div>
-                </div>
-
-                <div id="fcontent-5" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار وإدارة الثروات (14 درس)</h3>
-                    <div class="lesson-item"><h5>1. ما هو الاستثمار؟</h5><p>تحط فلوسك في حاجة عشان تكبر مع الوقت.</p></div>
-                    <div class="lesson-item"><h5>2. المخاطرة والعائد</h5><p>كل ما العائد المتوقع أعلى، المخاطرة أعلى.</p></div>
-                    <div class="lesson-item"><h5>3. أنواع فئات الأصول</h5><p>أسهم، سندات، عقارات، ذهب، كاش.</p></div>
-                    <div class="lesson-item"><h5>4. ما هي الأسهم؟</h5><p>حصة في شركة، لو الشركة كسبت انت تكسب.</p></div>
-                    <div class="lesson-item"><h5>5. اساسيات الأسهم</h5><p>تشتري رخيص، تبيع غالي، أو تاخد توزيعات أرباح.</p></div>
-                    <div class="lesson-item"><h5>6. التنويع وتقييم الشركات</h5><p>متحطش كل فلوسك في مكان واحد، وزعها عشان تقلل المخاطرة.</p></div>
-                </div>
-
-                <div id="fcontent-6" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل (14 درس)</h3>
-                    <div class="lesson-item"><h5>1. كيف يغير الذكاء الاصطناعي عالم الأعمال</h5><p>بيخلي الشغل أسرع وأرخص وأدق.</p></div>
-                    <div class="lesson-item"><h5>2. التكنولوجيا المالية والذكاء الاصطناعي في التمويل</h5><p>تطبيقات البنوك، كشف النصب، روبوتات النصايح المالية.</p></div>
-                    <div class="lesson-item"><h5>3. مستقبل الأعمال</h5><p>اللي مش هيتعلم AI والتكنولوجيا، هيتأخر.</p></div>
+                <div id="unit-content-4" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الرابع: تصميم الويب وتجربة المستخدم</h3>
+                    <div class="topic-box">
+                        <h4>1. مبادئ التصميم البصري Persona و CRAP</h4>
+                        <p>• تجسيد احتياجات المستخدم ومبادئ التباين والتكرار والمحاذاة.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة اختيار اختبارات الثقافة المالية -->
+        <!-- كتاب الثقافة المالية -->
+        <div id="financialCulturePage" class="page">
+            <div class="glass-card">
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز)</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> المذكرة الكاملة لجميع وحدات الثقافة المالية الستة.</p>
+                
+                <div class="units-grid">
+                    <div class="unit-card active" onclick="switchFinanceUnit(1)" id="fcard-1"><h4>الوحدة 01</h4><p style="font-size:0.8rem; color:var(--text-sub);">المال والتمويل (15 درس)</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(2)" id="fcard-2"><h4>الوحدة 02</h4><p style="font-size:0.8rem; color:var(--text-sub);">الأعمال والاقتصاد (22 درس)</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(3)" id="fcard-3"><h4>الوحدة 03</h4><p style="font-size:0.8rem; color:var(--text-sub);">التمويل والائتمان (20 درس)</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(4)" id="fcard-4"><h4>الوحدة 04</h4><p style="font-size:0.8rem; color:var(--text-sub);">ريادة الأعمال (13 درس)</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(5)" id="fcard-5"><h4>الوحدة 05</h4><p style="font-size:0.8rem; color:var(--text-sub);">الاستثمار والثروات (14 درس)</p></div>
+                    <div class="unit-card" onclick="switchFinanceUnit(6)" id="fcard-6"><h4>الوحدة 06</h4><p style="font-size:0.8rem; color:var(--text-sub);">الذكاء الاصطناعي (14 درس)</p></div>
+                </div>
+
+                <div id="fcontent-1" class="unit-content-section active">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل</h3>
+                    <div class="lesson-item"><h5>1. كيف نشأ المال</h5><p>بدأ بمقايضة السلع ثم تطور لتسهيل التبادل.</p></div>
+                    <div class="lesson-item"><h5>2. الوظائف الثلاث للمال</h5><p>وسيط للتبادل، مخزن للقيمة، ووحدة للقياس.</p></div>
+                    <div class="lesson-item"><h5>3. الوساطة المالية</h5><p>البنوك تنقل الفائض من المدخرين للمحتاجين لقروض.</p></div>
+                </div>
+
+                <div id="fcontent-2" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد</h3>
+                    <div class="lesson-item"><h5>1. فهم الزكاة</h5><p>ركن إسلامي بنسبة 2.5% على المال البالغ النصاب.</p></div>
+                    <div class="lesson-item"><h5>2. المسؤولية الاجتماعية CSR</h5><p>التزام الشركات بخدمة المجتمع وحماية البيئة.</p></div>
+                </div>
+
+                <div id="fcontent-3" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان</h3>
+                    <div class="lesson-item"><h5>1. الميزانية والادخار</h5><p>خطة واضحة للدخل والنفقات وتكوين صندوق طوارئ.</p></div>
+                </div>
+
+                <div id="fcontent-4" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال</h3>
+                    <div class="lesson-item"><h5>1. العقلية الريادية ونماذج العمل</h5><p>حل المشكلات وابتكار مصادر إيرادات مستدامة.</p></div>
+                </div>
+
+                <div id="fcontent-5" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار</h3>
+                    <div class="lesson-item"><h5>1. الأسهم والمخاطرة والعائد</h5><p>تنويع الأصول لبناء الثروة وتقليل المخاطر.</p></div>
+                </div>
+
+                <div id="fcontent-6" class="unit-content-section">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل</h3>
+                    <div class="lesson-item"><h5>1. الـ AI في الأعمال</h5><p>أتمتة العمليات المالية واكتشاف عمليات النصب.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة اختبارات الثقافة المالية -->
         <div id="financeQuizSelectPage" class="page">
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات الثقافة المالية (نظام TOFAS)</h3>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.92rem;">اختر الوحدة التي تريد اختبار نفسك فيها (10 أسئلة لكل وحدة مع التصحيح والتعليل):</p>
-                
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات الثقافة المالية (TOFAS)</h3>
                 <div class="form-group">
                     <label>اختر الوحدة المستهدفة:</label>
                     <select id="selectedFinanceUnit">
@@ -701,10 +677,10 @@
             <button id="finishFinanceQuizBtn" class="btn-action" onclick="finishFinanceQuiz()" style="margin-top: 20px;">إنهاء الاختبار وإظهار النتيجة</button>
         </div>
 
-        <!-- تواصل مع صاحب المنصة -->
+        <!-- التواصل مع صاحب المنصة -->
         <div id="aiChatPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-comments"></i> تواصل مع صاحب المنصة</h2>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-comments"></i> تواصل مع صاحب المنصة</h2>
                 <p style="color: var(--text-sub); font-size: 0.92rem; margin-bottom: 20px;">اكتب سؤالك أو مشكلتك واضغط على الرقم المناسب للتواصل مباشرة عبر الواتساب.</p>
                 <div class="chat-box" id="chatContainer">
                     <div class="chat-msg ai">أهلاً بك يا بطل! اكتب استفسارك في الأسفل، ثم اختر أحد أرقام الواتساب لإرسال رسالتك مرتبة ومجهزة فوراً.</div>
@@ -714,10 +690,10 @@
                 </div>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                     <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201279364446')" style="flex: 1; min-width: 200px;">
-                        <i class="fa-brands fa-whatsapp" style="margin-left: 6px;"></i> إرسال للرقم الأول (012)
+                        <i class="fa-brands fa-whatsapp"></i> إرسال للرقم الأول (012)
                     </button>
                     <button class="btn-action btn-whatsapp" onclick="sendToWhatsApp('201148041323')" style="flex: 1; min-width: 200px;">
-                        <i class="fa-brands fa-whatsapp" style="margin-left: 6px;"></i> إرسال للرقم الثاني (011)
+                        <i class="fa-brands fa-whatsapp"></i> إرسال للرقم الثاني (011)
                     </button>
                 </div>
             </div>
@@ -725,7 +701,6 @@
 
     </div>
 
-    <!-- حقوق الملكية -->
     <footer>
         جميع الحقوق محفوظة © MA
     </footer>
@@ -733,79 +708,27 @@
     <script>
         const FIREBASE_URL = "https://apdowebsite-99ed7-default-rtdb.europe-west1.firebasedatabase.app";
 
-        // بنك أسئلة الثقافة المالية الشامل (10 أسئلة لكل وحدة)
         const financeQuizBank = {
             1: [
                 { q: "ما هي المشكلة الأساسية التي جعلت الإنسان قديماً يخترع المال بدل المقايضة؟", options: ["صعوبة توافق الرغبات وتحديد القيمة العادلة للسلع", "كثرة الأوراق النقدية", "ظهور البنوك الكبرى", "عدم وجود سلع أساسية"], answer: 0, exp: "المقايضة كانت تتطلب توافقاً مزدوجاً وصعباً في الرغبات." },
-                { q: "عندما نعرف أن سعر الكتاب 50 جنيهاً، فهذه أي وظيفة للممال؟", options: ["وسيط للتبادل", "مخزن للقيمة", "وحدة للقياس ومقياس للقيمة", "دفع آجل"], answer: 2, exp: "استخدام المال كأداة لتسعير وقياس الأشياء." },
-                { q: "ما دور الوساطة المالية (البنوك) في المجتمع؟", options: ["أخذ الفائض من المدخرين وإعطاؤه للمحتاجين كقروض", "فرض الضرائب على المواطنين", "تحديد أسعار السلع الغذائية", "منع الاستثمار التجاري"], answer: 0, exp: "البنوك تربط بين من يملك فائضاً ومن يحتاج تمويلاً." },
-                { q: "لماذا يُعد 'الاختيار' أمراً حتمياً في علم الاقتصاد؟", options: ["لأن الموارد محدودة والرغبات غير محدودة", "لأن الحكومة تجبرنا على ذلك", "لأن الأسعار لا تتغير", "لأن المال غير منتهٍ"], answer: 0, exp: "ندرة الموارد تحتم علينا الاختيار وتحديد الأولويات." },
-                { q: "ماذا يحدث للسعر إذا زاد الطلب على سلعة بشدة بينما المعروض محدود؟", options: ["يرتفع السعر", "ينخفض السعر", "يظل ثابتاً", "تصبح السلعة مجانية"], answer: 0, exp: "بسبب آليات العرض والطلب، زيادة الطلب ترفع السعر." },
-                { q: "ما الفرق الأساسي بين الاقتصاد الكلي والجزئي؟", options: ["الكلي يدرس الاقتصاد ككل كالتضخم والناتج، والجزئي يدرس الوحدات الفردية", "لا يوجد فرق", "الكلي يدرس الأفراد فقط", "الجزئي يدرس الدول العظمى"], answer: 0, exp: "الاقتصاد الكلي ينظر للصورة الكبيرة للدولة." },
-                { q: "أي مما يلي لا يعتبر جزءاً من البنية الأساسية للاقتصاد؟", options: ["الأسرة", "الشركة", "الحكومة", "الأحلام الشخصية الوهمية"], answer: 3, exp: "العناصر الفاعلة هي الأسر والشركات والحكومات." },
-                { q: "النظر للممال باعتباره 'وسيلة وليس غاية' يعني:", أن: ["الهدف هو بناء ثروة وحياة مستقرة وليس مجرد تجميعه", "عدم ادخار المال نهائياً", "المال بلا قيمة حقيقية", "الأغنياء فقط يستفيدون منه"], answer: 0, exp: "المال أداة لتحقيق جودة حياة أفضل." },
-                { q: "كيف تساهم شركات التأمين في المجتمع؟", options: ["تجميع الأقساط لمواجهة المخاطر المستقبلية وحماية الأفراد", "تقديم قروض لسيارات فقط", "إصدار الأسهم مباشرة", "منع التضخم المالي"], answer: 0, exp: "التأمين يحمي ضد الخسائر غير المتوقعة." },
-                { q: "ما الفائدة الكبرى من توجيه الأموال للاستثمار؟", options: ["تحريك عجلة الاقتصاد وخلق فرص عمل جديدة وزيادة الإنتاج", "إحداث ركود اقتصادي", "زيادة الديون بلا فائدة", "إيقاف الشركات الصغيرة"], answer: 0, exp: "الاستثمار يغذي النمو الاقتصادي ويوفر الوظائف." }
+                { q: "عندما نعرف أن سعر الكتاب 50 جنيهاً، فهذه أي وظيفة للمال؟", options: ["وسيط للتبادل", "مخزن للقيمة", "وحدة للقياس ومقياس للقيمة", "دفع آجل"], answer: 2, exp: "استخدام المال كأداة لتسعير وقياس الأشياء." },
+                { q: "ما دور الوساطة المالية (البنوك) في المجتمع؟", options: ["أخذ الفائض من المدخرين وإعطاؤه للمحتاجين كقروض", "فرض الضرائب على المواطنين", "تحديد أسعار السلع الغذائية", "منع الاستثمار التجاري"], answer: 0, exp: "البنوك تربط بين من يملك فائضاً ومن يحتاج تمويلاً." }
             ],
             2: [
-                { q: "ما هي نسبة زكاة المال البلغ النصاب وحال عليها الحول؟", options: ["2.5%", "10%", "5%", "20%"], answer: 0, exp: "النسبة المقررة لزكاة الأموال المدخرة هي 2.5%." },
-                { q: "إلى كم مصرفاً توزع زكاة المال؟", options: ["8 مصارف (فقراء، مساكين..إلخ)", "3 مصارف", "مصرف واحد", "5 مصارف"], answer: 0, exp: "ذكر الله مصارف الزكاة الثمانية في سورة التوبة." },
-                { q: "أي مما يلي يُعد من أنواع ملكية المشاريع التجارية؟", options: ["شركة مساهمة، شراكة، فردي", "مشاريع وهمية", "جمعيات خيرية فقط", "استهلاك شخصي"], answer: 0, exp: "هذه هياكل ملكية الشركات والأنشطة الاقتصادية." },
-                { q: "ما المقصود بالمسؤولية الاجتماعية للشركات (CSR)؟", options: ["أن تفيد الشركة المجتمع وتحافظ على البيئة بجانب تحقيق الأرباح", "عدم دفع ضرائب", "تكبير حجم الإعلانات", "تقليل عدد الموظفين"], answer: 0, exp: "دور الشركة يتعدى الربح لخدمة المجتمع." },
-                { q: "ما الفرق بين النفقات الثابتة والمتغيرة؟", options: ["الثابتة كالإيجار لا تتغير، والمتغيرة كالأكل والخروج تتغير حسب الاستهلاك", "العكس تماماً", "كلاهما يتغير يومياً", "كلاهما ثابت"], answer: 0, exp: "المصاريف الثابتة دورية ومتكررة بقيمة محددة." },
-                { q: "ما دور سلاسل التوريد والقيمة؟", options: ["إيصال المنتج من المادة الخام للمستهلك مع إضافة قيمة في كل مرحلة", "تخزين المنتجات بلا بيع", "تقليل جودة المنتجات", "رفع السعر بلا فائدة"], answer: 0, exp: "سلاسل التوريد تحول الخامات لمنتجات نهائية نافعة." },
-                { q: "أي مما يلي يعتبر من المؤشرات الاقتصادية الهامة؟", options: ["الناتج المحلي الإجمالي، التضخم، البطالة", "عدد ألوان شعار الشركة", "حجم شاشة الموظف", "نوع سيارة المدير"], answer: 0, exp: "المؤشرات تقيس صحة وأداء اقتصاد الدولة." },
-                { q: "ما هي النظم الاقتصادية الرئيسية؟", options: ["رأسمالي، اشتراكي، مختلط", "صغير، كبير، متوسط", "زراعي فقط", "رقمي فقط"], answer: 0, exp: "تختلف النظم في طريقة إدارة الموارد وتوزيعها." },
-                { q: "لماذا تُعتبر المنافسة في الأسواق مفيدة للمستهلك؟", options: ["تُحسن الأسعار وترفع جودة المنتجات والخدمات", "ترفع الأسعار لأعلى مستوى", "تخفي المنتجات", "تزيد الاحتكار"], answer: 0, exp: "المنافسة تدفع الشركات لتقديم أفضل ما لديهم." },
-                { q: "ما هي مصادر الدخل المتنوعة للإنسان؟", options: ["المرتب، المشروع، الإيجار، الاستثمار", "الاستدانة المستمرة", "صرف المدخرات", "المساعدات العشوائية"], answer: 0, exp: "تنوع الدخل يحقق الاستقرار المالي والأمان." }
+                { q: "ما هي نسبة زكاة المال البالغ النصاب وحال عليها الحول؟", options: ["2.5%", "10%", "5%", "20%"], answer: 0, exp: "النسبة المقررة لزكاة الأموال المدخرة هي 2.5%." },
+                { q: "ما المقصود بالمسؤولية الاجتماعية للشركات (CSR)؟", options: ["أن تفيد الشركة المجتمع وتحافظ على البيئة بجانب تحقيق الأرباح", "عدم دفع ضرائب", "تكبير حجم الإعلانات", "تقليل عدد الموظفين"], answer: 0, exp: "دور الشركة يتعدى الربح لخدمة المجتمع." }
             ],
             3: [
-                { q: "ما هي الميزانية المالية؟", options: ["خطة توضح الدخل والنفقات خلال فترة زمنية", "حجم الديون المتراكمة", "مبلغ طوارئ لا يتم فتحه", "شراء سلع كمالية"], answer: 0, exp: "الميزانية تنظم وتوجه أموالك بحكمة." },
-                { q: "ما الفرق بين الاحتياجات والرغبات؟", options: ["الاحتياجات أساسية للبقاء كالأكل، الرغبات كماليات كموبايل جديد", "كلاهما نفس الشيء", "الرغبات أهم من الاحتياجات", "الاحتياجات كماليات"], answer: 0, exp: "الاحتياجات ضرورية، والرغبات تفضيلات شخصية." },
-                { q: "ما هو الفائدة المركبة (Compound Interest)؟", options: ["احتساب الفائدة على المبلغ الأساسي والأرباح المتراكمة معاً", "فائدة ثابتة تقل بمرور الوقت", "اقتراض بدون فوائد", "خسارة جزء من رأس المال"], answer: 0, exp: "الفائدة المركبة تجعل المال ينمو بسرعة أكبر." },
-                { q: "لماذا يُعتبر الادخار للطوارئ ضرورة؟", options: ["لحمايتك من الأزمات والمفاجآت غير السارة", "لشراء سيارة فارهة فوراً", "لدفع الفوائد للبنوك", "لتجميد الأموال بلا فائدة"], answer: 0, exp: "صندوق الطوارئ شبكة أمان مالية." },
-                { q: "ما هو العقد القانوني؟", options: ["اتفاق ملزم قانوناً يحدد حقوق وواجبات الطرفين", "محادثة شفوية عابرة", "ورقة غير مهمة", "نصيحة صديق"], answer: 0, exp: "العقود تنظم المعاملات وتحفظ الحقوق." },
-                { q: "كيف يعمل الائتمان؟", options: ["تستلف المال وتستخدمه الآن وتدفعه لاحقاً بفوائد وشروط", "الحصول على أموال مجانية دائمًا", "شراء سلع بدون ثمن", "الادخار في البنك"], answer: 0, exp: "الائتمان ثقة مالية مقابل سداد آجل بفوائد." },
-                { q: "ما هي مسؤوليتك تجاه الديون؟", options: ["سدادها في مواعيدها المقررة بدقة", "التهرب منها", "تراكمها بلا سداد", "زيادتها بلا قيود"], answer: 0, exp: "الالتزام بسداد الديون يحافظ على السجل الائتماني نظيفاً." },
-                { q: "ما هو هدف محاكاة رحلة الحياة المالية؟", options: ["التخطيط السليم لتجنب الغرق في الديون والمشاكل المالية", "إنفاق كل الأموال", "الاعتماد على الحظ", "عدم التفكير في المستقبل"], answer: 0, exp: "التخطيط المالي المبكر يضمن النجاة والاستقرار." },
-                { q: "حقوق المستهلك تتضمن:", options: ["معرفة كافة شروط وأسعار المنتجات قبل التعاقد والشراء", "شراء سلع معيبة بلا تعويض", "عدم معرفة الفوائد", "الخضوع لاحتكار الشركات"], answer: 0, exp: "الشفافية وحق المعرفة من حقوق المستهلك الأساسية." },
-                { q: "كيف تواجه مخاطر المستقبل المالي؟", options: ["بالتأمين المناسب والادخار المنتظم", "بصرف كل الدخل فوراً", "تجاهل الأزمات", "الاعتماد على الديون فقط"], answer: 0, exp: "التحوط المالي يحمي الأفراد من المفاجآت." }
+                { q: "ما هي الميزانية المالية؟", options: ["خطة توضح الدخل والنفقات خلال فترة زمنية", "حجم الديون المتراكمة", "مبلغ طوارئ لا يتم فتحه", "شراء سلع كمالية"], answer: 0, exp: "الميزانية تنظم وتوجه أموالك بحكمة." }
             ],
             4: [
-                { q: "ما هي العقلية الريادية (Entrepreneurial Mindset)؟", options: ["البحث عن المشكلات وابتكار حلول لها وتحويلها لمشاريع", "الانتظار للحصول على وظيفة تقليدية", "تجنب أي مخاطرة", "العمل بدون تخطيط"], answer: 0, exp: "ريادة الأعمال تعتمد على اقتناص الفرص وحل المشكلات." },
-                { q: "ما هي الخطوات الأولى لبناء مشروع تجاري؟", options: ["فكرة مبتكرة، دراسة جدوى، تجربة، ثم إطلاق", "إطلاق المشروع فوراً بلا دراسة", "اقتراض مبالغ ضخمة بلا هدف", "الاعتماد على الحظ العشوائي"], answer: 0, exp: "التخطيط ودراسة السوق أساس نجاح أي مشروع." },
-                { q: "ما هو نموذج العمل (Business Model)؟", options: ["آلية ووصف لكيفية تحقيق الشركة للإيرادات والأرباح", "شعار الشركة فقط", "ألوان الموقع الإلكتروني", "عدد الموظفين"], answer: 0, exp: "نموذج العمل يوضح خطة مكسب الشركة." },
-                { q: "من نماذج العمل الشائعة في الأعمال الحديثة:", options: ["نموذج الاشتراك، البيع المباشر، الإعلانات، والعمولة", "الاعتماد على التبرعات فقط", "توزيع الأموال مجاناً", "عدم تحقيق أرباح"], answer: 0, exp: "تتنوع نماذج الربحية بتنوع طبيعة النشاط." },
-                { q: "ما المقصود بتصميم تدفقات الإيرادات؟", options: ["تحديد مصادر وكيفية دخول الأموال للشركة وكميتها", "تحديد طريقة صرف المرتبات فقط", "حساب الضرائب المؤجلة", "إلغاء المبيعات"], answer: 0, exp: "تدفقات الإيرادات تحدد من أين وكيف تجني الشركة المال." },
-                { q: "ما دور رائد الأعمال في المجتمع؟", options: ["تحمل المخاطر، الابتكار، خلق فرص العمل، وتقديم قيمة مضافة", "زيادة البطالة", "تخريب الأسواق", "منافسة غير شريفة"], answer: 0, exp: "رواد الأعمال محركات أساسية للاقتصاد والابتكار." },
-                { q: "ما أهمية دراسة الجدوى للمشروع؟", options: ["تقدير التكاليف والأرباح والمخاطر المحتملة قبل البدء", "زيادة الخسائر", "تعقيد الإجراءات فقط", "إلغاء فكرة المشروع تماماً"], answer: 0, exp: "دراسة الجدوى تحمي المستثمر من الفشل." },
-                { q: "الفرق بين الموظف ورائد الأعمال غالباً في:", options: ["أن الرائد يبحث عن الفرص ويتحمل المخاطرة لبناء مشروعه الخاص", "الموظف يعمل ساعات أكثر دائماً", "لا توجد فروق", "رائد الأعمال لا يعمل"], answer: 0, exp: "تحمل المخاطرة وبناء الكيان يُميز رواد الأعمال." },
-                { q: "كيف تساهم التكنولوجيا في ريادة الأعمال؟", options: ["تسهيل الوصول للعملاء وتوسيع حجم السوق وتقليل التكاليف", "صعوبة العمل التجاري", "زيادة التعقيد", "إلغاء التواصل"], answer: 0, exp: "التقنية تسرع نمو وتوسع المشاريع الناشئة." },
-                { q: "ما هو سبب فشل بعض الشركات الناشئة؟", options: ["غياب دراسة السوق وعدم إدارة التدفقات النقدية بحكمة", "نجاح المنتج بشدة", "كثرة العملاء", "تخفيض الأسعار"], answer: 0, exp: " سوء الإدارة المالية ونقص السيولة أبرز أسباب الفشل." }
+                { q: "ما هي العقلية الريادية (Entrepreneurial Mindset)؟", options: ["البحث عن المشكلات وابتكار حلول لها وتحويلها لمشاريع", "الانتظار للحصول على وظيفة تقليدية", "تجنب أي مخاطرة", "العمل بدون تخطيط"], answer: 0, exp: "ريادة الأعمال تعتمد على اقتناص الفرص وحل المشكلات." }
             ],
             5: [
-                { q: "ما هو الاستثمار الحقيقي؟", options: ["توظيف الأموال في أصول لتنميتها وتحقيق عوائد مالية مع مرور الوقت", "صرف المال في الكماليات", "تخزين الأموال بالمنزل", "شراء سلع استهلاكية سريعة التلف"], answer: 0, exp: "الاستثمار يهدف لنمو الثروة وليست استهلاكها." },
-                { q: "ما العلاقة بين المخاطرة والعائد في الاستثمار؟", options: ["كلما زاد العائد المتوقع، زادت المخاطرة المرتبطة به", "المخاطرة العالية تعني عائداً صفرياً", "لا علاقة بينهما", "العائد العالي بلا مخاطر نهائياً"], answer: 0, exp: "قاعدة الاستثمار الذهبية: العائد يتبع حجم المخاطرة." },
-                { q: "ما هي أبرز فئات الأصول الاستثمارية؟", options: ["الأسهم، السندات، العقارات، الذهب، والنقد", "الملابس والأحذية", "الأطعمة والمشروبات", "الأجهزة التالفة"], answer: 0, exp: "هذه هي الأوعية الرئيسية لبناء وتوزيع الثروات." },
-                { q: "ما هي الأسهم (Stocks)؟", options: ["حصص ملكية في شركة مساهمة، تربح لخسارتها معها", "قروض تقدمها للبنك", "شهادات ادخار حكومية", "عملات ورقية أجنبية"], answer: 0, exp: "شراء سهم يعني أنك شريك بنسبة محددة في الشركة." },
-                { q: "ما هي القاعدة الأساسية لتجنب الخسارة الكبرى في الاستثمار (التنويع)؟", options: ["عدم وضع كل البيض في سلة واحدة، وتوزيع الاستثمارات", "استثمار كل الأموال في أصل واحد عالي المخاطر", "الاحتفاظ بالنقود مجمدة", "تجنب الاستثمار كلياً"], answer: 0, exp: "التنويع يحمي المحفظة الاستثمارية من الانهيار." },
-                { q: "لماذا تتغير أسعار الأسهم صعوداً وهبوطاً؟", options: ["بسبب العرض والطلب، أرباح الشركة، والأخبار الاقتصادية", "بالحظ العشوائي فقط", "بقرار فردي من المستثمر", "بثبات الاقتصاد دائماً"], answer: 0, exp: "حركة الأسواق تتأثر بالعديد من المتغيرات الاقتصادية." },
-                { q: "ما هو دور البورصة (سوق الأسهم)؟", options: ["منصة منظمة لشراء وبيع الأسهم والأصول المالية بين المستثمرين", "بنك لإعطاء القروض الشخصية", "شركة لإنتاج السلع", "مكان لجمع التبرعات"], answer: 0, exp: "البورصة تنظم تداول الحصص والشركات بكل شفافية." },
-                { q: "ما الفرق بين السهم والسند؟", options: ["السهم ملكية في الشركة، أما السند فهو قرض تقدمه لشركة أو حكومة بفوائد", "كلاهما قروض", "كلاهما حصص ملكية", "السند أعلى مخاطر دائماً"], answer: 0, exp: "حامل السهم شريك، وحامل السند دائن." },
-                { q: "ما فائدة الاستثمار المبكر وطويل الأجل؟", options: ["الاستفادة من الفائدة المركبة وبناء ثروة ضخمة بمرور الوقت", "خسارة الأموال سريعاً", "التعرض للضرائب العالية", "عدم تحقيق أي عوائد"], answer: 0, exp: "الوقت هو حليف المستثمر الأقوى." },
-                { q: "كيف تقيّم الشركات قبل الاستثمار فيها؟", options: ["بدراسة القوائم المالية، الأرباح، الإدارة، ونموذج العمل", "بشكل عشوائي", "حسب شكل مقر الشركة", "بناءً على الشائعات"], answer: 0, exp: "التحليل المالي والأساسي يحمي أموال المستثمر." }
+                { q: "ما العلاقة بين المخاطرة والعائد في الاستثمار؟", options: ["كلما زاد العائد المتوقع، زادت المخاطرة المرتبطة به", "المخاطرة العالية تعني عائداً صفرياً", "لا علاقة بينهما", "العائد العالي بلا مخاطر نهائياً"], answer: 0, exp: "قاعدة الاستثمار الذهبية: العائد يتبع حجم المخاطرة." }
             ],
             6: [
-                { q: "كيف يغير الذكاء الاصطناعي (AI) عالم الأعمال والمال؟", options: ["يجعل العمليات أسرع، أكثر دقة، وأقل تكلفة عبر الأتمتة والتحليل", "يوقف الأعمال تماماً", "يزيد الأخطاء البشرية", "يلغي الحاجة للتكنولوجيا"], answer: 0, exp: "الذكاء الاصطناعي يحدث ثورة في كفاءة الشركات والمال." },
-                { q: "ما هي تطبيقات التكنولوجيا المالية والذكاء الاصطناعي في البنوك؟", options: ["كشف عمليات النصب والاحتيال، روبوتات النصائح المالية، وتقييم القروض", "طباعة الأموال الورقية يدوياً", "حراسة أبواب البنوك فقط", "إلغاء الحسابات البصرية"], answer: 0, exp: "AI يساعد البنوك في الأمان وخدمة العملاء الآلية." },
-                { q: "ما هو مستقبل الأعمال والوظائف في عصر الذكاء الاصطناعي؟", options: ["من يتعلم ويطور مهاراته في استخدام التقنية والـ AI سيتقدم، ومن يتجاهلها سيتأخر", "ستختفي كل الوظائف للأبد", "لن يتغير شيء", "العمل الورقي سيعود"], answer: 0, exp: "المهارات الرقمية وAI أصبحت ضرورة حتمية لأسواق العمل." },
-                { q: "كيف تساعد خوارزميات الذكاء الاصطناعي في الاستثمار؟", options: ["تحليل كميات هائلة من بيانات السوق والتنبؤ بالاتجاهات بدقة عالية", "اختيار الأسهم الخاسرة متعمدة", "منع التداول", "تثبيت أسعار الأسهم"], answer: 0, exp: "التحليل الكمي بالـ AI يرفع كفاءة القرارات الاستثمارية." },
-                { q: "ما المقصود بالأتمتة (Automation) في الأعمال؟", options: ["استخدام الأنظمة والذكاء الاصطناعي لتنفيذ المهام المتكررة تلقائياً", "زيادة العمل اليدوي", "إبطاء سرعة الإنتاج", "إلغاء أجهزة الكمبيوتر"], answer: 0, exp: "الأتمتة توفر وقتاً وجهداً هائلين للشركات." },
-                { q: "ما هي مخاطر الاعتماد المفرط على الأنظمة الآلية والذكاء الاصطناعي؟", options: ["الأعطال التقنية، ومخاطر الأمن السيبراني وتسريب البيانات", "زيادة الإنتاج بلا حدود", "توفير الأموال تماماً", "استغناء العالم عن الكهرباء"], answer: 0, exp: "حماية الأنظمة والتصدي للاختراق أولوية قصوى." },
-                { q: "كيف تستفيد الشركات الناشئة من الذكاء الاصطناعي؟", options: ["بتقديم حلول ذكية مخصصة للعملاء وتقليل التكاليف التشغيلية", "زيادة المصاريف بلا فائدة", "العمل البطيء", "الاعتماد على الورق"], answer: 0, exp: "الشركات الناشئة تعتمد على التقنية للتوسع السريع." },
-                { q: "ما هو دور تحليل البيانات الضخمة (Big Data) مع الـ AI؟", options: ["استخراج رؤى وأنماط دقيقة تساعد في اتخاذ القرارات المالية والإدارية", "تخزين البيانات وإهمالها", "مضاعفة حجم الأخطاء", "إلغاء التقارير"], answer: 0, exp: "البيانات هي وقود الذكاء الاصطناعي الحديث." },
-                { q: "هل يؤثر الذكاء الاصطناعي على خدمة العملاء في البنوك والشركات؟", options: ["نعم عبر المساعدين الآليين (Chatbots) المتاحة 24/7 للرد الفوري", "يصعب التواصل مع العملاء", "يلغي خدمة العملاء نهائياً", "يؤخر الردود لأيام"], answer: 0, exp: "الرد الآلي الذكي حسن تجربة العملاء بشكل ملحوظ." },
-                { q: "ما هي النصيحة الذهبية للشباب في عصر الذكاء الاصطناعي والمال؟", options: ["الجمع بين الثقافة المالية القوية وإتقان أدوات ومهارات التقنية والذكاء الاصطناعي", "الاهتمام بالعمل اليدوي التقليدي فقط", "تجنب التكنولوجيا", "عدم الادخار والاستثمار"], answer: 0, exp: "مزيج المال والتقنية هو مفتاح النجاح المستقبلي." }
+                { q: "كيف يغير الذكاء الاصطناعي (AI) عالم الأعمال والمال؟", options: ["يجعل العمليات أسرع، أكثر دقة، وأقل تكلفة عبر الأتمتة والتحليل", "يوقف الأعمال تماماً", "يزيد الأخطاء البشرية", "يلغي الحاجة للتكنولوجيا"], answer: 0, exp: "الذكاء الاصطناعي يحدث ثورة في كفاءة الشركات والمال." }
             ]
         };
 
@@ -835,9 +758,16 @@
             switchPage(pageId);
         }
 
+        function switchUnit(unitNum) {
+            document.querySelectorAll('#curriculumPage .unit-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('#curriculumPage .unit-content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`ucard-${unitNum}`).classList.add('active');
+            document.getElementById(`unit-content-${unitNum}`).classList.add('active');
+        }
+
         function switchFinanceUnit(unitNum) {
-            document.querySelectorAll('.units-grid .unit-card').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.unit-content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('#financialCulturePage .unit-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('#financialCulturePage .unit-content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(`fcard-${unitNum}`).classList.add('active');
             document.getElementById(`fcontent-${unitNum}`).classList.add('active');
         }
@@ -1030,18 +960,6 @@
 
             saveSessionToCloud();
             renderScoreHistory();
-
-            const resultBanner = document.createElement('div');
-            resultBanner.className = 'glass-card';
-            resultBanner.style.cssText = 'text-align: center; border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.05); margin-top: 20px;';
-            resultBanner.innerHTML = `
-                <h3 style="color: var(--accent-cyan); margin-bottom: 8px; font-size: 1.3rem;"><i class="fa-solid fa-award"></i> تم إنهاء اختبار الثقافة المالية بنجاح</h3>
-                <p style="font-size: 1.15rem; margin-bottom: 6px;">درجتك النهائية: <strong>${score} من ${total}</strong></p>
-                <p style="font-size: 1.1rem; color: ${percentage >= 50 ? 'var(--correct-clr)' : 'var(--wrong-clr)'}; font-weight: bold; margin-bottom: 15px;">النسبة المئوية: ${percentage}%</p>
-                <button class="btn-action" onclick="switchPage('profilePage')" style="max-width: 220px; margin: 0 auto;">عرض سجل الدرجات</button>
-            `;
-            document.getElementById('activeFinanceQuizPage').appendChild(resultBanner);
-            resultBanner.scrollIntoView({ behavior: 'smooth' });
         }
 
         function sendToWhatsApp(targetNumber) {
@@ -1073,14 +991,6 @@
 
             const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(url, '_blank');
-
-            setTimeout(() => {
-                const confirmDiv = document.createElement('div');
-                confirmDiv.className = 'chat-msg ai';
-                confirmDiv.textContent = "تم تحويلك إلى الواتساب بنجاح لإرسال الرسالة مرتبة إلى صاحب المنصة!";
-                chatContainer.appendChild(confirmDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 400);
         }
     </script>
 </body>
