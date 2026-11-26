@@ -258,7 +258,7 @@
 
         .units-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -267,7 +267,7 @@
             background: rgba(255, 255, 255, 0.025);
             border: 1px solid var(--border-glow);
             border-radius: var(--radius-md);
-            padding: 20px;
+            padding: 18px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
@@ -290,22 +290,22 @@
         .topic-box, .lesson-item {
             background: rgba(255,255,255,0.015);
             border-right: 4px solid var(--accent-cyan);
-            padding: 20px 24px;
-            margin-bottom: 20px;
+            padding: 22px 26px;
+            margin-bottom: 22px;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            line-height: 1.9;
+            line-height: 2;
         }
 
         .topic-box h4, .lesson-item h5 {
             color: var(--accent-cyan);
-            margin-bottom: 12px;
-            font-size: 1.2rem;
+            margin-bottom: 14px;
+            font-size: 1.25rem;
         }
 
         .topic-box p, .lesson-item p {
             color: #cbd5e1;
-            font-size: 0.98rem;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            margin-bottom: 12px;
         }
 
         .q-card {
@@ -542,11 +542,11 @@
         </div>
         <div class="menu-items-list">
             <button class="menu-item-btn" onclick="navigateTo('profilePage')">
-                <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات</span>
+                <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات السحابية</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
-                <span><i class="fa-solid fa-laptop-code" style="margin-left: 10px;"></i> شرح المنهج حسب مسارك</span>
+                <span><i class="fa-solid fa-laptop-code" style="margin-left: 10px;"></i> شرح البرمجة (مفصل مطول)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('quizzesSelectPage')">
@@ -554,7 +554,7 @@
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('financialCulturePage')">
-                <span><i class="fa-solid fa-coins" style="margin-left: 10px;"></i> كتاب الثقافة المالية (الفائز)</span>
+                <span><i class="fa-solid fa-coins" style="margin-left: 10px;"></i> كتاب الثقافة المالية (مفصل مطول)</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('financeQuizSelectPage')">
@@ -574,15 +574,15 @@
 
     <div class="container">
         
-        <!-- صفحة الدخول وإنشاء حساب (تلقائي بالكامل على السيرفر) -->
+        <!-- صفحة تسجيل الدخول وإنشاء الحساب التلقائي -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
                 <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">منصة الفائز التعليمية</h2>
-                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.92rem; text-align: center;">سجل حسابك بنفسك أو ادخل مباشرة</p>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.92rem; text-align: center;">سجل حسابك بنفسك أو ادخل مباشرة لسيرفر Firebase</p>
                 
                 <div class="auth-tabs">
                     <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthMode('login')">تسجيل الدخول</button>
-                    <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthMode('register')">طالب جديد (إنشاء حساب)</button>
+                    <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthMode('register')">طالب جديد (حساب)</button>
                 </div>
 
                 <!-- فورم تسجيل الدخول -->
@@ -599,7 +599,7 @@
                     <button type="submit" class="btn-action">دخول إلى المنصة</button>
                 </form>
 
-                <!-- فورم إنشاء حساب جديد (يعمل لوحده ويحفظ في السيرفر) -->
+                <!-- فورم إنشاء حساب جديد -->
                 <form id="registerFormElement" onsubmit="handleRealRegister(event)" style="display: none;">
                     <div class="form-group">
                         <label>اسم الطالب بالكامل (ثلاثي) *</label>
@@ -627,7 +627,7 @@
                         <label>رقم هاتف ولي الأمر (11 رقماً) *</label>
                         <input type="tel" id="regPhone" maxlength="11" required placeholder="010xxxxxxxx">
                     </div>
-                    <button type="submit" class="btn-action">إنشاء الحساب والتسجيل في السيرفر</button>
+                    <button type="submit" class="btn-action">إنشاء الحساب والتسجيل بالسيرفر</button>
                 </form>
             </div>
         </div>
@@ -644,7 +644,7 @@
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل النتائج المحفوظة على السحابة</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل النتائج المحفوظة على السحابة (بدون مسح)</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -662,11 +662,11 @@
             </div>
         </div>
 
-        <!-- شرح المنهج المخصص حسب المسار -->
+        <!-- صفحة شرح البرمجة (شرح مفصل مطول جداً وعميق) -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> المحتوى المخصص لمسارك الدراسي</h2>
-                <p id="pathCustomNotice" style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> جاري تحميل الشرح المفصل المطابق لمسارك التعليمي...</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> البرمجة وتكنولوجيا المعلومات (الشرح الأكاديمي الموسع)</h2>
+                <p id="pathCustomNotice" style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> الشرح التفصيلي والمطول الشامل لجميع فصول الحوسبة والبرمجة.</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchUnit(1)" id="ucard-1"><h4>الفصل 1: تكنولوجيا المعلومات</h4></div>
@@ -676,34 +676,50 @@
                 </div>
 
                 <div id="unit-content-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب (موسّع)</h3>
                     <div class="topic-box">
-                        <h4>1. جذور الحوسبة وحواسيب الجيل الأول (ENIAC)</h4>
-                        <p>• اعتمد كلياً على آلاف الصمامات المفرغة واستهلاك طاقة هائلة وحرارة تستوجب تبريداً ضخماً.</p>
+                        <h4>1. جذور الحوسبة وتطور الحواسيب (ENIAC والأجيال الأولى)</h4>
+                        <p>• بدأ عصر الحوسبة الإلكترونية الحديثة مع ظهور حاسوب (ENIAC) العملاق، والذي اعتمد بشكل كلي على آلاف "الصمامات المفرغة" (Vacuum Tubes) كعناصر تحكم وتبديل كهربائي.</p>
+                        <p>• كانت هذه الصمامات تستهلك طاقة كهربائية مرعبة وتولد حرارة هائلة تستوجب أنظمة تبريد معقدة، فضلاً عن تعرضها الدائم للاحتراق السريع، مما دفع العلماء للبحث عن بدائل.</p>
+                        <p>• أدى اختراع الترانزستور لاحقاً إلى إحداث ثورة تقنية كبرى أدت إلى تصغير الحجوم وخفض استهلاك الطاقة، وصولاً إلى الدوائر المتكاملة الحديثة (ICs) والمعالجات الدقيقة فائقة السرعة.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. قانون مور ومأزق النفق الكمومي الفيزيائي</h4>
+                        <p>• <strong>قانون مور (Moore's Law):</strong> هو المبدأ الهندسي الذي ينص على أن عدد الترانزستورات داخل المعالج يتضاعف تقريباً كل عامين، مما يرفع الكفاءة ويخفض التكلفة.</p>
+                        <p>• عند محاولة تصغير البوابات المنطقية لأبعاد نانومترية متناهية الصغر تقترب من حجم الذرات الفردية، تظهر ظاهرة "النفق الكمومي" (Quantum Tunneling)، حيث تقفز الإلكترونات عبر الحواجز العازلة مسببة تسرباً للتيار وارتفاعاً حاداً في الحرارة.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني وحماية البنى التحتية (موسّع)</h3>
                     <div class="topic-box">
-                        <h4>1. بروتوكول TLS والعمارة المزدوجة</h4>
-                        <p>• دمج التشفير غير المتماثل لتبادل المفتاح بأمان، والمتماثل لنقل البيانات بسرعة.</p>
+                        <h4>1. بروتوكول التشفير TLS والعمارة المزدوجة</h4>
+                        <p>• يعتمد أمان الإنترنت الحديث على بروتوكول TLS (Transport Layer Security)، والذي يدمج بين نوعين أساسيين من التشفير:</p>
+                        <p>• أ) <strong>التشفير غير المتماثل (Asymmetric):</strong> يستخدم مفتاحين (عام وخاص) لتأسيس اتصال آمن وموثوق وتبادل مفتاح الجلسة.</p>
+                        <p>• ب) <strong>التشفير المتماثل (Symmetric):</strong> يُستخدم لنقل كميات البيانات الهائلة بسرعة فائقة وكفاءة أمنية عالية طوال فترة الجلسة.</p>
+                    </div>
+                    <div class="topic-box">
+                        <h4>2. مناطق النزع الأمني DMZ ومنهج انعدام الثقة (Zero Trust)</h4>
+                        <p>• تصميم الشبكات يعتمد على فصل خوادم الويب العامة عن الشبكة الداخلية الحساسة عبر منطقة عازلة تُسمى (DMZ) لحماية البيانات من الاختراقات.</p>
+                        <p>• نهج "انعدام الثقة" (Zero Trust) يتبنى قاعدة صارمة: لا تثق أبداً في أي مستخدم أو جهاز افتراضياً، وتحقق باستمرار من الهوية والصلاحيات.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: تطبيقات الويب</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: هندسة وتصميم تطبيقات الويب (موسّع)</h3>
                     <div class="topic-box">
                         <h4>1. الهيكلية ثلاثية الطبقات (3-Tier Architecture)</h4>
-                        <p>• فصل الواجهة الخلفية عن وقاعدة البيانات لحماية المنظومة من الاختراقات.</p>
+                        <p>• تُعد الهيكلية ثلاثية الطبقات المعيار الهندسي الأهم في تطوير الويب، حيث يتم فصل النظام إلى: طبقة العرض والواجهة الأمامية (Frontend)، طبقة معالجة البيانات والمنطق (Backend)، وطبقة تخزين البيانات (Database).</p>
+                        <p>• هذا الفصل التام يمنع الاختراقات المباشرة ويسهل عملية التوسع وصيانة التطبيقات الضخمة بكفاءة عالية.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الرابع: تصميم الويب UX</h3>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الرابع: تصميم واجهات وتجربة المستخدم UX/UI (موسّع)</h3>
                     <div class="topic-box">
-                        <h4>1. مبادئ الـ Persona ومبادئ CRAP</h4>
-                        <p>• دراسة سلوك واحتياجات الجمهور المستهدف وتطبيق قواعد التباين والمحاذاة.</p>
+                        <h4>1. مبادئ الـ Persona وقواعد CRAP البصرية</h4>
+                        <p>• بناء "شخصية المستخدم الوهمية" (Persona) يتيح للمصممين دراسة احتياجات ودوافع الجمهور الحقيقي بعمق قبل كتابة أي كود برمجي.</p>
+                        <p>• <strong>قواعد CRAP:</strong> تشمل التباين (Contrast) لإبراز العناصر، التكرار (Repetition) للاتساق البصري، المحاذاة (Alignment) للتنظيم، والتقارب (Proximity) لتجميع العناصر المرتبطة.</p>
                     </div>
                 </div>
             </div>
@@ -742,11 +758,11 @@
             </div>
         </div>
 
-        <!-- كتاب الثقافة المالية -->
+        <!-- صفحة كتاب الثقافة المالية (شرح مفصل مطول جداً وعميق) -->
         <div id="financialCulturePage" class="page">
             <div class="glass-card">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز)</h2>
-                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> الشرح الكامل والمفصل لجميع وحدات الثقافة المالية الستة.</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> كتاب الثقافة المالية (الفائز) - الشرح الأكاديمي الموسّع</h2>
+                <p style="color: #f59e0b; margin-bottom: 25px; font-size: 0.92rem;"><i class="fa-solid fa-circle-info"></i> الشرح الكامل والمطول لجميع وحدات الثقافة المالية الستة لفهم المال والاقتصاد.</p>
                 
                 <div class="units-grid">
                     <div class="unit-card active" onclick="switchFinanceUnit(1)" id="fcard-1"><h4>الوحدة 01</h4><p style="font-size:0.8rem; color:var(--text-sub);">أساسيات المال</p></div>
@@ -758,33 +774,38 @@
                 </div>
 
                 <div id="fcontent-1" class="unit-content-section active">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل</h3>
-                    <div class="lesson-item"><h5>1. كيف نشأ المال</h5><p>بدأ بمقايضة السلع ثم تطور لتسهيل التبادل.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 01: أساسيات المال والتمويل (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. نشأة المال والتطور التاريخي ونظام المقايضة</h5><p>بدأ الإنسان قديماً بنظام "المقايضة" (تبادل سلعة بسلعة مباشرة)، ولكنه اصطدم بمعوقات كبرى أبرزها صعوبة توافق الرغبات واستحالة قياس القيم بدقة.</p>
+                    <p>• أدى ذلك لاختراع "المال" كوسيط مقبول عموماً لتسهيل التبادل، وتطور عبر التاريخ من السلع النادرة والمعادن النفيسة إلى العملات الورقية والنقود الرقمية والائتمانية الحديثة.</p></div>
+                    <div class="lesson-item"><h5>2. الوظائف الثلاث الكبرى للمال والوساطة المالية</h5><p>يقوم المال بثلاث وظائف رئيسية: وسيط للتبادل، مخزن للقيمة لحفظ الثروة للمستقبل، ووحدة قياس وحساب لتسعير السلع.</p>
+                    <p>• تلعب البنوك دور الوسيط المالي بتوجيه أموال المدخرين نحو الاستثمار والقروض لتفعيل عجلة الاقتصاد.</p></div>
                 </div>
 
                 <div id="fcontent-2" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد</h3>
-                    <div class="lesson-item"><h5>1. فهم الزكاة</h5><p>ركن إسلامي بنسبة 2.5% على المال البالغ النصاب.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 02: أساسيات الأعمال والاقتصاد (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. فقه أحكام الزكاة الاقتصادية ودورها الاجتماعي</h5><p>تُعد الزكاة ركناً أساسياً ونظاماً تكافلياً فريداً لتطهير الأموال وتحقيق العدالة الاجتماعية بنسبة 2.5% على الأموال المدخرة البالغة النصاب.</p>
+                    <p>• كما تتبنى الشركات الحديثة مفهوم "المسؤولية الاجتماعية" (CSR) لحماية البيئة ودعم المجتمعات.</p></div>
                 </div>
 
                 <div id="fcontent-3" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان</h3>
-                    <div class="lesson-item"><h5>1. الميزانية والادخار</h5><p>خطة واضحة للدخل والنفقات وتكوين صندوق طوارئ.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 03: التمويل الشخصي والائتمان (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. إعداد الميزانية وسحر الفائدة المركبة</h5><p>الميزانية هي خطة واضحة لتنظيم الدخل والتفرقة بين الاحتياجات الضرورية والرغبات الكمالية.</p>
+                    <p>• الفائدة المركبة تُعرف بالمعجزة الثامنة لتنمية الثروات لأنها تحسب الأرباح على الأصل والأرباح السابقة معاً بمرور الوقت.</p></div>
                 </div>
 
                 <div id="fcontent-4" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال</h3>
-                    <div class="lesson-item"><h5>1. العقلية الريادية ونماذج العمل</h5><p>حل المشكلات وابتكار مصادر إيرادات مستدامة.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 04: ريادة الأعمال ونماذج العمل (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. العقلية الريادية وابتكار الحلول</h5><p>ريادة الأعمال تعتمد على اقتناص المشكلات في السوق وتحويلها لفرص استثمارية ومشاريع ناجحة ذات عوائد مستدامة ونماذج عمل مدروسة.</p></div>
                 </div>
 
                 <div id="fcontent-5" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار</h3>
-                    <div class="lesson-item"><h5>1. الأسهم والمخاطرة والعائد</h5><p>تنويع الأصول لبناء الثروة وتقليل المخاطر.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 05: أساسيات الاستثمار وإدارة الثروات (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. الأسهم والمخاطرة وتنويع الأصول</h5><p>قاعدة الاستثمار الذهبية تؤكد أن "العائد يتبع حجم المخاطرة". ولحماية الأموال من الانهيار، يجب تطبيق مبدأ "التنويع" وتوزيع الاستثمارات بين الأسهم، السندات، العقارات، والذهب.</p></div>
                 </div>
 
                 <div id="fcontent-6" class="unit-content-section">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل</h3>
-                    <div class="lesson-item"><h5>1. الـ AI في الأعمال</h5><p>أتمتة العمليات المالية واكتشاف عمليات النصب.</p></div>
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الوحدة 06: الذكاء الاصطناعي والتمويل (موسّع)</h3>
+                    <div class="lesson-item"><h5>1. ثورة الذكاء الاصطناعي في الأعمال والمال</h5><p>يحدث الذكاء الاصطناعي (AI) ثورة جذرية في القطاع المالي عبر أتمتة العمليات، تحليل البيانات الضخمة للتنبؤ بالأسواق، وكشف عمليات الاحتيال لحظياً.</p></div>
                 </div>
             </div>
         </div>
@@ -1047,7 +1068,6 @@
             }
         }
 
-        // تسجيل طالب جديد وحفظه تلقائياً في قاعدة بيانات السيرفر (Firebase)
         async function handleRealRegister(e) {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
@@ -1058,7 +1078,6 @@
 
             const safeKey = email.replace(/[.#$[\]]/g, "_");
             try {
-                // التحقق هل البريد مسجل مسبقاً
                 const checkRes = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
                 const existing = await checkRes.json();
                 if (existing) {
@@ -1076,7 +1095,6 @@
                     scores: []
                 };
 
-                // حفظ بيانات الطالب الجديد في السيرفر تلقائياً
                 const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -1095,7 +1113,6 @@
             }
         }
 
-        // تسجيل الدخول العادي للإيميل والباسورد
         async function handleRealLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim().toLowerCase();
@@ -1163,6 +1180,9 @@
             document.getElementById('pEmail').innerText = studentSession.email;
             document.getElementById('pClass').innerText = studentSession.studentClass;
             document.getElementById('pPhone').innerText = studentSession.parentPhone;
+
+            const classTitle = studentSession.studentClass;
+            document.getElementById('pathCustomNotice').innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--correct-clr);"></i> تم تحميل الشرح المطابق والمخصص بالكامل لـ: <strong>${classTitle}</strong>`;
 
             renderScoreHistory();
             switchPage('profilePage');
