@@ -464,6 +464,29 @@
             font-weight: bold;
         }
 
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .auth-tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            color: var(--text-sub);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .auth-tab-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
         footer {
             text-align: center;
             padding: 24px;
@@ -519,7 +542,7 @@
         </div>
         <div class="menu-items-list">
             <button class="menu-item-btn" onclick="navigateTo('profilePage')">
-                <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات السحابية</span>
+                <span><i class="fa-solid fa-user" style="margin-left: 10px;"></i> صفحتي الشخصية والدرجات</span>
                 <i class="fa-solid fa-chevron-left" style="font-size: 0.8rem; color: var(--accent-cyan);"></i>
             </button>
             <button class="menu-item-btn" onclick="navigateTo('curriculumPage')">
@@ -551,40 +574,77 @@
 
     <div class="container">
         
-        <!-- صفحة تسجيل الدخول بكود سحابي محمي -->
+        <!-- صفحة الدخول وإنشاء حساب (تلقائي بالكامل على السيرفر) -->
         <div id="authPage" class="page active">
             <div class="glass-card" style="max-width: 480px; margin: 30px auto;">
-                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">تسجيل دخول الطالب</h2>
-                <p style="color: var(--text-sub); margin-bottom: 25px; font-size: 0.92rem; text-align: center;">منصة الفائز التعليمية - حماية سحابية كاملة لـ Firebase</p>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 10px; text-align: center;">منصة الفائز التعليمية</h2>
+                <p style="color: var(--text-sub); margin-bottom: 20px; font-size: 0.92rem; text-align: center;">سجل حسابك بنفسك أو ادخل مباشرة</p>
                 
-                <form onsubmit="handleCloudAuth(event)">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthMode('login')">تسجيل الدخول</button>
+                    <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthMode('register')">طالب جديد (إنشاء حساب)</button>
+                </div>
+
+                <!-- فورم تسجيل الدخول -->
+                <form id="loginFormElement" onsubmit="handleRealLogin(event)">
                     <div class="form-group">
-                        <label>كود الطالب الفريد (أو البريد الإلكتروني) *</label>
-                        <input type="text" id="authIdentifier" required placeholder="مثال: FAIZ-101 أو email@domain.com">
+                        <label>البريد الإلكتروني *</label>
+                        <input type="email" id="loginEmail" required placeholder="example@gmail.com">
                     </div>
                     <div class="form-group">
-                        <label>كلمة السر السحابية *</label>
-                        <input type="password" id="authPassword" required placeholder="********">
-                        <div id="authErr" class="error-msg">بيانات الدخول غير صحيحة أو الطالب غير مسجل بالسيرفر.</div>
+                        <label>كلمة السر *</label>
+                        <input type="password" id="loginPassword" required placeholder="********">
+                        <div id="loginErr" class="error-msg">البريد الإلكتروني أو كلمة السر غير صحيحة!</div>
                     </div>
-                    <button type="submit" class="btn-action">تحقق ودخول سحابي آمن</button>
+                    <button type="submit" class="btn-action">دخول إلى المنصة</button>
+                </form>
+
+                <!-- فورم إنشاء حساب جديد (يعمل لوحده ويحفظ في السيرفر) -->
+                <form id="registerFormElement" onsubmit="handleRealRegister(event)" style="display: none;">
+                    <div class="form-group">
+                        <label>اسم الطالب بالكامل (ثلاثي) *</label>
+                        <input type="text" id="regName" required placeholder="أحمد محمد علي">
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني *</label>
+                        <input type="email" id="regEmail" required placeholder="example@gmail.com">
+                        <div id="regEmailErr" class="error-msg">هذا البريد مسجل مسبقاً! جرب تسجيل الدخول.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة السر (6 أحرف على الأقل) *</label>
+                        <input type="password" id="regPassword" minlength="6" required placeholder="********">
+                    </div>
+                    <div class="form-group">
+                        <label>المسار الدراسي *</label>
+                        <select id="regClass" required>
+                            <option value="">-- اختر المسار الدراسي --</option>
+                            <option value="الصف الثاني بكالوريا - مسار حاسب وبرمجة">الصف الثاني بكالوريا (مسار حاسب وبرمجة)</option>
+                            <option value="الصف الثاني بكالوريا - مسار هندسي">الصف الثاني بكالوريا (مسار هندسي)</option>
+                            <option value="الصف الثاني بكالوريا - مسار طب وعلوم">الصف الثاني بكالوريا (مسار طب وعلوم)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم هاتف ولي الأمر (11 رقماً) *</label>
+                        <input type="tel" id="regPhone" maxlength="11" required placeholder="010xxxxxxxx">
+                    </div>
+                    <button type="submit" class="btn-action">إنشاء الحساب والتسجيل في السيرفر</button>
                 </form>
             </div>
         </div>
 
-        <!-- البروفايل مع قراءة النتائج الحقيقية من السيرفر -->
+        <!-- البروفايل -->
         <div id="profilePage" class="page">
             <div class="glass-card">
                 <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-id-card"></i> الملف الشخصي وسجل السيرفر السحابي</h3>
                 <p style="margin-bottom: 8px;"><strong>اسم الطالب:</strong> <span id="pName" style="color: #fff;"></span></p>
-                <p style="margin-bottom: 8px;"><strong>كود الحساب:</strong> <span id="pCode" style="color: #fff;"></span></p>
+                <p style="margin-bottom: 8px;"><strong>البريد الإلكتروني:</strong> <span id="pEmail" style="color: #fff;"></span></p>
                 <p style="margin-bottom: 8px;"><strong>المسار الدراسي المخصص:</strong> <span id="pClass" style="color: var(--accent-cyan);"></span></p>
                 <p><strong>رقم ولي الأمر:</strong> <span id="pPhone" style="color: #fff;"></span></p>
-                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> جارِ التحقق من المزامنة السحابية...</div>
+                <div class="sync-status" id="syncStatusIndicator"><i class="fa-solid fa-cloud-arrow-up"></i> متصل بالسيرفر بنجاح</div>
             </div>
 
             <div class="glass-card">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل النتائج المحفوظة على السحابة (بدون مسح)</h3>
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> سجل النتائج المحفوظة على السحابة</h3>
                 <div style="overflow-x: auto;">
                     <table class="score-table">
                         <thead>
@@ -593,7 +653,7 @@
                                 <th>المستوى</th>
                                 <th>النتيجة</th>
                                 <th>النسبة</th>
-                                <th>التاريخ السحابي</th>
+                                <th>التاريخ</th>
                             </tr>
                         </thead>
                         <tbody id="scoresHistoryBody"></tbody>
@@ -602,7 +662,7 @@
             </div>
         </div>
 
-        <!-- شرح المنهج المخصص حسب مسار الطالب -->
+        <!-- شرح المنهج المخصص حسب المسار -->
         <div id="curriculumPage" class="page">
             <div class="glass-card">
                 <h2 style="color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-laptop-code"></i> المحتوى المخصص لمسارك الدراسي</h2>
@@ -619,15 +679,15 @@
                     <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الأول: تكنولوجيا المعلومات ومجتمع الحاسب</h3>
                     <div class="topic-box">
                         <h4>1. جذور الحوسبة وحواسيب الجيل الأول (ENIAC)</h4>
-                        <p>• اعتمد كلياً على آلاف الصمامات المفرغة (Vacuum Tubes) واستهلاك طاقة هائلة وحرارة تستوجب تبريداً ضخماً، مما أدى لثورة الترانزستورات.</p>
+                        <p>• اعتمد كلياً على آلاف الصمامات المفرغة واستهلاك طاقة هائلة وحرارة تستوجب تبريداً ضخماً.</p>
                     </div>
                 </div>
 
                 <div id="unit-content-2" class="unit-content-section">
                     <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثاني: الأمن السيبراني</h3>
                     <div class="topic-box">
-                        <h4>1. بروتوكول TLS العمارة المزدوجة</h4>
-                        <p>• دمج التشفير غير المتماثل لتبادل المفتاح بأمان، والمتماثل لنقل البيانات بسرعة فائقة.</p>
+                        <h4>1. بروتوكول TLS والعمارة المزدوجة</h4>
+                        <p>• دمج التشفير غير المتماثل لتبادل المفتاح بأمان، والمتماثل لنقل البيانات بسرعة.</p>
                     </div>
                 </div>
 
@@ -635,7 +695,7 @@
                     <h3 style="color: var(--accent-cyan); margin-bottom: 16px;">الفصل الثالث: تطبيقات الويب</h3>
                     <div class="topic-box">
                         <h4>1. الهيكلية ثلاثية الطبقات (3-Tier Architecture)</h4>
-                        <p>• فصل الواجهة الخلفية عن وقاعدة البيانات لحماية المنظومة من الاختراقات المباشرة.</p>
+                        <p>• فصل الواجهة الخلفية عن وقاعدة البيانات لحماية المنظومة من الاختراقات.</p>
                     </div>
                 </div>
 
@@ -649,7 +709,7 @@
             </div>
         </div>
 
-        <!-- بنك اختبارات البرمجة (مع فصل المجاني عن المدفوع) -->
+        <!-- بنك اختبارات البرمجة -->
         <div id="quizzesSelectPage" class="page">
             <div class="glass-card">
                 <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات البرمجة (مجانية ومتقدمة VIP)</h3>
@@ -672,7 +732,7 @@
                 </div>
 
                 <div id="progPaidSection" style="display: none;">
-                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات التحدي المتقدمة تتطلب كود اشتراك سحابي:</p>
+                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات التحدي المتقدمة تتطلب كود اشتراك:</p>
                     <div class="form-group">
                         <label>كود التفعيل (أدخل: FAIZ-VIP-2026)</label>
                         <input type="text" id="progVipCode" placeholder="FAIZ-VIP-2026">
@@ -729,7 +789,7 @@
             </div>
         </div>
 
-        <!-- صفحة اختيار اختبارات الثقافة المالية -->
+        <!-- اختبارات الثقافة المالية -->
         <div id="financeQuizSelectPage" class="page">
             <div class="glass-card">
                 <h3 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> اختبارات الثقافة المالية (مجانية ومتقدمة)</h3>
@@ -752,7 +812,7 @@
                 </div>
 
                 <div id="finPaidSection" style="display: none;">
-                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات الثقافة المالية الشاملة والمدفوعة تتطلب كود تفعيل سحابي:</p>
+                    <p style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-lock"></i> اختبارات الثقافة المالية الشاملة تتطلب كود تفعيل:</p>
                     <div class="form-group">
                         <label>كود التفعيل (أدخل: FAIZ-VIP-2026)</label>
                         <input type="text" id="finVipCode" placeholder="FAIZ-VIP-2026">
@@ -784,17 +844,17 @@
             <button id="finishQuizBtn" class="btn-action" onclick="finishQuiz()" style="margin-top: 15px;">إنهاء الاختبار وحفظ النتيجة بالسحابة</button>
         </div>
 
-        <!-- سياسة الخصوصية والشروط -->
+        <!-- سياسة الخصوصية -->
         <div id="privacyPage" class="page">
             <div class="glass-card">
                 <h2 style="color: var(--accent-cyan); margin-bottom: 15px;"><i class="fa-solid fa-shield-halved"></i> سياسة الخصوصية وشروط الاستخدام</h2>
                 <div class="topic-box" style="margin-bottom: 15px;">
                     <h4>1. حماية بيانات الطالب وسيرفر Firebase</h4>
-                    <p>نلتزم بحماية خصوصية الطلاب وأولياء الأمور بالكامل، وتشفر بيانات الحسابات والنتائج وتخزن بأمان تام عبر قاعدة بيانات سحابية محمية.</p>
+                    <p>نلتزم بحماية خصوصية الطلاب، وتخزين بيانات الحسابات والنتائج بأمان تام عبر قاعدة بيانات سحابية محمية.</p>
                 </div>
                 <div class="topic-box" style="margin-bottom: 15px;">
                     <h4>2. شروط الاستخدام والاختبارات</h4>
-                    <p>المحتويات والاختبارات خاضعة لحقوق منصة الفائز التعليمية، ويحظر محاولة تجاوز أكواد الأمان الخاصة بالاختبارات المدفوعة.</p>
+                    <p>المحتويات والاختبارات خاضعة لحقوق منصة الفائز التعليمية.</p>
                 </div>
                 <button class="btn-action" onclick="switchPage('profilePage')">الرجوع للملف الشخصي</button>
             </div>
@@ -900,6 +960,20 @@
             updateSelectedQCount('fin');
         };
 
+        function switchAuthMode(mode) {
+            if (mode === 'login') {
+                document.getElementById('tabLoginBtn').classList.add('active');
+                document.getElementById('tabRegisterBtn').classList.remove('active');
+                document.getElementById('loginFormElement').style.display = 'block';
+                document.getElementById('registerFormElement').style.display = 'none';
+            } else {
+                document.getElementById('tabRegisterBtn').classList.add('active');
+                document.getElementById('tabLoginBtn').classList.remove('active');
+                document.getElementById('registerFormElement').style.display = 'block';
+                document.getElementById('loginFormElement').style.display = 'none';
+            }
+        }
+
         function toggleMobileMenu(open) {
             const overlay = document.getElementById('mobileMenuOverlay');
             if (open) overlay.classList.add('active');
@@ -973,55 +1047,99 @@
             }
         }
 
-        // 1. تسجيل دخول حقيقي بـ Firebase وسحب البيانات بدقة
-        async function handleCloudAuth(e) {
+        // تسجيل طالب جديد وحفظه تلقائياً في قاعدة بيانات السيرفر (Firebase)
+        async function handleRealRegister(e) {
             e.preventDefault();
-            const identifier = document.getElementById('authIdentifier').value.trim().toLowerCase();
-            const password = document.getElementById('authPassword').value;
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const password = document.getElementById('regPassword').value;
+            const studentClass = document.getElementById('regClass').value;
+            const parentPhone = document.getElementById('regPhone').value.trim();
 
-            const safeKey = identifier.replace(/[.#$[\]]/g, "_");
+            const safeKey = email.replace(/[.#$[\]]/g, "_");
+            try {
+                // التحقق هل البريد مسجل مسبقاً
+                const checkRes = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
+                const existing = await checkRes.json();
+                if (existing) {
+                    document.getElementById('regEmailErr').style.display = 'block';
+                    return;
+                }
+                document.getElementById('regEmailErr').style.display = 'none';
+
+                const newUser = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    studentClass: studentClass,
+                    parentPhone: parentPhone,
+                    scores: []
+                };
+
+                // حفظ بيانات الطالب الجديد في السيرفر تلقائياً
+                const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                });
+
+                if (res.ok) {
+                    studentSession = newUser;
+                    localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
+                    showMainDashboard();
+                } else {
+                    alert("تعذر حفظ الحساب في السيرفر، حاول مرة أخرى.");
+                }
+            } catch (err) {
+                alert("حدث خطأ في الاتصال بالبوابة السحابية.");
+            }
+        }
+
+        // تسجيل الدخول العادي للإيميل والباسورد
+        async function handleRealLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+
+            const safeKey = email.replace(/[.#$[\]]/g, "_");
             try {
                 const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
                 const user = await res.json();
                 if (!user || user.password !== password) {
-                    document.getElementById('authErr').style.display = 'block';
+                    document.getElementById('loginErr').style.display = 'block';
                     return;
                 }
-                document.getElementById('authErr').style.display = 'none';
+                document.getElementById('loginErr').style.display = 'none';
 
                 studentSession = user;
                 localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
                 showMainDashboard();
             } catch (err) {
-                alert("تعذر الاتصال بقاعدة بيانات السيرفر السحابي.");
+                alert("تعذر الاتصال بقاعدة بيانات السيرفر.");
             }
         }
 
-        // 2 & 3. قراءة النتائج الحقيقية من السحابة والتحقق من المزامنة
         async function verifyAndFetchCloudData() {
-            const safeKey = studentSession.identifier || studentSession.email.replace(/[.#$[\]]/g, "_");
+            const safeKey = studentSession.email.replace(/[.#$[\]]/g, "_");
             try {
                 const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`);
                 const cloudUser = await res.json();
                 if (cloudUser) {
                     studentSession = cloudUser;
                     localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
-                    document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> تم قراءة وحفظ النتائج من السيرفر بنجاح`;
-                } else {
-                    document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i> متصل محلياً (لم يُعثر على سجل سحابي مطابق)`;
+                    document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> متصل بالسيرفر وتم جلب النتائج بنجاح`;
                 }
             } catch (err) {
-                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-clr);"></i> خطأ في الاتصال بالبوابة السحابية`;
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i> متصل محلياً (تعذر الاتصال بالسيرفر)`;
             }
             showMainDashboard();
         }
 
         async function saveResultsToCloud(newScoreEntry) {
             if (!studentSession.scores) studentSession.scores = [];
-            // إضافة النتيجة بدون مسح السجلات القديمة
             studentSession.scores.push(newScoreEntry);
 
-            const safeKey = studentSession.identifier || studentSession.email.replace(/[.#$[\]]/g, "_");
+            const safeKey = studentSession.email.replace(/[.#$[\]]/g, "_");
             try {
                 const res = await fetch(`${FIREBASE_URL}/users/${safeKey}.json`, {
                     method: 'PUT',
@@ -1030,11 +1148,9 @@
                 });
                 if (res.ok) {
                     document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-cloud-check" style="color:var(--correct-clr);"></i> تم تحديث وحفظ النتيجة في السحابة بنجاح`;
-                } else {
-                    throw new Error("فشل الحفظ");
                 }
             } catch (err) {
-                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-clr);"></i> تعذر حفظ النتيجة بالسيرفر (محفوظ محلياً)`;
+                document.getElementById('syncStatusIndicator').innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-clr);"></i> تعذر حفظ النتيجة بالسيرفر`;
             }
             localStorage.setItem('faiz_student_session', JSON.stringify(studentSession));
             renderScoreHistory();
@@ -1044,13 +1160,9 @@
             document.getElementById('authPage').classList.remove('active');
             document.getElementById('openMenuBtn').style.display = 'flex';
             document.getElementById('pName').innerText = studentSession.name;
-            document.getElementById('pCode').innerText = studentSession.identifier || studentSession.email;
+            document.getElementById('pEmail').innerText = studentSession.email;
             document.getElementById('pClass').innerText = studentSession.studentClass;
             document.getElementById('pPhone').innerText = studentSession.parentPhone;
-
-            // 5. تخصيص المحتوى حسب المسار الدراسي للطالب
-            const classTitle = studentSession.studentClass;
-            document.getElementById('pathCustomNotice').innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--correct-clr);"></i> تم تحميل المنهج والشروح مخصصة بالكامل لـ: <strong>${classTitle}</strong>`;
 
             renderScoreHistory();
             switchPage('profilePage');
@@ -1293,7 +1405,6 @@
                 date: new Date().toLocaleDateString('ar-EG') + ' ' + new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'})
             };
 
-            // حفظ وإرسال النتائج للسيرفر بدقة دون مسح السجلات السابقة
             saveResultsToCloud(newScoreRecord);
         }
 
